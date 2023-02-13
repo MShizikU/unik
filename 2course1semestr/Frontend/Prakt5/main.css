@@ -1,0 +1,95 @@
+:root {
+    --white: #f9f9f9;
+    --lightwhite: #ffffff;
+    --darkgreen: #293f3c;
+    --lightgreen: #88a200;
+    --darkgrey: 162120;
+}
+
+.cards_container {
+    background-color: var(--lightwhite);
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.left{
+    justify-content:left;
+}
+.right{
+    justify-content:right;
+}
+
+.four_card_container {
+    display:flex;
+    padding: 40px;
+    align-items:center;
+    font-size: 32px;
+    text-align: center;
+    background-color: var(--lightwhite);
+    
+    color: var(--darkgreen);
+    flex: 1 1 25%;
+}
+
+.three_four_card_container {
+    display: flex;
+    padding: 40px;
+    align-items: center;
+    text-align: center;
+    align-items: center;
+    background-color: var(--lightwhite);
+    color: var(--darkgreen);
+    flex: 1 2 75%;
+}
+
+
+.three_four_card_container img{
+    border-radius:10px;
+    width:75%;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    .three_four_card_container {
+        font-size: 24px;
+        flex: 1 1 100%;
+    }
+
+
+    .four_card_container {
+        font-size: 24px;
+        flex: 1 1 100%;
+    }
+
+    .right{
+        justify-content:center;
+    }
+
+    .left {
+        justify-content: center;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+
+    .three_four_card_container {
+        font-size: 16px;
+        flex: 1 1 100%;
+    }
+
+    .four_card_container {
+        font-size: 16px;
+        flex: 1 1 100%;
+    }
+
+    .right {
+        justify-content: center;
+    }
+
+    .left{
+        justify-content:center;
+    }
+}

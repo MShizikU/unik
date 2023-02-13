@@ -1,0 +1,33 @@
+<!-- Создать теги заполнить его произвольным текстом, также создать 2 кнопки «меньше» и «больше»,
+по нажатию на которые будет меняться шрифт текста  -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<p id="block" style="font-size: 20px;">
+    Блок с текстом, который увеличивается/уменьшается при нажатии на кнопки
+</p>
+
+<button onclick="makeBigger()">Больше</button>
+<button onclick="makeSmaller()">Меньше</button>
+
+<script>
+    function makeBigger() {
+        let block = document.getElementById('block');
+        block.style.fontSize = parseInt(block.style.fontSize) + 2 + 'px';
+    }
+
+    function makeSmaller() {
+        let block = document.getElementById('block');
+        block.style.fontSize = parseInt(block.style.fontSize) - 2 + 'px';
+    }
+</script>
+
+</body>
+</html>

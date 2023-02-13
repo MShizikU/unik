@@ -1,0 +1,26 @@
+<!-- Реализовать функцию, которая каждые 5 секунд будет менять цвет фона на случайный -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="transition: .5s">
+
+<script>
+    const changeColor = () => {
+        let color = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+        document.body.style.backgroundColor = color;
+    }
+
+    setInterval(
+        changeColor,
+        5000
+    )
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!-- Реализовать два блока, накладывающихся друг на друга так,
+чтобы содержимое одного из них перекрывалось содержимым другого  -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: #0000ff;
+            position: relative;
+        }
+
+        .block2 {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0000;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="block">
+        <div class="block2"></div>
+    </div>
+</body>
+</html>

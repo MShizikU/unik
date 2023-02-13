@@ -1,0 +1,42 @@
+<!-- Создать анимацию, при нажатии на картинку она должна увеличиваться в размере, когда размер дойдёт
+до максимального (по вашему выбору), она начнёт уменьшаться -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<img style="width: 100px; height: auto;"
+     src="https://4lapy.ru/resize/800x370/upload/medialibrary/bd2/bd24299a26d8ea8bafa1945f56d3a538.jpg" alt="" id="img"
+     onclick="change()">
+
+<script>
+    const change = () => {
+        let img = document.getElementById('img');
+        let width = parseInt(img.style.width);
+        let flag = true;
+        let interval = setInterval(
+            () => {
+                img.style.width = width + 'px';
+                if (flag) {
+                    if (width > 500) {
+                        flag = false;
+                    } else {
+                        width += 1
+                    }
+                } else {
+                    if (width <= 100) {
+                        clearInterval(interval)
+                    } else {
+                        width -= 1;
+                    }
+                }
+            }, 1
+        )
+    }
+</script>
+</body>
+</html>

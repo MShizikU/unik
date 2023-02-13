@@ -1,0 +1,71 @@
+<!-- Создать тест из 5 вопросов и поля для ввода ответа, кнопку «Проверить» и поле для
+вывода процента правильных ответов (неверные ответы должны быть отмечены)
+ -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div>
+    <p>1. 2 + 2 = <input type="text" name="q1"></p>
+    <p>2. 3 + 3 = <input type="text" name="q2"></p>
+    <p>3. 4 + 4 = <input type="text" name="q3"></p>
+    <p>4. 5 + 5 = <input type="text" name="q4"></p>
+    <p>5. 6 + 6 = <input type="text" name="q5"></p>
+    <button>Проверить</button>
+
+    <p>Ваш результат: <span id="result"></span></p>
+</div>
+
+<script>
+    let button = document.querySelector('button');
+    button.addEventListener('click', function () {
+        let q1 = document.querySelector('input[name="q1"]');
+        let q2 = document.querySelector('input[name="q2"]');
+        let q3 = document.querySelector('input[name="q3"]');
+        let q4 = document.querySelector('input[name="q4"]');
+        let q5 = document.querySelector('input[name="q5"]');
+        let count = 0;
+        if (q1.value === '4') {
+            count++;
+            q1.style.backgroundColor = 'green';
+        } else {
+            q1.style.backgroundColor = 'red';
+        }
+        if (q2.value === '6') {
+            count++;
+            q2.style.backgroundColor = 'green';
+        } else {
+            q2.style.backgroundColor = 'red';
+        }
+        if (q3.value === '8') {
+            count++;
+            q3.style.backgroundColor = 'green';
+        } else {
+            q3.style.backgroundColor = 'red';
+        }
+        if (q4.value === '10') {
+            count++;
+            q4.style.backgroundColor = 'green';
+        } else {
+            q4.style.backgroundColor = 'red';
+        }
+        if (q5.value === '12') {
+            count++;
+            q5.style.backgroundColor = 'green';
+        } else {
+            q5.style.backgroundColor = 'red';
+        }
+        let result = document.querySelector('#result');
+        result.innerHTML = count * 20 + '%';
+    });
+</script>
+
+</body>
+</html>

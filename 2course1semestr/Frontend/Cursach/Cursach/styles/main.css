@@ -1,0 +1,10 @@
+
+main{
+    grid-area: main;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 5;
+    justify-content:center;
+    width:100%;
+}
+

@@ -1,0 +1,39 @@
+<!-- Реализовать таймер, с возможностью выбора времени с помощью тега <range> и кнопки «Пуск»,
+по истечении времени вывести уведомление «Время истекло» -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<p><span id="rn">5</span> sec</p>
+<input type="range" min="1" max="10" value="5" id="range" onchange="document.getElementById('rn').innerHTML = this.value">
+
+<button id="start" onclick="start()">Пуск</button>
+
+<script>
+    let range = document.getElementById('range');
+    const start = () => {
+        let time = parseInt(range.value);
+        let timer = setInterval(
+            () => {
+                if (time === 0) {
+                    alert('Время истекло')
+                    clearInterval(timer);
+                } else {
+                    time-=1;
+                }
+            }, 1000
+        );
+
+    }
+
+</script>
+
+</body>
+</html>

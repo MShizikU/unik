@@ -1,0 +1,17 @@
+{
+  "groups" : [ "IKBO-20-21", "INBO-13-32", "IKBO-03-21", "IVBO-20-20" ],
+  "students" : [ {
+    "name" : " Sidorov S.D",
+    "group" : "IKBO-03-21",
+    "age" : 18
+  }, {
+    "name" : " Sidorov S.D.",
+    "group" : "IKBO-20-21",
+    "age" : 18
+  }, {
+    "name" : " Sidorov S.D",
+    "group" : "IKBO-01-21",
+    "age" : 18
+  } ],
+  "subject" : "Configuration management"
+}

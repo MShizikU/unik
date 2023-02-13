@@ -1,0 +1,32 @@
+<!-- Создать кнопку «Смена» и блок, который при нажатии становится поочередно то невидимым, то снова видимым.
+При этом позиция, которую он занимает, не освобождается  -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="go()">
+        Смена
+    </button>
+    <hr>
+    <div id="block" style="width: 100px; height: 100px; background: blue; transition: .3s"></div>
+
+    <script>
+        let block = document.getElementById('block');
+
+        const go = () => {
+            block.style.opacity = '0';
+            setTimeout(() => { block.style.opacity = '1' }, 1000);
+            setTimeout(() => { block.style.opacity = '0' }, 2000);
+            setTimeout(() => { block.style.opacity = '1' }, 3000);
+        }
+    </script>
+
+
+</body>
+</html>

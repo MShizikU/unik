@@ -1,0 +1,50 @@
+<!-- Создать несколько вариантов отображения блока текста, для разных размеров экрана использую медиа-запросы  -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .text {
+            width: 100%;
+            height: 100px;
+            background-color: #f0f0f0;
+            font-size: 20px;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        @media screen and (max-width: 400px) {
+            .text {
+                font-size: 5px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .text {
+                font-size: 10px;
+            }
+        }
+
+        @media screen and (max-width: 1000px) {
+            .text {
+                font-size: 20px;
+            }
+        }
+
+        @media screen and (min-width: 1001px) {
+            .text {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="text">Какой-то текст, к которому нужно прописать медиа запросы</div>
+
+</body>
+</html>

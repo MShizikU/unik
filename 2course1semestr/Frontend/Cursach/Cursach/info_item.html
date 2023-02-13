@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art de fleurs</title>
+    <link rel="icon" type="image/png" href="images/logo_transparent2.png">
+    <link rel="stylesheet" href="styles/basic.css" />
+    <link rel="stylesheet" href="styles/info_item.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+    <body >
+        <header>
+            <nav class="nav-menu">
+               <div class="logo">
+                   <img src="images/logo_transparent2.png" alt="LOGO" />
+                   <p>Art de fleurs</p>
+               </div>
+                <ul class="nav-links">
+                    <input type="checkbox" id="checkbox_toggle" onchange="connectCheckboxes()"/>
+                    <label for="checkbox_toggle" class="hamburger"><span class="hamburger-line"></span></label>
+                    <div class="main-menu">
+                        <li><a href="index.html">Главная</a>
+                        <li id="drop-menu-li">
+                            <input type="checkbox" id="checkbox_toggle_drop_menu" />
+                            <label for="checkbox_toggle_drop_menu" id="label_checkbox_drop_menu">Каталог</label>
+                            
+                            <img src="right_arrow.svg" id="drop-menu-arrow" />
+
+                            <ul class="drop-menu">
+                                <div class="drop-menu-div">
+                                <li><a href="flowers.html">Цветы</a>
+                                <li><a href="bouquet.html">Букеты</a>
+                                <li>
+                                    <a href="presents.html">Подарки</a>
+                                    </div>
+                            </ul>
+                        </li>
+                        <li><a href="about.html">О нас</a>
+                        <li><a href="profile.html">Профиль</a>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="info_container">
+                <div class="image_container info_card"></div>
+                
+                <div class="title_container info_card"><h2></h2></div>
+                <div class="description_container info_card"><p></p></div>
+                <div class="price info_card"><p></p></div>
+                <div class="purchase info_card"><button class="purchase">Заказать</button> </div>
+            </div>
+        </main>
+        <footer>
+            <div class="sec aboutus">
+                <h2>О нас</h2>
+                <p>
+                    Мы крупнейшая цветочная компания,
+                    продвигающая эстетику цветов в массы
+                </p>
+                <ul class="smicons_container">
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            <div class="sec quicklinks">
+                <h2>Каталог</h2>
+                <ul>
+                    <li><a href="flowers.html">Цветы</a></li>
+                    <li><a href="bouquet.html">Букеты</a></li>
+                    <li><a href="presents.html">Подарки</a></li>
+                </ul>
+            </div>
+            <div class="sec contact">
+                <h2>Контакты</h2>
+                <ul class="info">
+                    <li>
+                        <span><i class="fa fa-map-marker"></i></span>
+                        <span>Вернадского 86с1</span>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-phone"></i></span>
+                        <p><a href="#">+7 904 959 02 21</a></p>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-envelope"></i></span>
+                        <p><a href="#">artdefleurs@contact.ru</a></p>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+        <script src="scripts/checkboxes_connetions_header.js"></script>
+        <script src="scripts/write_data_to_info_card.js"></script>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!-- Создать анимацию мячика, летающего в разные стороны. В анимации использовать минимум 3 типа проигрывания 
+(ease, ease-in, ease-out, linear и т.д.), и обязательным условием - сделать такой же мячик, у которого 
+идёт задержка анимации -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .ball {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(169, 22, 209, 0.53);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation-name: ball;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease;
+            animation-delay: .5s;
+            /* Можно в одну строку: animation: ball 2s infinite ease; */
+        }
+
+        @keyframes ball {
+            0% {
+                top: 0;
+                left: 0;
+            }
+            25% {
+                top: 0;
+                left: 100px;
+            }
+            50% {
+                top: 100px;
+                left: 100px;
+            }
+            75% {
+                top: 100px;
+                left: 0;
+            }
+            100% {
+                top: 0;
+                left: 0;
+            }
+        }
+
+        .ball2 {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 0, 0, 0.74);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            animation-name: ball;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+    <div class="ball2"></div>
+</body>
+</html>

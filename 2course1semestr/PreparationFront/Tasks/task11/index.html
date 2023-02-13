@@ -1,0 +1,50 @@
+<!-- Создать header сайта с привязкой к верхней части экрана  -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            /*position: relative;*/
+            width: 100%;
+            min-height: 100vh;
+        }
+        header {
+            width: 100%;
+            height: 20px;
+            position: fixed;
+            background: blue;
+            padding: 10px;
+            color: #f0f0f0;
+        }
+
+        .block {
+            width: 100%;
+            height: 80vh;
+            background: #f0f0f0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            Какой-то хедер
+        </header>
+
+        <div class="block">
+            Какой-то контент
+        </div>
+        <div class="block">
+            Какой-то контент
+        </div>
+        <div class="block">
+            Какой-то контент
+        </div>
+    </div>
+</body>
+</html>

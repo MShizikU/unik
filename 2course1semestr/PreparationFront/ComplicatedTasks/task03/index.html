@@ -1,0 +1,32 @@
+<!-- С помощью тега и любой картинки, сделать изменение размера изображения, с помощью перемещения «ползунка»  -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+<input type="range" min="100" max="1000" value="300" step="1" onchange="changeSize(event)">
+<br>
+
+<img style="width: 300px; height: auto" id="img"
+     src="https://avatars.mds.yandex.net/i?id=dc7361b95e9b0527c543cbb558a72055_l-5878560-images-thumbs&n=27&h=384&w=480"
+     alt="">
+
+<!-- Ползунок -->
+
+<script>
+    function changeSize(event) {
+        let img = document.getElementById('img');
+        img.style.width = event.target.value + 'px';
+    }
+</script>
+</body>
+</html>

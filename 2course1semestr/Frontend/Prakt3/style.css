@@ -1,0 +1,366 @@
+body{
+    padding: 0%;
+    margin: 0px;
+    margin: 0px 0px 0px 0px;
+
+}
+
+header {
+    position: sticky;
+    z-index: 10;
+    top : 0px;
+    width: 100%;
+    min-width:100%;
+    display: block;
+    min-height: 7vw;
+    height: 20%;
+    max-height: 110px;
+    margin: 0px;
+    background-color: #ffffff;
+    border-bottom: 0.2vw solid #88a200;
+    overflow: hidden;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    line-height: 7vw;
+}
+
+#logo {
+    height: 5vw;
+    width: fit-content;
+    float: left;
+    flex-shrink:0;
+    margin-top: 1vw;
+    margin-left: 1vw;
+    position: relative;
+    transition: transform 1s ease-in-out;
+}
+
+#logo:hover{
+    transform: rotate(360deg);
+}
+
+
+
+#logo_title{
+    height: fit-content;
+    width: fit-content;
+    float: left;
+    flex-shrink:0;
+    align-self: center;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 2.2vw;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 3%;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#menu {
+    position: fixed;
+    top:0;
+    right:0;
+    float: right;
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu  li {
+    float: left;
+}
+
+#menu li a {
+    display: block;
+    font-family: 'Signika Negative', sans-serif;
+    color: #293f3c;
+    font-size: 1vw;
+    text-align: left;
+    padding: 0vw 1vw;
+    margin-top: 0vw;
+    margin-bottom: 0vw;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+#menu li a:hover{
+    transform: scale(1.2);
+}
+
+#menu li a:active{
+    transform: scale(1.5);
+}
+#drop-menu {
+    position: relative;
+    top:0;
+    z-index: 10;
+}
+
+#drop-menu  ul{
+    position: fixed;
+    top:7.05vw;
+    z-index: 10;
+    transform: scale(1,0);
+    line-height: 3vw;
+    height: fit-content;
+    border-top: 0.2vw solid #88a200;
+    border-top-left-radius: 0.1vw;
+    border-top-right-radius: 0.1vw;
+    border-bottom: 0.2VW solid #88a200;
+    border-bottom-right-radius: 0.1vw;
+    border-bottom-left-radius: 0.1vw;
+    transition: 0.2s;
+    min-width: 7vw;
+    width: fit-content;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    transform-origin:top;
+    margin-top: 0.5vw;
+}
+
+
+
+#drop-menu ul>li{
+    display: block;
+    width:100%;
+	float:none;
+	position: relative;
+    max-width: fit-content;
+    align-items: center;
+}
+
+#drop-menu li a{
+    width: fit-content;
+	float:center;
+	position: relative;
+    display: block;
+    color: #293f3c;
+    font-size:1vw;
+    text-align: center;
+    font-family: 'Signika Negative', sans-serif;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+#drop-menu:hover ul{
+    transform-origin:top;
+    transform: scale(1);
+    transition-delay: 0.2s 3s;
+}
+
+#drop-menu li:hover a{
+    transform-origin: left;
+    transform: scale(1.2);
+    
+}
+
+main{
+    height: 100%;
+    min-height: 75vh;
+    display: table;
+    justify-content: flex-start;
+}
+
+article{
+    width: 75%;
+    max-width: 75%;
+}
+
+aside{
+    position: absolute;
+    top:7vw;
+    right:0;
+    width: 10%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: inset 7px -7px 9px -7px #88a200;
+}
+
+aside p{
+    width: 100%;
+    margin-right:10px;
+    margin-left:10px;
+    margin-top: 5px;
+    width: fit-content;
+	float:center;
+	position: relative;
+    display: block;
+    color: #293f3c;
+    font-size:1vw;
+    text-align: center;
+}
+
+
+article {
+    position:relative;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 0.3vw;
+    margin-bottom: 10vw;
+}
+
+article h1{
+    font-size: 24px;
+}
+
+article section{
+    width: 100%;
+    margin-left: 2vw;
+    margin-top: 2vw;
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+article section h2{
+    font-size: 20px;
+}
+
+article section pre{
+    line-height: 20px;
+    font-size: 16px;
+    margin-left: 1vw;
+    margin-top: 1vw;
+}
+
+footer{
+    position:fixed;
+    bottom:0;
+    z-index: 10;
+    width: 100%;
+    min-height: 7vw;
+    height: fit-content;
+    background-color: #293f3c;
+    border-top: 0.2vw solid #88a200;
+    overflow: hidden;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    overflow:hidden; 
+}
+
+.footer_business_info{
+    position:relative;
+    height: fit-content;
+    width: 100%;
+    align-items: center;
+    flex-shrink:0;
+    margin-top: 0.5vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    overflow: hidden;
+    padding: 0.5vw;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.business_info_div { 
+    position:relative;
+    height: 2vw;
+    line-height: 2vw;
+    width:30%;
+    flex-shrink:0;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    overflow: hidden;
+    display: inline-block;
+    padding: auto;
+}
+
+
+
+.business_info_div a{
+    transform: scale(1);
+    position: relative;
+    font-size: 1vw;
+    color: rgb(143, 153, 143);
+    margin: 0px;
+    margin-left: 0px;
+    font-family: 'Signika Negative', sans-serif;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 0.05vw;
+    transition:  .3s ;
+}
+
+
+.business_info_div a:hover{
+    background-size: 100% 0.05vw;
+}
+
+.business_info_div a:active{
+    background-size : 100% 0.178vw;
+}
+
+.business_info_div a:visited{
+    color: rgb(119, 158, 119);
+}
+
+
+.image_folder{
+    position: absolute;
+    flex-direction: column;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    justify-content: center;
+    text-align:center;
+    margin-right: 0px;
+    margin-left: 10px;
+    height: 100%;
+    width: 40px;
+    max-width: 40px;
+}
+
+
+#email_icon{
+    position: absolute;
+    height:80%;
+    width: fit-content;
+    max-width: 35px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#phone_number_icon{
+    position: absolute;
+    height:80%;
+    width: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#adress_icon{
+    position: absolute;
+    height:80%;
+    width: fit-content;
+    margin: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+

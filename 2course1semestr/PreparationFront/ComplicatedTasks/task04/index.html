@@ -1,0 +1,33 @@
+<!-- Создать форму ввода логина и пароля, добавьте проверку, чтобы длина пароля была не менее 8 и не более
+16 символов. В случае, если пароль не соответствует требованиям, поле должно очищаться и поменять цвет
+фона для поля на красный -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<form>
+    <input type="text" id="login" placeholder="Введите логин">
+    <input type="password" id="password" placeholder="Введите пароль">
+    <input type="button" onclick="go()" value="Отправить">
+</form>
+
+<script>
+    const go = () => {
+        let password = document.getElementById('password').value;
+        if (password.length < 8 || password.length > 16) {
+            document.getElementById('password').style.backgroundColor = 'red';
+            document.getElementById('password').value = '';
+        } else {
+            document.getElementById('password').style.backgroundColor = 'white';
+        }
+    };
+</script>
+
+</body>
+</html>

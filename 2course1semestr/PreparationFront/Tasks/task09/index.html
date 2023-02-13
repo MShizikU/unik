@@ -1,0 +1,29 @@
+<!-- Реализовать увеличение размера блока при наведении на него,
+текст, который внутри блока, должен увеличить шрифт  -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .block {
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            line-height: 100px;
+            font-size: 20px;
+            transition: 0.5s;
+        }
+        .block:hover {
+            scale: 1.5;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="block">
+        Какой-то текст, который должен увеличиваться при наведении на блок
+    </div>
+</body>
+</html>

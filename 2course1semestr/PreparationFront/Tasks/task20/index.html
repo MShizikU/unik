@@ -1,0 +1,70 @@
+<!-- Создать сетку из 7 блоков разного размера и расположить их используя flexbox -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: #0000ff;
+            margin: 10px;
+        }
+
+        .block:nth-child(1) {
+            width: 200px;
+            height: 200px;
+        }
+
+        .block:nth-child(2) {
+            width: 300px;
+            height: 300px;
+        }
+
+        .block:nth-child(3) {
+            width: 400px;
+            height: 400px;
+        }
+
+        .block:nth-child(4) {
+            width: 500px;
+            height: 500px;
+        }
+
+        .block:nth-child(5) {
+            width: 600px;
+            height: 600px;
+        }
+
+        .block:nth-child(6) {
+            width: 700px;
+            height: 700px;
+        }
+
+        .block:nth-child(7) {
+            width: 800px;
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+        <div class="block"></div>
+    </div>
+
+</body>
+</html>

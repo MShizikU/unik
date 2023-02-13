@@ -1,0 +1,5 @@
+﻿  Source.cpp
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt7\code\code\Frequencies.h(61,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt7\code\code\Tree.h(23,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt7\code\code\Tree.h(84,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  code.vcxproj -> C:\Users\sidor\Desktop\unik\SIAOD\Prakt7\code\x64\Debug\code.exe

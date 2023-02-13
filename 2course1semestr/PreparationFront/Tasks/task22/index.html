@@ -1,0 +1,25 @@
+<!-- Вывести свои ФИО и рядом нарисовать окружность используя <canvas>/<svg> -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<canvas id="canvas" width="1000" height="1000"></canvas>
+
+<script>
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(450, 100, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.font = "30px Arial";
+    ctx.fillText("Фамилия Имя Отчество", 50, 100);
+</script>
+
+</body>
+</html>

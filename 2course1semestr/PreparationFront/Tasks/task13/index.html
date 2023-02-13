@@ -1,0 +1,39 @@
+<!-- Создать навигационную панель для сайта используйте flexbox для позиционирования  -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .nav ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100px;
+            background-color: #000000;
+        }
+
+        .nav ul a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav ul a:hover {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contacts</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html> 

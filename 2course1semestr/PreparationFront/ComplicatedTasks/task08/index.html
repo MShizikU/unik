@@ -1,0 +1,32 @@
+<!-- Написать простой калькулятор, где 2 формы для ввода первого и второго чисел, «checkbox»,
+кнопка «Вычислить» для выполнения операции сложения двух чисел и всплывающее уведомление — результат сложения   -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="text" id="firstNumber">
+        <input type="text" id="secondNumber">
+        <input type="checkbox" id="checkbox">
+        <button id="button" type="button">Вычислить</button>
+    </form>
+    <script>
+        let button = document.getElementById('button');
+        button.addEventListener('click', () => {
+            let firstNumber = document.getElementById('firstNumber').value;
+            let secondNumber = document.getElementById('secondNumber').value;
+            let checkbox = document.getElementById('checkbox');
+            let result = Number(firstNumber) + Number(secondNumber);
+            if (checkbox.checked) {
+                alert(result);
+            }
+        });
+    </script>
+
+</body>
+</html>

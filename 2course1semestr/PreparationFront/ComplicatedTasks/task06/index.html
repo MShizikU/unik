@@ -1,0 +1,49 @@
+<!-- Создать две кнопки (min и max) и полосу загрузки (тег <meter>). При нажатии на кнопку max срабатывает функция,
+которая плавно заполняет полосу загрузки до максимума. При нажатии на кнопку min срабатывает функция, которая плавно
+убирает полосу загрузки до минимума  -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="toMin()">min</button>
+    <button onclick="toMax()">max</button>
+    <meter min="0" max="100" value="0" id="meter"></meter>
+    <script>
+        const toMin = () => {
+            let meter = document.getElementById('meter');
+            let value = parseInt(meter.value);
+            let timer = setInterval(
+                () => {
+                    if (value === 0) {
+                        clearInterval(timer);
+                    } else {
+                        value-=1;
+                        meter.value = value;
+                    }
+                }, 100
+            );
+        }
+
+        const toMax = () => {
+            let meter = document.getElementById('meter');
+            let value = parseInt(meter.value);
+            let timer = setInterval(
+                () => {
+                    if (value === 100) {
+                        clearInterval(timer);
+                    } else {
+                        value+=1;
+                        meter.value = value;
+                    }
+                }, 100
+            );
+        }
+    </script>
+</body>
+</html>

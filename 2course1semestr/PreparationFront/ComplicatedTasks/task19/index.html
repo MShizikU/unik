@@ -1,0 +1,39 @@
+<!-- При помощи CSS счётчика и псевдоэлементов пронумеровать элементы в HTML документе (
+в качестве элементов можно использовать div, заголовки h1-h6 и т.д.). -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            counter-reset: block;
+        }
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(144, 50, 185, 0.85);
+            position: relative;
+            color: #f0f0f0;
+            margin: 5px;
+        }
+        .block::before {
+            content: "Tag: " counter(block);
+            counter-increment: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="block"></div>
+<div class="block"></div>
+<div class="block"></div>
+<div class="block"></div>
+<div class="block"></div>
+</body>
+</html>

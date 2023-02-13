@@ -1,0 +1,24 @@
+<!-- Создать блок с нестандартными краями. Ограничение области видимости для создания необычной формы
+реализовать при помощи clip-path.  -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: #0000ff;
+            position: relative;
+            clip-path: polygon( 0 0, 100% 0, 100% 100%, 0 100%, 0 50%, 50% 50%, 0 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="block"></div>
+</body>
+</html>

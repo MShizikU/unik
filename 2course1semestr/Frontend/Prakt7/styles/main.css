@@ -1,0 +1,14 @@
+:root {
+    --white: #f9f9f9;
+    --lightwhite: #ffffff;
+    --darkgreen: #293f3c;
+    --lightgreen: #88a200;
+    --darkgrey: 162120;
+}
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 5;
+}
+

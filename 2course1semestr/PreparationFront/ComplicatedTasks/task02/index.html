@@ -1,0 +1,79 @@
+<!-- На странице создайте таблицу 5x5, используя тег , заполнив их случайными числами,
+добавим кнопку «Сортировка» по нажатию на которую все числа будут сортироваться в порядке возрастания  -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- Таблица -->
+<table>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+        <td>25</td>
+    </tr>
+</table>
+
+<!-- Кнопка -->
+<button onclick="sort()">Сортировка</button>
+<script>
+    // Получение всех полей
+    let numbers = document.querySelectorAll('td');
+    // Генерация случайных чисел
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].innerHTML = Math.floor(Math.random() * 100);
+    }
+
+    const sort = () => {
+        // Получение всех полей
+        let numbers = document.querySelectorAll('td');
+        // Сортировка
+        for (let i = 0; i < numbers.length; i++) {
+            for (let j = 0; j < numbers.length; j++) {
+                if (parseInt(numbers[i].innerHTML) < parseInt(numbers[j].innerHTML)) {
+                    let temp = numbers[i].innerHTML;
+                    numbers[i].innerHTML = numbers[j].innerHTML;
+                    numbers[j].innerHTML = temp;
+                }
+            }
+        }
+    }
+</script>
+
+
+</body>
+</html>

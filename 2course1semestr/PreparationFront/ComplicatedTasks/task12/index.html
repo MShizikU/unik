@@ -1,0 +1,44 @@
+<!-- Создать генератор капчи из 6 символов. Текст нельзя выделять, а фон за ним трудно читаемый  -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="200" height="100"></canvas>
+
+<script>
+    // Можно проще, просто красивая реализация
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    let captcha = '';
+    let symbols = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let symbolsLength = symbols.length;
+
+    for (let i = 0; i < 6; i++) {
+        captcha += symbols[Math.floor(Math.random() * symbolsLength)];
+    }
+
+    // Фон из разгоцветных кругов
+    for (let i = 0; i < 100; i++) {
+        ctx.beginPath();
+        ctx.arc(Math.floor(Math.random() * 200), Math.floor(Math.random() * 100), Math.floor(Math.random() * 50), 0, 2 * Math.PI);
+        ctx.fillStyle = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
+        ctx.fill();
+    }
+
+
+    ctx.font = '30px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText(captcha, 50, 50);
+</script>
+
+</body>
+</html>

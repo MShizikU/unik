@@ -1,0 +1,8 @@
+
+main{
+    grid-area: main;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 5;
+}
+

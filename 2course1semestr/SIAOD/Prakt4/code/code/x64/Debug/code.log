@@ -1,0 +1,12 @@
+﻿  Source.cpp
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\binary_search_tree.h(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\binaryNode.h(43,22): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\binary_search_tree.h(6,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\red_black_tree.h(264,14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\basicNotion.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\hash_table.h(63,9): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\hash_table.h(76,9): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\hash_table.h(142,14): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\fileController.h(250,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\code\fileController.h(251,35): warning C4244: '+=': conversion from 'double' to '__int64', possible loss of data
+  code.vcxproj -> C:\Users\sidor\Desktop\unik\SIAOD\Prakt4\code\x64\Debug\code.exe

@@ -1,0 +1,28 @@
+<!-- Создать поле для ввода символов с ограничением в 16 символов (потом он не должен вносить символы)  -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- ЭТО ВСЁ -->
+<input type="text" maxlength="16">
+
+<!-- Но возможно нужно использовать JS -->
+<input type="text" id="input" onkeypress="change()">
+<script>
+    const change = () => {
+        console.log(input.value.length);
+        if (input.value.length > 16) {
+            input.value = input.value.slice(0, 16);
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art de fleurs</title>
+    <link rel="icon" type="image/png" href="logo2.jpg">
+    <link rel = "stylesheet" href="styles/notification.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/flowers_main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/ad833e7fc4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="nav-menu">
+            <div class="logo">
+                <img src="images/logo_transparent2.png" alt="LOGO" />
+                <p>Art de fleurs</p>
+            </div>
+            <ul class="nav-links">
+                <input type="checkbox" id="checkbox_toggle" />
+                <label for="checkbox_toggle" class="hamburger"><span class="hamburger-line"></span></label>
+                <div class="main-menu">
+                <li><a href="index.html">Главная</a>
+                <li id="drop-menu-li">
+                    <input type="checkbox" id="checkbox_toggle_drop_menu" />
+                    <label for="checkbox_toggle_drop_menu" id="label_checkbox_drop_menu">Каталог</label>
+
+                    <img src="right_arrow.svg" id="drop-menu-arrow" />
+
+                    <ul class="drop-menu">
+                        <div class="drop-menu-div">
+                        <li><a href="flowers.html">Цветы</a>
+                        <li><a href="bouquet.html">Букеты</a>
+                        <li>
+                            <a href="presents.html">Подарки</a>
+                            </div>
+                    </ul>
+                </li>
+                <li><a href="about.html">О нас</a>
+                <li>
+                    <a href="profile.html">Профиль</a>
+                    </div>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="btn_container">
+            <button class="solid_btn stop" id = "change_element">Change</button>
+            <button class="solid_btn" id = "delete_element">Delete</button>
+            <button class="solid_btn" id = "filter_array">Filter</button>
+            <button class ="solid_btn" id ="sort_array">Sort</button>
+        </div>
+
+    </main>
+    <div class = "notification_block">
+        
+        <div class = "notification_body">
+            <div class = "notification_number">1</div>
+            <div class = "notification_text">Абоба абобус бибус</div>
+        </div>
+    </div>
+    <footer>
+        <div class="sec aboutus">
+            <h2> About Us</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit dui vel elementum
+                viverra. Suspendisse maximus nisi nulla, sed luctus lorem pellentesque et.
+            </p>
+            <ul class="smicons_container">
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+        <div class="sec quicklinks">
+            <h2>Ссылки</h2>
+            <ul>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Вопросы</a></li>
+                <li><a href="#">Политика конфиденциальности</a></li>
+                <li><a href="#">Помощь</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+        <div class="sec quicklinks">
+            <h2>Каталог</h2>
+            <ul>
+                <li><a href="#">Цветы</a></li>
+                <li><a href="#">Букеты</a></li>
+                <li><a href="#">Подарки</a></li>
+            </ul>
+        </div>
+        <div class="sec contact">
+            <h2>Контакты</h2>
+            <ul class="info">
+                <li>
+                    <span><i class="fa fa-map-marker"></i></span>
+                    <span>Вернадского 86с1</span>
+                </li>
+                <li>
+                    <span><i class="fa fa-phone"></i></span>
+                    <p><a href="#">+7 992 287 15 53</a></p>
+                </li>
+                <li>
+                    <span><i class="fa fa-envelope"></i></span>
+                    <p><a href="#">tmp@gmail.com</a></p>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="scripts/cards_checker.js"></script>
+    <script src="scripts/generate_cards_from_array.js"></script>
+    <script src="scripts/work_with_array.js"></script>
+    <script src= "scripts/notififcation.js"></script>
+</body>
+</html>

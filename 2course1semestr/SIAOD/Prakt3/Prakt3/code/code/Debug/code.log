@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt3\Prakt3\code\code\balanced_tree.h(38,16): warning C4101: 'x': unreferenced local variable
+C:\Users\sidor\Desktop\unik\SIAOD\Prakt3\Prakt3\code\code\main.cpp(7,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  code.vcxproj -> C:\Users\sidor\Desktop\unik\SIAOD\Prakt3\Prakt3\code\Debug\code.exe

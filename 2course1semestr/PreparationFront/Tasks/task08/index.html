@@ -1,0 +1,51 @@
+<!-- Реализовать страницу, на которой есть тег <checkbox>, в котором есть 5 цветов на выбор.
+При выборе цвета фон страницы менять на соответствующий цвет  -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container div {
+            width: 100px;
+            height: 100px;
+            margin: 0 10px;
+            border: black solid 1px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label  style="background: red" onclick="changeColor('red')">
+            <input type="checkbox"> Красный
+        </label>
+        <label  style="background: green" onclick="changeColor('green')">
+            <input type="checkbox"> Зеленый
+        </label>
+        <label style="background: blue" onclick="changeColor('blue')">
+            <input type="checkbox"> Синий
+        </label>
+        <label  style="background: yellow" onclick="changeColor('yellow')">
+            <input type="checkbox"> Желтый
+        </label>
+        <label  style="background: black" onclick="changeColor('black')">
+            <input type="checkbox"> Черный
+        </label>
+    </div>
+
+    <script>
+        function changeColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+    </script>
+</body>
+</html>

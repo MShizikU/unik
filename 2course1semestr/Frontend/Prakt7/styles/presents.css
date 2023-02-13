@@ -1,0 +1,87 @@
+.cards_holder{
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.card{
+    font-family: 'Nunito',sans-serif;
+    flex: 1 1 25%;
+    background-color: var(--lightwhite);
+    margin:20px;
+    border-radius: 10px;
+    border: 2px solid var(--lightgreen);
+    min-height: 400px;
+    max-width: 300px;
+    justify-self: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+    overflow: hidden;
+
+    transition: all .5s ease-in-out;
+}
+
+.card .card_title::before{
+    content: '';
+    position: absolute;
+    top:-60%;
+    height:100%;
+    width:calc(100% - 10px);
+    
+    
+    
+    
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.card .card_title{
+    color:var(--lightgreen);
+    margin:10px;
+    z-index: 1;
+    flex: 1 1 33%;
+    font-size: 5rem;
+}
+
+
+
+.card .card_button{
+    margin: 10px;
+    flex: 1 1 33%;
+}
+
+.card .card_desc{
+    flex: 1 1 33%;
+    z-index: 1;
+    margin: 10px;
+    font-size: 1rem;
+}
+
+.card:nth-child(1) .card_title::before{
+    background-image: url(C:/Users/sidor/Desktop/unik/Frontend/Prakt7/images/florist.png);
+}
+
+.card:nth-child(2) .card_title::before{
+    background-image: url(C:/Users/sidor/Desktop/unik/Frontend/Prakt7/images/flowers_garden.png);
+}
+
+.card:nth-child(3) .card_title::before{
+    background-image: url(C:/Users/sidor/Desktop/unik/Frontend/Prakt7/images/florist_championship.png);
+}
+
+.cards_holder:hover .card{
+    filter: blur(20px);
+    transform: scale(0.9);
+    opacity: 0.5;
+}
+
+.cards_holder .card:hover {
+    filter: blur(0px);
+    transform: scale(1.1);
+    opacity: 1;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ANTLRGenerationPreferences">
+    <option name="perGrammarGenerationSettings">
+      <list>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/grammar/students.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="C:\Users\sidor\Desktop\unik\Config_manage\HT3\ht\gen" />
+          <option name="libDir" value="C:\Users\sidor\Desktop\unik\Config_manage\HT3\ht\grammar" />
+          <option name="encoding" value="" />
+          <option name="pkg" value="" />
+          <option name="language" value="Java" />
+          <option name="generateListener" value="false" />
+        </PerGrammarGenerationSettings>
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="18" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
