@@ -2,23 +2,30 @@ from mysql.connector import connect, Error
 import telebot
 import datetime
 import time
-bot = telebot.TeleBot("2035258275:AAE8-VLoxdy57jCPVHm5E6TXCgEaaFgE8Nw")
+bot = telebot.TeleBot("6123213534:AAESoFDzu6iVbNhbTljk1tXLXIt97zSuiQo")
 user_id=1
 date_of_start=0
 
-admin_id=374743214
+admin_id=446268304
+
+mhost="109.68.213.82"
+muser="gen_user"
+mpasswd="Work632004"
+mdb="default_db"
+mport = 3306
 
 @bot.message_handler(commands=['start'])
 def start_every_day_message(message):
     user_id = message.from_user.id
-    date_of_start = int(datetime.date.today().day)
+    date_of_start = datetime.date.today()
     checker=0
     try:
         with connect(
-            host="MrShiz.mysql.pythonanywhere-services.com",
-            user="MrShiz",
-            password="Work632004",
-            database="MrShiz$USERS",
+            host = mhost,
+            user = muser,
+            passwd = mpasswd,
+            db = mdb,
+            port = mport
         ) as connection:
             find_in_db_if_exist = "SELECT id FROM user WHERE user_id="+str(user_id)
             with connection.cursor() as cursor:
@@ -33,15 +40,16 @@ def start_every_day_message(message):
             bot.send_message(user_id,'Вы уже подписаны на рассылку, если хотите начать заново, введите команду /stop, а затем заново введите /start')
             print(result)
         else:
-            bot.send_message(user_id, 'Здравствуйте, Вы подписались на рассылку о туберкулезе, его лечении и жизни с ним. Здесь Вы можете общаться с поддержкой, которая всегда готов ответить на Ваши вопросы.\nhttps://telegra.ph/Znakomstvo-10-22-8')
+            bot.send_message(user_id, 'Здравствуйте, Вы подписались на рассылку о туберкулезе, его лечении и жизни с ним. Здесь Вы можете общаться с поддержкой, которая всегда готов ответить на Ваши вопросы.\nhttps://telegra.ph/Znakomstvo-02-27-6')
             bot.send_message(user_id,'\nВот ваша первая рассылка: https://telegra.ph/Kak-so-vsem-ehtim-spravitsya-10-10')
-            bot.send_message(user_id, 'Видео на YouTube:\nhttps://youtu.be/av38NkdsDD8')
+            bot.send_message(user_id, 'Видео на YouTube:\nСтрахи, мифы и принятие диагноза\nhttps://youtu.be/JpHI6Ip3jNA ')
             try:
                 with connect(
-                    host="MrShiz.mysql.pythonanywhere-services.com",
-                    user="MrShiz",
-                    password="Work632004",
-                    database="MrShiz$USERS",
+                    host=mhost,
+                    user=muser,
+                    passwd=mpasswd,
+                    db=mdb,
+                    port=mport
                 ) as connection:
                     show_row_query = "INSERT INTO user (user_id,date_of_start,username) VALUES('"+str(user_id)+"', '"+str(date_of_start)+"','"+str(message.from_user.first_name)+" "+str(message.from_user.last_name)+"')"
                     with connection.cursor() as cursor:
@@ -60,10 +68,11 @@ def stop_every_day_message(message):
     checker=0
     try:
         with connect(
-            host="MrShiz.mysql.pythonanywhere-services.com",
-            user="MrShiz",
-            password="Work632004",
-            database="MrShiz$USERS",
+            host,
+            user,
+            passwd,
+            db,
+            port
         ) as connection:
             find_in_db_if_exist = "SELECT id FROM user WHERE user_id="+str(user_id)
             with connection.cursor() as cursor:
@@ -82,10 +91,11 @@ def stop_every_day_message(message):
         date_of_start = 0
         try:
             with connect(
-                host="MrShiz.mysql.pythonanywhere-services.com",
-                user="MrShiz",
-                password="Work632004",
-                database="MrShiz$USERS",
+                host=mhost,
+                user=muser,
+                passwd=mpasswd,
+                db=mdb,
+                port=mport
             ) as connection:
                 delete_row_query = "DELETE FROM user WHERE user_id =" +str(message.from_user.id)
                 with connection.cursor() as cursor:
