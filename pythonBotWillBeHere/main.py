@@ -2,11 +2,11 @@ from mysql.connector import connect, Error
 import telebot
 import datetime
 import time
-bot = telebot.TeleBot("6123213534:AAESoFDzu6iVbNhbTljk1tXLXIt97zSuiQo")
+bot = telebot.TeleBot("5981846313:AAGwnJo06O5rhW0NbM6LoPvuJvNjFdWS7DI")
 user_id=1
 date_of_start=0
 
-admin_id=446268304
+admin_id=374743214
 
 mhost="109.68.213.82"
 muser="gen_user"
@@ -40,9 +40,8 @@ def start_every_day_message(message):
             bot.send_message(user_id,'Вы уже подписаны на рассылку, если хотите начать заново, введите команду /stop, а затем заново введите /start')
             print(result)
         else:
-            bot.send_message(user_id, 'Здравствуйте, Вы подписались на рассылку о туберкулезе, его лечении и жизни с ним. Здесь Вы можете общаться с поддержкой, которая всегда готов ответить на Ваши вопросы.\nhttps://telegra.ph/Znakomstvo-02-27-6')
-            bot.send_message(user_id,'\nВот ваша первая рассылка: https://telegra.ph/Kak-so-vsem-ehtim-spravitsya-10-10')
-            bot.send_message(user_id, 'Видео на YouTube:\nСтрахи, мифы и принятие диагноза\nhttps://youtu.be/JpHI6Ip3jNA ')
+            bot.send_message(user_id, 'Здравствуйте, Вы подписались на рассылку о туберкулезе, его лечении и жизни с ним. \nhttps://telegra.ph/Znakomstvo-02-27-6')
+            
             try:
                 with connect(
                     host=mhost,
@@ -68,11 +67,11 @@ def stop_every_day_message(message):
     checker=0
     try:
         with connect(
-            host,
-            user,
-            passwd,
-            db,
-            port
+            host = mhost,
+            user = muser,
+            passwd = mpasswd,
+            db = mdb,
+            port = mport
         ) as connection:
             find_in_db_if_exist = "SELECT id FROM user WHERE user_id="+str(user_id)
             with connection.cursor() as cursor:
