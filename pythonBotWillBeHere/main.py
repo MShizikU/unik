@@ -40,8 +40,10 @@ def start_every_day_message(message):
             bot.send_message(user_id,'Вы уже подписаны на рассылку, если хотите начать заново, введите команду /stop, а затем заново введите /start')
             print(result)
         else:
-            bot.send_message(user_id, 'Здравствуйте, Вы подписались на рассылку о туберкулезе, его лечении и жизни с ним. \nhttps://telegra.ph/Znakomstvo-02-27-6')
-            
+            bot.send_message(user_id, 'Как со всем справиться')
+            bot.send_message(user_id,'\nВот ваша первая рассылка: https://telegra.ph/Kak-so-vsem-ehtim-spravitsya-10-10')
+            bot.send_message(user_id, 'Видео на YouTube:\nСтрахи, мифы и принятие диагноза\nhttps://youtu.be/JpHI6Ip3jNA')
+
             try:
                 with connect(
                     host=mhost,

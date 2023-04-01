@@ -70,13 +70,9 @@ for count in range(1,counter+1):
         else:
             current_diferience = this_day - date_of_start + 30
     else:
-        current_diferience = this_day - date_of_start
+        current_diferience = this_day - date_of_start + 1
     if (current_diferience <= 27) and (current_diferience>0):
         print(current_diferience)
-        if (current_diferience == 1):
-            bot.send_message(user_id,'Как со всем справится')
-            bot.send_message(user_id,'\nВот ваша первая рассылка: https://telegra.ph/Kak-so-vsem-ehtim-spravitsya-10-10')
-            bot.send_message(user_id, 'Видео на YouTube:\nСтрахи, мифы и принятие диагноза\nhttps://youtu.be/JpHI6Ip3jNA')
         if (current_diferience == 2):
             bot.send_message(user_id, 'Что такое туберкулез?')
             bot.send_message(user_id, 'https://telegra.ph/Den-1-CHto-takoe-tuberkulez-10-10 ')
