@@ -1,0 +1,7 @@
+package com.example.Java_spring_task15.utils;
+
+public class WrongPostDataException extends Exception{
+    public WrongPostDataException(String message) {
+        super(message);
+    }
+}

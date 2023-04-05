@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Java_spring_task17" />
+        <module name="Java_task19" />
+        <module name="Java_spring_task18" />
+        <module name="Java_Spring_task13" />
+        <module name="Java_spring_task14" />
+        <module name="Java_spring_task15" />
+        <module name="Java_spring_task16" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Java_Spring_task13" target="17" />
+      <module name="Java_spring_task14" target="17" />
+      <module name="Java_spring_task15" target="17" />
+      <module name="Java_spring_task16" target="17" />
+      <module name="Java_spring_task17" target="17" />
+      <module name="Java_spring_task18" target="17" />
+      <module name="Java_task19" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Java_Spring_task13" options="-parameters" />
+      <module name="Java_spring_task14" options="-parameters" />
+      <module name="Java_spring_task15" options="-parameters" />
+      <module name="Java_spring_task16" options="-parameters" />
+      <module name="Java_spring_task17" options="-parameters" />
+      <module name="Java_spring_task18" options="-parameters" />
+      <module name="Java_task19" options="-parameters" />
+    </option>
+  </component>
+</project>

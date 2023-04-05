@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Java_Spring_task13/Java_Spring_task13.iml" filepath="$PROJECT_DIR$/Java_Spring_task13/Java_Spring_task13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_spring_task14/Java_spring_task14.iml" filepath="$PROJECT_DIR$/Java_spring_task14/Java_spring_task14.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_spring_task15/Java_spring_task15.iml" filepath="$PROJECT_DIR$/Java_spring_task15/Java_spring_task15.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_spring_task16/Java_spring_task16.iml" filepath="$PROJECT_DIR$/Java_spring_task16/Java_spring_task16.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_spring_task17/Java_spring_task17.iml" filepath="$PROJECT_DIR$/Java_spring_task17/Java_spring_task17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_spring_task18/Java_spring_task18.iml" filepath="$PROJECT_DIR$/Java_spring_task18/Java_spring_task18.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_task19/Java_task19.iml" filepath="$PROJECT_DIR$/Java_task19/Java_task19.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/secondPart(13_24).iml" filepath="$PROJECT_DIR$/.idea/secondPart(13_24).iml" />
+    </modules>
+  </component>
+</project>
