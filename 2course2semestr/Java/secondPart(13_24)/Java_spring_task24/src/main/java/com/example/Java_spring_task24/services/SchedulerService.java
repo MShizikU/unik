@@ -35,7 +35,7 @@ public class SchedulerService {
         DIRECTORY = "src/backup";
     }
 
-    @Scheduled(cron = "0 30 * * * *")
+    @Scheduled(cron = "0 1 * * * *")
     public void scheduledTask() throws IOException {
         List<User> manufactures = userService.findAll();
         ObjectMapper mapper = new ObjectMapper();

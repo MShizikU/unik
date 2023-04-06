@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PostDTO {
-    private String text, creationDate;
+    private String text, creationdate;
     private User user;
 }

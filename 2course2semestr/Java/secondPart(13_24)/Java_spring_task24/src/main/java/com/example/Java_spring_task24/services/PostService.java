@@ -28,7 +28,7 @@ public class PostService {
 
     @Transactional
     public void save(Post post) {
-        log.info("Post save" );
+        log.info("Post save " + post );
         postRepository.save(post);
     }
 
