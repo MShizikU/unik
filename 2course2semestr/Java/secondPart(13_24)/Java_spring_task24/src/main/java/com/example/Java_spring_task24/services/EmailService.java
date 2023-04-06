@@ -1,4 +1,4 @@
-package com.example.Java_spring_task22.services;
+package com.example.Java_spring_task24.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;

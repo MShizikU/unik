@@ -1,10 +1,9 @@
-package com.example.Java_spring_task22.services;
+package com.example.Java_spring_task23.services;
 
-import com.example.Java_spring_task22.dto.PostDTO;
-import com.example.Java_spring_task22.models.Post;
-import com.example.Java_spring_task22.models.User;
+import com.example.Java_spring_task23.dto.PostDTO;
+import com.example.Java_spring_task23.models.Post;
+import com.example.Java_spring_task23.models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

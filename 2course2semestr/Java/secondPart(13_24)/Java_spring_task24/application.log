@@ -72,7 +72,7 @@ org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check t
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
-	at com.example.Java_spring_task22.JavaSpringTask22Application.main(JavaSpringTask22Application.java:14)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask22Application.java:14)
 Caused by: java.net.ConnectException: Connection refused: no further information
 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
 	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
@@ -142,7 +142,7 @@ org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check t
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
-	at com.example.Java_spring_task22.JavaSpringTask22Application.main(JavaSpringTask22Application.java:14)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask22Application.java:14)
 Caused by: java.net.ConnectException: Connection refused: no further information
 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
 	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
@@ -206,7 +206,7 @@ org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check t
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
-	at com.example.Java_spring_task22.JavaSpringTask22Application.main(JavaSpringTask22Application.java:14)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask22Application.java:14)
 Caused by: java.net.ConnectException: Connection refused: no further information
 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
 	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
@@ -257,7 +257,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
-	at com.example.Java_spring_task22.JavaSpringTask22Application.main(JavaSpringTask22Application.java:14)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask22Application.java:14)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schedulerService' defined in file [C:\Users\sidor\Desktop\unik\2course2semestr\Java\secondPart(13_24)\Java_spring_task22\target\classes\com\example\Java_spring_task22\services\SchedulerService.class]: Unexpected exception during bean creation
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:534)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
@@ -361,7 +361,7 @@ org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check t
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
-	at com.example.Java_spring_task22.JavaSpringTask22Application.main(JavaSpringTask22Application.java:14)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask22Application.java:14)
 Caused by: java.net.ConnectException: Connection refused: no further information
 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
 	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
@@ -431,7 +431,7 @@ org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check t
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
-	at com.example.Java_spring_task22.JavaSpringTask22Application.main(JavaSpringTask22Application.java:14)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask22Application.java:14)
 Caused by: java.net.ConnectException: Connection refused: no further information
 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
 	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
@@ -495,7 +495,7 @@ org.postgresql.util.PSQLException: Connection to localhost:5432 refused. Check t
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
-	at com.example.Java_spring_task22.JavaSpringTask22Application.main(JavaSpringTask22Application.java:14)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask22Application.java:14)
 Caused by: java.net.ConnectException: Connection refused: no further information
 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
 	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
@@ -533,7 +533,7 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in com.example.Java_spring_task22.services.EmailService required a bean of type 'org.springframework.mail.javamail.JavaMailSenderImpl' that could not be found.
+Parameter 0 of constructor in com.example.Java_spring_task24.services.EmailService required a bean of type 'org.springframework.mail.javamail.JavaMailSenderImpl' that could not be found.
 
 
 Action:
