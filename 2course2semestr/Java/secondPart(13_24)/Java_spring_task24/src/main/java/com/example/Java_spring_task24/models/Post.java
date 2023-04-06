@@ -16,7 +16,7 @@ public class Post {
     @Column(name = "text")
     private String text;
 
-    @Column(name = "creationDate")
+    @Column(name = "creationdate")
     private String creationDate;
 
     @JsonIgnore

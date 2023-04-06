@@ -1192,3 +1192,221 @@ Caused by: java.lang.ClassNotFoundException: javax.activation.FileTypeMap
 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
 	... 33 common frames omitted
+507  [main] INFO  c.e.J.JavaSpringTask24Application
+                – Starting JavaSpringTask24Application using Java 17.0.6 with PID 9300 (C:\Users\sidor\Desktop\unik\2course2semestr\Java\secondPart(13_24)\Java_spring_task24\target\classes started by sidor in C:\Users\sidor\Desktop\unik\2course2semestr\Java\secondPart(13_24)\Java_spring_task24)
+510  [main] INFO  c.e.J.JavaSpringTask24Application
+                – No active profile set, falling back to 1 default profile: "default"
+987  [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate
+                – Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+1049 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate
+                – Finished Spring Data repository scanning in 56 ms. Found 3 JPA repository interfaces.
+1597 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer
+                – Tomcat initialized with port(s): 8080 (http)
+1605 [main] INFO  o.a.coyote.http11.Http11NioProtocol
+                – Initializing ProtocolHandler ["http-nio-8080"]
+1606 [main] INFO  o.a.catalina.core.StandardService
+                – Starting service [Tomcat]
+1606 [main] INFO  o.a.catalina.core.StandardEngine
+                – Starting Servlet engine: [Apache Tomcat/10.1.5]
+1678 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]
+                – Initializing Spring embedded WebApplicationContext
+1678 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext
+                – Root WebApplicationContext: initialization completed in 1136 ms
+1790 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                – HikariPool-1 - Starting...
+1945 [main] INFO  com.zaxxer.hikari.pool.HikariPool
+                – HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@40717ed
+1946 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                – HikariPool-1 - Start completed.
+1982 [main] INFO  o.h.jpa.internal.util.LogHelper
+                – HHH000204: Processing PersistenceUnitInfo [name: default]
+2024 [main] INFO  org.hibernate.Version
+                – HHH000412: Hibernate ORM core version 6.1.7.Final
+2262 [main] INFO  SQL dialect
+                – HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2827 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator
+                – HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2833 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean
+                – Initialized JPA EntityManagerFactory for persistence unit 'default'
+3245 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration
+                – spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+3308 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext
+                – Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through field 'httpSecurity': Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration.httpSecurity' defined in class path resource [org/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration.class]: Failed to instantiate [org.springframework.security.config.annotation.web.builders.HttpSecurity]: Factory method 'httpSecurity' threw exception with message: org/springframework/security/core/context/DeferredSecurityContext
+3309 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean
+                – Closing JPA EntityManagerFactory for persistence unit 'default'
+3310 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                – HikariPool-1 - Shutdown initiated...
+3313 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                – HikariPool-1 - Shutdown completed.
+3315 [main] INFO  o.a.catalina.core.StandardService
+                – Stopping service [Tomcat]
+3327 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger
+                – 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+3339 [main] ERROR o.s.boot.SpringApplication
+                – Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through field 'httpSecurity': Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration.httpSecurity' defined in class path resource [org/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration.class]: Failed to instantiate [org.springframework.security.config.annotation.web.builders.HttpSecurity]: Factory method 'httpSecurity' threw exception with message: org/springframework/security/core/context/DeferredSecurityContext
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:712)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:692)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:133)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:961)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:917)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:584)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask24Application.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration.httpSecurity' defined in class path resource [org/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration.class]: Failed to instantiate [org.springframework.security.config.annotation.web.builders.HttpSecurity]: Factory method 'httpSecurity' threw exception with message: org/springframework/security/core/context/DeferredSecurityContext
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:491)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1324)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1161)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:344)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1405)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1325)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:709)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.config.annotation.web.builders.HttpSecurity]: Factory method 'httpSecurity' threw exception with message: org/springframework/security/core/context/DeferredSecurityContext
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:171)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 31 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: org/springframework/security/core/context/DeferredSecurityContext
+	at org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer.<init>(SessionManagementConfigurer.java:150)
+	at org.springframework.security.config.annotation.web.builders.HttpSecurity.sessionManagement(HttpSecurity.java:564)
+	at org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration.httpSecurity(HttpSecurityConfiguration.java:119)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:139)
+	... 32 common frames omitted
+Caused by: java.lang.ClassNotFoundException: org.springframework.security.core.context.DeferredSecurityContext
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	... 40 common frames omitted
+531  [main] INFO  c.e.J.JavaSpringTask24Application
+                – Starting JavaSpringTask24Application using Java 17.0.6 with PID 3656 (C:\Users\sidor\Desktop\unik\2course2semestr\Java\secondPart(13_24)\Java_spring_task24\target\classes started by sidor in C:\Users\sidor\Desktop\unik\2course2semestr\Java\secondPart(13_24)\Java_spring_task24)
+534  [main] INFO  c.e.J.JavaSpringTask24Application
+                – No active profile set, falling back to 1 default profile: "default"
+1032 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate
+                – Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+1098 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate
+                – Finished Spring Data repository scanning in 58 ms. Found 3 JPA repository interfaces.
+1662 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer
+                – Tomcat initialized with port(s): 8080 (http)
+1669 [main] INFO  o.a.coyote.http11.Http11NioProtocol
+                – Initializing ProtocolHandler ["http-nio-8080"]
+1670 [main] INFO  o.a.catalina.core.StandardService
+                – Starting service [Tomcat]
+1670 [main] INFO  o.a.catalina.core.StandardEngine
+                – Starting Servlet engine: [Apache Tomcat/10.1.5]
+1747 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]
+                – Initializing Spring embedded WebApplicationContext
+1747 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext
+                – Root WebApplicationContext: initialization completed in 1182 ms
+1869 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                – HikariPool-1 - Starting...
+2031 [main] INFO  com.zaxxer.hikari.pool.HikariPool
+                – HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@35787726
+2032 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                – HikariPool-1 - Start completed.
+2068 [main] INFO  o.h.jpa.internal.util.LogHelper
+                – HHH000204: Processing PersistenceUnitInfo [name: default]
+2114 [main] INFO  org.hibernate.Version
+                – HHH000412: Hibernate ORM core version 6.1.7.Final
+2355 [main] INFO  SQL dialect
+                – HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2928 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator
+                – HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2935 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean
+                – Initialized JPA EntityManagerFactory for persistence unit 'default'
+3338 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration
+                – spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+3390 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext
+                – Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through field 'httpSecurity': Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration.httpSecurity' defined in class path resource [org/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration.class]: Failed to instantiate [org.springframework.security.config.annotation.web.builders.HttpSecurity]: Factory method 'httpSecurity' threw exception with message: org/springframework/security/core/context/DeferredSecurityContext
+3391 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean
+                – Closing JPA EntityManagerFactory for persistence unit 'default'
+3393 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                – HikariPool-1 - Shutdown initiated...
+3396 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                – HikariPool-1 - Shutdown completed.
+3398 [main] INFO  o.a.catalina.core.StandardService
+                – Stopping service [Tomcat]
+3411 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger
+                – 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+3425 [main] ERROR o.s.boot.SpringApplication
+                – Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through field 'httpSecurity': Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration.httpSecurity' defined in class path resource [org/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration.class]: Failed to instantiate [org.springframework.security.config.annotation.web.builders.HttpSecurity]: Factory method 'httpSecurity' threw exception with message: org/springframework/security/core/context/DeferredSecurityContext
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:712)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:692)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:133)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:961)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:917)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:584)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293)
+	at com.example.Java_spring_task24.JavaSpringTask24Application.main(JavaSpringTask24Application.java:14)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration.httpSecurity' defined in class path resource [org/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration.class]: Failed to instantiate [org.springframework.security.config.annotation.web.builders.HttpSecurity]: Factory method 'httpSecurity' threw exception with message: org/springframework/security/core/context/DeferredSecurityContext
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:491)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1324)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1161)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:344)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1405)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1325)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:709)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.config.annotation.web.builders.HttpSecurity]: Factory method 'httpSecurity' threw exception with message: org/springframework/security/core/context/DeferredSecurityContext
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:171)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 31 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: org/springframework/security/core/context/DeferredSecurityContext
+	at org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer.<init>(SessionManagementConfigurer.java:150)
+	at org.springframework.security.config.annotation.web.builders.HttpSecurity.sessionManagement(HttpSecurity.java:564)
+	at org.springframework.security.config.annotation.web.configuration.HttpSecurityConfiguration.httpSecurity(HttpSecurityConfiguration.java:119)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:139)
+	... 32 common frames omitted
+Caused by: java.lang.ClassNotFoundException: org.springframework.security.core.context.DeferredSecurityContext
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	... 40 common frames omitted

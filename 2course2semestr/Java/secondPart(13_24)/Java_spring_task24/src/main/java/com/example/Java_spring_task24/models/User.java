@@ -15,16 +15,16 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "firstName")
+    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "middleName")
+    @Column(name = "middlename")
     private String middleName;
 
-    @Column(name = "birthDate")
+    @Column(name = "birthdate")
     private String birthDate;
 
     @JsonIgnore

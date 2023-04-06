@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+
 @Component
 public class PostDAO {
     private EntityManager entityManager;
