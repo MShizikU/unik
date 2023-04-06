@@ -10,11 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-/**
- *ProceedingJoinPoint — это расширение JoinPoint , предоставляющее дополнительный метод continue () .
- * При вызове выполнение кода переходит к следующему совету или к целевому методу.
- * Это дает нам возможность контролировать поток кода и решать, следует ли продолжать дальнейшие вызовы.
- * */
 @Slf4j
 @Component
 @Aspect
