@@ -5,16 +5,25 @@ header{
     position: relative;
     display: grid;
     grid-template-areas:
-     "company_logo search_bar search_bar user_info user_info"
-     "fast_filters fast_filters fast_filters fast_filters fast_filters"
+     "company_logo company_logo search_bar search_bar user_info user_info"
+     "fast_filters fast_filters fast_filters fast_filters fast_filters fast_filters"
     ;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-gap: 10px;
 }
 
 #company_info_div{
     grid-area: company_logo;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;}
+
+#company_info_div img{
+    margin: 0px 10px 0px 40px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 
 #search_bar_div{
@@ -36,13 +45,13 @@ header{
     grid-area: user_info;
     display: flex;
     align-items: center;
-    justify-content:space-around;
+    justify-content: flex-end;
 }
 
 #user_info_div img{
-    
-    height: 100%;
-    width: calc('height');
+    margin: 10px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
 }
 
