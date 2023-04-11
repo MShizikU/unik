@@ -82,6 +82,7 @@ controls{
       keyboardKey:i=41
     }
 
+    ID_TARGET_CAMERA{}
     ID_VOICE_MESSAGE_2{
       keyboardKey:i=3
     }
