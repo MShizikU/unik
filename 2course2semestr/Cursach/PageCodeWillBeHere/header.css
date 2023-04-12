@@ -11,6 +11,7 @@ header{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-gap: 10px;
+    font-family: 'EuclidFont';
 }
 
 #company_info_div{
@@ -57,18 +58,29 @@ header{
 
 #fast_filters_bar{
     grid-area: fast_filters;
+    overflow: hidden;
+    height:fit-content;
 }
 
 #fast_filters_bar ul{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style-type: none;
-    height: 100px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    height:40px;
+    padding: 0px;
 }
 
 #fast_filters_bar ul li{
-    position: relative;
-    padding: 10px;
+    position: absolute;
+    display: inline-block;
 }
+
+.dot{
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 

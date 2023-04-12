@@ -1,0 +1,11 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+@font-face {
+    font-family: "EuclidFont";
+    src: url("fonts/EuclidFont.ttf");
+  }
