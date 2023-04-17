@@ -12,6 +12,7 @@ header{
     grid-template-rows: 1fr 1fr;
     grid-gap: 10px;
     font-family: 'EuclidFont';
+    padding:10px;
 }
 
 #company_info_div{
@@ -42,7 +43,7 @@ header{
     padding: 0px 20px 0px 20px;
     height: 40px;
     font-family: 'Roboto', sans-serif;
-    font-size: 1.3vw;
+    font-size: 18px;
 }
 
 
@@ -75,7 +76,7 @@ header{
 
 #user_info_div #login_button{
     position: relative;
-    font-size: 1.5vw;
+    font-size: 20px;
     cursor: pointer;
     margin-right: 20px;
     transition:  0.3s ease;
@@ -106,18 +107,13 @@ header{
 }
 
 #fast_filters_bar{
-    
-    position: relative;
     grid-area: fast_filters;
     overflow: hidden;
     height:fit-content;
-    overflow-x: hidden;
     width: 100%;
 }
 
 #fast_filters_bar ul{
-    
-    position: relative;
     text-align: center;
     overflow: hidden;
     white-space: nowrap;
@@ -128,12 +124,10 @@ header{
 }
 
 #fast_filters_bar ul li{
-    position: relative;
     display: inline-block;
 }
 
 #fast_filters_bar ul li a{
-    
     position: relative;
     cursor:pointer;
 }
