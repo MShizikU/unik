@@ -36,10 +36,22 @@ header{
 
 #search_bar_div input{
     width:100%;
-    border: 3px solid #b8b7b7;
+    border: 2px solid #b8b7b7;
+    caret-color:#777777 ;
     border-radius: 40px;
     padding: 0px 20px 0px 20px;
     height: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3vw;
+}
+
+
+#search_bar_div input:hover{
+    border: 2px solid #777777;
+}
+
+#search_bar_div input:focus{
+    border: 2px solid #777777;
 }
 
 #user_info_div{
@@ -54,25 +66,76 @@ header{
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    display: none;
+}
+
+#user_info_div h3{
+    display: none;
+}
+
+#user_info_div #login_button{
+    position: relative;
+    font-size: 1.5vw;
+    cursor: pointer;
+    margin-right: 20px;
+    transition:  0.3s ease;
+}
+
+#user_info_div #login_button:hover{
+    cursor: pointer;
+    margin-right: 20px;
+    background-position: right;
+}
+
+#user_info_div #login_button:before,
+#user_info_div #login_button:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: #000;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-out;
+}
+
+#user_info_div #login_button:hover:before,
+#user_info_div #login_button:hover:after {
+  transform: scaleX(1);
 }
 
 #fast_filters_bar{
+    
+    position: relative;
     grid-area: fast_filters;
     overflow: hidden;
     height:fit-content;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 #fast_filters_bar ul{
+    
+    position: relative;
     text-align: center;
     overflow: hidden;
     white-space: nowrap;
     height:40px;
     padding: 0px;
+    margin: 0px;
+    width: 100%;
 }
 
 #fast_filters_bar ul li{
-    position: absolute;
+    position: relative;
     display: inline-block;
+}
+
+#fast_filters_bar ul li a{
+    
+    position: relative;
+    cursor:pointer;
 }
 
 .dot{
@@ -82,5 +145,6 @@ header{
     border-radius: 50%;
     display: inline-block;
 }
+
 
 

@@ -4,49 +4,121 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Basic Carshering</title>
-        <link rel="stylesheet" type="text/css" href = "basic.css">
-        <link rel="stylesheet" type="text/css" href = "header.css">
+        <link rel="stylesheet" type="text/css" href = "csss/basic.css">
+        <link rel="stylesheet" type="text/css" href = "csss/header.css">
+        <link rel="stylesheet" type="text/css" href = "csss/footer.css">
+        
+        <link rel="stylesheet" type="text/css" href = "csss/content.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+        
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     </head>
     <body>
-        <header>
+        <header class="header">
             <div id="company_info_div">
-                
-                <img src="tmp.jpg" alt = "User Icon" id = "user-icon">
+                <img src="icons/logo.png" alt = "User Icon" id = "user-icon">
                 <h3>Basic carsharing</h3>
             </div>
             <div id = "search_bar_div">
-                <input type = "text" id = "basic_car_search_bar" name = "basic_car_search_bar">
-            <!--Тут должна быть иконка поиска-->
+                <input type = "text" id = "basic_car_search_bar" name = "basic_car_search_bar" placeholder="Поиск...">
             </div>
             <div id = "user_info_div">
-                <h3>tmpovtmpt</h3>
-                <img src="tmp.jpg" alt = "User Icon" id = "user-icon">
+                <a id = 'login_button'>Вход / Регистрация</a>
+                <h3>username</h3>
+                <img src="icons/user.svg" alt = "User Icon" id = "user-icon">
             </div>
             <div id = "fast_filters_bar">
                 <ul class = "fast_filters_ul">
-                    <li class = "fast_filters_item">Инфа меньше</li>
-                    <li class = "fast_filters_item "> <div class="dot"></div></li>
-                    <li class = "fast_filters_item">Чуть менее крутая инфо </li>
-                    <li class = "fast_filters_item "> <div class="dot"></div></li>
-                    <li class = "fast_filters_item">А тут прям </li>
-                    <li class = "fast_filters_item "> <div class="dot"></div></li>
-                    <li class = "fast_filters_item">Капец</li>
-                    <li class = "fast_filters_item "> <div class="dot"></div></li>
-                    <li class = "fast_filters_item">Че нитьт накидаю </li>
-                    <li class = "fast_filters_item "> <div class="dot"></div></li>
-                    <li class = "fast_filters_item">Может быть </li>
-                    <li class = "fast_filters_item "> <div class="dot"></div></li>
-                    <li class = "fast_filters_item">Че нитьт накидаю </li>
-                    <li class = "fast_filters_item "> <div class="dot"></div></li>
-                    <li class = "fast_filters_item">Может быть </li>
-                    <li class = "fast_filters_item "> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Дешево</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Как арендовать автомобиль?</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Близко</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Забронировать автомобиль на время</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Быстро</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Получить скидку на первый заказ</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>На вечер</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Мы можем с Вами сотрудничать</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>C работы до дома</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Комфорт личного авто и дешевле такси</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Ночная прогулка</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Наша поддержка всегда Вам поможет</a></li>
+                    <li class = "fast_filters_item"> <div class="dot"></div></li>
                 </ul>
             </div>
         </header>
-        <footer>
-
+        <div class="content">
+            <div class="basic_card_container">
+                <div class="card">
+                    <div class="card_image">
+                        
+                    </div>
+                    <div class = "card_info">
+                        <h3 class = "card_info_title">Hundai i30</h3>
+                        <h3 class = "card_info_price">7.20руб/час</h3>
+                    </div>
+                    <div class="card_control">
+                        <a href="https://twitter.com/Dave_Conner" class="button">Hover</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            
+           
+            <div class="container">
+                <div class="row">
+                  <div class="footer-col">
+                    <h4>Basic carsharing</h4>
+                    <ul>
+                      <li><a href="#">О нас</a></li>
+                      <li><a href="#">Наши услуги</a></li>
+                      <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer-col">
+                    <h4>Помощь</h4>
+                    <ul>
+                      <li><a href="#">ЧаВо</a></li>
+                      <li><a href="#">История заказов</a></li>
+                      <li><a href="#">Способы оплаты</a></li>
+                      <li><a href="#">Служба поддержки</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer-col">
+                    <h4>Аренда</h4>
+                    <ul>
+                      <li><a href="#">Повседневно</a></li>
+                      <li><a href="#">На вечер</a></li>
+                      <li><a href="#">Спорт</a></li>
+                      <li><a href="#">Премиум</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer-col">
+                    <h4>Соц. сети</h4>
+                    <div class="social-links">
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-instagram"></i></a>
+                      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                  </div>
+                </div>
+               </div>
         </footer>
 
     </body>
-    <script src="fast_filters_bar_rotating.js"></script>
+    <script src="scripts/fast_filters_bar_rotating.js"></script>
 </html>
