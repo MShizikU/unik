@@ -1,7 +1,16 @@
-.form_wrapper
+.form_wrapper{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  z-index: 25;
+}
+
+
 
 .user-form {
   color: #24262b;
+  background-color: white;
   padding: 20px;
   width: 300px;
   border: 2px #24262b solid;
@@ -17,7 +26,7 @@
     width:100%;
     text-align: center;
     align-self: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 #choser_container{
@@ -40,7 +49,7 @@
     color: #b8b7b7;
     cursor: pointer;
     order:2;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 label, input[type="submit"] {
@@ -58,11 +67,11 @@ input[type="text"], input[type="email"], input[type="password"], input[type="sub
   padding: 8px;
   border: 2px #b8b7b7 solid;
   border-radius: 3px;
+  margin-bottom: 15px;
 }
 
 .disabled{
   display:none;
-  visibility: collapse;
 }
 
 .enabled{

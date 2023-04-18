@@ -13,6 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
         
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -31,67 +32,181 @@
                 <h3>username</h3>
                 <img src="icons/user.svg" alt = "User Icon" id = "user-icon">
             </div>
-            <!--<div id = "fast_filters_bar">
+            <div id = "fast_filters_bar">
                 <ul class = "fast_filters_ul">
-                    <li class = "fast_filters_item"><a>Дешево</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>Как арендовать автомобиль?</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>Близко</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>Забронировать автомобиль на время</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
                     <li class = "fast_filters_item"><a>Быстро</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>Получить скидку на первый заказ</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Дешево</a></li>
+                    <li class = "fast_filters_item"><a>Спорт</a></li>
                     <li class = "fast_filters_item"><a>На вечер</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>Мы можем с Вами сотрудничать</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>C работы до дома</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>Комфорт личного авто и дешевле такси</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>Ночная прогулка</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
-                    <li class = "fast_filters_item"><a>Наша поддержка всегда Вам поможет</a></li>
-                    <li class = "fast_filters_item"> <div class="dot"></div></li>
+                    <li class = "fast_filters_item"><a>Премиум</a></li>
                 </ul>
-            </div>-->
-        </header>
-        <div class = "form_wrapper disabled_container">
-          <form class="user-form registration">
-            <div id="choser_container">
-              <h2 class = 'form_title active'>Регистрация</h2>
-              <h2 class = 'form_title inactive'>Вход</h2>
             </div>
-            <label for="username" class="form_label enabled">Имя пользователя:</label>
-            <input type="text" id="username" name="username" class = "enabled">
-            <label for="username" class="form_label disabled">Имя пользователя или почта:</label>
-            <input type="text" id="username" name="username" class = 'disabled'>
-            <label for="email" class="form_label enabled">Почта:</label>
-            <input type="email" id="email" name="email" class = "enabled">
-            <label for="password" class="form_label constant">Пароль:</label>
-            <input type="password" id="password" name="password" class="constant">
-            <a href="#" class="button form_submit_button">Регистрация</a>
-          </form>
-        </div>
+        </header>
+        
         <div class="content">
-            <div class="basic_card_container">
-                <div class="card">
-                    <div class="card_image">
-                        
-                    </div>
-                    <div class = "card_info">
-                        <h3 class = "card_info_title">Hundai i30</h3>
-                        <h3 class = "card_info_price">7.20руб/час</h3>
-                    </div>
-                    <div class="card_control">
-                        <a href="#" class="button">Аренда</a>
-                    </div>
+          <div class = "form_wrapper disabled_wrapper" id='reg_form_wrapper'>
+            <form class="user-form" id = 'user_form'>
+              <div id="choser_container">
+                <h2 class = 'form_title active'>Регистрация</h2>
+                <h2 class = 'form_title inactive'>Вход</h2>
+              </div>
+              <label for="username" class="form_label enabled">Имя пользователя:</label>
+              <input type="text" id="user_form_username" name="username" class = "enabled">
+              <label for="username" class="form_label disabled">Имя пользователя или почта:</label>
+              <input type="text" id="user_form_username_and_login" name="username" class = 'disabled'>
+              <label for="email" class="form_label enabled">Почта:</label>
+              <input type="email" id="user_form_email" name="email" class = "enabled">
+              <label for="password" class="form_label constant">Пароль:</label>
+              <input type="password" id="user_form_password" name="password" class="constant">
+              <a href="#" class="button form_submit_button" id = 'user_form_submit_button'>Регистрация</a>
+            </form>
+          </div>
+          <div class="basic_card_container" id = 'main_cards_container'>
+            <div class="card">
+              <div class="card_image">
+                  
+              </div>
+              <div class = "card_info">
+                  <h3 class = "card_info_title">Hundai i30</h3>
+                  <h3 class = "card_info_price">7.20руб/час</h3>
+              </div>
+              <div class="card_control">
+                  <a href="#" class="button">Аренда</a>
+              </div>
+          </div>
+          <div class="card">
+            <div class="card_image">
+                
+            </div>
+            <div class = "card_info">
+                <h3 class = "card_info_title">Hundai i30</h3>
+                <h3 class = "card_info_price">7.20руб/час</h3>
+            </div>
+            <div class="card_control">
+                <a href="#" class="button">Аренда</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image">
+             
+            </div>
+            <div class = "card_info">
+                <h3 class = "card_info_title">Hundai i30</h3>
+                <h3 class = "card_info_price">7.20руб/час</h3>
+            </div>
+            <div class="card_control">
+                <a href="#" class="button">Аренда</a>
+            </div>
+        </div>
+        <div class="card">
+          <div class="card_image">
+              
+          </div>
+          <div class = "card_info">
+              <h3 class = "card_info_title">Hundai i30</h3>
+              <h3 class = "card_info_price">7.20руб/час</h3>
+          </div>
+          <div class="card_control">
+              <a href="#" class="button">Аренда</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card_image">
+              
+          </div>
+          <div class = "card_info">
+              <h3 class = "card_info_title">Hundai i30</h3>
+              <h3 class = "card_info_price">7.20руб/час</h3>
+          </div>
+          <div class="card_control">
+              <a href="#" class="button">Аренда</a>
+          </div>
+      </div>
+      <div class="card">
+        <div class="card_image">
+            
+        </div>
+        <div class = "card_info">
+            <h3 class = "card_info_title">Hundai i30</h3>
+            <h3 class = "card_info_price">7.20руб/час</h3>
+        </div>
+        <div class="card_control">
+            <a href="#" class="button">Аренда</a>
+        </div>
+      </div>
+              <div class="card">
+                  <div class="card_image">
+                      
+                  </div>
+                  <div class = "card_info">
+                      <h3 class = "card_info_title">Hundai i30</h3>
+                      <h3 class = "card_info_price">7.20руб/час</h3>
+                  </div>
+                  <div class="card_control">
+                      <a href="#" class="button">Аренда</a>
+                  </div>
+              </div>
+              <div class="card">
+                <div class="card_image">
+                    
+                </div>
+                <div class = "card_info">
+                    <h3 class = "card_info_title">Hundai i30</h3>
+                    <h3 class = "card_info_price">7.20руб/час</h3>
+                </div>
+                <div class="card_control">
+                    <a href="#" class="button">Аренда</a>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card_image">
+                    
+                </div>
+                <div class = "card_info">
+                    <h3 class = "card_info_title">Hundai i30</h3>
+                    <h3 class = "card_info_price">7.20руб/час</h3>
+                </div>
+                <div class="card_control">
+                    <a href="#" class="button">Аренда</a>
                 </div>
             </div>
+            <div class="card">
+              <div class="card_image">
+                  
+              </div>
+              <div class = "card_info">
+                  <h3 class = "card_info_title">Hundai i30</h3>
+                  <h3 class = "card_info_price">7.20руб/час</h3>
+              </div>
+              <div class="card_control">
+                  <a href="#" class="button">Аренда</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card_image">
+                  
+              </div>
+              <div class = "card_info">
+                  <h3 class = "card_info_title">Hundai i30</h3>
+                  <h3 class = "card_info_price">7.20руб/час</h3>
+              </div>
+              <div class="card_control">
+                  <a href="#" class="button">Аренда</a>
+              </div>
+          </div>
+          <div class="card">
+            <div class="card_image">
+                
+            </div>
+            <div class = "card_info">
+                <h3 class = "card_info_title">Hundai i30</h3>
+                <h3 class = "card_info_price">7.20руб/час</h3>
+            </div>
+            <div class="card_control">
+                <a href="#" class="button">Аренда</a>
+            </div>
+          </div>
+          </div>
         </div>
         
         <footer class="footer">
@@ -139,6 +254,8 @@
         </footer>
 
     </body>
-    <script src="scripts/fast_filters_bar_rotating.js"></script>
     <script src="scripts/change_form_state.js"></script>
+    <script src="scripts/open_registration_form.js"></script>
+    
+    <script src="scripts/form_handler.js"></script>
 </html>

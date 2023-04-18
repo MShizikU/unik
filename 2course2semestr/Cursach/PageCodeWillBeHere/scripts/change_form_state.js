@@ -1,6 +1,7 @@
 const form_title = document.getElementsByClassName('form_title');
 
 const elements = [...document.getElementsByClassName('enabled')].concat([...document.getElementsByClassName('disabled')])
+const btn = document.getElementsByClassName('form_submit_button')[0]
 console.log(elements)
 
 console.log(form_title);
@@ -8,6 +9,12 @@ console.log(form_title);
     title.addEventListener('click', function(){
         
         if(window.getComputedStyle(title).getPropertyValue('order') === '2'){
+            if (btn.innerHTML =='Регистрация'){
+                btn.innerHTML = 'Вход'
+            }
+            else{
+                btn.innerHTML = 'Регистрация'
+            }
             active_title = document.querySelector('.active')
             active_title.classList.remove('active')
             active_title.classList.add('inactive')
