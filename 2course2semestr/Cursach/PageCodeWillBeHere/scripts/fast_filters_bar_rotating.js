@@ -75,9 +75,7 @@ function startMoving(element, index){
         const intervalClone = setInterval(function(){
           clone.style.left = parseFloat(clone.style.left) +  0.4 + "px";
         },3,'clone')
-        console.log(intervalClone)
         intervals['clone'] = intervalClone
-        console.log(intervals['clone'])
       }
       
       if (nextNode != null ){
