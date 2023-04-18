@@ -14,11 +14,14 @@
 .form_submit_button{
     width:100%;
     text-align: center;
+    align-self: center;
+    margin-top: 10px;
 }
 
 #choser_container{
     display: flex;
     flex-direction: column;
+    align-self: center;
 }
 
 .form_title {
@@ -31,11 +34,11 @@
     order:1;
 }
 
-.disabled{
+.inactive{
     color: #b8b7b7;
     cursor: pointer;
     order:2;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 label, input[type="submit"] {
@@ -53,4 +56,13 @@ input[type="text"], input[type="email"], input[type="password"], input[type="sub
   padding: 8px;
   border: 2px #b8b7b7 solid;
   border-radius: 3px;
+}
+
+.disabled{
+  display:none;
+  visibility: collapse;
+}
+
+.enabled{
+  display:unset;
 }

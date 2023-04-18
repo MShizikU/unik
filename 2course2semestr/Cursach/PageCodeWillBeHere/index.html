@@ -32,7 +32,7 @@
                 <h3>username</h3>
                 <img src="icons/user.svg" alt = "User Icon" id = "user-icon">
             </div>
-            <div id = "fast_filters_bar">
+            <!--<div id = "fast_filters_bar">
                 <ul class = "fast_filters_ul">
                     <li class = "fast_filters_item"><a>Дешево</a></li>
                     <li class = "fast_filters_item"> <div class="dot"></div></li>
@@ -59,7 +59,7 @@
                     <li class = "fast_filters_item"><a>Наша поддержка всегда Вам поможет</a></li>
                     <li class = "fast_filters_item"> <div class="dot"></div></li>
                 </ul>
-            </div>
+            </div>-->
         </header>
         <div class="content">
             <div class="basic_card_container">
@@ -79,19 +79,16 @@
             <form class="user-form registration">
               <div id="choser_container">
                 <h2 class = 'form_title active'>Регистрация</h2>
-                <h2 class = 'form_title disabled'>Вход</h2>
+                <h2 class = 'form_title inactive'>Вход</h2>
               </div>
-              <label for="username">Имя пользователя:</label>
-              <input type="text" id="username" name="username" required>
-              <br>
-              <label for="email">Почта:</label>
-              <input type="email" id="email" name="email" required>
-              <br>
-              <label for="password">Пароль:</label>
-              <input type="password" id="password" name="password" required>
-              <br>
-
-              <label 
+              <label for="username" class="form_label enabled">Имя пользователя:</label>
+              <input type="text" id="username" name="username" class = "enabled">
+              <label for="username" class="form_label disabled">Имя пользователя или почта:</label>
+              <input type="text" id="username" name="username" class = 'disabled'>
+              <label for="email" class="form_label enabled">Почта:</label>
+              <input type="email" id="email" name="email" class = "enabled">
+              <label for="password" class="form_label constant">Пароль:</label>
+              <input type="password" id="password" name="password" class="constant">
               <a href="#" class="button form_submit_button">Регистрация</a>
             </form>
         </div>
@@ -142,4 +139,5 @@
 
     </body>
     <script src="scripts/fast_filters_bar_rotating.js"></script>
+    <script src="scripts/change_form_state.js"></script>
 </html>
