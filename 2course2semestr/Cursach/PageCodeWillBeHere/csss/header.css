@@ -5,7 +5,7 @@ header{
     position: relative;
     display: grid;
     grid-template-areas:
-     "company_logo company_logo search_bar search_bar user_info user_info"
+     "company_logo company_logo main_header_bar main_header_bar user_info user_info"
      "fast_filters fast_filters fast_filters fast_filters fast_filters fast_filters"
     ;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -33,21 +33,22 @@ header{
 }
 
 #search_bar_div{
-    grid-area: search_bar;
-    display: flex;
+    grid-area: main_header_bar;
     justify-content: center;
     align-items: center;
+    padding:10px;
 }
 
 #search_bar_div input{
     width:100%;
+    height:100%;
     border: 1px solid #ccc;
     caret-color:#777777 ;
-    border-radius: 40px;
+    border-radius: 20px;
     padding: 0px 20px 0px 20px;
-    height: 40px;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
+    margin:0px;
 }
 
 
@@ -167,6 +168,22 @@ header{
 #fast_filters_bar ul li a:hover:before,
 #fast_filters_bar ul li a:hover:after {
   transform: scaleX(1);
+}
+
+.disabled_header_block{
+    display: none;
+}
+
+.enabled_header_block{
+    display: unset;
+}
+
+#current_rent_info{
+    grid-area: main_header_bar;
+    border: 1px solid #777777;
+    border-radius: 20px;
+    width:100%;
+    margin: 10px;
 }
 
 
