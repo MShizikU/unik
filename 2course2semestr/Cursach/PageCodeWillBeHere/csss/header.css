@@ -72,12 +72,8 @@ header{
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    display: none;
 }
 
-#user_info_div h3{
-    display: none;
-}
 
 #user_info_div #login_button{
     position: relative;
@@ -109,6 +105,14 @@ header{
 #user_info_div #login_button:hover:before,
 #user_info_div #login_button:hover:after {
   transform: scaleX(1);
+}
+
+.header_user_info_disabled{
+    display: none;
+}
+
+.header_user_info_enabled{
+    display:unset;
 }
 
 #fast_filters_bar{
@@ -183,8 +187,46 @@ header{
     border: 1px solid #777777;
     border-radius: 20px;
     width:100%;
-    margin: 10px;
+    padding:10px;
+    margin-top:10px;
+    margin-bottom:10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
+
+#current_rent_info #total_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#current_rent_info #timer_view{
+    font-family: 'Fira Sans';
+    font-size: 24px;
+}
+
+#current_rent_info #total_block #total_price_view{
+    font-family: 'Fira Sans';
+    font-size: 14px;
+    color:#555555;
+}
+
+#current_rent_info  #btn_block{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#current_rent_info #btn_block i{
+    margin-left:20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
 
 
 

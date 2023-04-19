@@ -12,6 +12,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
         
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -28,11 +29,19 @@
             
             <div id = "current_rent_info" class = "enabled_header_block">
                 <span id = "timer_view">00:20</span>
-                <span id = "car_name_view">Hundai actavia</span>
+
+                <div id = "total_block">
+                  <span id = "car_name_view">Hundai actavia</span>
+                  <span id ="total_price_view">820руб</span>
+                </div> 
+                <div id = "btn_block">
+                  <i class="fa fa-stop" aria-hidden="true"></i>
+                  <i class="fa fa-pause" aria-hidden="true"></i>
+                </div> 
             </div>
             <div id = "user_info_div">
-                <h3>username</h3>
-                <img src="icons/user.svg" alt = "User Icon" id = "user-icon">
+                <h3 class = "header_user_info_enabled">username</h3>
+                <img class = "header_user_info_enabled" src="icons/user.svg" alt = "User Icon" id = "user-icon">
             </div>
         </header>
         
@@ -85,8 +94,4 @@
         </footer>
 
     </body>
-    <script src="scripts/change_form_state.js"></script>
-    <script src="scripts/open_registration_form.js"></script>
-    
-    <script src="scripts/form_handler.js"></script>
 </html>
