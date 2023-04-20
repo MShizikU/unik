@@ -1,0 +1,38 @@
+.content{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.block{
+    position: relative;
+    width: 100%;
+    height:fit-content;
+    border: 1px solid black
+}
+
+.info_block{
+    display:flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.info_block h3{
+    align-self: center;
+    color:#132C29;
+    font-size: 6vw;
+    font-family: 'Roboto';
+    font-weight: 700;
+    margin: 5%;
+}
+
+.info_block span{
+    align-self: center;
+    color:#132C29;
+    font-size: 3vw;
+    font-family: 'Roboto';
+    font-weight: 700;
+    margin: 5%;
+}
