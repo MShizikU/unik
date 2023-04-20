@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href = "csss/header.css">
         <link rel="stylesheet" type="text/css" href = "csss/footer.css">
         <link rel="stylesheet" type="text/css" href = "csss/content.css">
+        <link rel="stylesheet" type="text/css" href = "csss/user_info_view.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -26,7 +27,6 @@
             <div id = "search_bar_div" class="disabled_header_block">
                 <input type = "text" id = "basic_car_search_bar" name = "basic_car_search_bar" placeholder="Поиск...">
             </div>
-            
             <div id = "current_rent_info" class = "enabled_header_block">
                 <span id = "timer_view">00:20</span>
 
@@ -46,6 +46,89 @@
         </header>
         
         <div class="content">
+          <div id = "user_info_block">
+            <div id = "basic_info_block">
+              <img src = "icons/user.svg" alt = "USer icon" id = "profile_user_icon">
+              <h3 id="user_pasport_serial_number">1519356813</h3>
+            </div>
+            <div id = "current_info_block">
+              <div class = "user_info_portion">
+                <h3 class = "info_title">
+                  Фамилия
+                </h3>
+                <h3 class = "info_value">Сидоров</h3>
+              </div>
+              <div class = "user_info_portion">
+                <h3 class = "info_title">
+                  Имя 
+                </h3>
+                <h3 class = "info_value">Станислав</h3>
+              </div>
+              <div class = "user_info_portion">
+                <h3 class = "info_title">
+                  Отчество
+                </h3>
+                <h3 class = "info_value">Дмитриевич</h3>
+              </div>
+              <div class = "user_info_portion">
+                <h3 class = "info_title">
+                  Стаж
+                </h3>
+                <h3 class = "info_value">3 года</h3>
+              </div>
+              <div class = "user_info_portion">
+                <h3 class = "info_title">
+                  Текущий уровень
+                </h3>
+                <h3 class = "info_value">Продвинутый</h3>
+              </div>
+              <div class = "user_info_portion">
+                <h3 class = "info_title">
+                  Количество поездок
+                </h3>
+                <h3 class = "info_value">20</h3>
+              </div>
+            </div>
+          </div>
+
+          <div id = "last_purchases_block">
+            <h3>ИСТОРИЯ ПОЕЗДОК</h3>
+            <div class="rent_table">
+              <ul class="responsive-table">
+                <li class="table-header">
+                  <div class="col col-1">Job Id</div>
+                  <div class="col col-2">Customer Name</div>
+                  <div class="col col-3">Amount Due</div>
+                  <div class="col col-4">Payment Status</div>
+                </li>
+                <li class="table-row">
+                  <div class="col col-1" data-label="Job Id">42235</div>
+                  <div class="col col-2" data-label="Customer Name">John Doe</div>
+                  <div class="col col-3" data-label="Amount">$350</div>
+                  <div class="col col-4" data-label="Payment Status">Pending</div>
+                </li>
+                <li class="table-row">
+                  <div class="col col-1" data-label="Job Id">42442</div>
+                  <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
+                  <div class="col col-3" data-label="Amount">$220</div>
+                  <div class="col col-4" data-label="Payment Status">Pending</div>
+                </li>
+                <li class="table-row">
+                  <div class="col col-1" data-label="Job Id">42257</div>
+                  <div class="col col-2" data-label="Customer Name">John Smith</div>
+                  <div class="col col-3" data-label="Amount">$341</div>
+                  <div class="col col-4" data-label="Payment Status">Pending</div>
+                </li>
+                <li class="table-row">
+                  <div class="col col-1" data-label="Job Id">42311</div>
+                  <div class="col col-2" data-label="Customer Name">John Carpenter</div>
+                  <div class="col col-3" data-label="Amount">$115</div>
+                  <div class="col col-4" data-label="Payment Status">Pending</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
           
         </div>
         

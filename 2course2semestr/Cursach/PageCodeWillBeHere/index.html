@@ -24,10 +24,21 @@
                 <img src="icons/logo.png" alt = "User Icon" id = "user-icon">
                 <h3>Basic carsharing</h3>
             </div>
-            <div id = "search_bar_div">
+            <div id = "search_bar_div" class = "enabled_header_block">
                 <input type = "text" id = "basic_car_search_bar" name = "basic_car_search_bar" placeholder="Поиск...">
             </div>
+            <div id = "current_rent_info" class = "disabled_header_block">
+              <span id = "timer_view">00:20</span>
 
+              <div id = "total_block">
+                <span id = "car_name_view">Hundai actavia</span>
+                <span id ="total_price_view">820руб</span>
+              </div> 
+              <div id = "btn_block">
+                <i class="fa fa-stop" aria-hidden="true"></i>
+                <i class="fa fa-pause" aria-hidden="true"></i>
+              </div> 
+          </div>
             <div id = "user_info_div">
                 <a id = 'login_button' class="header_user_info_enabled">Вход / Регистрация</a>
                 <h3 class="header_user_info_disabled">username</h3>

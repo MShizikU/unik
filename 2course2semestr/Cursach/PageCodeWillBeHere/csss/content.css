@@ -1,4 +1,6 @@
-
+.content{
+    margin:100px;
+}
 :root{
     /* color type A */
     --line_color : #555555 ;
