@@ -40,8 +40,6 @@ public class SchedulerService {
         List<User> manufactures = userService.findAll();
         ObjectMapper mapper = new ObjectMapper();
         File directory = new File(DIRECTORY);
-        for(File x : Objects.requireNonNull(directory.listFiles()))
-            x.delete();
 
         for(User x : manufactures) {
             String name = "User " + x.getId() + ".txt";
