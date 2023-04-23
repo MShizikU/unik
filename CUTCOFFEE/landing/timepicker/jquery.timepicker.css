@@ -1,0 +1,122 @@
+/**
+ * jQuery Timepicker - v1.3.5 - 2016-07-10
+ * http://timepicker.co
+ *
+ * Enhances standard form input fields helping users to select (or type) times.
+ *
+ * Copyright (c) 2016 Willington Vega; Licensed MIT, GPL
+ */
+
+.ui-timepicker-container {
+    position: absolute;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid #5e7256;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.ui-timepicker {
+    box-sizing: content-box;
+    display: block;
+    height: 205px;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0 1px;
+    text-align: center;
+}
+
+.ui-timepicker-viewport {
+    box-sizing: content-box;
+    display: block;
+    height: 205px;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    overflow-x: hidden; /* IE */
+}
+
+.ui-timepicker-standard {
+    /* overwrites .ui-widget */
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 1.1em;
+    /* overwrites .ui-widget-content */
+    background-color: #FFF;
+    border: 1px solid #AAA;
+    color: #222;
+    /* overwrites .ui-menu */
+    margin: 0;
+    padding: 2px;
+}
+.ui-timepicker-standard a {
+    border: 1px solid transparent;
+    color: #222;
+    text-decoration: none;
+}
+.ui-timepicker-standard .ui-state-hover {
+    /* overwrites .ui-state-hover */
+    background-color: white;
+    border: 0px;
+}
+
+.ui-timepicker-standard .ui-state-hover::before {
+    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+    -moz-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    -o-transform: scaleX(1);
+}
+
+.ui-timepicker-standard .ui-menu-item {
+    /* overwrites .ui-menu and .ui-menu-item */
+    /*clear: left;
+    float: left;*/
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.ui-timepicker-corners,
+.ui-timepicker-corners .ui-corner-all {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.ui-timepicker-hidden {
+    /* overwrites .ui-helper-hidden */
+    display: none;
+}
+
+.ui-timepicker-no-scrollbar .ui-timepicker {
+    border: none;
+}
+
+.ui-corner-all{
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.ui-state-hover{
+    padding:0px;
+}
+
+.ui-corner-all::before{
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #132c29;
+    z-index: 10;
+    transform: scaleX(0);
+    transition: all .3s ease-in;
+    margin:0px;
+    padding: 0px;
+}

@@ -1,10 +1,10 @@
 a {
     text-decoration: none;
-    
 }
 
 
 .navbar{
+    font-size: 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     font-family: 'Fira Sans';
@@ -82,7 +82,6 @@ a {
     width: 100%;
     height: 2px;
     background-color: #132c29;
-    z-index: -1;
     transform: scaleX(0);
     transition: all .3s ease-in;
 }
@@ -98,3 +97,28 @@ a {
     background-color:#87a879;
 }
 
+@media screen and (min-width: 1100px) and (max-width: 1300px){
+    .navbar{
+        font-size:20px;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1100px){
+    .navbar{
+        font-size:18px;
+    }
+}
+
+@media  screen and (min-width:200px) and (max-width: 800px) {
+
+    .navbar_brand{
+        justify-content: center;
+    }
+    .navbar{
+        font-size:24px;
+        grid-template-columns: 1fr ;
+    }
+    .navbar_navigation_links{
+        display: none;
+    }
+}

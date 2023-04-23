@@ -7,85 +7,399 @@ body{
     font-family: 'Fira Sans';
 }
 
+.content div{
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
 #home_sector{
+    font-size: 64pt;
+    height:90vh;
     width:100%;
-    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #home_giant_hook{
+    color:#132c29;
+    margin:10px;
+    width :35vw;
+    height: 60%;
     display: flex;
     align-items: center;
-    text-align: start;
-    width:40%;
-    height:100%;
-    font-size: 10vh;
-    margin-left: 1vw;
+}
+
+#home_background_image{
+
+    margin-right: 1vw;
+    width:30vw;
+    height:60vh;
+    margin:10px;
+    background-color: #132c29;
+    border-radius: 10px;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
 }
 
 #idea_sector{
+    height:90vh;
     width:100%;
-    height: 90vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 #idea_text{
     margin:10px;
-    width :35vw;
-    height: 100%;
+    width :35%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#idea_title{
+    font-size: 64px;
+    color: #5e7256;
+}
+
+#idea_description{
+    color:#132c29;
+    font-size: 32px;
+    text-align: justify;
 }
 
 #idea_image{
     margin-right: 1vw;
-    width:55vw;
-    height:80vh;
+    width:30%;
+    height:60vh;
     margin:10px;
-    background-color: black;
+    background-color: #132c29;
     border-radius: 10px;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
 }
 
 #advantages_sector{
+    height:90vh;
     width:100%;
-    height: 90vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 #advantages_checklist{
-    width:55vw;
-    height: 80vh;
+    width:30vw;
+    height: 60vh;
     margin:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 #advantages_image{
     margin-right: 1vw;
-    width:35vw;
-    height:80vh;
+    width:30vw;
+    height:60vh;
     margin:10px;
-    background-color: black;
+    background-color: #132c29;
     border-radius: 10px;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+}
+
+.checked_element{
+    display: flex;
+    flex-direction: row;
+    font-size: 32px;
+    font-family: 'Fira Sans';
+    justify-content: left;
+    align-items: center;
+}
+
+.checked_element div{
+    color:#132c29;
+}
+
+
+.checked_element i{
+    color:#5e7256;
+    font-size: 32px;
+    margin-right:3%;
 }
 
 ::-webkit-scrollbar {
     width: 5px;
     height: 10%;
   }
-  
+
   ::-webkit-scrollbar-track {
     background: transparent;
 
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background-color: #132c29;
     border-radius: 5px;
     border: none;
-        
     padding-right:2px;
   }
+
+
+#booking_sector{
+    width:100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#booking_title{
+    font-size: 72px;
+    color:#5e7256;
+}
+
+.form{
+    padding:20px;
+    width:80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form div{
+    margin:10px;
+}
+
+.form_field_layout {
+    width:100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form_element{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_element input{
+    color:#132c29;
+    width:80%;
+    font-size:19pt;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding:10px;
+    border: 2px solid #5e7256;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.form_element input:hover, .form_element input:focus {
+    border-color:  #132c29;
+}
+
+.form_element .title{
+    width:80%;
+    font-size:32px;
+    color: #5e7256;
+    text-align: left;
+}
+
+
+.button {
+    position: relative;
+    color: #5e7256;
+    cursor: pointer;
+    font-size:32px;
+    font-weight: 400;
+    line-height: 30px;
+    height:100%;
+    max-width: 160px; 
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  .button::after,
+  .button::before {
+    backface-visibility: hidden;
+    background-color: #132c29;
+    content: "";
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    transition: all 280ms ease-in-out;
+    transform: scaleX(0);
+    height:2px;
+    z-index: 10;
+    -webkit-transform: scaleX(0);
+    -moz-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    -o-transform: scaleX(0);
+}
+
+.button::after{
+    bottom:-3px;
+}
+
+.button::before{
+    top:-3px;
+}
+
+  .button:hover::after,
+  .button:hover::before {
+    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+    -moz-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    -o-transform: scaleX(1);
+}
+
+.disabled_layout{
+    display: none;
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1300px){
+    #home_sector{
+        font-size: 54pt;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1100px){
+    #home_sector{
+        font-size: 48pt;
+        height:75vh;
+    }
+
+    #home_giant_hook{
+        width:45%;
+    }
+
+    #home_background_image{
+        width:45%;
+    }
+
+    #idea_sector{
+        height:75vh;
+    }
+
+    #idea_title{
+        font-size: 54px;
+    }
+
+    #idea_text{
+        width:45%;
+    }
+
+    #idea_image{
+        width: 45%;;
+    }
+
+    #idea_description{
+        font-size: 28px;
+    }
+
+    #advantages_sector{ height:75vh;}
+    
+
+    #advantages_checklist{
+        width:45%;
+    }
+
+    #advantages_image{
+        width:45%;
+    }
+
+    #booking_sector{
+        height:75vh;
+    }
+
+    .checked_element{
+        font-size: 28px;
+    }
+
+    .form_element input{
+        font-size:14pt;
+    }
+
+    .form_element .title{
+        font-size: 24px;
+    }
+
+    #booking_title{
+        font-size:56px;
+    }
+
+
+}
+
+@media  screen and (min-width:200px) and (max-width: 800px) {
+
+    #home_sector{
+        height:75vh;
+    }
+
+    #home_giant_hook{
+        width:80%;
+        font-size:54px;
+    }
+    #home_background_image{
+        display: none;
+    }
+
+    #idea_sector{height:75vh;}
+
+    #idea_text{
+        width:80%;
+    }
+
+    #idea_image{
+        display: none;
+    }
+
+    #advantages_sector{
+        height:75vh;
+    }
+
+    #advantages_checklist{
+        width:80%;
+    }
+
+    #advantages_image{
+        display: none;
+    }
+
+    #booking_sector{
+        height:75vh;
+    }
+
+    .form_field_layout{
+        grid-template-columns: 1fr;
+    }
+
+    .form_element input{
+        font-size:14pt;
+    }
+
+    .form_element .title{
+        font-size: 24px;
+    }
+
+    #booking_title{
+        font-size:32px;
+    }
+
+}
