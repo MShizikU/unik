@@ -15,7 +15,7 @@ class apitest extends apiBaseClass{
         if (isset($apiMethodParams->TestParamOne)){
             $retJSON->retParameter=$apiMethodParams->TestParamOne;
         }else{
-            $retJSON->errorno= $apiMethodParams;
+            $retJSON->errorno= APIConstants::$ERROR_PARAMS;
         }
         return $retJSON;
     }
