@@ -3,17 +3,6 @@ class apiBaseClass {
     
     public $mySQLWorker=null;
 
-    function __construct($dbName=null,$dbHost=null,$dbUser=null,$dbPassword=null) {
-        if (isset($dbName)){
-            $this->mySQLWorker = MySQLiWorker::getInstance($dbName,$dbHost,$dbUser,$dbPassword);
-        }
-    }
-    
-    function __destruct() {
-        if (isset($this->mySQLWorker)){ 
-            $this->mySQLWorker->closeConnection();  
-        }
-    }
     function createDefaultJson() {
         $retObject = json_decode('{}');
         return $retObject;
