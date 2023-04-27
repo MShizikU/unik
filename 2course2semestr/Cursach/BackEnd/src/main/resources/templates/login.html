@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Basic Carshering</title>
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/basic.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/header.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/footer.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/form.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/card.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/content.css}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+        
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    </head>
+    <body>
+        <div class="content">
+          <div class = "form_wrapper" id='reg_form_wrapper' >
+              <input name="${_csrf.parametrName}" value="${_csrf.token}" type = "hidden">
+            <form class="user-form" id = 'user_form' th:action="@{/login}" method="post">
+              <div id="choser_container">
+                <h2 class = 'form_title active'>Регистрация</h2>
+                <h2 class = 'form_title inactive'>Вход</h2>
+              </div>
+              <label for="user_form_username" class="form_label enabled_form_field">Имя пользователя:</label>
+              <input type="text" id="user_form_username" name="username" class = "enabled_form_field">
+              <label for="user_form_username_and_login" class="form_label disabled_form_field">Имя пользователя:</label>
+              <input type="text" id="user_form_username_and_login" name="username" class = 'disabled_form_field'>
+              <label for="user_form_email" class="form_label enabled_form_field">Почта:</label>
+              <input type="email" id="user_form_email" name="email" class = "enabled_form_field">
+              <label for="user_form_password" class="form_label constant">Пароль:</label>
+              <input type="password" id="user_form_password" name="password" class="constant">
+              <a href="profile" class="button form_submit_button" id = 'user_form_submit_button' type = "Submit">Регистрация</a>
+            </form>
+          </div>
+        </div>
+    </body>
+    <script src="scripts/change_form_state.js"></script>
+    <script src="scripts/form_handler.js"></script>
+</html>

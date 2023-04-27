@@ -1,10 +1,7 @@
 package ru.mirea.SidorovSD.Models;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -12,6 +9,7 @@ import lombok.Data;
 @Table(name = "Vehicle")
 public class Vehicle {
 
+    @Id
     @Column(name = "VIN")
     private String VIN;
 

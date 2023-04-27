@@ -78,6 +78,14 @@ input[type="text"], input[type="email"], input[type="password"], input[type="sub
   display:unset;
 }
 
+.disabled_form_field{
+    display:none;
+}
+
+.enabled_form_field{
+    display:unset;
+}
+
 .disabled_container::before {
   content: '';
   position: fixed;

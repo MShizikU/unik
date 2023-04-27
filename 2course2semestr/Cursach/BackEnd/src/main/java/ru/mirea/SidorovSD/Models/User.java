@@ -8,6 +8,7 @@ import lombok.Data;
 @Table(name = "Users")
 public class User {
 
+    @Id
     @Column(name = "SNPassport")
     private String stSNPassport;
 

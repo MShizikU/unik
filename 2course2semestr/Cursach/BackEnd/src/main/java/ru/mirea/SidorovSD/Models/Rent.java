@@ -6,7 +6,7 @@ import lombok.Generated;
 
 @Entity
 @Data
-@Table(name = "post")
+@Table(name = "Rent")
 public class Rent {
     @Id
     @Column(name = "ID_rent")

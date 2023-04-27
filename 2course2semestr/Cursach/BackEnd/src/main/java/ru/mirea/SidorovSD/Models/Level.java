@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "User_level")
+@Table(name = "UserLevel")
 public class Level {
 
     @Id

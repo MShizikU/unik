@@ -12,6 +12,9 @@ public class Vehicle_work_model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int iVehicleWorkModelID;
 
+    @Column(name = "model_photo_name")
+    private String stModelPhotoName;
+
     @Column(name = "price_per_hour")
     private int iPricePerHour;
 
