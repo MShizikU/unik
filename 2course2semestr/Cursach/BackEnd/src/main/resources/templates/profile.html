@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang = "en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Basic Carshering</title>
-        <link rel="stylesheet" type="text/css" href = "csss/basic.css">
-        <link rel="stylesheet" type="text/css" href = "csss/header.css">
-        <link rel="stylesheet" type="text/css" href = "csss/footer.css">
-        <link rel="stylesheet" type="text/css" href = "csss/content.css">
-        <link rel="stylesheet" type="text/css" href = "csss/user_info_view.css">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/basic.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/header.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/footer.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/content.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{csss/user_info_view.css}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
     <body>
         <header class="header">
             <div id="company_info_div">
-                <img src="icons/logo.png" alt = "User Icon" id = "user-icon">
+                <img src="icons/logo.png" alt = "User Icon" id = "company_logo">
                 <h3>Basic carsharing</h3>
             </div>
             <div id = "search_bar_div" class="disabled_header_block">

@@ -18,8 +18,17 @@ public class User {
     @Column(name = "date_of_birth")
     private String stDateOfBirth;
 
-    @JoinColumn(name = "ID_level", referencedColumnName = "ID_level")
-    private int iLevelID;
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "role")
+    private String role;
+
+    @JoinColumn(name = "id_level", referencedColumnName = "id_level")
+    private int id_level;
 
     @Override
     public String toString() {
@@ -27,7 +36,7 @@ public class User {
                 "stSNPassport='" + stSNPassport + '\'' +
                 ", stFullName='" + stFullName + '\'' +
                 ", stDateOfBirth='" + stDateOfBirth + '\'' +
-                ", iLevelID=" + iLevelID +
+                ", iLevelID=" + id_level +
                 '}';
     }
 }
