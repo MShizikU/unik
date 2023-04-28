@@ -24,14 +24,8 @@ public class PageController {
         return modelAndView;
     }
 
-    @RequestMapping("/login")
-    public ModelAndView getLogin(@RequestParam(value = "error", required = false) String error, @RequestParam(value = "logout", required = false) String logout, Model model){
-        model.addAttribute("error", error != null);
-        model.addAttribute("logout", logout != null);
-        ModelAndView modelAndView = new ModelAndView("login");
-        // add model data if needed
-        return modelAndView;
-    }
+
+
 
 
 

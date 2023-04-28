@@ -1,6 +1,7 @@
 package ru.mirea.SidorovSD.Services;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.mirea.SidorovSD.Models.User;
@@ -10,6 +11,7 @@ import ru.mirea.SidorovSD.Repos.UserRepo;
 @Slf4j
 public class UserService {
 
+    @Autowired
     private final UserRepo userRepo;
 
 
@@ -17,13 +19,11 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public String addInRepo(User user){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-
+    public void saveUser(User user){
         userRepo.save(user);
+    }
 
-        return "register_success";
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username);
     }
 }

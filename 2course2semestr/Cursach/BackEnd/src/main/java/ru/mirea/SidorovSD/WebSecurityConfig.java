@@ -1,46 +1,42 @@
 package ru.mirea.SidorovSD;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import ru.mirea.SidorovSD.security.userDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+    @Autowired
+    private CustomAuthenticationProvider authProvider;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf().disable().cors().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/login", "/logout", "/registrate").permitAll()
+                .requestMatchers("/start").authenticated()
+                .requestMatchers("/profile").authenticated()
+                .anyRequest().permitAll()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .successForwardUrl("/start")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .httpBasic();
 
-        return http.build();
+        return httpSecurity.build();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity httpSecurity,
-                                                       userDetailsService userDetailsService,
-                                                       PasswordEncoder passwordEncoder) throws Exception {
-        return httpSecurity.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder).and().build();
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.authenticationProvider(authProvider);
+        return authenticationManagerBuilder.build();
     }
 
     @Bean

@@ -22,18 +22,4 @@ public class UserController {
         this.modelMapper = modelMapper;
         this.userService = userService;
     }
-
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
-
-        return "signup_form";
-    }
-
-    @PostMapping("/process_register")
-    public String processRegister(User user) {
-
-
-        return userService.addInRepo(user);
-    }
 }
