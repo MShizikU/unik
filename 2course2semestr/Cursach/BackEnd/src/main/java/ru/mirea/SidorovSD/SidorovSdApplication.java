@@ -12,6 +12,7 @@ public class SidorovSdApplication {
 		SpringApplication.run(SidorovSdApplication.class, args);
 	}
 
+
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();

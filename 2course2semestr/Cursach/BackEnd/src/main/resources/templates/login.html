@@ -6,14 +6,25 @@
 <body>
 <h1>Login</h1>
 <form th:action="@{/login}" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>
     <br>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required>
     <br>
-    <button type="submit">Login</button>
+    <button type="submit" onclick="submitLoginForm()">Login</button>
 </form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+<script>
+  function submitLoginForm() {
+    var passwordField = document.getElementById("password");
+    var plainPassword = passwordField.value;
+    var hashedPassword = bcrypt.hashSync(plainPassword, 10);
+    passwordField.value = hashedPassword;
+    document.getElementById("loginForm").submit();
+  }
+</script>
 </body>
 </html>
 

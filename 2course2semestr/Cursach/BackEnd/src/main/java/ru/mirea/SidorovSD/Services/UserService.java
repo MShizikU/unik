@@ -20,6 +20,8 @@ public class UserService {
     }
 
     public void saveUser(User user){
+        String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(encodedPassword);
         userRepo.save(user);
     }
 

@@ -11,11 +11,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
     @Autowired
     private CustomAuthenticationProvider authProvider;
+
+    @Autowired
+    private DataSource dataSource;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -26,11 +31,19 @@ public class WebSecurityConfig {
                 .requestMatchers("/profile").authenticated()
                 .anyRequest().permitAll()
                 .and()
-                .httpBasic();
+                .formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/start").failureForwardUrl("/login?error");
 
         return httpSecurity.build();
     }
 
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery("SELECT username, password, true FROM users WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username, role FROM users WHERE username = ?");
+    }
     @Bean
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder =
