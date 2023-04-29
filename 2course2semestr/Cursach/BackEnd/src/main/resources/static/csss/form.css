@@ -38,6 +38,8 @@
 .form_title {
   text-align: center;
   width:100%;
+  font-size:24pt;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .active{
