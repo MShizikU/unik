@@ -2,7 +2,6 @@ package ru.mirea.SidorovSD.Models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Generated;
 
 @Entity
 @Data
@@ -14,37 +13,37 @@ public class Rent {
     private int iRentID;
 
     @JoinColumn(name = "SNPassport", referencedColumnName = "SNPassport")
-    private String stSNPassport;
+    private String snpassport;
 
     @JoinColumn(name = "VIN", referencedColumnName = "VIN")
-    private String stVIN;
+    private String vin;
 
     @Column(name = "duration")
-    private int iDuration;
+    private int duration;
 
     @Column(name = "starting_point")
-    private String stStartingPoint;
+    private String startingPoint;
 
     @Column(name = "end_point")
-    private String stEndPoint;
+    private String endPoint;
 
     @Column(name = "start_time")
-    private String stStartTime;
+    private String startTime;
 
     @Column(name = "end_time")
-    private String stEndTime;
+    private String endTime;
 
     @Override
     public String toString() {
         return "Rent{" +
                 "iRentID=" + iRentID +
-                ", stSNPassport='" + stSNPassport + '\'' +
-                ", stVIN='" + stVIN + '\'' +
-                ", iDuration=" + iDuration +
-                ", stStartingPoint='" + stStartingPoint + '\'' +
-                ", stEndPoint='" + stEndPoint + '\'' +
-                ", stStartTime='" + stStartTime + '\'' +
-                ", stEndTime='" + stEndTime + '\'' +
+                ", stSNPassport='" + snpassport + '\'' +
+                ", stVIN='" + vin + '\'' +
+                ", iDuration=" + duration +
+                ", stStartingPoint='" + startingPoint + '\'' +
+                ", stEndPoint='" + endPoint + '\'' +
+                ", stStartTime='" + startTime + '\'' +
+                ", stEndTime='" + endTime + '\'' +
                 '}';
     }
 }

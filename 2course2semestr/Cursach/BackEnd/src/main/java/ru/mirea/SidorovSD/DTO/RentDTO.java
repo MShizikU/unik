@@ -7,12 +7,12 @@ import ru.mirea.SidorovSD.Models.Vehicle;
 @Data
 public class RentDTO {
 
-    private int iRentID;
+    private int idRent;
 
     private User user;
     private Vehicle vehicle;
 
-    private int iDuration;
+    private int duration;
 
-    private String stStartPoint, stEndPoint, stStartTime, stEndTime;
+    private String startPoint, endPoint, startTime, endTime;
 }

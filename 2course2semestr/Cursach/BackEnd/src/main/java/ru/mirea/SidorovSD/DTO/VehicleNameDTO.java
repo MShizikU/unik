@@ -7,7 +7,7 @@ import ru.mirea.SidorovSD.Models.Vehicle_model;
 @Data
 public class VehicleNameDTO {
 
-    private int iVehicleNameID;
+    private int idVehicleName;
 
     private Vehicle_model vehicle_model;
     private Vehicle_brand vehicle_brand;

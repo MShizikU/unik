@@ -11,32 +11,32 @@ public class Vehicle {
 
     @Id
     @Column(name = "VIN")
-    private String VIN;
+    private String vin;
 
     @JoinColumn(name = "ID_vehicle_work_model", referencedColumnName = "ID_vehicle_work_model")
-    private int iVehicleWorkModelID;
+    private int idVehicleWorkModel;
 
     @Column(name = "color")
-    private String stColor;
+    private String color;
 
     @Column(name = "state")
-    private String stState;
+    private String state;
 
     @Column(name = "place")
-    private String stPlace;
+    private String place;
 
     @JoinColumn(name = "ID_group", referencedColumnName = "ID_group")
-    private int iGroupID;
+    private int idGroup;
 
     @Override
     public String toString() {
         return "Vehicle{" +
-                "VIN='" + VIN + '\'' +
-                ", iVehicleWorkModelID=" + iVehicleWorkModelID +
-                ", stColor='" + stColor + '\'' +
-                ", stState='" + stState + '\'' +
-                ", stPlace='" + stPlace + '\'' +
-                ", iGroupID=" + iGroupID +
+                "VIN='" + vin + '\'' +
+                ", iVehicleWorkModelID=" + idVehicleWorkModel +
+                ", stColor='" + color + '\'' +
+                ", stState='" + state + '\'' +
+                ", stPlace='" + place + '\'' +
+                ", iGroupID=" + idGroup +
                 '}';
     }
 }

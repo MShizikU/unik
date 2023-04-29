@@ -29,15 +29,26 @@
         <div class="content">
           <div class = "form_wrapper" id='reg_form_wrapper' >
             <form th:action="@{/login}" class="user-form" id = 'user_form' method="post">
-              <div id="choser_container">
+                <!-- Название формы -->
+                <div id="choser_container">
                     <h2 class = 'form_title active'>Вход</h2>
-              </div>
+                </div>
+
+                <!-- Скрытое поле для csrf токена -->
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-              <label for="user_form_username" class="form_label enabled_form_field">Имя пользователя:</label>
-              <input type="text" id="user_form_username" name="username" class = "enabled_form_field">
-              <label for="user_form_password" class="form_label constant">Пароль:</label>
-              <input type="password" id="user_form_password" name="password" class="constant">
-              <button type="submit" onclick="submitLoginForm()">Login</button>
+
+
+                <!-- Поле для ввода имени пользователя -->
+                <label for="snpassport" class="form_label enabled_form_field">Серия номер паспорта:</label>
+                <input type="text" id="snpassport" name="snpassport" class = "enabled_form_field">
+
+                <!-- Поле ввода пароля-->
+                <label for="user_form_password" class="form_label constant">Пароль:</label>
+                <input type="password" id="user_form_password" name="password" class="constant">
+
+                <!-- Кнопка submit -->
+                <button type="submit" onclick="submitLoginForm()">Login</button>
+
             </form>
           </div>
         </div>

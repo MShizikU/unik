@@ -14,9 +14,9 @@ public class Vehicle_model {
     @Id
     @Column(name = "ID_model")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iModelID;
+    private int idModel;
 
     @Column(name = "model_name")
-    private String stModelName;
+    private String modelName;
 
 }

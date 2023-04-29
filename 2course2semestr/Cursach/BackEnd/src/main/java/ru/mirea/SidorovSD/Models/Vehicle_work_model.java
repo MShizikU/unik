@@ -10,23 +10,23 @@ public class Vehicle_work_model {
     @Id
     @Column(name = "ID_vehicle_work_model")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iVehicleWorkModelID;
+    private int idVehicleWorkModel;
 
     @Column(name = "model_photo_name")
-    private String stModelPhotoName;
+    private String modelPhotoName;
 
     @Column(name = "price_per_hour")
-    private int iPricePerHour;
+    private int pricePerHour;
 
     @JoinColumn(name = "ID_vehicle_name", referencedColumnName = "ID_vehicle_name")
-    private int iVehicleNameID;
+    private int idVehicleName;
 
     @Override
     public String toString() {
         return "Vehicle_work_model{" +
-                "iVehicleWorkModelID=" + iVehicleWorkModelID +
-                ", iPricePerHour=" + iPricePerHour +
-                ", iVehicleNameID=" + iVehicleNameID +
+                "iVehicleWorkModelID=" + idVehicleWorkModel +
+                ", iPricePerHour=" + pricePerHour +
+                ", iVehicleNameID=" + idVehicleName +
                 '}';
     }
 }

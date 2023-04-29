@@ -20,12 +20,23 @@ public class UserService {
     }
 
     public void saveUser(User user){
+
+        if (isUserExist(user.getSnpassport()))
+            throw new RuntimeException("This user already exist");
+
         String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encodedPassword);
+        user.setRole("USER");
+        user.setId_level(1);
+
         userRepo.save(user);
     }
 
-    public User findByUsername(String username) {
-        return userRepo.findByUsername(username);
+
+    public Boolean isUserExist(String snpassport) {
+        return userRepo.findBySnpassport(snpassport) != null;
     }
+    public User findBySnpassport(String snpassport) { return userRepo.findBySnpassport(snpassport);}
+
+
 }

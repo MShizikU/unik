@@ -11,7 +11,7 @@ import ru.mirea.SidorovSD.Models.User;
 import ru.mirea.SidorovSD.Services.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final ModelMapper modelMapper;
@@ -22,4 +22,6 @@ public class UserController {
         this.modelMapper = modelMapper;
         this.userService = userService;
     }
+
+    @GetMapping("/{snpassport}")
 }

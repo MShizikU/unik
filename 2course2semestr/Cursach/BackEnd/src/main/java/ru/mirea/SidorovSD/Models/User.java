@@ -10,10 +10,10 @@ public class User {
 
     @Id
     @Column(name = "SNPassport")
-    private String stSNPassport;
+    private String snpassport;
 
     @Column(name = "full_name")
-    private String stFullName;
+    private String fullname;
 
     @Column(name = "date_of_birth")
     private String stDateOfBirth;
@@ -28,15 +28,15 @@ public class User {
     private String role;
 
     @JoinColumn(name = "id_level", referencedColumnName = "id_level")
-    private int id_level;
+    private int idLevel;
 
     @Override
     public String toString() {
         return "User{" +
-                "stSNPassport='" + stSNPassport + '\'' +
-                ", stFullName='" + stFullName + '\'' +
+                "stSNPassport='" + snpassport + '\'' +
+                ", stFullName='" + fullname + '\'' +
                 ", stDateOfBirth='" + stDateOfBirth + '\'' +
-                ", iLevelID=" + id_level +
+                ", iLevelID=" + idLevel +
                 '}';
     }
 }

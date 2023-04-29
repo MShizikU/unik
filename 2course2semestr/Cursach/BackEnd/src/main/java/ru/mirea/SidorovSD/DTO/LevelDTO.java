@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class LevelDTO {
-    private int iLevelID;
-    private String stLevelName;
+    private int idLevel;
+    private String levelName;
 }

@@ -11,12 +11,12 @@ public class Vehicle_name {
     @Id
     @Column(name = "ID_vehicle_name")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iVehicleNameID;
+    private int idVehicleName;
 
     @JoinColumn(name = "ID_brand", referencedColumnName = "ID_brand")
-    private int iBrandID;
+    private int idBrand;
 
     @JoinColumn(name = "ID_model", referencedColumnName = "ID_model")
-    private int iModelID;
+    private int idModel;
 
 }

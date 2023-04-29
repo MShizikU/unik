@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class GroupDTO {
-    private int iGroupID;
-    private String stGroupName;
+    private int idGroup;
+    private String groupName;
 }

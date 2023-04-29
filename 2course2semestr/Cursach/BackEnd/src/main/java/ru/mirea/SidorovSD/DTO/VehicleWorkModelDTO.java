@@ -6,9 +6,9 @@ import ru.mirea.SidorovSD.Models.Vehicle_name;
 @Data
 public class VehicleWorkModelDTO {
 
-    private int iVehicleWorkModelID;
+    private int idVehicleWorkModel;
 
-    private int iPricePerHour;
+    private int pricePerHour;
 
     private Vehicle_name vehicle_name;
 

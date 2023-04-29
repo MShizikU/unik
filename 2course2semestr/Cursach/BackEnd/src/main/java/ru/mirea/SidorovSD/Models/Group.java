@@ -11,9 +11,9 @@ public class Group {
     @Id
     @Column(name = "ID_group")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iGroupID;
+    private int idGroup;
 
     @Column(name = "group_name")
-    private String stGroupName;
+    private String groupName;
 
 }

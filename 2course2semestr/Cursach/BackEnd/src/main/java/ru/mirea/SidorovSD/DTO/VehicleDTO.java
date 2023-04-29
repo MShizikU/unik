@@ -7,11 +7,11 @@ import ru.mirea.SidorovSD.Models.Vehicle_work_model;
 @Data
 public class VehicleDTO {
 
-    private String stVIN;
+    private String vin;
 
-    private Vehicle_work_model vwmWorkModel;
+    private Vehicle_work_model workModel;
 
-    private String stColor, stState, stPlace;
+    private String color, state, place;
 
     private Group group;
 

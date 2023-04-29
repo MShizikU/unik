@@ -31,7 +31,12 @@ public class WebSecurityConfig {
                 .requestMatchers("/profile").authenticated()
                 .anyRequest().permitAll()
                 .and()
-                .formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/start").failureForwardUrl("/login?error");
+                .formLogin()
+                .usernameParameter("snpassport")
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/start")
+                .failureForwardUrl("/login?error");
 
         return httpSecurity.build();
     }
@@ -41,8 +46,8 @@ public class WebSecurityConfig {
         auth
                 .jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("SELECT username, password, true FROM users WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, role FROM users WHERE username = ?");
+                .usersByUsernameQuery("SELECT snpassport, password, true FROM users WHERE snpassport = ?")
+                .authoritiesByUsernameQuery("SELECT snpassport, role FROM users WHERE snpassport = ?");
     }
     @Bean
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {

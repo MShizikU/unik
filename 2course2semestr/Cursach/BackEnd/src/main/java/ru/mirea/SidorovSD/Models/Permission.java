@@ -10,11 +10,11 @@ public class Permission {
     @Id
     @Column(name = "ID_permission")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iPermissionID;
+    private int idPermission;
 
     @JoinColumn(name = "ID_group", referencedColumnName = "ID_group")
-    private int iGroupID;
+    private int idGroup;
 
     @JoinColumn(name = "ID_level", referencedColumnName = "ID_level")
-    private int iLevelID;
+    private int idLevel;
 }
