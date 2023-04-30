@@ -6,9 +6,6 @@ import ru.mirea.SidorovSD.Models.Level;
 
 @Data
 public class PermissionDTO {
-
-    private int idPermission;
     private Group group;
     private Level level;
-
 }

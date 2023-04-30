@@ -10,4 +10,6 @@ public interface GroupRepo extends JpaRepository<Group, Integer> {
     @Override
     List<Group> findAll();
 
+
+    List<Group> findByGroupName(String groupName);
 }

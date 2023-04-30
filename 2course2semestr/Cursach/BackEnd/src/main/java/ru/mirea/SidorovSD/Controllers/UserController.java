@@ -3,10 +3,8 @@ package ru.mirea.SidorovSD.Controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.mirea.SidorovSD.DTO.UserDTO;
 import ru.mirea.SidorovSD.Models.User;
 import ru.mirea.SidorovSD.Services.UserService;
 
@@ -23,5 +21,20 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{snpassport}")
+    @GetMapping("/info")
+    @ResponseBody
+    public UserDTO getUserInfo(@RequestParam String snpassport){
+        return convertToUserDTO(modelMapper, userService.findBySnpassport(snpassport));
+    }
+
+    @PostMapping("/updateLevel")
+    @ResponseBody
+    public UserDTO setUserNewLevel(@RequestParam String snpassport, @RequestParam int idLevelNew){
+        return convertToUserDTO(modelMapper, userService.changeUserLevel(snpassport, idLevelNew));
+    }
+
+
+    public UserDTO convertToUserDTO(ModelMapper modelMapper, User user){
+        return modelMapper.map(user, UserDTO.class);
+    }
 }

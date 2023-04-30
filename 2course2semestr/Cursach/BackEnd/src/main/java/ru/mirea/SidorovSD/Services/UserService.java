@@ -27,9 +27,16 @@ public class UserService {
         String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encodedPassword);
         user.setRole("USER");
-        user.setId_level(1);
+        user.setIdLevel(1);
 
         userRepo.save(user);
+    }
+
+    public User changeUserLevel(String snpassport, int idLevelNew){
+        User user = userRepo.findBySnpassport(snpassport);
+        user.setIdLevel(idLevelNew);
+        userRepo.save(user);
+        return user;
     }
 
 

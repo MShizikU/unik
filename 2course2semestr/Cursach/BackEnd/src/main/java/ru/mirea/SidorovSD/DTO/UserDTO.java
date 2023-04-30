@@ -6,7 +6,7 @@ import ru.mirea.SidorovSD.Models.Level;
 @Data
 public class UserDTO {
 
-    private String snpassport, fullName, dateOfBirth, password, username, role;
+    private String snpassport, fullName, dateOfBirth, username;
 
     private Level level;
 

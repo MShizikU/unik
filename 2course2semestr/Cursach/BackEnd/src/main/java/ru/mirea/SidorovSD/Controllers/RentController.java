@@ -16,4 +16,5 @@ public class RentController {
         this.modelMapper = modelMapper;
         this.rentService = rentService;
     }
+
 }
