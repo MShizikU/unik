@@ -51,20 +51,35 @@
             <div class = "form_field_layout">
                 <div class = "form_element">
                     <div class = "title">Choose operation:</div>
-                    <div class = "custom-select">
-                      <div class="select-selected">Select an operation</div>
-                      <div class="select-items select-hide">
-                        <div class="select-item unactive">Unselected</div>
-                        <div class="select-item active">Элемент 2</div>
-                        <div class="select-item">Элемент 3</div>
+                    <div class = "custom-select option" id = "option_custom_select">
+                      <div class="select-selected option">Select an operation</div>
+                      <div class="select-items select-hide option" id = "options_items">
                       </div>
                     </div>
                 </div>
                 <div class = "form_element">
                   <div class = "title">Total Time</div>
-                  <div class = "booking_form_field">Value</div>
+                  <div class = "booking_form_field" id = "time_shower">Value</div>
               </div>
             </div>
+            <div class = "form_field_layout">
+              <div class = "form_element">
+                  <div class = "title">Choose date:</div>
+                  <div class = "custom-select date" id = "date_custom_select">
+                    <div class="select-selected date">Select a date</div>
+                    <div class="select-items select-hide date" id = "date_items">
+                    </div>
+                  </div>
+              </div>
+              <div class = "form_element">
+                <div class = "title">Choose time:</div>
+                <div class = "custom-select time" id = "time_custom_select">
+                  <div class="select-selected time">Select a time</div>
+                  <div class="select-items select-hide time" id = "time_items">
+                  </div>
+                </div>
+            </div>
+          </div>
             <div class = "form_button">
               <a class="button" id = "book_time_link">Book</a>
             </div>
@@ -103,5 +118,6 @@
     </footer>
     <script  src="script/selector_controler.js"></script>
     <script  src="script/header_changing.js"></script>
+    <script  src="script/date_and_time_picker_controller.js"></script>
   </body>
 </html>

@@ -154,12 +154,53 @@
 }
 
 .select-item.active::before {
-    content: "x";
+    content: "-";
     display: inline-block;
     margin-right: 10px;
     color: red;
 }
 
+
+.date-custom-select {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+.date-custom-select select {
+    display: none;
+}
+.date-select-selected {
+    background-color: #f1f1f1;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.date-select-selected:after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #666 transparent transparent transparent;
+}
+.date-select-selected.date-select-arrow-active:after {
+    border-color: transparent transparent #666 transparent;
+    top: 7px;
+}
+.date-select-items div {
+    color: #666;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.date-select-items div:hover {
+    background-color: #f1f1f1;
+}
+.disabled {
+    color: #ccc;
+}
 
 
 .button {
