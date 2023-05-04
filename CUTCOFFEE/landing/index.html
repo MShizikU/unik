@@ -5,11 +5,9 @@
     <link rel="icon" type="image/jpg" href="images/logo_crop.jpg">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/content.css">
-    <link rel="stylesheet" href="styles/datepicker.css">
-    <link rel="stylesheet" href="styles/timepicker.css">
-    <link rel="stylesheet" href="timepicker/jquery.timepicker.css">
-    <link rel="stylesheet" href="styles/normilize.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/normilize.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,16 +26,16 @@
         <div class="navbar_navigation_links" id="navbarNav">
           <ul class="navbar_nav">
             <li class="nav_item active">
-              <a class="nav_link" href="#home_sector">HOME</a>
+              <a class="nav_link" href="">BOOKING</a>
             </li>
             <li class="nav_item">
-              <a class="nav_link" href="#idea_sector">IDEA</a>
+              <a class="nav_link" href="home.html">HOME</a>
             </li>
             <li class="nav_item">
-              <a class="nav_link" href="#advantages_sector">ADVANTAGES</a>
+              <a class="nav_link" href="idea.html">IDEA</a>
             </li>
             <li class="nav_item">
-              <a class="nav_link" href="#booking_sector">BOOKING</a>
+              <a class="nav_link" href="advantages.html">ADVANTAGES</a>
             </li>
           </ul>
         </div>
@@ -45,61 +43,6 @@
 
     </header>
     <div class = 'content'>
-        <div id = "home_sector">
-
-          <div id = "home_giant_hook">
-            Book your perfect hair appointment hassle-free!
-          </div>
-          <div id = "home_background_image">
-
-          </div>
-        </div>
-        <div id  = "idea_sector">
-          
-          <div id = "idea_image">
-
-          </div>
-          <div id = "idea_text">
-            <div id = "idea_title">
-              OUR IDEA
-            </div>
-            <div id = "idea_description">
-              The barber shop appointment service is a convenient way to book your next visit to the master. Our service guarantees a quick and easy booking process Do not delay your next visit to the hairdresser, download our app and book your haircut right now!
-            </div>
-          </div>
-        </div>
-        <div id = "advantages_sector">
-          <div id = "advantages_checklist">
-            <div class = "checked_element">
-              <i class="fa fa-check"></i>
-              <div class = "advantage_description">
-                Fast and easy scheduling
-              </div>
-            </div>
-            <div class = "checked_element">
-              <i class="fa fa-check"></i>
-              <div class = "advantage_description">
-                No need to wait on hold
-              </div>
-            </div>
-            <div class = "checked_element">
-              <i class="fa fa-check"></i>
-              <div class = "advantage_description">
-                Hassle-free
-              </div>
-            </div>
-            <div class = "checked_element">
-              <i class="fa fa-check"></i>
-              <div class = "advantage_description">
-                Book from home
-              </div>
-            </div>
-          </div>
-          <div id = "advantages_image">
-
-          </div>
-          
-        </div>
         <div id = "booking_sector">
           <div id = "booking_title">
             CREATE YOUR BOOKING
@@ -107,19 +50,25 @@
           <div class = "form">
             <div class = "form_field_layout">
                 <div class = "form_element">
-                  <div class = "title">Peek the date</div>
-                  <input id="datepicker" placeholder = "__/__/____" type="text" class = "booking_form_field" />
+                    <div class = "title">Choose operation:</div>
+                    <div class = "custom-select">
+                      <div class="select-selected">Select an operation</div>
+                      <div class="select-items select-hide">
+                        <div class="select-item unactive">Unselected</div>
+                        <div class="select-item active">Элемент 2</div>
+                        <div class="select-item">Элемент 3</div>
+                      </div>
+                    </div>
                 </div>
-
                 <div class = "form_element">
-                  <div class = "title">Peek the time</div>
-                  <input id="timepicker" placeholder = "__:__" type="text" class = "booking_form_field" />
-                </div>
+                  <div class = "title">Total Time</div>
+                  <div class = "booking_form_field">Value</div>
+              </div>
             </div>
             <div class = "form_button">
               <a class="button" id = "book_time_link">Book</a>
             </div>
-            <div class = "form_field_layout disabled_layout">
+            <div class = "form_field_layout">
               <div class = "form_element">
                 <div class = "title">Email:</div>
                 <input id="email" placeholder = "somebody@some.com" type="email" class = "booking_form_field" />
@@ -130,7 +79,7 @@
                 <input id="phone" placeholder = "+12344321212" type="phone" class = "booking_form_field" />
               </div>
           </div>
-          <div class = "form_button disabled_layout">
+          <div class = "form_button">
             <a  class="button" id = "book_info_link">Remember me</a>
           </div>
           </div>
@@ -140,10 +89,10 @@
       <div class="container">
         <div class = "footer_navbar">
           <ul>
-            <li class = "nav_item active"><a class = "nav_link" href="#">HOME</a></li>
-            <li class = "nav_item"><a class = "nav_link" href="#">IDEA</a></li>
-            <li class = "nav_item"><a class = "nav_link" href="#">ADVANTAGES</a></li>
-            <li class = "nav_item"><a class = "nav_link" href="#">BOOKING</a></li>
+            <li class = "nav_item  active"><a class = "nav_link" href="index.html">BOOKING</a></li>
+            <li class = "nav_item"><a class = "nav_link" href="home.html">HOME</a></li>
+            <li class = "nav_item"><a class = "nav_link" href="idea.html">IDEA</a></li>
+            <li class = "nav_item"><a class = "nav_link" href="advantages.html">ADVANTAGES</a></li>
           </ul>
         </div>
         <div class="contact-info">
@@ -152,24 +101,7 @@
         </div>
       </div>
     </footer>
-    <script src="script/form_adjustment_script.js"></script>
-    <script src="script/header_changing.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="timepicker/jquery.timepicker.min.js"></script>
-		<script>
-			$(document).ready(function(){
-				$( "#datepicker" ).datepicker();
-        $('#timepicker').timepicker({
-          showMeridian: !1,
-          timeFormat: 'HH:mm',
-          interval: 30,
-          minTime: '10',
-          maxTime: '18:00',
-          dropdown: true,
-          scrollbar: true
-      });
-			});
-		</script>
+    <script  src="script/selector_controler.js"></script>
+    <script  src="script/header_changing.js"></script>
   </body>
 </html>
