@@ -10,6 +10,15 @@
 #booking_title{
     font-size: 72px;
     color:#5e7256;
+    text-align: center;
+}
+
+.ok{
+    color:#5e7256;
+}
+
+.error{
+    color: red !important;
 }
 
 .form{

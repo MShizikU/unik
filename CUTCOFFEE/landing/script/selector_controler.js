@@ -62,7 +62,6 @@ function calculateTotalTime(listOfSelectedOperations, listOfOptionsWithTime){
         totalMinutes += optionTime * 60;
       }
     }
-    // Преобразуем общее время выполнения в строку в формате "hh:mm"
     var hours = Math.floor(totalMinutes / 60);
     var minutes = totalMinutes % 60;
     var timeString = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');

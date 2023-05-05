@@ -44,15 +44,16 @@
     </header>
     <div class = 'content'>
         <div id = "booking_sector">
-          <div id = "booking_title">
+          <div id = "booking_title" class = "ok">
             CREATE YOUR BOOKING
           </div>
           <div class = "form">
-            <div class = "form_field_layout">
+            <!--Choose operation-->
+            <div class = "op form_field_layout">
                 <div class = "form_element">
                     <div class = "title">Choose operation:</div>
                     <div class = "custom-select option" id = "option_custom_select">
-                      <div class="select-selected option">Select an operation</div>
+                      <div class="select-selected option">Select an option</div>
                       <div class="select-items select-hide option" id = "options_items">
                       </div>
                     </div>
@@ -62,7 +63,13 @@
                   <div class = "booking_form_field" id = "time_shower">Value</div>
               </div>
             </div>
-            <div class = "form_field_layout">
+            <div class = "op form_button">
+              <a class="button" id = "book_time_link">Accept the operation</a>
+            </div>
+
+
+            <!--Choose date and time-->
+            <div class = "dt form_field_layout disabled_layout">
               <div class = "form_element">
                   <div class = "title">Choose date:</div>
                   <div class = "custom-select date" id = "date_custom_select">
@@ -74,16 +81,19 @@
               <div class = "form_element">
                 <div class = "title">Choose time:</div>
                 <div class = "custom-select time" id = "time_custom_select">
-                  <div class="select-selected time">Select a time</div>
+                  <div class="select-selected time">Nothing is chosen</div>
                   <div class="select-items select-hide time" id = "time_items">
                   </div>
                 </div>
+              </div>
             </div>
-          </div>
-            <div class = "form_button">
+            <div class = "dt form_button disabled_layout">
               <a class="button" id = "book_time_link">Book</a>
             </div>
-            <div class = "form_field_layout">
+
+
+            <!--Write phone and email-->
+            <div class = "ep form_field_layout disabled_layout">
               <div class = "form_element">
                 <div class = "title">Email:</div>
                 <input id="email" placeholder = "somebody@some.com" type="email" class = "booking_form_field" />
@@ -94,7 +104,7 @@
                 <input id="phone" placeholder = "+12344321212" type="phone" class = "booking_form_field" />
               </div>
           </div>
-          <div class = "form_button">
+          <div class = "ep form_button disabled_layout">
             <a  class="button" id = "book_info_link">Remember me</a>
           </div>
           </div>
@@ -116,8 +126,10 @@
         </div>
       </div>
     </footer>
+    <script src="https://apis.google.com/js/api.js"></script>
     <script  src="script/selector_controler.js"></script>
     <script  src="script/header_changing.js"></script>
     <script  src="script/date_and_time_picker_controller.js"></script>
+    <script src = "script/forms_step_controller.js"></script>
   </body>
 </html>
