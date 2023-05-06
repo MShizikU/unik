@@ -1,6 +1,7 @@
 package ru.mirea.SidorovSD.Services;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mirea.SidorovSD.Models.Permission;
 import ru.mirea.SidorovSD.Repos.PermissionRepo;
@@ -11,6 +12,7 @@ import java.util.List;
 @Slf4j
 public class PermissionService {
 
+    @Autowired
     private final PermissionRepo permissionRepo;
 
     public PermissionService(PermissionRepo permissionRepo) {

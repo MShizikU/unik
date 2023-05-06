@@ -10,6 +10,8 @@ public interface LevelRepo extends JpaRepository<Level, Integer> {
     @Override
     List<Level> findAll();
 
+    Level findByIdLevel(int idLevel);
+
     List<Level> findByLevelName(String levelName);
 
 }

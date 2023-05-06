@@ -20,6 +20,9 @@ public class WebSecurityConfig {
     private CustomAuthenticationProvider authProvider;
 
     @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
+    @Autowired
     private DataSource dataSource;
 
     @Bean
@@ -35,7 +38,7 @@ public class WebSecurityConfig {
                 .usernameParameter("snpassport")
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/start")
+                .successHandler(customAuthenticationSuccessHandler)
                 .failureForwardUrl("/login?error");
 
         return httpSecurity.build();
