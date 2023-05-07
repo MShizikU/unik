@@ -54,7 +54,6 @@ public class UserController {
         return userService.deleteUser(snpassport);
     }
 
-
     public UserDTO convertToUserDTO( User user){
         return modelMapper.map(user, UserDTO.class);
     }

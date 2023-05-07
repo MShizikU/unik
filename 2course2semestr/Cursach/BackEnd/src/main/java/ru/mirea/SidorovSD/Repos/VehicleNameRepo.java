@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VehicleNameRepo extends JpaRepository<Vehicle_name, Integer> {
 
-    List<Vehicle_name> findByPricePerHour(int pricePerHour);
+    Vehicle_name findByIdBrandAndIdModel(int idBrand, int idModel);
 
     Vehicle_name findByIdVehicleName(int idVehicleName);
 

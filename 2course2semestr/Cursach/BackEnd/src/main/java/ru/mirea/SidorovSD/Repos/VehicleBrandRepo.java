@@ -7,6 +7,7 @@ public interface VehicleBrandRepo extends JpaRepository<Vehicle_brand, Integer> 
 
     Vehicle_brand findByIdBrand(int idBrand);
 
+    Vehicle_brand findByBrandName(String brandName);
 
 
 }

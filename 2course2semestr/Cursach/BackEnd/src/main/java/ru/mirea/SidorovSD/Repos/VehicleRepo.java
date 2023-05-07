@@ -9,9 +9,7 @@ public interface VehicleRepo extends JpaRepository<Vehicle, Integer> {
 
     Vehicle findByVin(String vin);
 
-    List<Vehicle> findByState(String state);
-
-    List<Vehicle> findByColor(String color);
+    List<Vehicle> findByIdGroup(int idGroup);
 
     List<Vehicle> findByIdVehicleWorkModel(int idVehicleWorkModel);
 }
