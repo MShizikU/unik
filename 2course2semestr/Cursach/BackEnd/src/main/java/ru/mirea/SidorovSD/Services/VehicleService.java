@@ -44,6 +44,15 @@ public class VehicleService {
         return vehicleRepo.findByIdVehicleWorkModel(idWorkModel);
     }
 
+    public Boolean addVehicle(Vehicle vehicle){
+        if (vehicleRepo.findByVin(vehicle.getVin()) != null)
+            return false;
+        if (vehicleWorkModelRepo.findByIdVehicleWorkModel(vehicle.getIdVehicleWorkModel()) == null)
+            return false;
+        vehicleRepo.save(vehicle);
+        return Boolean.TRUE;
+    }
+
     public Boolean changeVehicleInfo(String vin, int idVehicleWorkModel, String color, String state, String place, int idGroup){
         Vehicle vehicle = getVehicle(vin);
         if (vehicle == null)

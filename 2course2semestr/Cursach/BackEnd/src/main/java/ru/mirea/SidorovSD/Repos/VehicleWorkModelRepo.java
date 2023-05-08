@@ -11,4 +11,7 @@ public interface VehicleWorkModelRepo extends JpaRepository<Vehicle_work_model, 
 
     List<Vehicle_work_model> findByPricePerHour(int pricePerHour);
 
+    List<Vehicle_work_model> findByIdVehicleName(int idVehicleName);
+
+
 }

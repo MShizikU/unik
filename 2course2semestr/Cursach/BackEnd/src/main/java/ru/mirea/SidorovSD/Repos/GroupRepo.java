@@ -12,4 +12,6 @@ public interface GroupRepo extends JpaRepository<Group, Integer> {
 
 
     List<Group> findByGroupName(String groupName);
+
+    Group findByIdGroup(int idGroup);
 }

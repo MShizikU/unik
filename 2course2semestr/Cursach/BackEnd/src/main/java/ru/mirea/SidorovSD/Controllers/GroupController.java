@@ -1,10 +1,7 @@
 package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.mirea.SidorovSD.DTO.GroupDTO;
 import ru.mirea.SidorovSD.Models.Group;
 import ru.mirea.SidorovSD.Services.GroupService;
@@ -32,6 +29,17 @@ public class GroupController {
     public Boolean addNewGroup(@RequestParam String groupName){
         return groupService.saveGroup(groupName);
     }
+
+    @PostMapping("/update")
+    public Boolean updateGroup(@RequestParam int idGroup, @RequestParam String groupName){
+        return groupService.updateGroup(idGroup, groupName);
+    }
+
+    @DeleteMapping()
+    public Boolean deleteGroup(@RequestParam int idGroup){
+        return groupService.deleteGroup(idGroup);
+    }
+
 
 
     public GroupDTO  convertToGroupDTO( Group group){

@@ -39,14 +39,19 @@ public class VehicleController {
         return vehicleService.getVehicleByWorkModel(idWorkModel).stream().map(this::convertToDTO).toList();
     }
 
+    @PostMapping("/add")
+    public Boolean addVehicle(@RequestBody VehicleDTO vehicle){
+        return vehicleService.addVehicle(convertToVehicle(vehicle));
+    }
+
     @PostMapping("/change")
     public Boolean changeVehicleInfo(@RequestParam String vin, @RequestParam int idVehicleWorkModel, @RequestParam String color, @RequestParam String state, @RequestParam String place, @RequestParam int idGroup){
-        return changeVehicleInfo(vin, idVehicleWorkModel, color, state, place, idGroup);
+        return vehicleService.changeVehicleInfo(vin, idVehicleWorkModel, color, state, place, idGroup);
     }
 
     @DeleteMapping()
     public Boolean deleteVehicle(@RequestParam String vin){
-        return deleteVehicle(vin);
+        return vehicleService.deleteVehicle(vin);
     }
 
     public VehicleDTO convertToDTO( Vehicle vehicle){

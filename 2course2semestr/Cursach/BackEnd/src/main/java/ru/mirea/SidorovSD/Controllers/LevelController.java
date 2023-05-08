@@ -1,10 +1,7 @@
 package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.mirea.SidorovSD.DTO.LevelDTO;
 import ru.mirea.SidorovSD.Models.Level;
 import ru.mirea.SidorovSD.Services.LevelService;
@@ -23,7 +20,7 @@ public class LevelController {
         this.levelService = levelService;
     }
 
-    @PostMapping("/all")
+    @GetMapping("/all")
     public List<LevelDTO> getAll(){
         return levelService.findAll().stream().map(this::convertToLevelDTO).toList();
     }
@@ -32,6 +29,17 @@ public class LevelController {
     public Boolean addNewLevel(@RequestParam String levelName){
         return levelService.saveLevel(levelName);
     }
+
+    @PostMapping("/update")
+    public Boolean updateLevel(@RequestParam int idLevel, @RequestParam String levelName){
+        return levelService.updateLevel(idLevel, levelName);
+    }
+
+    @DeleteMapping()
+    public Boolean deleteLevel(@RequestParam int idLevel){
+        return levelService.deleteLevel(idLevel);
+    }
+
 
     public LevelDTO convertToLevelDTO(Level level) {
         return modelMapper.map(level, LevelDTO.class);
