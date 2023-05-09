@@ -59,7 +59,7 @@ public class UserService {
         if (user == null) return Boolean.FALSE;
 
         if (!fullname.equals("-")) user.setFullname(fullname);
-        if (!dateOfBirth.equals("-")) user.setStDateOfBirth(dateOfBirth);
+        if (!dateOfBirth.equals("-")) user.setDate_of_birth(dateOfBirth);
         if (!password.equals("-")) user.setPassword(password);
         if (!username.equals("-")) user.setUsername(username);
         if (!role.equals("-")) user.setRole(role);

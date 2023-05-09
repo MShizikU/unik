@@ -12,6 +12,6 @@ public interface LevelRepo extends JpaRepository<Level, Integer> {
 
     Level findByIdLevel(int idLevel);
 
-    List<Level> findByLevelName(String levelName);
+    Level findByLevelName(String levelName);
 
 }

@@ -10,7 +10,7 @@ import ru.mirea.SidorovSD.Services.VehicleNameService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vehicle_name")
+@RequestMapping("/api/vehicle_name")
 public class VehicleNameController {
     private final ModelMapper modelMapper;
     private final VehicleNameService vehicleNameService;

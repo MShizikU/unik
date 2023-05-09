@@ -47,6 +47,7 @@ public class VehicleWorkModelService {
         vhm.setIdVehicleName(idVehicleName);
         vhm.setModelPhotoName(modelPhotoName);
         vhm.setPricePerHour(price_per_hour);
+        vehicleWorkModelRepo.save(vhm);
         return true;
     }
 

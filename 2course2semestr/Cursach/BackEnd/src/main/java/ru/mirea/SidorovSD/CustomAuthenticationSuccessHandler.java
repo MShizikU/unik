@@ -21,12 +21,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                                         Authentication authentication) throws IOException, ServletException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
-        if (roles.contains("ROLE_ADMIN")) {
-            redirectStrategy.sendRedirect(request, response, "/crm");
-        } else if (roles.contains("ROLE_USER")) {
+        if (roles.contains("ADMIN")) {
+            redirectStrategy.sendRedirect(request, response, "/crm/admin_rent");
+        } else if (roles.contains("USER")) {
             redirectStrategy.sendRedirect(request, response, "/start");
         } else {
-            throw new IllegalStateException();
+            throw new IllegalStateException(roles.toString());
         }
     }
 }

@@ -10,7 +10,7 @@ import ru.mirea.SidorovSD.Services.VehicleWorkModelService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vehicle_work_model")
+@RequestMapping("/api/vehicle_work_model")
 public class VehicleWorkModelController {
     private final ModelMapper modelMapper;
     private final VehicleWorkModelService vehicleWorkModelService;

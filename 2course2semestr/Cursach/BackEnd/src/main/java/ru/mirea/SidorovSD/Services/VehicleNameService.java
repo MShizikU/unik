@@ -35,6 +35,7 @@ public class VehicleNameService {
     public Boolean addName(int idBrand, int idModel){
         Vehicle_name vehicle_name = getName(idBrand, idModel);
         if (checkIfBrandExist(idBrand) && checkIfModelExist(idModel) && vehicle_name == null){
+            vehicle_name = new Vehicle_name();
             vehicle_name.setIdBrand(idBrand);
             vehicle_name.setIdModel(idModel);
             vehicleNameRepo.save(vehicle_name);

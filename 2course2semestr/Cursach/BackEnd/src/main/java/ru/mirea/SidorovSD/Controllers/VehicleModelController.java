@@ -25,7 +25,7 @@ public class VehicleModelController {
         return vehicleModelService.getAllModels().stream().map(this::convertToDTO).toList();
     }
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public Boolean addModel(@RequestParam String modelName){
         return vehicleModelService.addModel(modelName);
     }

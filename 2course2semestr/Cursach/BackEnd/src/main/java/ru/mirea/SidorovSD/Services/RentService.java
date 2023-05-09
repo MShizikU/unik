@@ -47,6 +47,7 @@ public class RentService {
     public Boolean addNewRent(Rent rent){
         if (checkDates(rent.getStartTime(), rent.getEndTime())){
             rent.setDuration(calculateDuration(rent.getStartTime(), rent.getEndTime()));
+            log.info(rent.toString());
             rentRepo.save(rent);
             return Boolean.TRUE;
         }
@@ -103,7 +104,7 @@ public class RentService {
     }
 
     public Boolean changeRent(int iRentID, String snpassport, String vin, String startingPoint, String endPoint, String startTime, String endTime){
-        Rent rent = rentRepo.findByIdRent(iRentID);
+        Rent rent = rentRepo.findById_rent(iRentID);
         if (rent == null){
             return Boolean.FALSE;
         }
@@ -142,7 +143,7 @@ public class RentService {
     }
 
     public Boolean deleteRent(int iRentID){
-        Rent rent = rentRepo.findByIdRent(iRentID);
+        Rent rent = rentRepo.findById_rent(iRentID);
         if (rent == null) return Boolean.FALSE;
         rentRepo.delete(rent);
         return Boolean.TRUE;

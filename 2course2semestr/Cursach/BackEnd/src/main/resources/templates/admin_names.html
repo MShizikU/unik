@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
     <title>Admin Panel</title>
     <meta charset="utf-8">
@@ -45,37 +46,37 @@
                 <div class="position-sticky pt-md-5">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="admin_rent.html">
+                            <a class="nav-link" href="admin_rent">
                                 <i class="fa-solid fa-gauge"></i>
                                 <span class="ml-2">Rents</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admin_users.html">
+                            <a class="nav-link" href="admin_users">
                                 <i class="fa-sharp fa-solid fa-user"></i>
                                 <span class="ml-2">Users</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admin_vehicles.html">
+                            <a class="nav-link" href="admin_vehicles">
                                 <i class="fa-solid fa-car"></i>
                                 <span class="ml-2">Vehicles</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admin_work_models.html">
+                            <a class="nav-link" href="admin_work_models">
                                 <i class="fa-solid fa-briefcase"></i>
                                 <span class="ml-2">Work models</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admin_names.html">
+                            <a class="nav-link" href="admin_names">
                                 <i class="fa-solid fa-copyright"></i>
                                 <span class="ml-2">Names</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admin_permissions.html">
+                            <a class="nav-link" href="admin_permissions">
                                 <i class="fa-brands fa-expeditedssl"></i>
                                 <span class="ml-2">Permission</span>
                             </a>
@@ -95,18 +96,10 @@
                                         <th>Brand name</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody th:each="brand:${brands}">
                                     <tr>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jane</td>
-                                        <td>Smith</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bob</td>
-                                        <td>Johnson</td>
+                                        <td th:text = "${brand.idBrand}"></td>
+                                        <td th:text = "${brand.brandName}"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -122,18 +115,10 @@
                                         <th>Model name</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody th:each = "model:${models}">
                                     <tr>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jane</td>
-                                        <td>Smith</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bob</td>
-                                        <td>Johnson</td>
+                                        <td th:text = "${model.idModel}"></td>
+                                        <td th:text = "${model.modelName}"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -147,25 +132,15 @@
                                 <thead>
                                     <tr>
                                         <th>ID name</th>
-                                        <th>Brand name</th>
-                                        <th>Model name</th>
+                                        <th>Brand id</th>
+                                        <th>Model id</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody th:each = "name:${names}">
                                     <tr>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>john.doe@example.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jane</td>
-                                        <td>Smith</td>
-                                        <td>jane.smith@example.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bob</td>
-                                        <td>Johnson</td>
-                                        <td>bob.johnson@example.com</td>
+                                        <td th:text = "${name.idVehicleName}"></td>
+                                        <td th:text = "${name.idBrand}"></td>
+                                        <td th:text = "${name.idModel}"></td>
                                     </tr>
                                 </tbody>
                             </table>

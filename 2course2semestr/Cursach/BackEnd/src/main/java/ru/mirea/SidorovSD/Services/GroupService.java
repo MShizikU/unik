@@ -25,6 +25,7 @@ public class GroupService {
     }
 
     public Boolean saveGroup(String groupName){
+        log.info(groupName);
         if (isGroupExist(groupName)){
             return Boolean.FALSE;
         }

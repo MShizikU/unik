@@ -12,7 +12,7 @@ public interface PermissionRepo extends JpaRepository<Permission, Integer> {
     List<Permission> findByIdPermission(int idPermission);
     List<Permission> findByIdLevel(int idLevel);
 
-    List<Permission> findByIdLevelAndIdGroup(int idLevel, int idGroup);
+    Permission findByIdLevelAndIdGroup(int idLevel, int idGroup);
 
     void deleteByIdLevelAndIdGroup(int idLevel, int idGroup);
 

@@ -14,5 +14,5 @@ public class RentDTO {
 
     private int duration;
 
-    private String startPoint, endPoint, startTime, endTime;
+    private String startingPoint, endPoint, startTime, endTime;
 }

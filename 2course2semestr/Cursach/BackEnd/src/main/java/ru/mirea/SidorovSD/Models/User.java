@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -16,7 +16,7 @@ public class User {
     private String fullname;
 
     @Column(name = "date_of_birth")
-    private String stDateOfBirth;
+    private String date_of_birth;
 
     @Column(name = "password")
     private String password;
@@ -35,7 +35,7 @@ public class User {
         return "User{" +
                 "stSNPassport='" + snpassport + '\'' +
                 ", stFullName='" + fullname + '\'' +
-                ", stDateOfBirth='" + stDateOfBirth + '\'' +
+                ", stDateOfBirth='" + date_of_birth + '\'' +
                 ", iLevelID=" + idLevel +
                 '}';
     }
