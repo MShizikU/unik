@@ -3,14 +3,17 @@ package ru.mirea.SidorovSD.Services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.tuple.Pair;
 import ru.mirea.SidorovSD.Models.Vehicle;
 import ru.mirea.SidorovSD.Models.Vehicle_name;
+import ru.mirea.SidorovSD.Models.Vehicle_work_model;
 import ru.mirea.SidorovSD.Repos.*;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -50,41 +53,35 @@ public class VehicleService {
         return vehicleRepo.findByIdGroup(idGroup);
     }
 
-    public List<Pair<Vehicle, String>> getAllAllowedPreparedForShow(int idGroup){
-        List<Pair<Vehicle,String>> resultedList = new LinkedList<>();
-        List<Vehicle> vehicleList  = vehicleRepo.findByIdGroup(idGroup);
+    public List<Pair<Vehicle_work_model, String>> getInfoPreparedToBeShown(int idGroup){
+        List<Pair<Vehicle_work_model, String>> resulted = new LinkedList<>();
+        List<Vehicle_work_model> work_models = getUniqueWorkModelsByGroup(idGroup);
         List<String> vehicleNames = new LinkedList<>();
-        vehicleList.forEach(
-                vehicle -> {
-                    Vehicle_name name = vehicleNameRepo
-                                    .findByIdVehicleName(
-                                        vehicleWorkModelRepo
-                                                .findByIdVehicleWorkModel(
-                                                        vehicle
-                                                                .getIdVehicleWorkModel()
-                                                ).getIdVehicleName()
-                                    );
+        work_models.forEach(
+                vehicle_work_model -> {
+                    Vehicle_name name = vehicleNameRepo.findByIdVehicleName(vehicle_work_model.getIdVehicleName());
                     vehicleNames.add(
-                            vehicleBrandRepo
-                                    .findByIdBrand(
-                                            name.getIdBrand()
-                                    )
-                                    .getBrandName()
-                            +
-                            " "
-                            +
-                            vehicleModelRepo
-                                    .findByIdModel(
-                                            name.getIdModel()
-                                    )
-                                    .getModelName()
+                            vehicleModelRepo.findByIdModel(
+                                    name.getIdModel()
+                            ).getModelName()
+                            + " " +
+                            vehicleBrandRepo.findByIdBrand(
+                                    name.getIdBrand()
+                            ).getBrandName()
                     );
-
                 }
         );
-        for(int i = 0; i < vehicleList.size(); i++){
-            resultedList.add(new Pair<Vehicle, String>(vehicleList.get(i), vehicleNames.get(i)));
+        for(int i = 0; i < vehicleNames.size(); i++){
+            resulted.add(Pair.of(work_models.get(i), vehicleNames.get(i)));
         }
+        return resulted;
+    }
+
+    public List<Vehicle_work_model> getUniqueWorkModelsByGroup(int idGroup){
+        List<Integer> groups = getAllByGroup(idGroup).stream().map(Vehicle::getIdGroup).toList();
+        groups = groups.stream().distinct().collect(Collectors.toList());
+        List<Vehicle_work_model> result = groups.stream().map(vehicleWorkModelRepo::findByIdVehicleWorkModel).toList();
+        return result;
     }
 
     public Vehicle getVehicle(String vin){

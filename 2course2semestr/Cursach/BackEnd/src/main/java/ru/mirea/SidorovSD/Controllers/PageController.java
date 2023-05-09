@@ -1,5 +1,6 @@
 package ru.mirea.SidorovSD.Controllers;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ru.mirea.SidorovSD.DTO.VehicleDTO;
 import ru.mirea.SidorovSD.Models.User;
 import ru.mirea.SidorovSD.Models.Vehicle;
+import ru.mirea.SidorovSD.Models.Vehicle_work_model;
 import ru.mirea.SidorovSD.Services.*;
 
 import java.util.LinkedList;
@@ -49,7 +51,7 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView("index");
         System.out.println(user.getUsername());
         User muser = userService.findBySnpassport(user.getUsername().toString());
-        List<VehicleDTO> allowedCars = new LinkedList<>();
+        List<Pair<Vehicle_work_model, String>> allowedCars = new LinkedList<>();
         permissionService
                 .allPermissionsByLevel(
                         muser.getIdLevel()
@@ -58,17 +60,14 @@ public class PageController {
                                 allowedCars
                                         .addAll(
                                                 vehicleService
-                                                        .getAllByGroup(
+                                                        .getInfoPreparedToBeShown(
                                                                 permission.getIdGroup()
                                                         )
                                                         .stream()
-                                                        .map(
-                                                                this::convertToVehicleDTO
-                                                        )
                                                         .toList()
                                         )
                 );
-        modelAndView.addObject("vehicles", allowedCars);
+        modelAndView.addObject("pairs", allowedCars);
         modelAndView.addObject("muser", muser);
         modelAndView.addObject("rent",rentService.getCurrentRent(muser.getSnpassport()));
         return modelAndView;

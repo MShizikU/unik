@@ -54,14 +54,14 @@
         </header>
         
         <div class="content">
-          <div class="basic_card_container" id = 'main_cards_container' th:each = "vehicle:${vehicles}">
+          <div class="basic_card_container" id = 'main_cards_container' th:each = "pair:${pairs}">
             <div class="card">
               <div class="card_image">
 
               </div>
               <div class = "card_info">
-                  <h3 class = "card_info_title" th:text = "${vehicle.color}"></h3>
-                  <h3 class = "card_info_price" th:text = "${vehicle.state}">7.20руб/час</h3>
+                  <h3 class = "card_info_title" th:text = "${pair.getValue()}"></h3>
+                  <h3 class = "card_info_price" th:text = "${pair.getKey().pricePerHour}">7.20руб/час</h3>
               </div>
               <div class="card_control">
                   <a href="#" class="button">Аренда</a>
