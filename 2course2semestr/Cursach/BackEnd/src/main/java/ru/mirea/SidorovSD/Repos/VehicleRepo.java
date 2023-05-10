@@ -9,7 +9,5 @@ public interface VehicleRepo extends JpaRepository<Vehicle, Integer> {
 
     Vehicle findByVin(String vin);
 
-    List<Vehicle> findByIdGroup(int idGroup);
-
     List<Vehicle> findByIdVehicleWorkModel(int idVehicleWorkModel);
 }

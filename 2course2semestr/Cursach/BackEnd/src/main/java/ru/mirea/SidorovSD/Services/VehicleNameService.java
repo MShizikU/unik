@@ -91,4 +91,11 @@ public class VehicleNameService {
     public Vehicle_name getName(int idName){
         return vehicleNameRepo.findByIdVehicleName(idName);
     }
+
+    public String getVehicleName(int idName){
+         Vehicle_name name = getName(idName);
+         if (name == null)
+             return "";
+         return vehicleBrandRepo.findByIdBrand(name.getIdBrand()).getBrandName() + " " + vehicleModelRepo.findByIdModel(name.getIdModel()).getModelName();
+    }
 }

@@ -21,6 +21,10 @@ public class Vehicle_work_model {
     @JoinColumn(name = "ID_vehicle_name", referencedColumnName = "ID_vehicle_name")
     private int idVehicleName;
 
+
+    @JoinColumn(name = "ID_group", referencedColumnName = "ID_group")
+    private int idGroup;
+
     @Override
     public String toString() {
         return "Vehicle_work_model{" +

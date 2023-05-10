@@ -13,7 +13,7 @@ public class VehicleDTO {
 
     private String color, state, place;
 
-    private Group group;
+
 
 }
 

@@ -3,6 +3,7 @@ package ru.mirea.SidorovSD.Services;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.mirea.SidorovSD.Models.Vehicle;
 import ru.mirea.SidorovSD.Models.Vehicle_work_model;
 import ru.mirea.SidorovSD.Repos.VehicleNameRepo;
 import ru.mirea.SidorovSD.Repos.VehicleWorkModelRepo;
@@ -33,6 +34,10 @@ public class VehicleWorkModelService {
 
     public List<Vehicle_work_model> getAllByName(int idName){
         return vehicleWorkModelRepo.findByIdVehicleName(idName);
+    }
+
+    public List<Vehicle_work_model> getAllByGroup(int idGroup){
+        return vehicleWorkModelRepo.findByIdGroup(idGroup);
     }
 
     public Vehicle_work_model getWorkModel(int idWorkModel){

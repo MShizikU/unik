@@ -21,27 +21,26 @@
     <body>
         <header class="header">
             <div id="company_info_div">
-                <img src="icons/logo.png" alt = "User Icon" id = "company_logo">
+                <img src="icons/logo.png" alt = "User Icon" id = "company-icon">
                 <h3>Basic carsharing</h3>
             </div>
-            <div id = "search_bar_div" class="disabled_header_block">
+            <div id = "search_bar_div" class = "enabled_header_block" th:if = "${rent == null}">
                 <input type = "text" id = "basic_car_search_bar" name = "basic_car_search_bar" placeholder="Поиск...">
             </div>
-            <div id = "current_rent_info" class = "enabled_header_block">
+            <div id = "current_rent_info" class = "disabled_header_block" th:if="${rent != null}">
                 <span id = "timer_view">00:20</span>
 
                 <div id = "total_block">
-                  <span id = "car_name_view">Hundai actavia</span>
-                  <span id ="total_price_view">820руб</span>
-                </div> 
+                    <span id = "car_name_view">Hundai actavia</span>
+                    <span id ="total_price_view">820руб</span>
+                </div>
                 <div id = "btn_block">
-                  <i class="fa fa-stop" aria-hidden="true"></i>
-                  <i class="fa fa-pause" aria-hidden="true"></i>
-                </div> 
+                    <i class="fa fa-stop" aria-hidden="true"></i>
+                </div>
             </div>
             <div id = "user_info_div">
-                <h3 class = "header_user_info_enabled">username</h3>
-                <img class = "header_user_info_enabled" src="icons/user.svg" alt = "User Icon" id = "user-icon">
+                <a class="header_user_info_enabled" th:text = "${muser.username}" href="profile"></a>
+                <img class="header_user_info_enabled" src="icons/user.svg" alt = "User Icon" id = "user-icon">
             </div>
         </header>
         
@@ -49,32 +48,14 @@
           <div id = "user_info_block">
             <div id = "basic_info_block">
               <img src = "icons/user.svg" alt = "USer icon" id = "profile_user_icon">
-              <h3 id="user_pasport_serial_number">1519356813</h3>
+              <h3 id="user_pasport_serial_number" th:text = "${muser.snpassport}"></h3>
             </div>
             <div id = "current_info_block">
               <div class = "user_info_portion">
                 <h3 class = "info_title">
-                  Фамилия
+                  Фамилия Имя Отчество
                 </h3>
-                <h3 class = "info_value">Сидоров</h3>
-              </div>
-              <div class = "user_info_portion">
-                <h3 class = "info_title">
-                  Имя 
-                </h3>
-                <h3 class = "info_value">Станислав</h3>
-              </div>
-              <div class = "user_info_portion">
-                <h3 class = "info_title">
-                  Отчество
-                </h3>
-                <h3 class = "info_value">Дмитриевич</h3>
-              </div>
-              <div class = "user_info_portion">
-                <h3 class = "info_title">
-                  Стаж
-                </h3>
-                <h3 class = "info_value">3 года</h3>
+                <h3 class = "info_value" th:text = "${muser.fullname}"></h3>
               </div>
               <div class = "user_info_portion">
                 <h3 class = "info_title">

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.mirea.SidorovSD.DTO.VehicleDTO;
+import ru.mirea.SidorovSD.Models.Rent;
 import ru.mirea.SidorovSD.Models.User;
 import ru.mirea.SidorovSD.Models.Vehicle;
 import ru.mirea.SidorovSD.Models.Vehicle_work_model;
@@ -49,25 +50,28 @@ public class PageController {
     @RequestMapping("/start")
     public ModelAndView getMainPage(@AuthenticationPrincipal UserDetails user){
         ModelAndView modelAndView = new ModelAndView("index");
-        System.out.println(user.getUsername());
         User muser = userService.findBySnpassport(user.getUsername().toString());
-        List<Pair<Vehicle_work_model, String>> allowedCars = new LinkedList<>();
+        List<Vehicle_work_model> allowedWorkModels = new LinkedList<>();
         permissionService
                 .allPermissionsByLevel(
                         muser.getIdLevel()
-                ).forEach(
-                        permission ->
-                                allowedCars
-                                        .addAll(
-                                                vehicleService
-                                                        .getInfoPreparedToBeShown(
-                                                                permission.getIdGroup()
-                                                        )
-                                                        .stream()
-                                                        .toList()
-                                        )
+                ).stream().map(
+                        permission
+                                -> vehicleWorkModelService
+                                .getAllByGroup(
+                                        permission.getIdGroup()
+                                )
+                )
+                .forEach(
+                        allowedWorkModels::addAll
                 );
-        modelAndView.addObject("pairs", allowedCars);
+        List<String> allowedCarsNames = allowedWorkModels.stream().map(it -> vehicleNameService.getVehicleName(it.getIdVehicleName())).toList();
+        List<Pair<Vehicle_work_model, String>> pairs = new LinkedList<>();
+        for (int i = 0; i < allowedCarsNames.size() && i < allowedWorkModels.size(); i++){
+            pairs.add(Pair.of(allowedWorkModels.get(i), allowedCarsNames.get(i)));
+        }
+
+        modelAndView.addObject("pairs", pairs);
         modelAndView.addObject("muser", muser);
         modelAndView.addObject("rent",rentService.getCurrentRent(muser.getSnpassport()));
         return modelAndView;
@@ -77,7 +81,12 @@ public class PageController {
     public ModelAndView getProfilePage(@AuthenticationPrincipal UserDetails user){
         ModelAndView modelAndView = new ModelAndView("profile");
         User muser = userService.findBySnpassport(user.getUsername());
+
+        List<Rent> rents = rentService.getAllByPass(muser.getSnpassport());
+        modelAndView.addObject("rents", rents);
         modelAndView.addObject("muser", muser);
+        modelAndView.addObject("level", levelService.)
+        modelAndView.addObject("rent",rentService.getCurrentRent(muser.getSnpassport()));
         return modelAndView;
     }
 

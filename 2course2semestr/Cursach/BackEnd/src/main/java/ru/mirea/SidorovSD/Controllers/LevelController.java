@@ -25,6 +25,9 @@ public class LevelController {
         return levelService.findAll().stream().map(this::convertToLevelDTO).toList();
     }
 
+    @GetMapping("/id")
+    public LevelDTO getLevelByID(@RequestParam int idLevel){}
+
     @PostMapping("/add")
     public Boolean addNewLevel(@RequestParam String levelName){
         return levelService.saveLevel(levelName);

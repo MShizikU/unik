@@ -2,6 +2,7 @@ package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
+import ru.mirea.SidorovSD.DTO.VehicleDTO;
 import ru.mirea.SidorovSD.DTO.VehicleWorkModelDTO;
 import ru.mirea.SidorovSD.Models.Vehicle;
 import ru.mirea.SidorovSD.Models.Vehicle_work_model;
@@ -33,6 +34,11 @@ public class VehicleWorkModelController {
     @GetMapping("/name")
     public List<VehicleWorkModelDTO> getAllByName(@RequestParam int idName){
         return vehicleWorkModelService.getAllByName(idName).stream().map(this::convertToDTO).toList();
+    }
+
+    @GetMapping("/group")
+    public List<VehicleWorkModelDTO> getAllByLevel(@RequestParam int idGroup){
+        return vehicleWorkModelService.getAllByGroup(idGroup).stream().map(this::convertToDTO).toList();
     }
 
     @GetMapping("/id")

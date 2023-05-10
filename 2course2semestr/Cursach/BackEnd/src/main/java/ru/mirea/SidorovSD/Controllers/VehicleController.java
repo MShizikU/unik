@@ -24,11 +24,6 @@ public class VehicleController {
         return vehicleService.getAll().stream().map(this::convertToDTO).toList();
     }
 
-    @GetMapping("/group")
-    public List<VehicleDTO> getAllByLevel(@RequestParam int idGroup){
-        return vehicleService.getAllByGroup(idGroup).stream().map(this::convertToDTO).toList();
-    }
-
     @GetMapping("/info")
     public VehicleDTO getVehicleInfo(@RequestParam String vin){
         return convertToDTO(vehicleService.getVehicle(vin));
@@ -45,8 +40,8 @@ public class VehicleController {
     }
 
     @PostMapping("/change")
-    public Boolean changeVehicleInfo(@RequestParam String vin, @RequestParam int idVehicleWorkModel, @RequestParam String color, @RequestParam String state, @RequestParam String place, @RequestParam int idGroup){
-        return vehicleService.changeVehicleInfo(vin, idVehicleWorkModel, color, state, place, idGroup);
+    public Boolean changeVehicleInfo(@RequestParam String vin, @RequestParam int idVehicleWorkModel, @RequestParam String color, @RequestParam String state, @RequestParam String place){
+        return vehicleService.changeVehicleInfo(vin, idVehicleWorkModel, color, state, place);
     }
 
     @DeleteMapping()

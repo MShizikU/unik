@@ -97,7 +97,6 @@
                                         <th>color</th>
                                         <th>state</th>
                                         <th>place</th>
-                                        <th>ID group</th>
                                     </tr>
                                 </thead>
                                 <tbody th:each = "vehicle:${vehicles}">
@@ -107,7 +106,6 @@
                                         <td th:text = "${vehicle.color}"></td>
                                         <td th:text = "${vehicle.state}"></td>
                                         <td th:text = "${vehicle.place}"></td>
-                                        <td th:text = "${vehicle.idGroup}"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -135,10 +133,6 @@
                                     <div class="form-group">
                                         <label for="new_place">Place:</label>
                                         <input class="form-control" id="new_place"  placeholder="Enter new place"></input>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="new_group_id">Group id:</label>
-                                        <input class="form-control" id="new_group_id"  placeholder="Enter new group id"></input>
                                     </div>
                                     <div class="form-group">
                                         <label for="new_work_model_id">Work model id:</label>
@@ -179,10 +173,6 @@
                             <div class="form-group">
                                 <label for="changed_place">Place:</label>
                                 <input class="form-control" id="changed_place"  placeholder="Enter changed place"></input>
-                            </div>
-                            <div class="form-group">
-                                <label for="changed_group_id">Group id:</label>
-                                <input class="form-control" id="changed_group_id"  placeholder="Enter changed group id"></input>
                             </div>
                             <div class="form-group">
                                 <label for="changed_work_model_id">Work model id:</label>

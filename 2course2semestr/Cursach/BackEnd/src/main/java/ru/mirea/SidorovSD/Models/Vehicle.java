@@ -25,8 +25,6 @@ public class Vehicle {
     @Column(name = "place")
     private String place;
 
-    @JoinColumn(name = "ID_group", referencedColumnName = "ID_group")
-    private int idGroup;
 
     @Override
     public String toString() {
@@ -36,7 +34,6 @@ public class Vehicle {
                 ", stColor='" + color + '\'' +
                 ", stState='" + state + '\'' +
                 ", stPlace='" + place + '\'' +
-                ", iGroupID=" + idGroup +
                 '}';
     }
 }

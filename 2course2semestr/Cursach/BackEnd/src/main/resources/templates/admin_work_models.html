@@ -96,6 +96,7 @@
                                         <th>Model photo name</th>
                                         <th>Price per hour</th>
                                         <th>Vehicle name ID</th>
+                                        <th>Group ID</th>
                                     </tr>
                                 </thead>
                                 <tbody th:each = "work_model:${work_models}">
@@ -104,6 +105,7 @@
                                         <td th:text = "${work_model.modelPhotoName}"></td>
                                         <td th:text = "${work_model.pricePerHour}"></td>
                                         <td th:text = "${work_model.idVehicleName}"></td>
+                                        <td th:text = "${work_model.idGroup}"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -127,6 +129,10 @@
                                     <div class="form-group">
                                         <label for="new_id_vehicle_name">Id vehicle name:</label>
                                         <input class="form-control" id="new_id_vehicle_name"  placeholder="Enter new id vehicle name"></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new_group_id">Group id:</label>
+                                        <input class="form-control" id="new_group_id"  placeholder="Enter new group id"></input>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id = "add_new_work_model">ADD</button>
                                 </form>
@@ -159,6 +165,10 @@
                             <div class="form-group">
                                 <label for="changed_price_per_hour">Price per hour:</label>
                                 <input class="form-control" id="changed_price_per_hour"  placeholder="Enter changed price per hour"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="changed_group_id">Group id:</label>
+                                <input class="form-control" id="changed_group_id"  placeholder="Enter changed group id"></input>
                             </div>
                             <div class="form-group">
                                 <label for="changed_id_vehicle_name">Id vehicle name:</label>
