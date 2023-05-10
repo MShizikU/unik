@@ -17,15 +17,6 @@ public class RentController {
     private final RentService rentService;
 
     public RentController(ModelMapper modelMapper, RentService rentService) {
-        modelMapper.addMappings(
-                new PropertyMap<RentDTO, Rent>() {
-                    @Override
-                    protected void configure(){
-                        map(source.getUser().getSnpassport(), destination.getSnpassport());
-                        map(source.getVehicle().getVin(), destination.getVin());
-                    }
-                }
-        );
         this.modelMapper = modelMapper;
         this.rentService = rentService;
     }
@@ -47,7 +38,6 @@ public class RentController {
 
     @PostMapping("/add")
     public Boolean addNewRent(@RequestBody RentDTO rent){
-        System.out.println("REEEENT " + rent);
         return rentService.addNewRent(convertToRent(rent));
     }
 

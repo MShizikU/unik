@@ -3,8 +3,8 @@ package ru.mirea.SidorovSD.Services;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.mirea.SidorovSD.Models.Vehicle;
 import ru.mirea.SidorovSD.Models.Vehicle_work_model;
+import ru.mirea.SidorovSD.Repos.GroupRepo;
 import ru.mirea.SidorovSD.Repos.VehicleNameRepo;
 import ru.mirea.SidorovSD.Repos.VehicleWorkModelRepo;
 
@@ -19,9 +19,13 @@ public class VehicleWorkModelService {
     @Autowired
     private final VehicleNameRepo vehicleNameRepo;
 
-    public VehicleWorkModelService(VehicleWorkModelRepo vehicleWorkModelRepo, VehicleNameRepo vehicleNameRepo) {
+    @Autowired
+    private final GroupRepo groupRepo;
+
+    public VehicleWorkModelService(VehicleWorkModelRepo vehicleWorkModelRepo, VehicleNameRepo vehicleNameRepo, GroupRepo groupRepo) {
         this.vehicleWorkModelRepo = vehicleWorkModelRepo;
         this.vehicleNameRepo = vehicleNameRepo;
+        this.groupRepo = groupRepo;
     }
 
     public List<Vehicle_work_model> getAll(){
@@ -44,7 +48,7 @@ public class VehicleWorkModelService {
         return vehicleWorkModelRepo.findByIdVehicleWorkModel(idWorkModel);
     }
 
-    public Boolean addWorkModel(String modelPhotoName, int price_per_hour, int idVehicleName){
+    public Boolean addWorkModel(String modelPhotoName, int price_per_hour, int idVehicleName, int idGroup){
         Vehicle_work_model vhm = new Vehicle_work_model();
 
         if (vehicleNameRepo.findByIdVehicleName(idVehicleName) == null)
@@ -52,11 +56,12 @@ public class VehicleWorkModelService {
         vhm.setIdVehicleName(idVehicleName);
         vhm.setModelPhotoName(modelPhotoName);
         vhm.setPricePerHour(price_per_hour);
+        vhm.setIdGroup(idGroup);
         vehicleWorkModelRepo.save(vhm);
         return true;
     }
 
-    public Boolean changeWorkModel(int idWorkModel, String modelPhotoName, int price_per_hour, int idVehicleName){
+    public Boolean changeWorkModel(int idWorkModel, String modelPhotoName, int price_per_hour, int idVehicleName, int idGroup){
         Vehicle_work_model vhm = vehicleWorkModelRepo.findByIdVehicleWorkModel(idWorkModel);
         if (vhm == null)
             return false;
@@ -65,6 +70,14 @@ public class VehicleWorkModelService {
                 vhm.setIdVehicleName(idVehicleName);
             else
                 return false;
+        }
+
+        if(idGroup != -1){
+            if (groupRepo.findByIdGroup(idGroup) != null){
+                vhm.setIdGroup(idGroup);
+            }else{
+                return false;
+            }
         }
 
         if (!modelPhotoName.equals("-"))

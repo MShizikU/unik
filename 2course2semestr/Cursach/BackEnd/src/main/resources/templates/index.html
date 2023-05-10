@@ -22,21 +22,21 @@
         <header class="header">
             <div id="company_info_div">
                 <img src="icons/logo.png" alt = "User Icon" id = "company-icon">
-                <h3>Basic carsharing</h3>
+                <a href = "start">Basic carsharing</a>
             </div>
             <div id = "search_bar_div" class = "enabled_header_block" th:if = "${rent == null}">
                 <input type = "text" id = "basic_car_search_bar" name = "basic_car_search_bar" placeholder="Поиск...">
             </div>
             <div id = "current_rent_info" class = "disabled_header_block" th:if="${rent != null}">
-              <span id = "timer_view">00:20</span>
-
-              <div id = "total_block">
-                <span id = "car_name_view">Hundai actavia</span>
-                <span id ="total_price_view">820руб</span>
-              </div> 
-              <div id = "btn_block">
-                <i class="fa fa-stop" aria-hidden="true"></i>
-              </div> 
+                <span id = "timer_view" th:text = "${rent.startTime.substring(rent.startTime.length() - 8, rent.startTime.length() - 3)}"></span>
+                <div id = "total_block">
+                    <span id = "car_name_view" th:text = "${vehicle_name}"></span>
+                    <span id ="total_price_view" th:text = "${vehicle_model.pricePerHour}"></span>
+                </div>
+                <div id = "btn_block">
+                    <i class="fa fa-stop btn_stop_rent" th:current_user = "${muser}" aria-hidden="true"></i>
+                </div>
+            </div>
           </div>
             <div id = "user_info_div">
                 <a class="header_user_info_enabled" th:text = "${muser.username}" href="profile"></a>
@@ -61,10 +61,10 @@
               </div>
               <div class = "card_info">
                   <h3 class = "card_info_title" th:text = "${pair.getValue()}"></h3>
-                  <h3 class = "card_info_price" th:text = "${pair.getKey().pricePerHour}">7.20руб/час</h3>
+                  <h3 class = "card_info_price" th:text = "${pair.getKey().pricePerHour}"></h3>
               </div>
               <div class="card_control">
-                  <a href="#" class="button">Аренда</a>
+                  <a href="#" class="button rent_btn" th:vehicles_list = "${vehicles}" th:current_user = "${muser}" th:vehicle_work_model = "${pair.getKey()}">Аренда</a>
               </div>
             </div>
           </div>
@@ -113,10 +113,7 @@
                 </div>
                </div>
         </footer>
-
+        <script src="scripts/rent_starter.js"></script>
+        <script src="scripts/rent_ender.js"></script>
     </body>
-    <script src="scripts/change_form_state.js"></script>
-    <script src="scripts/open_registration_form.js"></script>
-    
-    <script src="scripts/form_handler.js"></script>
 </html>

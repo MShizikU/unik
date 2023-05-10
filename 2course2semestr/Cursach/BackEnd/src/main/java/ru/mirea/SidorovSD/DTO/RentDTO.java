@@ -9,8 +9,8 @@ public class RentDTO {
 
     private int idRent;
 
-    private User user;
-    private Vehicle vehicle;
+    private String snpassport;
+    private String vin;
 
     private int duration;
 

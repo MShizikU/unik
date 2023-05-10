@@ -47,13 +47,13 @@ public class VehicleWorkModelController {
     }
 
     @PostMapping("/add")
-    public Boolean addWorkModel(@RequestParam String model_photo_name, @RequestParam int price_per_hour, @RequestParam int idVehicleName){
-        return vehicleWorkModelService.addWorkModel(model_photo_name, price_per_hour, idVehicleName);
+    public Boolean addWorkModel(@RequestParam String model_photo_name, @RequestParam int price_per_hour, @RequestParam int idVehicleName, @RequestParam int idGroup){
+        return vehicleWorkModelService.addWorkModel(model_photo_name, price_per_hour, idVehicleName, idGroup);
     }
 
     @PostMapping("/change")
-    public Boolean changeWorkModel(@RequestParam int idWorkModel, @RequestParam String model_photo_name, @RequestParam int price_per_hour, @RequestParam int idVehicleName){
-        return vehicleWorkModelService.changeWorkModel(idWorkModel, model_photo_name, price_per_hour, idVehicleName);
+    public Boolean changeWorkModel(@RequestParam int idWorkModel, @RequestParam String model_photo_name, @RequestParam int price_per_hour, @RequestParam int idVehicleName, @RequestParam int idGroup){
+        return vehicleWorkModelService.changeWorkModel(idWorkModel, model_photo_name, price_per_hour, idVehicleName, idGroup);
     }
 
     @DeleteMapping()

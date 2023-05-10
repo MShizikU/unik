@@ -26,7 +26,9 @@ public class LevelController {
     }
 
     @GetMapping("/id")
-    public LevelDTO getLevelByID(@RequestParam int idLevel){}
+    public LevelDTO getLevelByID(@RequestParam int idLevel){
+        return convertToLevelDTO(levelService.findById(idLevel));
+    }
 
     @PostMapping("/add")
     public Boolean addNewLevel(@RequestParam String levelName){
@@ -39,8 +41,8 @@ public class LevelController {
     }
 
     @DeleteMapping()
-    public Boolean deleteLevel(@RequestParam int idLevel){
-        return levelService.deleteLevel(idLevel);
+    public Boolean deleteLevel(@RequestParam String levelName){
+        return levelService.deleteLevel(levelName);
     }
 
 

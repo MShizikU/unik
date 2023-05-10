@@ -29,7 +29,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().cors().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login", "/logout", "/registrate").permitAll()
+                .requestMatchers("/login", "/logout", "/register").permitAll()
                 .requestMatchers("/start").authenticated()
                 .anyRequest().authenticated()
                 .and()

@@ -1,37 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeleaf.org ">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Carshering</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
     <title>Login : Demo</title>
-    <link rel="stylesheet" type="text/css" th:href = "@{csss/basic.css}">
-    <link rel="stylesheet" type="text/css" th:href = "@{csss/header.css}">
-    <link rel="stylesheet" type="text/css" th:href = "@{csss/footer.css}">
-    <link rel="stylesheet" type="text/css" th:href = "@{csss/form.css}">
-    <link rel="stylesheet" type="text/css" th:href = "@{csss/card.css}">
-    <link rel="stylesheet" type="text/css" th:href = "@{csss/content.css}">
+    <link rel="stylesheet" type="text/css" th:href = "@{/csss/basic.css}">
+    <link rel="stylesheet" type="text/css" th:href = "@{/csss/form.css}">
+    <link rel="stylesheet" type="text/css" th:href = "@{/csss/content.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto:wght@100;300&display=swap"
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
         <div class="content">
           <div class = "form_wrapper" id='reg_form_wrapper' >
             <form th:action="@{/login}" class="user-form" id = 'user_form' method="post">
-                <!-- Название формы -->
                 <div id="choser_container">
                     <h2 class = 'form_title active'>Вход</h2>
+                    <a class = 'form_title inactive' href="register">Регистрация</a>
                 </div>
 
                 <!-- Скрытое поле для csrf токена -->

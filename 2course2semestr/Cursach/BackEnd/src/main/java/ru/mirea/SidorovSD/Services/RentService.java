@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mirea.SidorovSD.Models.Rent;
+import ru.mirea.SidorovSD.Models.Vehicle;
 import ru.mirea.SidorovSD.Repos.RentRepo;
 import ru.mirea.SidorovSD.Repos.UserRepo;
 import ru.mirea.SidorovSD.Repos.VehicleRepo;
@@ -56,10 +57,12 @@ public class RentService {
     }
 
     public Boolean startNewRent(String snpassport, String vin, String startingPoint){
-        if (checkUserInRentAlready(snpassport)){
+        if (!isUserExist(snpassport) && checkUserInRentAlready(snpassport) && !isVehicleExist(snpassport)){
             return Boolean.FALSE;
         }
-
+        Vehicle vehicle = vehicleRepo.findByVin(vin);
+        vehicle.setState("In use");
+        vehicleRepo.save(vehicle);
         Rent startedRent = new Rent();
         startedRent.setSnpassport(snpassport);
         startedRent.setVin(vin);
@@ -77,6 +80,13 @@ public class RentService {
         if (rent == null){
             return false;
         }
+
+        Vehicle vehicle = vehicleRepo.findByVin(rent.getVin());
+        vehicle.setState("Free");
+        vehicle.setPlace(endPoint);
+        vehicleRepo.save(vehicle);
+
+
         rent.setEndPoint(endPoint);
         String endTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")).toString();
         String startTime = rent.getStartTime();

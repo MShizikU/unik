@@ -26,8 +26,8 @@ public class VehicleNameController {
     }
 
     @PostMapping("/add")
-    public Boolean addName(@RequestParam int idBrand, @RequestParam int idModel){
-        return vehicleNameService.addName(idBrand, idModel);
+    public Boolean addName(@RequestParam String brandName, @RequestParam String modelName){
+        return vehicleNameService.addName(brandName, modelName);
     }
 
     @PostMapping("/change")

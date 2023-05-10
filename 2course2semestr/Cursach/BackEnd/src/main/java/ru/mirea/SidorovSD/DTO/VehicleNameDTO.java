@@ -9,7 +9,7 @@ public class VehicleNameDTO {
 
     private int idVehicleName;
 
-    private Vehicle_model vehicle_model;
-    private Vehicle_brand vehicle_brand;
+    private int idVehicleModel;
+    private int  idVehicleBrand;
 
 }

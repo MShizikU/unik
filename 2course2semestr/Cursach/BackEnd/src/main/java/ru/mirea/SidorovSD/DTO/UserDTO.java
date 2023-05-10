@@ -8,6 +8,6 @@ public class UserDTO {
 
     private String snpassport, fullName, dateOfBirth, username;
 
-    private Level level;
+    private int idLevel;
 
 }

@@ -44,8 +44,8 @@ public class GroupService {
         return true;
     }
 
-    public Boolean deleteGroup(int idGroup){
-        Group group = groupRepo.findByIdGroup(idGroup);
+    public Boolean deleteGroup(String groupName){
+        Group group = groupRepo.findByGroupName(groupName);
         if (group == null)
             return false;
         groupRepo.delete(group);

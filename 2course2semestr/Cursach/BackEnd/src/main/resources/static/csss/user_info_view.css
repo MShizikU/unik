@@ -1,8 +1,13 @@
+.content{
+    margin-top:0px;
+}
+
 #user_info_block{
     width:100%;
     padding:20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin-bottom:50px;
 }
 
 #basic_info_block{
@@ -59,6 +64,7 @@
     align-self: center;
     text-align: center;
     color:black;
+    margin-bottom:25px;
 }
 
 .rent_table {
@@ -78,7 +84,8 @@
   }
 
   .responsive-table .table-header {
-    background-color: #95A5A6;
+    border: 2px solid #b8b7b7;
+    border-radius: 3px;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;

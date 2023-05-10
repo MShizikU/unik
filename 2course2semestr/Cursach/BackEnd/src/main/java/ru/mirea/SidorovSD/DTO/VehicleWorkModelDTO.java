@@ -11,7 +11,7 @@ public class VehicleWorkModelDTO {
 
     private int pricePerHour;
 
-    private Vehicle_name vehicle_name;
+    private int idVehicleName;
 
     private Group group;
 

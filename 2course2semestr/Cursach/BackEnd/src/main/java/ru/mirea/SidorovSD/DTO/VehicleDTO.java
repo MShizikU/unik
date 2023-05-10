@@ -9,7 +9,7 @@ public class VehicleDTO {
 
     private String vin;
 
-    private Vehicle_work_model workModel;
+    private int idVehicleWorkModel;
 
     private String color, state, place;
 

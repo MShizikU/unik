@@ -3,6 +3,8 @@ package ru.mirea.SidorovSD.Services;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.mirea.SidorovSD.Models.Vehicle_brand;
+import ru.mirea.SidorovSD.Models.Vehicle_model;
 import ru.mirea.SidorovSD.Models.Vehicle_name;
 import ru.mirea.SidorovSD.Repos.VehicleBrandRepo;
 import ru.mirea.SidorovSD.Repos.VehicleModelRepo;
@@ -32,12 +34,14 @@ public class VehicleNameService {
         return vehicleNameRepo.findAll();
     }
 
-    public Boolean addName(int idBrand, int idModel){
-        Vehicle_name vehicle_name = getName(idBrand, idModel);
-        if (checkIfBrandExist(idBrand) && checkIfModelExist(idModel) && vehicle_name == null){
+    public Boolean addName(String brandName, String modelName){
+        Vehicle_name vehicle_name = getName(brandName, modelName);
+        Vehicle_brand vehicle_brand  = vehicleBrandRepo.findByBrandName(brandName);
+        Vehicle_model vehicle_model = vehicleModelRepo.findByModelName(modelName);
+        if (vehicle_brand != null && vehicle_model != null && vehicle_name == null){
             vehicle_name = new Vehicle_name();
-            vehicle_name.setIdBrand(idBrand);
-            vehicle_name.setIdModel(idModel);
+            vehicle_name.setIdBrand(vehicle_name.getIdBrand());
+            vehicle_name.setIdModel(vehicle_model.getIdModel());
             vehicleNameRepo.save(vehicle_name);
             return Boolean.TRUE;
         }
@@ -86,6 +90,11 @@ public class VehicleNameService {
 
     public Vehicle_name getName(int idBrand, int idModel){
         return vehicleNameRepo.findByIdBrandAndIdModel(idBrand, idModel);
+    }
+
+    public Vehicle_name getName(String brandName, String modelName){
+
+        return vehicleNameRepo.findByIdBrandAndIdModel(vehicleBrandRepo.findByBrandName(brandName).getIdBrand(), vehicleModelRepo.findByModelName(modelName).getIdModel());
     }
 
     public Vehicle_name getName(int idName){

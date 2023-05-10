@@ -21,6 +21,10 @@ public class LevelService {
 
     public List<Level> findAll() { return levelRepo.findAll(); }
 
+    public Level findById(int idLevel){
+        return levelRepo.findByIdLevel(idLevel);
+    }
+
     public Boolean updateLevel(int idLevel, String levelName){
         Level level = levelRepo.findByIdLevel(idLevel);
         if (level == null)
@@ -30,8 +34,8 @@ public class LevelService {
         return true;
     }
 
-    public Boolean deleteLevel(int idLevel){
-        Level level = levelRepo.findByIdLevel(idLevel);
+    public Boolean deleteLevel(String levelName){
+        Level level = levelRepo.findByLevelName(levelName);
         if (level == null)
             return false;
         levelRepo.delete(level);

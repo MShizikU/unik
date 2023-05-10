@@ -37,7 +37,7 @@ public class PermissionController {
 
     @DeleteMapping("")
     public Boolean deletePermission(@RequestBody PermissionDTO permissionDTO){
-        return permissionService.deletePermission(permissionDTO.getLevel().getIdLevel(), permissionDTO.getGroup().getIdGroup());
+        return permissionService.deletePermission(permissionDTO.getIdLevel(), permissionDTO.getIdGroup());
     }
 
     public PermissionDTO convertToPermissionDTO(Permission permission){

@@ -36,8 +36,8 @@ public class GroupController {
     }
 
     @DeleteMapping()
-    public Boolean deleteGroup(@RequestParam int idGroup){
-        return groupService.deleteGroup(idGroup);
+    public Boolean deleteGroup(@RequestParam String groupName){
+        return groupService.deleteGroup(groupName);
     }
 
 

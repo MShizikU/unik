@@ -52,6 +52,7 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView("index");
         User muser = userService.findBySnpassport(user.getUsername().toString());
         List<Vehicle_work_model> allowedWorkModels = new LinkedList<>();
+        List<Vehicle> allowedVehicles = new LinkedList<>();
         permissionService
                 .allPermissionsByLevel(
                         muser.getIdLevel()
@@ -69,11 +70,19 @@ public class PageController {
         List<Pair<Vehicle_work_model, String>> pairs = new LinkedList<>();
         for (int i = 0; i < allowedCarsNames.size() && i < allowedWorkModels.size(); i++){
             pairs.add(Pair.of(allowedWorkModels.get(i), allowedCarsNames.get(i)));
+            allowedVehicles.addAll(vehicleService.getVehicleByWorkModel(allowedWorkModels.get(i).getIdVehicleWorkModel()));
         }
-
+        Rent currentRent = rentService.getCurrentRent(muser.getSnpassport());
+        if (currentRent != null){
+            Vehicle_work_model curVehicleModel =  vehicleWorkModelService.getWorkModel(vehicleService.getVehicle(currentRent.getVin()).getIdVehicleWorkModel());
+            String vehicleName = vehicleNameService.getVehicleName(curVehicleModel.getIdVehicleName());
+            modelAndView.addObject("vehicle_model", curVehicleModel);
+            modelAndView.addObject("vehicle_name", vehicleName);
+        }
+        modelAndView.addObject("vehicles", allowedVehicles);
         modelAndView.addObject("pairs", pairs);
         modelAndView.addObject("muser", muser);
-        modelAndView.addObject("rent",rentService.getCurrentRent(muser.getSnpassport()));
+        modelAndView.addObject("rent",currentRent);
         return modelAndView;
     }
 
@@ -81,12 +90,18 @@ public class PageController {
     public ModelAndView getProfilePage(@AuthenticationPrincipal UserDetails user){
         ModelAndView modelAndView = new ModelAndView("profile");
         User muser = userService.findBySnpassport(user.getUsername());
-
+        Rent currentRent = rentService.getCurrentRent(muser.getSnpassport());
         List<Rent> rents = rentService.getAllByPass(muser.getSnpassport());
+        if (currentRent != null){
+            Vehicle_work_model curVehicleModel =  vehicleWorkModelService.getWorkModel(vehicleService.getVehicle(currentRent.getVin()).getIdVehicleWorkModel());
+            String vehicleName = vehicleNameService.getVehicleName(curVehicleModel.getIdVehicleName());
+            modelAndView.addObject("vehicle_model", curVehicleModel);
+            modelAndView.addObject("vehicle_name", vehicleName);
+        }
         modelAndView.addObject("rents", rents);
         modelAndView.addObject("muser", muser);
-        modelAndView.addObject("level", levelService.)
-        modelAndView.addObject("rent",rentService.getCurrentRent(muser.getSnpassport()));
+        modelAndView.addObject("level", levelService.findById(muser.getIdLevel()));
+        modelAndView.addObject("rent", currentRent);
         return modelAndView;
     }
 

@@ -12,7 +12,8 @@
   color: #24262b;
   background-color: white;
   padding: 20px;
-  width: 300px;
+  min-width: 300px;
+  width:40%;
   border: 2px #24262b solid;
   border-radius: 20px;
   margin: 0 auto;
