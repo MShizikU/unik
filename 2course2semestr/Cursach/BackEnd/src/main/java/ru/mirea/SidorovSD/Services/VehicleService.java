@@ -66,7 +66,7 @@ public class VehicleService {
             vehicle.setState(state);
         if (!place.equals("-"))
             vehicle.setPlace(place);
-
+        vehicleRepo.save(vehicle);
         return "OK";
     }
 

@@ -46,7 +46,12 @@ public class RentService {
     }
 
     public String addNewRent(Rent rent){
-        if (checkDates(rent.getStartTime(), rent.getEndTime())){
+        if(vehicleRepo.findByVin(rent.getVin()) == null){
+            return "VIN doesn't exist";
+        }
+        if(userRepo.findBySnpassport((rent.getSnpassport())) == null)
+            return "User doesn't exist";
+        if (checkDates(rent.getStartTime(), rent.getEndTime()) ){
             rent.setDuration(calculateDuration(rent.getStartTime(), rent.getEndTime()));
             log.info(rent.toString());
             rentRepo.save(rent);

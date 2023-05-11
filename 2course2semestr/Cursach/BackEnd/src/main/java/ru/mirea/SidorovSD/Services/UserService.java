@@ -75,7 +75,7 @@ public class UserService {
             }
             else return "Level dosen't exist";
         }
-
+        userRepo.save(user);
         return "OK";
     }
 

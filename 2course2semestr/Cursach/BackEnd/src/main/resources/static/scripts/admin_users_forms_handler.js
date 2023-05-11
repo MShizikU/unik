@@ -25,14 +25,15 @@ changeUserForm.addEventListener('submit', event => {
   const changedLevelId = changedLevelIdInput.value;
 
   // Construct URL-encoded parameters
-  const params = new URLSearchParams();
-  params.append('snpassport', changedUserPassport);
-  params.append('fullname', changedFullName);
-  params.append('dateOfBirth', changedDateOfBirth);
-  params.append('password', changedPassword);
-  params.append('username', changedUsername);
-  params.append('role', changedRole);
-  params.append('idLevel', changedLevelId);
+  const params = {
+    snpassport: changedUserPassport,
+    fullname: changedFullName,
+    dateOfBirth:changedDateOfBirth ,
+    password: changedPassword,
+    username:changedUsername ,
+    role: changedRole,
+    idLevel:changedLevelId ,
+  };
 
   // Send POST request
   fetch('/api/user/change?' + parseParams(params), {
@@ -55,12 +56,13 @@ deleteUserForm.addEventListener('submit', event => {
   const delUserPassport = delUserPassportInput.value;
 
   // Construct URL-encoded parameters
-  const params = new URLSearchParams();
-  params.append('snpassport', delUserPassport);
+  const params = {
+    snpassport:delUserPassport
+  };
 
   // Send POST request
-  fetch('/api/delete-user?' + parseParams(params), {
-    method: 'POST'
+  fetch('/api/user?' + parseParams(params), {
+    method: 'DELETE'
   })
   .then(response => {
     location.reload()
@@ -72,8 +74,10 @@ deleteUserForm.addEventListener('submit', event => {
 
 function parseParams(data){
     output_string = ''
-    for key, value in data.items():
-        output_string += f'&{key}={value}'
-    output_string.slice(1)
-    return output_string;
+    for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+          output_string += `&${key}=${data[key]}`;
+        }
+      }
+    return output_string.slice(1);
 }

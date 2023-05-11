@@ -45,19 +45,20 @@ const deleteVehicleForm = document.querySelector('#delete_vehicle').closest('for
 deleteVehicleForm.addEventListener('submit', event => {
   event.preventDefault();
 
-  const delVinInput = deleteVehicleForm.querySelector('#del_vin');
+  const delVinInput = document.querySelector('#del_vin');
   const delVin = delVinInput.value;
 
   // Construct URL-encoded parameters
-  const params = new URLSearchParams();
-  params.append('vin', delVin);
+  const params = {
+    vin:delVin
+  };
 
   // Send POST request
-  fetch('/api/vehicle/' + parseParams(params), {
+  fetch('/api/vehicle?' + parseParams(params), {
     method: 'DELETE'
   })
   .then(response => {
-    // Handle response
+   location.reload()
   })
   .catch(error => {
     // Handle error
@@ -69,35 +70,36 @@ const changeVehicleForm = document.querySelector('#change_vehicle').closest('for
 changeVehicleForm.addEventListener('submit', event => {
   event.preventDefault();
 
-  const vehicleVinInput = changeVehicleForm.querySelector('#vehicle_vin');
+  const vehicleVinInput = document.querySelector('#vehicle_vin');
   const vehicleVin = vehicleVinInput.value;
 
-  const changedColorInput = changeVehicleForm.querySelector('#changed_color');
+  const changedColorInput = document.querySelector('#changed_color');
   const changedColor = changedColorInput.value;
 
-  const changedStateInput = changeVehicleForm.querySelector('#changed_state');
+  const changedStateInput = document.querySelector('#changed_state');
   const changedState = changedStateInput.value;
 
-  const changedPlaceInput = changeVehicleForm.querySelector('#changed_place');
+  const changedPlaceInput = document.querySelector('#changed_place');
   const changedPlace = changedPlaceInput.value;
 
-  const changedWorkModelIdInput = changeVehicleForm.querySelector('#changed_work_model_id');
+  const changedWorkModelIdInput = document.querySelector('#changed_work_model_id');
   const changedWorkModelId = changedWorkModelIdInput.value;
 
   // Construct URL-encoded parameters
-  const params = new URLSearchParams();
-  params.append('vin', vehicleVin);
-  params.append('color', changedColor);
-  params.append('state', changedState);
-  params.append('place', changedPlace);
-  params.append('idVehicleWorkModel', changedWorkModelId);
+  const params = {
+    vin: vehicleVin,
+    color: changedColor ,
+    state:changedState ,
+    place: changedPlace,
+    idVehicleWorkModel: changedWorkModelId
+  };
 
   // Send POST request
   fetch('/api/vehicle/change?' + parseParams(params), {
     method: 'POST'
   })
   .then(response => {
-    // Handle response
+    location.reload()
   })
   .catch(error => {
     // Handle error
@@ -106,8 +108,11 @@ changeVehicleForm.addEventListener('submit', event => {
 
 function parseParams(data){
     output_string = ''
-    for key, value in data.items():
-        output_string += f'&{key}={value}'
-    output_string.slice(1)
+    for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+          output_string += `&${key}=${data[key]}`;
+        }
+     }
+    output_string = output_string.slice(1)
     return output_string;
 }
