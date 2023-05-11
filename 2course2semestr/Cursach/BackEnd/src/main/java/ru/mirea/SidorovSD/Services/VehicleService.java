@@ -5,14 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mirea.SidorovSD.Models.Vehicle;
-import ru.mirea.SidorovSD.Models.Vehicle_name;
-import ru.mirea.SidorovSD.Models.Vehicle_work_model;
 import ru.mirea.SidorovSD.Repos.*;
 
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -21,27 +16,16 @@ public class VehicleService {
     private final VehicleRepo vehicleRepo;
 
     @Autowired
-    private final VehicleNameRepo vehicleNameRepo;
-
-    @Autowired
-    private final VehicleBrandRepo vehicleBrandRepo;
-
-    @Autowired
-    private final VehicleModelRepo vehicleModelRepo;
-
-    @Autowired
     private final VehicleWorkModelRepo vehicleWorkModelRepo;
 
     @Autowired
-    private final GroupRepo groupRepo;
+    private final RentRepo rentRepo;
 
-    public VehicleService(VehicleRepo vehicleRepo, VehicleNameRepo vehicleNameRepo, VehicleBrandRepo vehicleBrandRepo, VehicleModelRepo vehicleModelRepo, VehicleWorkModelRepo vehicleWorkModelRepo, GroupRepo groupRepo) {
+
+    public VehicleService(VehicleRepo vehicleRepo, VehicleNameRepo vehicleNameRepo, VehicleBrandRepo vehicleBrandRepo, VehicleModelRepo vehicleModelRepo, VehicleWorkModelRepo vehicleWorkModelRepo, GroupRepo groupRepo, RentRepo rentRepo) {
         this.vehicleRepo = vehicleRepo;
-        this.vehicleNameRepo = vehicleNameRepo;
-        this.vehicleBrandRepo = vehicleBrandRepo;
-        this.vehicleModelRepo = vehicleModelRepo;
         this.vehicleWorkModelRepo = vehicleWorkModelRepo;
-        this.groupRepo = groupRepo;
+        this.rentRepo = rentRepo;
     }
 
     public List<Vehicle> getAll(){
@@ -56,25 +40,25 @@ public class VehicleService {
         return vehicleRepo.findByIdVehicleWorkModel(idWorkModel);
     }
 
-    public Boolean addVehicle(Vehicle vehicle){
+    public String addVehicle(Vehicle vehicle){
         if (vehicleRepo.findByVin(vehicle.getVin()) != null)
-            return false;
+            return "Vehicle already exist";
         if (vehicleWorkModelRepo.findByIdVehicleWorkModel(vehicle.getIdVehicleWorkModel()) == null)
-            return false;
+            return "WorkModel doesn't exist";
         vehicleRepo.save(vehicle);
-        return Boolean.TRUE;
+        return "OK";
     }
 
-    public Boolean changeVehicleInfo(String vin, int idVehicleWorkModel, String color, String state, String place){
+    public String changeVehicleInfo(String vin, int idVehicleWorkModel, String color, String state, String place){
         Vehicle vehicle = getVehicle(vin);
         if (vehicle == null)
-            return false;
+            return "Vehicle doesn't exist";
 
         if (idVehicleWorkModel != -1) {
             if (vehicleWorkModelRepo.existsById(idVehicleWorkModel))
                 vehicle.setIdVehicleWorkModel(idVehicleWorkModel);
             else
-                return false;
+                return "WorkModel doesn't exist";
         }
         if (!color.equals("-"))
             vehicle.setColor(color);
@@ -83,14 +67,16 @@ public class VehicleService {
         if (!place.equals("-"))
             vehicle.setPlace(place);
 
-        return Boolean.TRUE;
+        return "OK";
     }
 
-    public Boolean deleteVehicle(String vin){
+    public String deleteVehicle(String vin){
         Vehicle vehicle = getVehicle(vin);
         if (vehicle == null)
-            return false;
+            return "Vehicle doesn't exist";
+        if (!rentRepo.findByVin(vin).isEmpty())
+            return "Vehicle in use";
         vehicleRepo.delete(vehicle);
-        return true;
+        return "OK";
     }
 }

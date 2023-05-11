@@ -44,10 +44,10 @@ const deleteOldBrandButton = document.getElementById('delete_old_brand_name');
 deleteOldBrandButton.addEventListener('click', event => {
   event.preventDefault();
 
-  const brandIdInput = document.getElementById('old_brand_id');
-  const brandId = brandIdInput.value;
+  const brandNameInput = document.getElementById('old_brand_name');
+  const brandName = brandNameInput.value;
 
-  fetch('/api/vehicle_brand/?brandName=' + brandId, {
+  fetch('/api/vehicle_brand?brandName=' + brandName, {
     method: 'DELETE'
   })
   .then(response => {
@@ -64,10 +64,10 @@ const deleteOldModelButton = document.getElementById('delete_old_model_name');
 deleteOldModelButton.addEventListener('click', event => {
   event.preventDefault();
 
-  const modelIdInput = document.getElementById('old_model_id');
-  const modelId = modelIdInput.value;
+  const modelNameInput = document.getElementById('old_model_name');
+  const modelName = modelNameInput.value;
 
-  fetch('/api/vehicle_model/?modelName=' + modelId, {
+  fetch('/api/vehicle_model?modelName=' + modelName, {
     method: 'DELETE'
   })
   .then(response => {
@@ -84,7 +84,7 @@ const updateOldBrandButton = document.getElementById('update_old_brand_name');
 updateOldBrandButton.addEventListener('click', event => {
   event.preventDefault();
 
-  const brandIdInput = document.getElementById('old_brand_id');
+  const brandIdInput = document.getElementById('updated_brand_name_id');
   const brandId = brandIdInput.value;
 
   const brandNameInput = document.getElementById('updated_brand_name');
@@ -107,7 +107,7 @@ const updateOldModelButton = document.getElementById('update_old_model_name');
 updateOldModelButton.addEventListener('click', event => {
   event.preventDefault();
 
-  const modelIdInput = document.getElementById('old_model_id');
+  const modelIdInput = document.getElementById('updated_model_name_id');
   const modelId = modelIdInput.value;
 
   const modelNameInput = document.getElementById('updated_model_name');
@@ -130,10 +130,10 @@ const connectIntoNameButton = document.getElementById('connect_into_name');
 connectIntoNameButton.addEventListener('click', event => {
   event.preventDefault();
 
-  const brandNameInput = document.getElementById('connected_model_name');
+  const brandNameInput = document.getElementById('connected_brand_name');
   const brandName = brandNameInput.value;
 
-  const modelNameInput = document.getElementById('connected_brand_name');
+  const modelNameInput = document.getElementById('connected_model_name');
   const modelName = modelNameInput.value;
 
   fetch('/api/vehicle_name/add?brandName=' + brandName + '&modelName=' + modelName, {
@@ -154,13 +154,37 @@ deleteConnectionButton.addEventListener('click', event => {
   event.preventDefault();
 
   const brandNameInput = document.getElementById('connected_del_brand_name');
-  const brandName = brandIdInput.value;
+  const brandName = brandNameInput.value;
 
   const modelNameInput = document.getElementById('connected_del_model_name');
   const modelName = modelNameInput.value;
 
-  fetch('/api/vehicle_name/?brandName=' + brandName + '&modelName=' + modelName, {
+  fetch('/api/vehicle_name?brandName=' + brandName + '&modelName=' + modelName, {
       method: 'DELETE'
+    })
+    .then(response => {
+      location.reload();
+    })
+    .catch(error => {
+      console.error('Error sending POST request:', error);
+    });
+});
+
+//Get the "Change connection" form
+const changeConnectionButton = document.getElementById('change_name');
+changeConnectionButton.addEventListener('click', event => {
+  event.preventDefault();
+
+  const nameId = document.getElementById("changed_name_id").value
+
+  const brandNameInput = document.getElementById('changed_brand_name');
+  const brandName = brandNameInput.value;
+
+  const modelNameInput = document.getElementById('changed_model_name');
+  const modelName = modelNameInput.value;
+
+  fetch('/api/vehicle_name/change?idName=' + nameId + '&brandName=' + brandName + '&modelName=' + modelName, {
+      method: 'POST'
     })
     .then(response => {
       location.reload();

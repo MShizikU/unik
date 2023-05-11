@@ -1,6 +1,7 @@
 package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mirea.SidorovSD.DTO.VehicleDTO;
 import ru.mirea.SidorovSD.DTO.VehicleWorkModelDTO;
@@ -15,6 +16,8 @@ import java.util.List;
 public class VehicleWorkModelController {
     private final ModelMapper modelMapper;
     private final VehicleWorkModelService vehicleWorkModelService;
+
+    private final Responser responser = new Responser();
 
     public VehicleWorkModelController(ModelMapper modelMapper, VehicleWorkModelService vehicleWorkModelService) {
         this.modelMapper = modelMapper;
@@ -47,18 +50,18 @@ public class VehicleWorkModelController {
     }
 
     @PostMapping("/add")
-    public Boolean addWorkModel(@RequestParam String model_photo_name, @RequestParam int price_per_hour, @RequestParam int idVehicleName, @RequestParam int idGroup){
-        return vehicleWorkModelService.addWorkModel(model_photo_name, price_per_hour, idVehicleName, idGroup);
+    public ResponseEntity<String> addWorkModel(@RequestParam String model_photo_name, @RequestParam int price_per_hour, @RequestParam int idVehicleName, @RequestParam int idGroup){
+        return responser.createResponse(vehicleWorkModelService.addWorkModel(model_photo_name, price_per_hour, idVehicleName, idGroup));
     }
 
     @PostMapping("/change")
-    public Boolean changeWorkModel(@RequestParam int idWorkModel, @RequestParam String model_photo_name, @RequestParam int price_per_hour, @RequestParam int idVehicleName, @RequestParam int idGroup){
-        return vehicleWorkModelService.changeWorkModel(idWorkModel, model_photo_name, price_per_hour, idVehicleName, idGroup);
+    public ResponseEntity<String> changeWorkModel(@RequestParam int idWorkModel, @RequestParam String model_photo_name, @RequestParam int price_per_hour, @RequestParam int idVehicleName, @RequestParam int idGroup){
+        return responser.createResponse(vehicleWorkModelService.changeWorkModel(idWorkModel, model_photo_name, price_per_hour, idVehicleName, idGroup));
     }
 
     @DeleteMapping()
-    public Boolean deleteWorkModel(@RequestParam int idWorkModel){
-        return vehicleWorkModelService.deleteWorkModel(idWorkModel);
+    public ResponseEntity<String> deleteWorkModel(@RequestParam int idWorkModel){
+        return responser.createResponse(vehicleWorkModelService.deleteWorkModel(idWorkModel));
     }
 
     public VehicleWorkModelDTO convertToDTO(Vehicle_work_model vehicle_work_model){

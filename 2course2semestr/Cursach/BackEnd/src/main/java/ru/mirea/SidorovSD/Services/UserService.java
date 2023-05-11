@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.mirea.SidorovSD.Models.User;
 import ru.mirea.SidorovSD.Repos.LevelRepo;
+import ru.mirea.SidorovSD.Repos.RentRepo;
 import ru.mirea.SidorovSD.Repos.UserRepo;
 
 import java.util.List;
@@ -20,10 +21,14 @@ public class UserService {
     @Autowired
     private final LevelRepo levelRepo;
 
+    @Autowired
+    private final RentRepo rentRepo;
 
-    public UserService(UserRepo userRepo, LevelRepo levelRepo) {
+
+    public UserService(UserRepo userRepo, LevelRepo levelRepo, RentRepo rentRepo) {
         this.userRepo = userRepo;
         this.levelRepo = levelRepo;
+        this.rentRepo = rentRepo;
     }
 
     public List<User> getAll(){
@@ -43,7 +48,7 @@ public class UserService {
     public void saveUser(User user){
 
         if (isUserExist(user.getSnpassport()))
-            return;
+            return ;
 
         String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -54,9 +59,9 @@ public class UserService {
     }
 
 
-    public Boolean changeUserInfo(String snpassport, String fullname, String dateOfBirth, String password, String username, String role, int idLevel){
+    public String changeUserInfo(String snpassport, String fullname, String dateOfBirth, String password, String username, String role, int idLevel){
         User user = userRepo.findBySnpassport(snpassport);
-        if (user == null) return Boolean.FALSE;
+        if (user == null) return "User doesn't exist";
 
         if (!fullname.equals("-")) user.setFullname(fullname);
         if (!dateOfBirth.equals("-")) user.setDate_of_birth(dateOfBirth);
@@ -68,17 +73,19 @@ public class UserService {
             if (levelRepo.findByIdLevel(idLevel) != null){
                 user.setIdLevel(idLevel);
             }
-            else return Boolean.FALSE;
+            else return "Level dosen't exist";
         }
 
-        return Boolean.TRUE;
+        return "OK";
     }
 
-    public Boolean deleteUser(String snpassport){
+    public String deleteUser(String snpassport){
         User user = userRepo.findBySnpassport(snpassport);
-        if (user == null) return Boolean.FALSE;
+        if (user == null) return "User doesn't exist";
+        if (!rentRepo.findBySnpassport(snpassport).isEmpty())
+            return "User in use";
         userRepo.delete(user);
-        return Boolean.TRUE;
+        return "OK";
     }
 
 

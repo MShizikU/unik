@@ -1,6 +1,10 @@
 package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mirea.SidorovSD.DTO.VehicleNameDTO;
 import ru.mirea.SidorovSD.Models.Vehicle_brand;
@@ -15,6 +19,8 @@ public class VehicleNameController {
     private final ModelMapper modelMapper;
     private final VehicleNameService vehicleNameService;
 
+    private final Responser responser = new Responser();
+
     public VehicleNameController(ModelMapper modelMapper, VehicleNameService vehicleNameService) {
         this.modelMapper = modelMapper;
         this.vehicleNameService = vehicleNameService;
@@ -26,18 +32,25 @@ public class VehicleNameController {
     }
 
     @PostMapping("/add")
-    public Boolean addName(@RequestParam String brandName, @RequestParam String modelName){
-        return vehicleNameService.addName(brandName, modelName);
+    public ResponseEntity<String> addName(@RequestParam String brandName, @RequestParam String modelName){
+        return responser.createResponse(vehicleNameService.addName(brandName, modelName));
+
     }
 
     @PostMapping("/change")
-    public Boolean changeName(@RequestParam int idName, @RequestParam int idBrand, @RequestParam int idModel){
-        return vehicleNameService.changeName(idName, idBrand, idModel);
+    public ResponseEntity<String> changeName(@RequestParam int idName, @RequestParam String brandName, @RequestParam String modelName){
+        return responser.createResponse(vehicleNameService.changeName(idName, brandName, modelName));
     }
 
+
     @DeleteMapping()
-    public Boolean deleteName(@RequestParam int idName){
-        return vehicleNameService.deleteName(idName);
+    public ResponseEntity<String> deleteName( @RequestParam String brandName, @RequestParam String modelName){
+        return responser.createResponse(vehicleNameService.deleteName(brandName,modelName));
+    }
+
+    @DeleteMapping("/id")
+    public ResponseEntity<String> deleteName(@RequestParam int idName){
+        return responser.createResponse(vehicleNameService.deleteName(idName));
     }
 
     public VehicleNameDTO convertToDTO(Vehicle_name name){

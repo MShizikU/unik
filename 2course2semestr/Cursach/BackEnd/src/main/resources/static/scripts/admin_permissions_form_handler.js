@@ -33,7 +33,7 @@ addNewGroupButton.addEventListener('click', event => {
     method: 'POST'
   })
   .then(response => {
-    // Handle response
+    location.reload()
   })
   .catch(error => {
     // Handle error
@@ -50,11 +50,11 @@ deleteOldLevelButton.addEventListener('click', event => {
   const oldLevelName = oldLevelNameInput.value;
 
   // Send POST request without a request body
-  fetch('/api/level/?levelName' + oldLevelName, {
+  fetch('/api/level?levelName=' + oldLevelName, {
     method: 'DELETE'
   })
   .then(response => {
-    // Handle response
+    location.reload()
   })
   .catch(error => {
     // Handle error
@@ -71,7 +71,7 @@ deleteOldGroupButton.addEventListener('click', event => {
   const oldGroupName = oldGroupNameInput.value;
 
   // Send POST request without a request body
-  fetch('/api/group/?groupName=' + oldGroupName, {
+  fetch('/api/group?groupName=' + oldGroupName, {
     method: 'DELETE'
   })
   .then(response => {
@@ -119,14 +119,14 @@ updateOldGroupButton.addEventListener('click', event => {
   const updatedGroupName = updatedGroupNameInput.value;
 
   // Send POST request without a request body
-  fetch('/api/group/update?idGroup=' + updatedLevelNameId + '&groupName=' + updatedGroupName, {
+  fetch('/api/group/update?idGroup=' + updatedGroupNameId + '&groupName=' + updatedGroupName, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     }
   })
   .then(response => {
-    // Handle response
+    location.reload()
   })
   .catch(error => {
     // Handle error
@@ -139,10 +139,10 @@ connectIntoPermissionForm.addEventListener('submit', event => {
   event.preventDefault();
 
   const connectedLevelIdInput = connectIntoPermissionForm.querySelector('#connected_level_id');
-  const connectedLevelId = connectedLevelNameInput.value;
+  const connectedLevelId = connectedLevelIdInput.value;
 
   const connectedGroupIdInput = connectIntoPermissionForm.querySelector('#connected_group_id');
-  const connectedGroupId = connectedGroupNameInput.value;
+  const connectedGroupId = connectedGroupIdInput.value;
 
   // Send POST request
   fetch('/api/permission/save', {
@@ -151,12 +151,13 @@ connectIntoPermissionForm.addEventListener('submit', event => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      idLevel: connectedLevelId,
-      idGroup: connectedGroupId
+      idPermission: 0,
+      idLevel: Number(connectedLevelId),
+      idGroup: Number(connectedGroupId)
     })
   })
   .then(response => {
-    // Handle response
+    location.reload()
   })
   .catch(error => {
     // Handle error
@@ -168,21 +169,22 @@ const deletePermissionForm = document.querySelector('#delete_permission').closes
 deletePermissionForm.addEventListener('submit', event => {
   event.preventDefault();
 
-  const connectedLevelIdInput = connectIntoPermissionForm.querySelector('#connected_del_level_id');
-  const connectedLevelId = connectedLevelNameInput.value;
+  const connectedLevelIdInput = document.querySelector('#connected_del_level_id');
+  const connectedLevelId = connectedLevelIdInput.value;
 
-  const connectedGroupIdInput = connectIntoPermissionForm.querySelector('#connected_del_group_id');
-  const connectedGroupId = connectedGroupNameInput.value;
+  const connectedGroupIdInput = document.querySelector('#connected_del_group_id');
+  const connectedGroupId = connectedGroupIdInput.value;
 
   // Send POST request
-  fetch('/api/permission/', {
+  fetch('/api/permission', {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      idLevel: connectedLevelId,
-      idGroup: connectedGroupId
+    idPermission:0,
+      idLevel: Number(connectedLevelId),
+      idGroup: Number(connectedGroupId)
     })
   })
   .then(response => {

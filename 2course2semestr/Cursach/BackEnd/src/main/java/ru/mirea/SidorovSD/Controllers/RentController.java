@@ -2,6 +2,7 @@ package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mirea.SidorovSD.DTO.RentDTO;
 import ru.mirea.SidorovSD.Models.Rent;
@@ -15,6 +16,8 @@ public class RentController {
 
     private final ModelMapper modelMapper;
     private final RentService rentService;
+
+    private final Responser responser = new Responser();
 
     public RentController(ModelMapper modelMapper, RentService rentService) {
         this.modelMapper = modelMapper;
@@ -37,28 +40,28 @@ public class RentController {
     }
 
     @PostMapping("/add")
-    public Boolean addNewRent(@RequestBody RentDTO rent){
-        return rentService.addNewRent(convertToRent(rent));
+    public ResponseEntity<String> addNewRent(@RequestBody RentDTO rent){
+        return responser.createResponse(rentService.addNewRent(convertToRent(rent)));
     }
 
     @PostMapping("/start")
-    public Boolean startRent(@RequestParam String snpassport, @RequestParam String VIN, @RequestParam String startingPoint){
-        return rentService.startNewRent(snpassport, VIN, startingPoint);
+    public ResponseEntity<String> startRent(@RequestParam String snpassport, @RequestParam String VIN, @RequestParam String startingPoint){
+        return responser.createResponse(rentService.startNewRent(snpassport, VIN, startingPoint));
     }
 
     @PostMapping("/end")
-    public Boolean endRent(@RequestParam String snpassport, @RequestParam String endPoint){
-        return rentService.endRent(snpassport, endPoint);
+    public ResponseEntity<String> endRent(@RequestParam String snpassport, @RequestParam String endPoint){
+        return responser.createResponse(rentService.endRent(snpassport, endPoint));
     }
 
     @PostMapping("/change")
-    public Boolean changeRent(@RequestParam int iRentID, @RequestParam String snpassport, @RequestParam String vin, @RequestParam String startingPoint, @RequestParam String endPoint, @RequestParam String startTime, @RequestParam String endTime){
-        return rentService.changeRent(iRentID, snpassport, vin, startingPoint, endPoint, startTime, endTime);
+    public ResponseEntity<String> changeRent(@RequestParam int iRentID, @RequestParam String snpassport, @RequestParam String vin, @RequestParam String startingPoint, @RequestParam String endPoint, @RequestParam String startTime, @RequestParam String endTime){
+        return responser.createResponse(rentService.changeRent(iRentID, snpassport, vin, startingPoint, endPoint, startTime, endTime));
     }
 
     @DeleteMapping()
-    public Boolean deleteRent(@RequestParam int iRentID){
-        return rentService.deleteRent(iRentID);
+    public ResponseEntity<String> deleteRent(@RequestParam int iRentID){
+        return responser.createResponse(rentService.deleteRent(iRentID));
     }
 
     public RentDTO convertToRentDTO(Rent rent){

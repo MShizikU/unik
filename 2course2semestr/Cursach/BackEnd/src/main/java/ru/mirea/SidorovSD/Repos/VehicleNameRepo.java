@@ -12,4 +12,8 @@ public interface VehicleNameRepo extends JpaRepository<Vehicle_name, Integer> {
     Vehicle_name findByIdVehicleName(int idVehicleName);
 
 
+    List<Vehicle_name> findByIdBrand(int brandId);
+
+    List<Vehicle_name> findByIdModel(int modelId);
+
 }

@@ -15,6 +15,7 @@ public class PermissionService {
     @Autowired
     private final PermissionRepo permissionRepo;
 
+
     //
 
     public PermissionService(PermissionRepo permissionRepo) {
@@ -24,24 +25,24 @@ public class PermissionService {
     public List<Permission> getAll(){
         return permissionRepo.findAll();
     }
-    public Boolean savePermission(Permission permission){
+    public String  savePermission(Permission permission){
         if (isPermissionExist(permission.getIdLevel(), permission.getIdGroup())){
-            return Boolean.FALSE;
+            return "Permission already exist";
         }
         permissionRepo.save(permission);
-        return Boolean.TRUE;
+        return "OK";
     }
 
     public Boolean isPermissionExist(int idLevel, int idGroup){
         return permissionRepo.findByIdLevelAndIdGroup(idLevel, idGroup) != null;
     }
 
-    public Boolean deletePermission(int idLevel, int idGroup){
-        if (isPermissionExist(idLevel, idGroup)){
-            return Boolean.FALSE;
+    public String deletePermission(int idLevel, int idGroup){
+        if (!isPermissionExist(idLevel, idGroup)){
+            return "Permission doesn't exist";
         }
         permissionRepo.deleteByIdLevelAndIdGroup(idLevel, idGroup);
-        return Boolean.TRUE;
+        return "OK";
     }
 
     public List<Permission> allPermissionsByLevel(int idLevel){

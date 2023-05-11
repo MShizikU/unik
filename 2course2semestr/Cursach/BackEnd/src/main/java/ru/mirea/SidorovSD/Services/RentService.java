@@ -45,20 +45,20 @@ public class RentService {
         return rentRepo.findByVin(vin);
     }
 
-    public Boolean addNewRent(Rent rent){
+    public String addNewRent(Rent rent){
         if (checkDates(rent.getStartTime(), rent.getEndTime())){
             rent.setDuration(calculateDuration(rent.getStartTime(), rent.getEndTime()));
             log.info(rent.toString());
             rentRepo.save(rent);
-            return Boolean.TRUE;
+            return "OK";
         }
         else
-            return Boolean.FALSE;
+            return "Something wrong with dates";
     }
 
-    public Boolean startNewRent(String snpassport, String vin, String startingPoint){
+    public String startNewRent(String snpassport, String vin, String startingPoint){
         if (!isUserExist(snpassport) && checkUserInRentAlready(snpassport) && !isVehicleExist(snpassport)){
-            return Boolean.FALSE;
+            return "Something went wrong";
         }
         Vehicle vehicle = vehicleRepo.findByVin(vin);
         vehicle.setState("In use");
@@ -72,13 +72,13 @@ public class RentService {
         startedRent.setStartTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")).toString());
         startedRent.setEndTime("none");
         rentRepo.save(startedRent);
-        return Boolean.TRUE;
+        return "OK";
     }
 
-    public Boolean endRent(String snpassport,  String endPoint){
+    public String endRent(String snpassport,  String endPoint){
         Rent rent = getCurrentRent(snpassport);
         if (rent == null){
-            return false;
+            return "Rent doesn't exist";
         }
 
         Vehicle vehicle = vehicleRepo.findByVin(rent.getVin());
@@ -110,22 +110,22 @@ public class RentService {
                         .getSeconds()
         );
         rentRepo.save(rent);
-        return Boolean.TRUE;
+        return "OK";
     }
 
-    public Boolean changeRent(int iRentID, String snpassport, String vin, String startingPoint, String endPoint, String startTime, String endTime){
+    public String changeRent(int iRentID, String snpassport, String vin, String startingPoint, String endPoint, String startTime, String endTime){
         Rent rent = rentRepo.findById_rent(iRentID);
         if (rent == null){
-            return Boolean.FALSE;
+            return "Rent doesn't exist";
         }
 
         if (!snpassport.equals("-")){
-            if (!isUserExist(snpassport)) return false;
+            if (!isUserExist(snpassport)) return "User doesn't exist";
             rent.setSnpassport(snpassport);
         }
 
         if (!vin.equals("-")){
-            if (!isVehicleExist(vin)) return false;
+            if (!isVehicleExist(vin)) return "Vehicle doesn't exist";
             rent.setVin(vin);
         }
 
@@ -144,19 +144,19 @@ public class RentService {
                 rent.setEndTime(endTimePosition);
                 rent.setDuration(calculateDuration(startTimePosition, endTimePosition));
             }
-            else return Boolean.FALSE;
+            else return "Wrong dates";
         }
 
         rentRepo.save(rent);
-        return Boolean.TRUE;
+        return "OK";
 
     }
 
-    public Boolean deleteRent(int iRentID){
+    public String deleteRent(int iRentID){
         Rent rent = rentRepo.findById_rent(iRentID);
-        if (rent == null) return Boolean.FALSE;
+        if (rent == null) return "Rent doesn't exist";
         rentRepo.delete(rent);
-        return Boolean.TRUE;
+        return "OK";
     }
 
     public Rent getCurrentRent(String snpassport){

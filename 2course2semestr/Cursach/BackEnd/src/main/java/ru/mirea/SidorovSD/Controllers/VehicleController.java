@@ -1,6 +1,7 @@
 package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mirea.SidorovSD.DTO.VehicleDTO;
 import ru.mirea.SidorovSD.Models.Vehicle;
@@ -13,6 +14,8 @@ import java.util.List;
 public class VehicleController {
     private final ModelMapper modelMapper;
     private final VehicleService vehicleService;
+
+    private final Responser responser = new Responser();
 
     public VehicleController(ModelMapper modelMapper, VehicleService vehicleService) {
         this.modelMapper = modelMapper;
@@ -35,18 +38,19 @@ public class VehicleController {
     }
 
     @PostMapping("/add")
-    public Boolean addVehicle(@RequestBody VehicleDTO vehicle){
-        return vehicleService.addVehicle(convertToVehicle(vehicle));
+    public ResponseEntity<String> addVehicle(@RequestBody VehicleDTO vehicle){
+        return responser.createResponse(vehicleService.addVehicle(convertToVehicle(vehicle)));
     }
 
     @PostMapping("/change")
-    public Boolean changeVehicleInfo(@RequestParam String vin, @RequestParam int idVehicleWorkModel, @RequestParam String color, @RequestParam String state, @RequestParam String place){
-        return vehicleService.changeVehicleInfo(vin, idVehicleWorkModel, color, state, place);
+    public ResponseEntity<String> changeVehicleInfo(@RequestParam String vin, @RequestParam int idVehicleWorkModel, @RequestParam String color, @RequestParam String state, @RequestParam String place){
+        return responser.createResponse(vehicleService.changeVehicleInfo(vin, idVehicleWorkModel, color, state, place));
     }
 
     @DeleteMapping()
-    public Boolean deleteVehicle(@RequestParam String vin){
-        return vehicleService.deleteVehicle(vin);
+    public ResponseEntity<String> deleteVehicle(@RequestParam String vin){
+
+        return responser.createResponse(vehicleService.deleteVehicle(vin));
     }
 
     public VehicleDTO convertToDTO( Vehicle vehicle){

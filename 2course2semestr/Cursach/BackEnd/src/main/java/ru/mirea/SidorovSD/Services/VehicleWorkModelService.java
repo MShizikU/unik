@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.mirea.SidorovSD.Models.Vehicle_work_model;
 import ru.mirea.SidorovSD.Repos.GroupRepo;
 import ru.mirea.SidorovSD.Repos.VehicleNameRepo;
+import ru.mirea.SidorovSD.Repos.VehicleRepo;
 import ru.mirea.SidorovSD.Repos.VehicleWorkModelRepo;
 
 import java.util.List;
@@ -22,10 +23,14 @@ public class VehicleWorkModelService {
     @Autowired
     private final GroupRepo groupRepo;
 
-    public VehicleWorkModelService(VehicleWorkModelRepo vehicleWorkModelRepo, VehicleNameRepo vehicleNameRepo, GroupRepo groupRepo) {
+    @Autowired
+    private final VehicleRepo vehicleRepo;
+
+    public VehicleWorkModelService(VehicleWorkModelRepo vehicleWorkModelRepo, VehicleNameRepo vehicleNameRepo, GroupRepo groupRepo, VehicleRepo vehicleRepo) {
         this.vehicleWorkModelRepo = vehicleWorkModelRepo;
         this.vehicleNameRepo = vehicleNameRepo;
         this.groupRepo = groupRepo;
+        this.vehicleRepo = vehicleRepo;
     }
 
     public List<Vehicle_work_model> getAll(){
@@ -48,35 +53,36 @@ public class VehicleWorkModelService {
         return vehicleWorkModelRepo.findByIdVehicleWorkModel(idWorkModel);
     }
 
-    public Boolean addWorkModel(String modelPhotoName, int price_per_hour, int idVehicleName, int idGroup){
+    public String addWorkModel(String modelPhotoName, int price_per_hour, int idVehicleName, int idGroup){
         Vehicle_work_model vhm = new Vehicle_work_model();
 
         if (vehicleNameRepo.findByIdVehicleName(idVehicleName) == null)
-            return false;
+            return "Name doesn't exist";
+
         vhm.setIdVehicleName(idVehicleName);
         vhm.setModelPhotoName(modelPhotoName);
         vhm.setPricePerHour(price_per_hour);
         vhm.setIdGroup(idGroup);
         vehicleWorkModelRepo.save(vhm);
-        return true;
+        return "OK";
     }
 
-    public Boolean changeWorkModel(int idWorkModel, String modelPhotoName, int price_per_hour, int idVehicleName, int idGroup){
+    public String changeWorkModel(int idWorkModel, String modelPhotoName, int price_per_hour, int idVehicleName, int idGroup){
         Vehicle_work_model vhm = vehicleWorkModelRepo.findByIdVehicleWorkModel(idWorkModel);
         if (vhm == null)
-            return false;
+            return "Work model doesn't exist";
         if (idVehicleName != -1){
             if (vehicleNameRepo.findByIdVehicleName(idVehicleName) != null)
                 vhm.setIdVehicleName(idVehicleName);
             else
-                return false;
+                return "Vehicle name doesn't exist";
         }
 
         if(idGroup != -1){
             if (groupRepo.findByIdGroup(idGroup) != null){
                 vhm.setIdGroup(idGroup);
             }else{
-                return false;
+                return "Group doesn't exist";
             }
         }
 
@@ -86,15 +92,17 @@ public class VehicleWorkModelService {
             vhm.setPricePerHour(price_per_hour);
 
         vehicleWorkModelRepo.save(vhm);
-        return Boolean.TRUE;
+        return "OK";
     }
 
-    public Boolean deleteWorkModel(int idWorkModel){
+    public String deleteWorkModel(int idWorkModel){
         Vehicle_work_model vhm = vehicleWorkModelRepo.findByIdVehicleWorkModel(idWorkModel);
         if(vhm == null)
-            return false;
+            return "Work model doesn't exist";
+        if(!vehicleRepo.findByIdVehicleWorkModel(idWorkModel).isEmpty())
+            return "Work Model in use";
         vehicleWorkModelRepo.delete(vhm);
-        return true;
+        return "OK";
     }
 
 

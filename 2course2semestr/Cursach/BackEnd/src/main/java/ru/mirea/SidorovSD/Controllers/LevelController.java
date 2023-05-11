@@ -1,6 +1,7 @@
 package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mirea.SidorovSD.DTO.LevelDTO;
 import ru.mirea.SidorovSD.Models.Level;
@@ -14,6 +15,8 @@ public class LevelController {
 
     private final ModelMapper modelMapper;
     private final LevelService levelService;
+
+    private final Responser responser = new Responser();
 
     public LevelController(ModelMapper modelMapper, LevelService levelService) {
         this.modelMapper = modelMapper;
@@ -31,18 +34,18 @@ public class LevelController {
     }
 
     @PostMapping("/add")
-    public Boolean addNewLevel(@RequestParam String levelName){
-        return levelService.saveLevel(levelName);
+    public ResponseEntity<String> addNewLevel(@RequestParam String levelName){
+        return responser.createResponse(levelService.saveLevel(levelName));
     }
 
     @PostMapping("/update")
-    public Boolean updateLevel(@RequestParam int idLevel, @RequestParam String levelName){
-        return levelService.updateLevel(idLevel, levelName);
+    public ResponseEntity<String> updateLevel(@RequestParam int idLevel, @RequestParam String levelName){
+        return responser.createResponse(levelService.updateLevel(idLevel, levelName));
     }
 
     @DeleteMapping()
-    public Boolean deleteLevel(@RequestParam String levelName){
-        return levelService.deleteLevel(levelName);
+    public ResponseEntity<String> deleteLevel(@RequestParam String levelName){
+        return responser.createResponse(levelService.deleteLevel(levelName));
     }
 
 

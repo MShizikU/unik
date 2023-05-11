@@ -1,11 +1,11 @@
 package ru.mirea.SidorovSD.Controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.mirea.SidorovSD.DTO.VehicleModelDTO;
 import ru.mirea.SidorovSD.Models.Vehicle_model;
 import ru.mirea.SidorovSD.Services.VehicleModelService;
-import ru.mirea.SidorovSD.Services.VehicleService;
 
 import java.util.List;
 
@@ -14,6 +14,8 @@ import java.util.List;
 public class VehicleModelController {
     private final ModelMapper modelMapper;
     private final VehicleModelService vehicleModelService;
+
+    private final Responser responser = new Responser();
 
     public VehicleModelController(ModelMapper modelMapper, VehicleModelService vehicleModelService) {
         this.modelMapper = modelMapper;
@@ -26,18 +28,18 @@ public class VehicleModelController {
     }
 
     @PostMapping("/add")
-    public Boolean addModel(@RequestParam String modelName){
-        return vehicleModelService.addModel(modelName);
+    public ResponseEntity<String> addModel(@RequestParam String modelName){
+       return responser.createResponse(vehicleModelService.addModel(modelName));
     }
 
-    @GetMapping("/update")
-    public Boolean updateModel(@RequestParam int idModel, @RequestParam String modelName){
-        return vehicleModelService.updateModel(idModel, modelName);
+    @PostMapping("/update")
+    public ResponseEntity<String> updateModel(@RequestParam int idModel, @RequestParam String modelName){
+        return responser.createResponse(vehicleModelService.updateModel(idModel, modelName));
     }
 
     @DeleteMapping()
-    public Boolean deleteModel(@RequestParam String modelName){
-        return vehicleModelService.deleteModel(modelName);
+    public ResponseEntity<String> deleteModel(@RequestParam String modelName){
+        return responser.createResponse(vehicleModelService.deleteModel(modelName));
     }
 
     public VehicleModelDTO convertToDTO(Vehicle_model vehicle_model){
