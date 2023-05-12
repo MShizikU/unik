@@ -13,17 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/rent")
 public class RentController {
-
     private final ModelMapper modelMapper;
     private final RentService rentService;
-
     private final Responser responser = new Responser();
-
     public RentController(ModelMapper modelMapper, RentService rentService) {
         this.modelMapper = modelMapper;
         this.rentService = rentService;
     }
-
     @GetMapping()
     public List<RentDTO> getAll(){
         return rentService.getAll().stream().map(this::convertToRentDTO).toList();

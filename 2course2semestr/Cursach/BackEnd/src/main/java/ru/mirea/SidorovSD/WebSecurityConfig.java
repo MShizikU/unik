@@ -29,9 +29,10 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable().cors().disable()
                 .authorizeHttpRequests()
+                .requestMatchers("/profile", "start").authenticated()
+                .requestMatchers("/crm/*").hasRole("ADMIN")
                 .requestMatchers("/login", "/logout", "/register").permitAll()
-                .requestMatchers("/start").authenticated()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .usernameParameter("snpassport")

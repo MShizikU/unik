@@ -96,24 +96,7 @@ public class RentService {
         String endTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")).toString();
         String startTime = rent.getStartTime();
         rent.setEndTime(endTime);
-        rent.setDuration((int)
-                Duration
-                        .between(
-                                LocalDateTime
-                                        .parse(
-                                                startTime,
-                                                DateTimeFormatter
-                                                        .ofPattern("dd.MM.yyyy HH:mm:ss")
-                                        ),
-                                LocalDateTime
-                                        .parse(
-                                                endTime,
-                                                DateTimeFormatter
-                                                        .ofPattern("dd.MM.yyyy HH:mm:ss")
-                                        )
-                        )
-                        .getSeconds()
-        );
+        rent.setDuration(calculateDuration(startTime, endTime));
         rentRepo.save(rent);
         return "OK";
     }

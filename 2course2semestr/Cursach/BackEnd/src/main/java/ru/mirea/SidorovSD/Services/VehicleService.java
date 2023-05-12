@@ -14,14 +14,10 @@ import java.util.List;
 public class VehicleService {
     @Autowired
     private final VehicleRepo vehicleRepo;
-
     @Autowired
     private final VehicleWorkModelRepo vehicleWorkModelRepo;
-
     @Autowired
     private final RentRepo rentRepo;
-
-
     public VehicleService(VehicleRepo vehicleRepo, VehicleNameRepo vehicleNameRepo, VehicleBrandRepo vehicleBrandRepo, VehicleModelRepo vehicleModelRepo, VehicleWorkModelRepo vehicleWorkModelRepo, GroupRepo groupRepo, RentRepo rentRepo) {
         this.vehicleRepo = vehicleRepo;
         this.vehicleWorkModelRepo = vehicleWorkModelRepo;

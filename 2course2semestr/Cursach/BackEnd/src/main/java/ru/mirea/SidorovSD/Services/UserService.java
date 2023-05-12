@@ -14,13 +14,10 @@ import java.util.List;
 @Service
 @Slf4j
 public class UserService {
-
     @Autowired
     private final UserRepo userRepo;
-
     @Autowired
     private final LevelRepo levelRepo;
-
     @Autowired
     private final RentRepo rentRepo;
 

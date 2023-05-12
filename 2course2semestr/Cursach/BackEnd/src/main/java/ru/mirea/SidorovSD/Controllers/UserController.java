@@ -16,17 +16,12 @@ import java.util.List;
 public class UserController {
 
     private final ModelMapper modelMapper;
-
     private final UserService userService;
-
     private final Responser responser = new Responser();
-
     public UserController(ModelMapper modelMapper, UserService userService) {
         this.modelMapper = modelMapper;
         this.userService = userService;
     }
-
-
     @GetMapping("/all")
     public List<UserDTO> getAll(){
         return userService.getAll().stream().map(this::convertToUserDTO).toList();

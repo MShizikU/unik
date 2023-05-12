@@ -28,6 +28,17 @@
     text-align: center;
     align-self: center;
     margin-top: 20px;
+    background: transparent;
+    border: 2px #b8b7b7 solid;
+    border-radius: 3px;
+    padding:5px;
+    font-size:16pt;
+    cursor:pointer;
+}
+
+.form_submit_button:hover{
+
+    border: 2px #24262b solid;
 }
 
 #choser_container{
@@ -53,6 +64,7 @@
     cursor: pointer;
     order:2;
     margin-bottom: 20px;
+    font-size: 18pt;
 }
 
 label, input[type="submit"] {

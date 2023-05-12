@@ -1,12 +1,11 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login : Demo</title>
-    <link rel="stylesheet" type="text/css" th:href = "@{/csss/basic.css}">
-    <link rel="stylesheet" type="text/css" th:href = "@{/csss/form.css}">
-    <link rel="stylesheet" type="text/css" th:href = "@{/csss/content.css}">
+    <link rel="stylesheet" type="text/css" href = "csss/basic.css">
+    <link rel="stylesheet" type="text/css" href = "csss/form.css">
+    <link rel="stylesheet" type="text/css" href = "csss/content.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -36,7 +35,7 @@
                 <input type="password" id="user_form_password" name="password" class="constant">
 
                 <!-- Кнопка submit -->
-                <button type="submit" onclick="submitLoginForm()">Login</button>
+                <button class = "form_submit_button" type="submit" onclick="submitLoginForm()">Login</button>
 
             </form>
           </div>

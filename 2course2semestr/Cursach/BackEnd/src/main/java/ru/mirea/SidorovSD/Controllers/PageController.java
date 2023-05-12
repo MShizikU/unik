@@ -1,5 +1,6 @@
 package ru.mirea.SidorovSD.Controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class PageController {
 
     private final LevelService levelService;
@@ -51,6 +53,7 @@ public class PageController {
     public ModelAndView getMainPage(@AuthenticationPrincipal UserDetails user){
         ModelAndView modelAndView = new ModelAndView("index");
         User muser = userService.findBySnpassport(user.getUsername().toString());
+        log.info("Role: " + muser.getRole());
         List<Vehicle_work_model> allowedWorkModels = new LinkedList<>();
         List<Vehicle> allowedVehicles = new LinkedList<>();
         permissionService
