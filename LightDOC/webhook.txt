@@ -1,1 +1,17 @@
-1456945
+tmpArray
+(
+    [status] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1456945
+                    [status_id] => 56564490
+                    [pipeline_id] => 6672930
+                    [old_status_id] => 57031990
+                    [old_pipeline_id] => 6672930
+                )
+
+        )
+
+)
+1456945\n{"id":"1456965","documentID":"044902EB-0AEC-4122-8DD0-77145E37BB35","url":"https://demo.lightdoc.io/documents/044902EB-0AEC-4122-8DD0-77145E37BB35"}stap_add\n{"count":1,"size":129242}\n{"validation-errors":[{"request_id":"0","errors":[{"code":"InvalidType","path":"id","detail":"This value should be of type int."}]}],"title":"Bad Request","type":"https://httpstatus.es/400","status":400,"detail":"Request validation failed"}\n1456945\n

@@ -8,16 +8,16 @@ $amo_domen = "vienna.amocrm.ru";
 
 $delimetr = "-------------0123456789";
 
-$leads = $_POST['leads'];
-
-$leadsValue = json_decode($leads, true);
-
-$statusId = $leadsValue['status'][0]['id'];
-
 $fh = fopen("webhook.txt", 'w') or die("Сбой открытия");
 
-fwrite($fh, $statusId);
-fclose($fh);
+$leads = $_POST['leads'];
+
+fwrite($fh, "tmp");
+fwrite($fh, print_r($leads,true));
+
+$statusId = $leads['status']['0']['id'];
+fwrite($fh, print_r($statusId,true). '\n');
+
 if ($statusId != ""){
     
     $headers = [
@@ -84,7 +84,7 @@ if ($statusId != ""){
         
         
         $light_doc_creation_payload = array(
-            'id' => $lead_id . '',
+            'id' => ($lead_id + 21) . '',
             'name' => 'Договор '. $lead_id . ' от ' . $lead_doc_date . 'г с ' . $lead_doc_fio[0] . ' ' . substr($lead_doc_fio[1], 0, 2) . '.',
             'isSequential' => false,
             'signers' => array(
@@ -121,6 +121,7 @@ if ($statusId != ""){
     
         curl_close($curl_light_doc_creation_req);
        
+        fwrite($fh, $light_doc_creation_response_json);
     
         if ($http_code >= 200 && $http_code <= 226 ) {
     
@@ -136,6 +137,8 @@ if ($statusId != ""){
     
             $curl_light_doc_add_req = curl_init();
 
+            fwrite($fh, "stap_add" . '\n');
+
             
             curl_setopt($curl_light_doc_add_req, CURLOPT_URL, 'https://'. $light_doc_domen .'/v1/documents/' . $light_doc_document_id . '/files');
             curl_setopt($curl_light_doc_add_req, CURLOPT_RETURNTRANSFER, 1);
@@ -149,15 +152,64 @@ if ($statusId != ""){
             ));
     
             $light_doc_add_req_response_json = curl_exec($curl_light_doc_add_req);
-    
+            fwrite($fh, print_r($light_doc_add_req_response_json,true) . '\n');
+
             $http_code_add = curl_getinfo($curl_light_doc_add_req, CURLINFO_HTTP_CODE);
             
             curl_close($curl_light_doc_add_req);
     
-            http_response_code($http_code_add);
+            
     
-            echo $light_doc_add_req_response_json;
+
+            if (strpos($light_doc_add_req_response_json, "size")){
+
+                $headers = [
+                    'Authorization: Bearer ' . $amo_crm_access_token
+                ];
+
+                $updateLeadPayload = array(
+                    array(
+                        "id" => $lead_id,
+                        "custom_fields_values" => [
+                            array(
+                                "field_id" => 627857,
+                                "values" => [
+                                    [
+                                        "value" =>  $light_doc_document_id . ''
+                                    ]
+                                ]
+                            )
+                        ]
+                    )
+                );
+            
+                $updateLeadRequest = curl_init('https://'. $amo_domen . '/api/v4/leads');
+                curl_setopt($updateLeadRequest, CURLOPT_CUSTOMREQUEST, 'PATCH');
+                curl_setopt($updateLeadRequest,CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($updateLeadRequest,CURLOPT_USERAGENT,'amoCRM-oAuth-client/1.0');
+                curl_setopt($updateLeadRequest,CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($updateLeadRequest, CURLOPT_POSTFIELDS, json_encode($updateLeadPayload));
+                curl_setopt($updateLeadRequest,CURLOPT_HEADER, false);
+                curl_setopt($updateLeadRequest,CURLOPT_SSL_VERIFYPEER, 1);
+                curl_setopt($updateLeadRequest,CURLOPT_SSL_VERIFYHOST, 2);
+                $resUpdateLead = curl_exec($updateLeadRequest);
+
+                $http_code_update = curl_getinfo($updateLeadRequest, CURLINFO_HTTP_CODE);
+
+                fwrite($fh, $resUpdateLead . '\n');
+                fwrite($fh, $lead_id . '\n');
+
+                http_response_code($http_code_add);
     
+                echo $light_doc_add_req_response_json;
+
+            }else{
+                http_response_code($resUpdateLead);
+            
+                echo "Something went wrong";
+            }
+    
+            
         } else {
     
             http_response_code($http_code);
@@ -176,5 +228,12 @@ else{
 }
 
 
+function isJSON($string)
+{
+    return is_string($string) && is_array(json_decode($string, true)) && (json_last_error() == JSON_ERROR_NONE) ? true : false;
+}
+
+
+fclose($fh);
 
 ?>
