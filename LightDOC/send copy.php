@@ -6,13 +6,6 @@ $light_doc_token_auth = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2lkIj
 $light_doc_domen = "api.demo.lightdoc.io";
 $amo_domen = "vienna.amocrm.ru";
 
-$leadIdFIO = 627833;
-$leadIdDate = 627855;
-$leadIdLink = 621947;
-$leadIdEmail = 64239;
-
-$leadIdLightDoc = 1100415;
-
 $leads = $_POST['leads'];
 
 $statusId = $leads['status']['0']['id'];
@@ -27,13 +20,18 @@ if ($statusId != ""){
         'Authorization: Bearer ' . $amo_crm_access_token
     ];
 
+    $getLeadRequest = curl_init('https://'. $amo_domen . '/api/v4/leads/' . $statusId . '?with=contacts');
+    curl_setopt($getLeadRequest, CURLOPT_HTTPGET, true);
+    curl_setopt($getLeadRequest,CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($getLeadRequest,CURLOPT_USERAGENT,'amoCRM-oAuth-client/1.0');
+    curl_setopt($getLeadRequest,CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($getLeadRequest,CURLOPT_HEADER, false);
+    curl_setopt($getLeadRequest,CURLOPT_SSL_VERIFYPEER, 1);
+    curl_setopt($getLeadRequest,CURLOPT_SSL_VERIFYHOST, 2);
+    $resGetLead = curl_exec($getLeadRequest);
 
-    $getLeadRequestResult = execCURLRequest('https://'. $amo_domen . '/api/v4/leads/' . $statusId . '?with=contacts', $headers, null, 'GET'); 
-
-
-    $resGetLead = $getLeadRequestResult['response'];
-
-    $code = $getLeadRequestResult['code'];
+    $code = curl_getinfo($getLeadRequest, CURLINFO_HTTP_CODE);
+    curl_close($getLeadRequest);
 
     fwrite($log_file, print_r(json_decode($resGetLead), true));
 
@@ -44,40 +42,79 @@ if ($statusId != ""){
 
         $lead_id  = $data->id;
 
-        $customFieldValues = getCustomFieldValues($data, array($leadIdFIO, $leadIdDate, $leadIdLink));
+        
+    
+        $custom_fields = $data->custom_fields_values;
     
     
-        $lead_doc_fio = explode(' ', $customFieldValues[$leadIdFIO]);
-        $lead_doc_date = $customFieldValues[$leadIdDate];
-        $lead_doc_link = $customFieldValues[$leadIdLink];
+        $lead_doc_fio = "";
+        $lead_contact_email = "";
+        $lead_doc_date = "";
+        $lead_doc_link = "";
+    
+        foreach ($custom_fields as $field) {
+            if ($field->field_id == 627833){
+                if ($field->values[0]->value == null){
+                    http_response_code(400);
+                    echo "FIO in lead wasn't mentioned";
+                }else{
+                    $lead_doc_fio = explode(" ", $field->values[0]->value);
+                }
+            }
+            else if ($field->field_id  == 627855){
+                if ($field->values[0]->value == null){
+                    http_response_code(400);
+                    echo "Date in lead wasn't mentioned";
+                }else{
+                    $lead_doc_date = $field->values[0]->value;
+                }
+            }
+            else if ($field->field_id  == 621947){
+                if ($field->values[0]->value == null){
+                    http_response_code(400);
+                    echo "Doc link in lead wasn't mentioned";
+                }else{
+                    $lead_doc_link = $field->values[0]->value;
+                }
+            }
+        };
 
         $contact_id = $data->_embedded->contacts[0]->id;
 
+        fwrite($log_file, "Embeded list");
+        fwrite($log_file, print_r($data->_embedded,true));
 
         $headers = [
             'Authorization: Bearer ' . $amo_crm_access_token
         ];
-
-        $getContactRequestResult = execCURLRequest('https://'. $amo_domen . '/api/v4/contacts/' . $contact_id, $headers, null ,'GET');
     
-        $resGetEmail = $getContactRequestResult['response'];
+        $getContactRequest = curl_init('https://'. $amo_domen . '/api/v4/contacts/' . $contact_id);
+        curl_setopt($getContactRequest, CURLOPT_HTTPGET, true);
+        curl_setopt($getContactRequest,CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($getContactRequest,CURLOPT_USERAGENT,'amoCRM-oAuth-client/1.0');
+        curl_setopt($getContactRequest,CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($getContactRequest,CURLOPT_HEADER, false);
+        curl_setopt($getContactRequest,CURLOPT_SSL_VERIFYPEER, 1);
+        curl_setopt($getContactRequest,CURLOPT_SSL_VERIFYHOST, 2);
+        $resGetEmail = curl_exec($getContactRequest);
     
-        $code = $getContactRequestResult['code'];
+        $code = curl_getinfo($getContactRequest, CURLINFO_HTTP_CODE);
+        curl_close($getContactRequest);
 
         fwrite($log_file, "Contact");
         fwrite($log_file, print_r(json_decode($resGetEmail),true));
 
-        $custom_field_values = getCustomFieldValues(json_decode($resGetEmail), array($leadIdEmail));
+        $custom_field_values = getCustomFieldValues(json_decode($resGetEmail), array(64239));
 
-        $lead_contact_email = $custom_field_values[$leadIdEmail];
+        fwrite($log_file, "Custom field values");
+        fwrite($log_file, print_r($custom_field_values,true));
 
-        $headers = array(
-            'Content-Type: application/json',
-            'Authorization: Bearer ' . $light_doc_token_auth
-        );
+        $lead_contact_email = $custom_field_values[64239];
+
+        fwrite($log_file, "Email: " . $lead_contact_email);
         
         $light_doc_creation_payload = array(
-            'id' => $lead_id + 60 . '',
+            'id' => $lead_id + 57 . '',
             'name' => 'Договор '. $lead_id . ' от ' . $lead_doc_date . 'г с ' . $lead_doc_fio[0] . ' ' . substr($lead_doc_fio[1], 0, 2) . '.',
             'isSequential' => false,
             'signers' => array(
@@ -92,17 +129,27 @@ if ($statusId != ""){
         );
         
         $light_doc_creation_payload_json = json_encode($light_doc_creation_payload);
-
-        $lightDocCreateRequestResponse = execCURLRequest('https://'. $light_doc_domen .'/v1/documents', $headers, json_encode($light_doc_creation_payload),'POST');
         
+        $curl_light_doc_creation_req = curl_init();
+        
+        curl_setopt($curl_light_doc_creation_req, CURLOPT_URL, 'https://'. $light_doc_domen .'/v1/documents');
+        curl_setopt($curl_light_doc_creation_req, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl_light_doc_creation_req, CURLOPT_POST, 1);
+        curl_setopt($curl_light_doc_creation_req, CURLOPT_POSTFIELDS, $light_doc_creation_payload_json);
+        curl_setopt($curl_light_doc_creation_req, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $light_doc_token_auth
+        ));
 
-        $light_doc_creation_response_json = $lightDocCreateRequestResponse['response'];
+        $light_doc_creation_response_json = curl_exec($curl_light_doc_creation_req);
 
-        fwrite($log_file, print_r(json_decode($light_doc_creation_response_json), true));
+        fwrite($log_file, print_r($light_doc_creation_response_json, true));
     
         $light_doc_creation_response = json_decode($light_doc_creation_response_json);
         
-        $http_code = $lightDocCreateRequestResponse['code'];
+        $http_code = curl_getinfo($curl_light_doc_creation_req, CURLINFO_HTTP_CODE);
+    
+        curl_close($curl_light_doc_creation_req);
     
         if ($http_code >= 200 && $http_code <= 226 ) {
     
@@ -115,25 +162,31 @@ if ($statusId != ""){
             file_put_contents($local_file_path, $lead_doc_pdf);
     
             $pdf_data = curl_file_create($local_file_path, 'application/pdf', 'filename.pdf');
-
-            $headers = array(
+    
+            $curl_light_doc_add_req = curl_init();
+            
+            curl_setopt($curl_light_doc_add_req, CURLOPT_URL, 'https://'. $light_doc_domen .'/v1/documents/' . $light_doc_document_id . '/files');
+            curl_setopt($curl_light_doc_add_req, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl_light_doc_add_req, CURLOPT_POST, 1);
+            curl_setopt($curl_light_doc_add_req, CURLOPT_POSTFIELDS, array(
+                "files" => $pdf_data
+            ));
+            curl_setopt($curl_light_doc_add_req, CURLOPT_HTTPHEADER, array(
                 'Content-Type: multipart/form-data',
                 'Authorization: Bearer ' . $light_doc_token_auth
-            );
-
-            $postFields = array(
-                "files" => $pdf_data
-            );
-
-            $lightDocAddRequestResult = execCURLRequest('https://'. $light_doc_domen .'/v1/documents/' . $light_doc_document_id . '/files', $headers, $postFields, 'POST');
-
+            ));
     
-            $light_doc_add_req_response_json = $lightDocAddRequestResult['response'];
+            $light_doc_add_req_response_json = curl_exec($curl_light_doc_add_req);
 
-            fwrite($log_file, print_r(json_decode($light_doc_add_req_response_json), true));
+            fwrite($log_file, print_r($light_doc_add_req_response_json, true));
 
-            $http_code_add = $lightDocAddRequestResult['code'];  
-        
+            $http_code_add = curl_getinfo($curl_light_doc_add_req, CURLINFO_HTTP_CODE);
+            
+            curl_close($curl_light_doc_add_req);
+    
+            
+    
+
             if (strpos($light_doc_add_req_response_json, "size")){
 
                 $headers = [
@@ -145,7 +198,7 @@ if ($statusId != ""){
                         "id" => $lead_id,
                         "custom_fields_values" => [
                             array(
-                                "field_id" => $leadIdLightDoc, 
+                                "field_id" => 1100415, 
                                 "values" => [
                                     [
                                         "value" =>  $light_doc_document_id
@@ -156,21 +209,28 @@ if ($statusId != ""){
                     )
                 );
 
-                $updateLeadRequestResult = execCURLRequest( 'https://'. $amo_domen . '/api/v4/leads', $headers, json_encode($updateLeadPayload), 'PATCH');
+                $updateLeadRequestResult = execCURLRequest( 'https://'. $amo_domen . '/api/v4/leads', $headers, json_encode($updateLeadPayload), )
             
-                $responseUpdateLead = $updateLeadRequestResult['response'];
+                $updateLeadRequest = curl_init('https://'. $amo_domen . '/api/v4/leads');
+                curl_setopt($updateLeadRequest, CURLOPT_CUSTOMREQUEST, 'PATCH');
+                curl_setopt($updateLeadRequest,CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($updateLeadRequest,CURLOPT_USERAGENT,'amoCRM-oAuth-client/1.0');
+                curl_setopt($updateLeadRequest,CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($updateLeadRequest, CURLOPT_POSTFIELDS, json_encode($updateLeadPayload));
+                curl_setopt($updateLeadRequest,CURLOPT_HEADER, false);
+                curl_setopt($updateLeadRequest,CURLOPT_SSL_VERIFYPEER, 1);
+                curl_setopt($updateLeadRequest,CURLOPT_SSL_VERIFYHOST, 2);
+                $resUpdateLead = curl_exec($updateLeadRequest);
 
-                $httpCodeUpdate = $updateLeadRequestResult['code'];
+                fwrite($log_file, print_r($resUpdateLead, true));
 
-                fwrite($log_file, print_r($responseUpdateLead, true));
+                $http_code_update = curl_getinfo($updateLeadRequest, CURLINFO_HTTP_CODE);
 
-                http_response_code($httpCodeUpdate);
+                http_response_code($http_code_add);
     
-                echo $responseUpdateLead;
+                echo $light_doc_add_req_response_json;
 
-            }
-            else{
-
+            }else{
                 http_response_code($resUpdateLead);
             
                 echo "Something went wrong";
@@ -215,23 +275,21 @@ function getCustomFieldValues($contact, $fieldIds) {
     return $result;
 }
 
-function execCURLRequest($url, $headers, $postData, $request_method){
+function execCURLRequest($url, $headers, $postData, $requst_method, $requset_method_data){
 
     $requestResult = array();
 
     $request = curl_init($url);
 
-    curl_setopt($request, CURLOPT_CUSTOMREQUEST, $request_method);
+    curl_setopt($request, $requst_method, $requset_method_data);
     curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($request, CURLOPT_USERAGENT,'amoCRM-oAuth-client/1.0');
     curl_setopt($request, CURLOPT_HTTPHEADER, $headers);
-    if ($postData != null){
-        curl_setopt($request, CURLOPT_POSTFIELDS, $postData);
-    }
+    curl_setopt($request, CURLOPT_POSTFIELDS, $postData);
 
-    $requestResult['response'] = curl_exec($request);
+    $requestResult->response = curl_exec($request);
 
-    $requestResult['code'] = curl_getinfo($request, CURLINFO_HTTP_CODE);
+    $requestResult->code = curl_getinfo($request, CURLINFO_HTTP_CODE);
 
     curl_close($request);
 

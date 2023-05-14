@@ -7,36 +7,29 @@ $light_doc_token_auth = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2lkIj
 $light_doc_domen = "api.demo.lightdoc.io";
 $amo_domen = "vienna.amocrm.ru";
 
+$fieldIdLightDoc = 1100415;
+$idForChangeAMO = 57394410;
+
 $leads = $_POST['leads'];
 
 $statusId = $leads['status']['0']['id'];
 
 $file_log = fopen("log.txt", "w");
 
-fwrite($file_log, "nothing");
 
 fwrite($file_log, print_r($leads, true));
 
 if ( $statusId != null){
 
-    //Отправляем запрос в амо с получением данных лида
-
     $headers = [
         'Authorization: Bearer ' . $amo_crm_access_token
     ];
 
-    $getLeadRequest = curl_init('https://'. $amo_domen . '/api/v4/leads/' . $statusId);
-    curl_setopt($getLeadRequest, CURLOPT_HTTPGET, true);
-    curl_setopt($getLeadRequest,CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($getLeadRequest,CURLOPT_USERAGENT,'amoCRM-oAuth-client/1.0');
-    curl_setopt($getLeadRequest,CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($getLeadRequest,CURLOPT_HEADER, false);
-    curl_setopt($getLeadRequest,CURLOPT_SSL_VERIFYPEER, 1);
-    curl_setopt($getLeadRequest,CURLOPT_SSL_VERIFYHOST, 2);
-    $resGetLead = curl_exec($getLeadRequest);
+    $getLeadRequestResult = execCURLRequest('https://'. $amo_domen . '/api/v4/leads/' . $statusId, $headers, null, 'GET')
 
-    $code = curl_getinfo($getLeadRequest, CURLINFO_HTTP_CODE);
-    curl_close($getLeadRequest);
+    $resGetLead = $getLeadRequestResult['response'];
+
+    $code = $getLeadRequestResult['code'];
 
     $data = json_decode($resGetLead);
 
@@ -45,49 +38,27 @@ if ( $statusId != null){
     if ($data != null){
 
         $custom_fields = $data->custom_fields_values;
-    
-    
-        $lead_doc_id = "";
-    
-        foreach ($custom_fields as $field) {
-            if ($field->field_id == 1100415){
-                if ($field->values[0]->value == null){
-                    http_response_code(400);
-                    echo "Lead doc id in lead wasn't mentioned";
-                }else{
-                    $lead_doc_id =$field->values[0]->value;
-                }
-            }
-        };
 
-        $curl_light_doc_get_status = curl_init();
+        $customFieldsValues = getCustomFieldValues($data, array($fieldIdLightDoc));
+    
+        $lead_doc_id = $customFieldsValues[$fieldIdLightDoc];
         
-        curl_setopt($curl_light_doc_get_status, CURLOPT_URL, 'https://'. $light_doc_domen .'/v1/documents/' . $lead_doc_id . '/status');
-        curl_setopt($curl_light_doc_get_status, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl_light_doc_get_status, CURLOPT_HTTPGET, 1);
-        curl_setopt($curl_light_doc_get_status, CURLOPT_HTTPHEADER, array(
+        $headers = array(
             'Content-Type: application/json',
             'Authorization: Bearer ' . $light_doc_token_auth
-        ));
+        );
 
+        $lightDocGetStatusResult = execCURLRequest('https://'. $light_doc_domen .'/v1/documents/' . $lead_doc_id . '/status', $headers, null, 'GET');
         
-        $light_doc_status_response = curl_exec($curl_light_doc_get_status);
+        $light_doc_status_response = $lightDocGetStatusResult['response'];
 
-        $light_doc_status_res_data = json_decode($light_doc_status_response);
-
-
-        
-        $http_code = curl_getinfo($curl_light_doc_get_status, CURLINFO_HTTP_CODE);
+        $light_doc_status_res_data = $lightDocGetStatusResult['code'];
 
         fwrite($file_log, "status response\n" . $http_code);
     
         fwrite($file_log, $light_doc_status_response);
     
         if ($http_code >= 200 && $http_code <= 226){
-
-           
-
-            
 
             $doc_status = $light_doc_status_res_data->status;
 
@@ -99,20 +70,15 @@ if ( $statusId != null){
                 $updateLeadPayload = array(
                     array(
                         "id" => (int)$statusId,
-                        "status_id" => 57394410
+                        "status_id" => $idForChangeAMO;
                     )
                 );
-            
-                $updateLeadRequest = curl_init('https://'. $amo_domen . '/api/v4/leads');
-                curl_setopt($updateLeadRequest, CURLOPT_CUSTOMREQUEST, 'PATCH');
-                curl_setopt($updateLeadRequest,CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($updateLeadRequest,CURLOPT_USERAGENT,'amoCRM-oAuth-client/1.0');
-                curl_setopt($updateLeadRequest,CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($updateLeadRequest, CURLOPT_POSTFIELDS, json_encode($updateLeadPayload));
-                curl_setopt($updateLeadRequest,CURLOPT_HEADER, false);
-                curl_setopt($updateLeadRequest,CURLOPT_SSL_VERIFYPEER, 1);
-                curl_setopt($updateLeadRequest,CURLOPT_SSL_VERIFYHOST, 2);
-                $resUpdateLead = curl_exec($updateLeadRequest);
+
+                $updateLeadRequestResult = execCURLRequest('https://'. $amo_domen . '/api/v4/leads', $headers, json_encode($updateLeadPayload), 'PATCH');
+
+                $resUpdateLead = $updateLeadRequestResult['response'];
+
+                $code = $updateLeadRequestResult['code'];
 
                 fwrite($file_log, print_r($resUpdateLead, true));
 
@@ -133,5 +99,44 @@ if ( $statusId != null){
     }
 
 fclose($file_log);
+
+function getCustomFieldValues($contact, $fieldIds) {
+    $customFields = $contact->custom_fields_values;
+    $result = array();
+    foreach ($fieldIds as $fieldId) {
+        foreach ($customFields as $customField) {
+            if ($customField->field_id == $fieldId) {
+                $values = $customField->values;
+                $result[$fieldId] = $values[0]->value;
+                break;
+            }
+        }
+    }
+    return $result;
+}
+
+function execCURLRequest($url, $headers, $postData, $request_method){
+
+    $requestResult = array();
+
+    $request = curl_init($url);
+
+    curl_setopt($request, CURLOPT_CUSTOMREQUEST, $request_method);
+    curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($request, CURLOPT_USERAGENT,'amoCRM-oAuth-client/1.0');
+    curl_setopt($request, CURLOPT_HTTPHEADER, $headers);
+    if ($postData != null){
+        curl_setopt($request, CURLOPT_POSTFIELDS, $postData);
+    }
+
+    $requestResult['response'] = curl_exec($request);
+
+    $requestResult['code'] = curl_getinfo($request, CURLINFO_HTTP_CODE);
+
+    curl_close($request);
+
+    return $requestResult;
+
+}
 
 }

@@ -1,0 +1,667 @@
+Array
+(
+    [status] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 1456945
+                    [status_id] => 57029974
+                    [pipeline_id] => 6672930
+                    [old_status_id] => 56926890
+                    [old_pipeline_id] => 6672930
+                )
+
+        )
+
+)
+stdClass Object
+(
+    [id] => 1456945
+    [name] => Виталий / тест
+    [price] => 56400
+    [responsible_user_id] => 9475262
+    [group_id] => 0
+    [status_id] => 57029974
+    [pipeline_id] => 6672930
+    [loss_reason_id] => 
+    [created_by] => 9475262
+    [updated_by] => 9475262
+    [created_at] => 1682183293
+    [updated_at] => 1684061514
+    [closed_at] => 
+    [closest_task_at] => 1684007361
+    [is_deleted] => 
+    [custom_fields_values] => Array
+        (
+            [0] => stdClass Object
+                (
+                    [field_id] => 801025
+                    [field_name] => Шаблон договора
+                    [field_code] => 
+                    [field_type] => select
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => Основной
+                                    [enum_id] => 429721
+                                    [enum_code] => 
+                                )
+
+                        )
+
+                )
+
+            [1] => stdClass Object
+                (
+                    [field_id] => 801027
+                    [field_name] => Предмет
+                    [field_code] => 
+                    [field_type] => select
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => Анг
+                                    [enum_id] => 429723
+                                    [enum_code] => 
+                                )
+
+                        )
+
+                )
+
+            [2] => stdClass Object
+                (
+                    [field_id] => 801291
+                    [field_name] => Номер договора присвоен
+                    [field_code] => 
+                    [field_type] => checkbox
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 1
+                                )
+
+                        )
+
+                )
+
+            [3] => stdClass Object
+                (
+                    [field_id] => 627857
+                    [field_name] => Номер договора
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => AEC8C96D-DFEF-468F-9A27-DAF024A59054
+                                )
+
+                        )
+
+                )
+
+            [4] => stdClass Object
+                (
+                    [field_id] => 801599
+                    [field_name] => Наименование программы
+                    [field_code] => 
+                    [field_type] => select
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => Английский для детей Муверс
+                                    [enum_id] => 429933
+                                    [enum_code] => 
+                                )
+
+                        )
+
+                )
+
+            [5] => stdClass Object
+                (
+                    [field_id] => 801601
+                    [field_name] => Цена за мес
+                    [field_code] => 
+                    [field_type] => numeric
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 6400
+                                )
+
+                        )
+
+                )
+
+            [6] => stdClass Object
+                (
+                    [field_id] => 627833
+                    [field_name] => ФИО законного представителя
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => Алексеев Виталий Вадимович
+                                )
+
+                        )
+
+                )
+
+            [7] => stdClass Object
+                (
+                    [field_id] => 627855
+                    [field_name] => Дата договора
+                    [field_code] => 
+                    [field_type] => date
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 1682974800
+                                )
+
+                        )
+
+                )
+
+            [8] => stdClass Object
+                (
+                    [field_id] => 628671
+                    [field_name] => День рождения ученика
+                    [field_code] => 
+                    [field_type] => birthday
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 1305057600
+                                )
+
+                        )
+
+                )
+
+            [9] => stdClass Object
+                (
+                    [field_id] => 629659
+                    [field_name] => Серия паспорта Представителя
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 6505
+                                )
+
+                        )
+
+                )
+
+            [10] => stdClass Object
+                (
+                    [field_id] => 629661
+                    [field_name] => Номер паспорта Представителя
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 565558441
+                                )
+
+                        )
+
+                )
+
+            [11] => stdClass Object
+                (
+                    [field_id] => 629663
+                    [field_name] => Дата выдачи Представитель
+                    [field_code] => 
+                    [field_type] => date
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 1116360000
+                                )
+
+                        )
+
+                )
+
+            [12] => stdClass Object
+                (
+                    [field_id] => 629665
+                    [field_name] => Кем выдан Представитель
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => ОВД гор Урюпинска
+                                )
+
+                        )
+
+                )
+
+            [13] => stdClass Object
+                (
+                    [field_id] => 629667
+                    [field_name] => Адрес места жительства Представитель
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => г. Владимир, ул Ленина, д.52, кв 108
+                                )
+
+                        )
+
+                )
+
+            [14] => stdClass Object
+                (
+                    [field_id] => 627831
+                    [field_name] => ФИО ученика
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => Алексеева Анна
+                                )
+
+                        )
+
+                )
+
+            [15] => stdClass Object
+                (
+                    [field_id] => 801029
+                    [field_name] => Серия паспорта учащегося
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 6505
+                                )
+
+                        )
+
+                )
+
+            [16] => stdClass Object
+                (
+                    [field_id] => 801031
+                    [field_name] => Номер паспорта учащегося
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 00652854
+                                )
+
+                        )
+
+                )
+
+            [17] => stdClass Object
+                (
+                    [field_id] => 801033
+                    [field_name] => Дата выдачи учащегося
+                    [field_code] => 
+                    [field_type] => date
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 1677618000
+                                )
+
+                        )
+
+                )
+
+            [18] => stdClass Object
+                (
+                    [field_id] => 802117
+                    [field_name] => Место выдачи учащегося
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => ОВД села Баклажановка
+                                )
+
+                        )
+
+                )
+
+            [19] => stdClass Object
+                (
+                    [field_id] => 801037
+                    [field_name] => Адрес места жительства учащегося
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => село Баклажановка
+                                )
+
+                        )
+
+                )
+
+            [20] => stdClass Object
+                (
+                    [field_id] => 793329
+                    [field_name] => Дата заявления
+                    [field_code] => 
+                    [field_type] => date
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 1682888400
+                                )
+
+                        )
+
+                )
+
+            [21] => stdClass Object
+                (
+                    [field_id] => 621947
+                    [field_name] => Договор ссылка
+                    [field_code] => 
+                    [field_type] => url
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => https://drive.google.com/uc?id=1xcu_0_lIqRG8jm9JVhRl4IOEgjJWKMNo&export=download
+                                )
+
+                        )
+
+                )
+
+            [22] => stdClass Object
+                (
+                    [field_id] => 793377
+                    [field_name] => Заявление ссылка
+                    [field_code] => 
+                    [field_type] => url
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => https://drive.google.com/uc?id=1ODMdkz60UyZiO-12g6M5YWFQ8xzVEJP-&export=download
+                                )
+
+                        )
+
+                )
+
+            [23] => stdClass Object
+                (
+                    [field_id] => 804803
+                    [field_name] => Учащийся в РП
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => Алексеевой Анны
+                                )
+
+                        )
+
+                )
+
+            [24] => stdClass Object
+                (
+                    [field_id] => 804927
+                    [field_name] => Учащийся в ДП
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => Алексеевой Анне
+                                )
+
+                        )
+
+                )
+
+            [25] => stdClass Object
+                (
+                    [field_id] => 1100415
+                    [field_name] => id документа
+                    [field_code] => 
+                    [field_type] => text
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => 6F4CA931-0AF7-4328-9F3C-1495F8ED206C
+                                )
+
+                        )
+
+                )
+
+            [26] => stdClass Object
+                (
+                    [field_id] => 621945
+                    [field_name] => Анкета ссылка
+                    [field_code] => 
+                    [field_type] => url
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => https://forms.amocrm.ru/rrvcvrd?dp=Q1zaSQHqO-hHArUG1UMtpdeTUt0ZPvzU3et0PKsFGn9DnWp7UrsZ6t6UQV1D74qb
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [score] => 
+    [account_id] => 30991430
+    [labor_cost] => 
+    [_links] => stdClass Object
+        (
+            [self] => stdClass Object
+                (
+                    [href] => https://vienna.amocrm.ru/api/v4/leads/1456945?with=contacts&page=1&limit=250
+                )
+
+        )
+
+    [_embedded] => stdClass Object
+        (
+            [tags] => Array
+                (
+                    [0] => stdClass Object
+                        (
+                            [id] => 29117
+                            [name] => не пришел на ПУ
+                            [color] => 
+                        )
+
+                    [1] => stdClass Object
+                        (
+                            [id] => 29121
+                            [name] => Абонемент согласован
+                            [color] => 
+                        )
+
+                )
+
+            [companies] => Array
+                (
+                )
+
+            [contacts] => Array
+                (
+                    [0] => stdClass Object
+                        (
+                            [id] => 5272483
+                            [is_main] => 1
+                            [_links] => stdClass Object
+                                (
+                                    [self] => stdClass Object
+                                        (
+                                            [href] => https://vienna.amocrm.ru/api/v4/contacts/5272483?with=contacts&page=1&limit=250
+                                        )
+
+                                )
+
+                        )
+
+                    [1] => stdClass Object
+                        (
+                            [id] => 8079059
+                            [is_main] => 
+                            [_links] => stdClass Object
+                                (
+                                    [self] => stdClass Object
+                                        (
+                                            [href] => https://vienna.amocrm.ru/api/v4/contacts/8079059?with=contacts&page=1&limit=250
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+ContactstdClass Object
+(
+    [id] => 5272483
+    [name] => Виталий
+    [first_name] => Виталий
+    [last_name] => 
+    [responsible_user_id] => 9475262
+    [group_id] => 0
+    [created_by] => 9475262
+    [updated_by] => 9475262
+    [created_at] => 1683057167
+    [updated_at] => 1683057167
+    [closest_task_at] => 
+    [is_deleted] => 
+    [is_unsorted] => 
+    [custom_fields_values] => Array
+        (
+            [0] => stdClass Object
+                (
+                    [field_id] => 64237
+                    [field_name] => Телефон
+                    [field_code] => PHONE
+                    [field_type] => multitext
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => +79774851688
+                                    [enum_id] => 31281
+                                    [enum_code] => WORK
+                                )
+
+                        )
+
+                )
+
+            [1] => stdClass Object
+                (
+                    [field_id] => 64239
+                    [field_name] => Email
+                    [field_code] => EMAIL
+                    [field_type] => multitext
+                    [values] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [value] => v@comontech.ru
+                                    [enum_id] => 31293
+                                    [enum_code] => WORK
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [account_id] => 30991430
+    [_links] => stdClass Object
+        (
+            [self] => stdClass Object
+                (
+                    [href] => https://vienna.amocrm.ru/api/v4/contacts/5272483?page=1&limit=250
+                )
+
+        )
+
+    [_embedded] => stdClass Object
+        (
+            [tags] => Array
+                (
+                )
+
+            [companies] => Array
+                (
+                )
+
+        )
+
+)
+stdClass Object
+(
+    [id] => 1457005
+    [documentID] => D035EA04-18D7-4FB9-8F73-A95825012865
+    [url] => https://demo.lightdoc.io/documents/D035EA04-18D7-4FB9-8F73-A95825012865
+)
+stdClass Object
+(
+    [count] => 1
+    [size] => 129960
+)
+{"_links":{"self":{"href":"https://vienna.amocrm.ru/api/v4/leads"}},"_embedded":{"leads":[{"id":1456945,"updated_at":1684061517,"_links":{"self":{"href":"https://vienna.amocrm.ru/api/v4/leads/1456945"}}}]}}
