@@ -23,7 +23,7 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @PostMapping("/all")
+    @GetMapping("/all")
     public List<GroupDTO> getAll(){
         return groupService.findAll().stream().map(this::convertToGroupDTO).toList();
     }
