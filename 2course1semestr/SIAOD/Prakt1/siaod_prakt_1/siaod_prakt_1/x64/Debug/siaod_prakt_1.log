@@ -1,5 +1,0 @@
-﻿  main.cpp
-C:\Users\sidor\Desktop\unik\SIAOD\Prakt1\siaod_prakt_1\siaod_prakt_1\main.cpp(51,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\sidor\Desktop\unik\SIAOD\Prakt1\siaod_prakt_1\siaod_prakt_1\main.cpp(59,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\sidor\Desktop\unik\SIAOD\Prakt1\siaod_prakt_1\siaod_prakt_1\main.cpp(88,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  siaod_prakt_1.vcxproj -> C:\Users\sidor\Desktop\unik\SIAOD\Prakt1\siaod_prakt_1\x64\Debug\siaod_prakt_1.exe

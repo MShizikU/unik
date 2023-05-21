@@ -1,6 +1,0 @@
-begin
-(g "IKBO-20-21""INBO-13-32""IKBO-03-21""IVBO-20-20")
-(s "18"IKBO-03-21" Sidorov S.D""18"IKBO-20-21" Sidorov S.D.""18"IKBO-01-21" Sidorov S.D")
-('Configuration management')
-/*bebebe*/
-end

@@ -1,3 +1,0 @@
-﻿  main.cpp
-C:\Users\sidor\Desktop\unik\SIAOD\Prakt2\siaod_for_dasha\siaod_for_dasha\main.cpp(7,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  siaod_for_dasha.vcxproj -> C:\Users\sidor\Desktop\unik\SIAOD\Prakt2\siaod_for_dasha\Debug\siaod_for_dasha.exe
