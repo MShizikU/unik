@@ -37,12 +37,11 @@ while($checker){
     }
 }
 
-
-
 foreach($usersData as $key => $user) {
     $userID = $user->id;
     $userName = $user->name;
     $userGroupID = $user->rights->group_id;
+    fwrite($log_file, "\n" . $key . " " . $userID . ": " . $userName . ' ' . $userGroupID);
 }
 
 fclose($log_file);

@@ -28,11 +28,26 @@ if ($pipelinesCode >= 200 && $pipelinesCode <= 204) {
         $pipelineID = $pipeline->id;
         $pipelineName = $pipeline->name;
 
+        $getPipelinesStatusesRequest = execCURLRequest('https://'. $amo_domain . '/api/v4/leads/pipelines/' . $pipelineID . '/statuses', $headers, null, "GET");
+        $pipelinesStatusesResponse = $getPipelinesStatusesRequest['response'];
+        $pipelinesStatusesCode = $getPipelinesStatusesRequest['code'];
 
+        fwrite($log_file, "\nВоронка" . $key . " " . $pipelineID . " " . $pipelineName . " \nstatuses: ");
+
+        if ($pipelinesStatusesCode >= 200 && $pipelinesStatusesCode <= 204){
+            $statuses = json_decode($pipelinesStatusesResponse)->_embedded->statuses;
+            foreach ($statuses as $key => $status){
+                $statusID = $status->id;
+                $statusName = $status->name;
+                $statusPipelineID = $status->pipeline_id;
+
+                fwrite($log_file, "\n" . $statusID . " ". $statusName . " " . $statusPipelineID);
+            }
+        }
     }
 
 }else{
-    $checker = false;
+    http_response_code($pipelinesCode);
 }
 
 
