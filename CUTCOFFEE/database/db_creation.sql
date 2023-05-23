@@ -45,9 +45,10 @@ CREATE TABLE IF NOT EXISTS barbers (
 CREATE TABLE IF NOT EXISTS appointments (
   id_appointment SERIAL PRIMARY KEY,
   id_customer INTEGER,
--start_time TIMESTAMP,
+  start_time TIMESTAMP,
   end_time TIMESTAMP,
-  id_barber INTEGER
+  id_barber INTEGER,
+  service_list INTEGER[]
 );
 
 CREATE TABLE IF NOT EXISTS customers (
