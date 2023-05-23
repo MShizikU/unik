@@ -114,54 +114,56 @@
                 echo "Database insert error";
             }
         }else{
-            $updateLeadDbSQL = "UPDATE leads
-            SET name = '{$data['name']}',
-            price = '{$data['price']}',
-            responsible_user_id = '{$data['responsible_user_id']}',
-            status_id = '{$data['status_id']}',
-            pipeline_id = '{$data['pipeline_id']}',
-            created_by = '{$data['created_by']}',
-            updated_by = '{$data['updated_by']}',
-            closed_at = '{$data['closed_at']}',
-            created_at = '{$data['created_at']}',
-            updated_at = '{$data['updated_at']}',
-            account_id = '{$data['account_id']}',
-            contact_id ='{$data['contact_id']}',
-            FIO_obuchaemogo = '{$data['FIO_obuchaemogo']}',
-            Kakaya_obrazovatelynaya_programma = '{$data['Kakaya_obrazovatelynaya_programma']}',
-            Cely_obucheniya = '{$data['Cely_obucheniya']}',
-            Otkuda_uznali_o_nas = '{$data['Otkuda_uznali_o_nas']}',
-            Filial_dlya_posescheniya = '{$data['Filial_dlya_posescheniya']}',
-            Prichina_otkaza = '{$data['Prichina_otkaza']}',
-            Otkaz_podrobno = '{$data['Otkaz_podrobno']}',
-            Beseda_sb = '{$data['Beseda_sb']}',
-            Podbor_vremeni_sb = '{$data['Podbor_vremeni_sb']}',
-            Zapisalsya_na_probnoe_sb = '{$data['Zapisalsya_na_probnoe_sb']}',
-            Ne_proshel_probnoe_sb = '{$data['Ne_proshel_probnoe_sb']}',
-            Dumaet_posle_probnogo_sb = '{$data['Dumaet_posle_probnogo_sb']}',
-            Podbor_raspisaniya_sb = '{$data['Podbor_raspisaniya_sb']}',
-            Oghidaem_oplatu_sb ='{$data['Oghidaem_oplatu_sb']}',
-            Uspeshno_sb = '{$data['Uspeshno_sb']}',
-            Otkaz_sb = '{$data['Otkaz_sb']}',
-            Summa_rashoda = '{$data['Summa_rashoda']}',
-            Primechanie_k_rashodu = '{$data['Primechanie_k_rashodu']}',
-            Shkola_nomer = '{$data['Shkola_nomer']}',
-            Plan_po_zayavkam = '{$data['Plan_po_zayavkam']}',
-            Plan_po_prodagham = '{$data['Plan_po_prodagham']}',
-            Plan_po_zapisyam = '{$data['Plan_po_zapisyam']}',
-            Plan_po_probnym = '{$data['Plan_po_probnym']}',
-            Nazvanie_smeny_letney_programmy = '{$data['Nazvanie_smeny_letney_programmy']}',
-            Chastichno_sb = '{$data['Chastichno_sb']}',
-            Dogovor_na_obuchenie = '{$data['Dogovor_na_obuchenie']}',
-            Dogovor_intensiv = '{$data['Dogovor_intensiv']}',
-            OS_cherez_mesyac_vzyata = '{$data['OS_cherez_mesyac_vzyata']}'
-        WHERE id = '{$data['id']}'";
-            if ($database->query($updateLeadDbSQL) === TRUE) {
-                echo "Lead record updated successfully";
-            } else {
-                echo "Error updating lead record: " . $conn->error;
+            if (new DateTime() >= new DateTime($lead->updated_at))
+            {
+                $updateLeadDbSQL = "UPDATE leads
+                SET name = '{$data['name']}',
+                price = '{$data['price']}',
+                responsible_user_id = '{$data['responsible_user_id']}',
+                status_id = '{$data['status_id']}',
+                pipeline_id = '{$data['pipeline_id']}',
+                created_by = '{$data['created_by']}',
+                updated_by = '{$data['updated_by']}',
+                closed_at = '{$data['closed_at']}',
+                created_at = '{$data['created_at']}',
+                updated_at = '{$data['updated_at']}',
+                account_id = '{$data['account_id']}',
+                contact_id ='{$data['contact_id']}',
+                FIO_obuchaemogo = '{$data['FIO_obuchaemogo']}',
+                Kakaya_obrazovatelynaya_programma = '{$data['Kakaya_obrazovatelynaya_programma']}',
+                Cely_obucheniya = '{$data['Cely_obucheniya']}',
+                Otkuda_uznali_o_nas = '{$data['Otkuda_uznali_o_nas']}',
+                Filial_dlya_posescheniya = '{$data['Filial_dlya_posescheniya']}',
+                Prichina_otkaza = '{$data['Prichina_otkaza']}',
+                Otkaz_podrobno = '{$data['Otkaz_podrobno']}',
+                Beseda_sb = '{$data['Beseda_sb']}',
+                Podbor_vremeni_sb = '{$data['Podbor_vremeni_sb']}',
+                Zapisalsya_na_probnoe_sb = '{$data['Zapisalsya_na_probnoe_sb']}',
+                Ne_proshel_probnoe_sb = '{$data['Ne_proshel_probnoe_sb']}',
+                Dumaet_posle_probnogo_sb = '{$data['Dumaet_posle_probnogo_sb']}',
+                Podbor_raspisaniya_sb = '{$data['Podbor_raspisaniya_sb']}',
+                Oghidaem_oplatu_sb ='{$data['Oghidaem_oplatu_sb']}',
+                Uspeshno_sb = '{$data['Uspeshno_sb']}',
+                Otkaz_sb = '{$data['Otkaz_sb']}',
+                Summa_rashoda = '{$data['Summa_rashoda']}',
+                Primechanie_k_rashodu = '{$data['Primechanie_k_rashodu']}',
+                Shkola_nomer = '{$data['Shkola_nomer']}',
+                Plan_po_zayavkam = '{$data['Plan_po_zayavkam']}',
+                Plan_po_prodagham = '{$data['Plan_po_prodagham']}',
+                Plan_po_zapisyam = '{$data['Plan_po_zapisyam']}',
+                Plan_po_probnym = '{$data['Plan_po_probnym']}',
+                Nazvanie_smeny_letney_programmy = '{$data['Nazvanie_smeny_letney_programmy']}',
+                Chastichno_sb = '{$data['Chastichno_sb']}',
+                Dogovor_na_obuchenie = '{$data['Dogovor_na_obuchenie']}',
+                Dogovor_intensiv = '{$data['Dogovor_intensiv']}',
+                OS_cherez_mesyac_vzyata = '{$data['OS_cherez_mesyac_vzyata']}'
+                WHERE id = '{$data['id']}'";
+                if ($database->query($updateLeadDbSQL) === TRUE) {
+                    echo "Lead record updated successfully";
+                } else {
+                    echo "Error updating lead record: " . $conn->error;
+                }
             }
-            
         }
 
     }
