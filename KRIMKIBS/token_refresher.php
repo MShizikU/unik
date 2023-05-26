@@ -3,7 +3,7 @@
     $domain = "okenglish.amocrm.ru";
     $client_id = '5fecdbfd-e09d-4296-9739-f095b6369d24';
 	$client_secret = "X4pcbLlQmxXFeICcBtrVSYi4imNx4IUhemeFLzs9Wd65jiFdNVZ1EB4oY1TfERGI";
-	$auth_code = "def50200ff5f2ed8f59bf6033024068217b006cca7e4920a726fbeec639963062048df621a70996e0ddbd816a92d295e5a6a1d26e99443a2b3cb0db06e0d5696914eda5b8533a552206d6e63899bfe40cf3a7cc37d51cc9f80f1339f466bf91fdd84c2923bdf2158d6812556476320204994d982495a93bcf42b7eece92661cab001fd0b060892da3d42186f9f6e8fc251b7f0631c23f3bbb09ab8329ceee0b8b8bba644bc6939bf8d5e2a045bc1550ddf36dde8c62e8897407c7a6d0cb61c7c616d7c648866b6745c52246a9c185987e17f667cf30ac7f06e77bbab49d6839919ff2cf7b6d422ba37af4544836da9a1fdbfc8a0ab2bc4ee0f32708a2a3e36263030380dd6e4e4fd850d942e32362e8cba055862ba7441342d0e99e6337dcab680b102914d7df01fb51822bcacf90a30defd5d19e96fc9909541ab21f84fefe6d307b280652a7c7853c5146b7e7c4ad40666c0c925f7f8872672f538eb08fe5f2428d7dbedce644c6b4ded0a95e07712118c35add55fcbb7aec8edb6512038ea1b7607acf1a40f6556f38a252999905307494e9eabd5254a1947a4f0dc41801d42945da0ce26806e4ba9351277ad59a713357121ea07e06904d561a03d0642990d737f0f5ad3a2bc0a11b7cf6c5d55bf0a9a26d1fe36489a3286103654780b5813ebf065cf8e9255d171e0e0528896";
+	$auth_code = "def5020094348989288aed45b381be79308e56b877a99e7ef53c55ec6c212e158d3ed30ca5a68cd09b08113037747066fce5a5df96731ac0ee7f930d982053b69a192006e714146934a4af410e991f0397dfe5985949d816ff9eb7860cebbff5d9e6b138253f6d706297148bd843f48af6a73dc02cfdc15335c248a70a5fdc762c6000c2874b19524f4c5e7581aa4ac603b1de042fa5c6d2f89c3a777a534507eb23c35657ceb04dcecdbf999c7c8e5a7ebcdc1203e2a977d0b26857406b5c37728cfc5d4b68d6b7e89b9bbddbd4ccb6f0fc132e350faa755667081ecbe81c29b472ebce0dead31cbfe976b70ee725dcd96d095ef9060d5119a4f513cc640f945fddc4d9a3d23c619bde97aa0f09f6eb24bb1619344a76e0b533da5aaf57a3a0650f3d30d4e49a842e28665fc8352dbb391196b66cf2d7a3ca90e61d540877978158bfcf6ebbc8388ed057a78f5d0a1e5c4ac860c107586d3fd41616d3e96ae62a94455c3b8c15e04eebfe3f2ff773971007873a0928c45fec4737dd49e67340e2e41961a6b125a7d1d03098d8b15f8de37dafb43f3946475c0a01c2f1a2a1628241c17aef27dc95a5d8f0660556fcc03270e7ff2235d3096ddc72bb18e7ffc9256e5406a29ddf32f309e6bfdb7b791d98725a0d0dc0be99434d45f38d2617645ed6e80870024e0cbb5b83e4bbf76b5b87a07cbb588d93";
 
     $refresh_code_file = 'refresh_token.txt';
     $access_code_file = 'access_token.txt';
@@ -20,7 +20,7 @@
             "client_secret" => $client_secret,
             "grant_type" => "authorization_code",
             "code" => $auth_code,
-            "redirect_uri" => "https://hostcot.ru/okenglish/"
+            "redirect_uri" => "http://krymkibs.beget.tech/okenglish/"
         ];
 
         $getNewCodesRequest = curl_init('https://'. $domain . '/oauth2/access_token');
@@ -32,7 +32,6 @@
         curl_setopt($getNewCodesRequest,CURLOPT_SSL_VERIFYPEER, 1);
         curl_setopt($getNewCodesRequest,CURLOPT_SSL_VERIFYHOST, 2);
         $resNewCodes = curl_exec($getNewCodesRequest);
-
         $code = curl_getinfo($getNewCodesRequest, CURLINFO_HTTP_CODE);
         curl_close($getNewCodesRequest);
 
@@ -77,7 +76,7 @@
                 "client_secret" => $client_secret,
                 "grant_type" => "authorization_code",
                 "code" => $auth_code,
-                "redirect_uri" => "https://hostcot.ru/okenglish/"
+                "redirect_uri" => "http://krymkibs.beget.tech/okenglish/"
             ];
 
             $getNewCodesRequest = curl_init('https://'. $domain . '/oauth2/access_token');
@@ -140,7 +139,7 @@
                 "client_secret" => $client_secret,
                 "grant_type" => "refresh_token",
                 "refresh_token" => $refresh_code,
-                "redirect_uri" => "https://hostcot.ru/okenglish/"
+                "redirect_uri" => "http://krymkibs.beget.tech/okenglish/"
             ];
 
             $getNewCodesRequest = curl_init('https://'. $domain . '/oauth2/access_token');            
