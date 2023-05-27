@@ -28,7 +28,7 @@
                 <input type = "text" id = "basic_car_search_bar" name = "basic_car_search_bar" placeholder="Поиск...">
             </div>
             <div id = "current_rent_info" class = "disabled_header_block" th:if="${rent != null}">
-                <span id = "timer_view" th:text = "${rent.startTime.substring(rent.startTime.length() - 8, rent.startTime.length() - 3) : rent.startTime}"></span>
+                <span id = "timer_view" th:text = "${rent.startTime.substring(rent.startTime.length() - 8, rent.startTime.length() - 3)}"></span>
                 <div id = "total_block">
                     <span id = "car_name_view" th:text = "${vehicle_name}"></span>
                     <span id ="total_price_view" th:text = "${vehicle_model.pricePerHour}"></span>
