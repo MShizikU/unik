@@ -2,12 +2,27 @@
 
 require("curl_requester.php");
 require("amo_response_decomposer.php");
+require("db_operations.php");
 
 $amo_domain = "okenglish.amocrm.ru";
 
 $access_token = file_get_contents('access_token.txt');
 
-$log_file = fopen("log.txt", "w");
+$log_file = fopen("log.txt", "a");
+fwrite($log_file, "\nUSERS UPDATER\n");
+
+$hostDB = "krymkibs.beget.tech";
+$usernameDB = "krymkibs_crm";
+$passwordDB = "CQi%*6o&";
+$nameDB = "krymkibs_crm";
+
+$database = mysqli_connect($hostDB, $usernameDB, $passwordDB, $nameDB);
+
+if ($database == false){
+    fwrite($log_file, "\nDatabase error: " . mysqli_connect_error());
+}
+
+mysqli_set_charset($database, "utf8");
 
 $headers = [
     'Authorization: Bearer ' . $access_token
@@ -33,15 +48,20 @@ while($checker){
         $checker = ($nextPage != null);
         $pageCounter = $pageCounter + 1;
     }else{
+        fwrite($log_file, "\nError: " .  $usersCode . " " . $usersResponse);
         $checker = false;
     }
 }
 
 foreach($usersData as $key => $user) {
-    $userID = $user->id;
-    $userName = $user->name;
-    $userGroupID = $user->rights->group_id;
-    fwrite($log_file, "\n" . $key . " " . $userID . ": " . $userName . ' ' . $userGroupID);
-}
+    $data = array(
+        "id" => $user->id,
+        "name" => $user->name,
+        "group_id" => $user->rights->group_id
+    );
 
+    execSaveInBd("users" ,$data, $log_file, $database, array("id"));
+
+}
+$database->close();
 fclose($log_file);

@@ -7,12 +7,15 @@ function getCustomFieldValues($contact, $fieldIds) {
         foreach ($customFields as $customField) {
             if ($customField->field_id == $fieldId) {
                 $values = $customField->values;
-                $result[$fieldId] = $values[0]->value;
+                $result[$fieldId] = "";
+                foreach($values as $key => $value){
+                    $result[$fieldId] = $result[$fieldId]  . $value->value . ", ";
+                }
+                $result[$fieldId] = substr($result[$fieldId], 0, strlen($result[$fieldId]) - 2);
                 break;
             }
         }
     }
     return $result;
 }
-
 ?>
