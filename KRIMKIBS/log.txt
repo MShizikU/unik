@@ -1,0 +1,277 @@
+
+USERS UPDATER
+
+CONTACTS UPDATER
+
+PIPELINES AND STATUSES UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+LEADS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+USERS UPDATER
+
+CONTACTS UPDATER
+
+LEADS UPDATER
+
+PIPELINES AND STATUSES UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+PIPELINES AND STATUSES UPDATER
+
+USERS UPDATER
+
+LEADS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+USERS UPDATER
+
+CONTACTS UPDATER
+
+LEADS UPDATER
+
+PIPELINES AND STATUSES UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+USERS UPDATER
+
+LEADS UPDATER
+
+CONTACTS UPDATER
+
+PIPELINES AND STATUSES UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+PIPELINES AND STATUSES UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+PIPELINES AND STATUSES UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+PIPELINES AND STATUSES UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+Array
+(
+    [response] => {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+    [code] => 401
+)
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+LEADS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+PIPELINES AND STATUSES UPDATER
+
+LEADS UPDATER
+
+USERS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Info: Array
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Info: Array
+(
+    [url] => https://okenglish.amocrm.ru/api/v4/contacts?limit=250&page=1
+    [content_type] => application/problem+json
+    [http_code] => 401
+    [header_size] => 456
+    [request_size] => 114
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.151859
+    [namelookup_time] => 0.012186
+    [connect_time] => 0.022208
+    [pretransfer_time] => 0.061455
+    [size_upload] => 0
+    [size_download] => 131
+    [speed_download] => 862
+    [speed_upload] => 0
+    [download_content_length] => -1
+    [upload_content_length] => 0
+    [starttransfer_time] => 0.151757
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 88.212.249.37
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 185.225.33.85
+    [local_port] => 59709
+)
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Info: Array
+(
+    [url] => https://okenglish.amocrm.ru/api/v4/contacts?limit=250&page=1
+    [content_type] => application/problem+json
+    [http_code] => 401
+    [header_size] => 455
+    [request_size] => 114
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.165679
+    [namelookup_time] => 0.001182
+    [connect_time] => 0.01114
+    [pretransfer_time] => 0.049292
+    [size_upload] => 0
+    [size_download] => 131
+    [speed_download] => 790
+    [speed_upload] => 0
+    [download_content_length] => -1
+    [upload_content_length] => 0
+    [starttransfer_time] => 0.165614
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 88.212.250.100
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 185.225.33.85
+    [local_port] => 53069
+)
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Info: Array
+(
+    [url] => https://okenglish.amocrm.ru/api/v4/contacts?limit=250&page=1
+    [content_type] => application/problem+json
+    [http_code] => 401
+    [header_size] => 456
+    [request_size] => 114
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.159362
+    [namelookup_time] => 0.012266
+    [connect_time] => 0.021983
+    [pretransfer_time] => 0.055804
+    [size_upload] => 0
+    [size_download] => 131
+    [speed_download] => 822
+    [speed_upload] => 0
+    [download_content_length] => -1
+    [upload_content_length] => 0
+    [starttransfer_time] => 0.159292
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 88.212.250.100
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 185.225.33.85
+    [local_port] => 49131
+)
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Info: Array
+(
+    [url] => https://okenglish.amocrm.ru/api/v4/contacts?limit=250&page=1
+    [content_type] => application/problem+json
+    [http_code] => 401
+    [header_size] => 456
+    [request_size] => 114
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0.15927
+    [namelookup_time] => 0.011403
+    [connect_time] => 0.021089
+    [pretransfer_time] => 0.056974
+    [size_upload] => 0
+    [size_download] => 131
+    [speed_download] => 822
+    [speed_upload] => 0
+    [download_content_length] => -1
+    [upload_content_length] => 0
+    [starttransfer_time] => 0.159202
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 88.212.250.100
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 185.225.33.85
+    [local_port] => 28745
+)
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}
+CONTACTS UPDATER
+
+Error: 401 {"title":"Unauthorized","type":"https://httpstatus.es/401","status":401,"detail":"Неверный логин или пароль"}

@@ -51,7 +51,7 @@ if ($pipelinesCode >= 200 && $pipelinesCode <= 204) {
         $pipelinesStatusesResponse = $getPipelinesStatusesRequest['response'];
         $pipelinesStatusesCode = $getPipelinesStatusesRequest['code'];
 
-        fwrite($log_file, $pipelinesStatusesResponse);
+        //fwrite($log_file, $pipelinesStatusesResponse);
 
         if ($pipelinesStatusesCode >= 200 && $pipelinesStatusesCode <= 204){
             $statuses = json_decode($pipelinesStatusesResponse)->_embedded->statuses;

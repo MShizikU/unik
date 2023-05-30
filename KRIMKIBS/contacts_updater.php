@@ -40,6 +40,7 @@ while($checker){
     $contactsResponse = $getContactsRequestResult['response'];
     $contactsCode = $getContactsRequestResult['code'];
 
+
     //fwrite($log_file,  "Get contacts response: \n" . $contactsResponse . "\n");
     //fwrite($log_file,  "Get contacts code: \n" . $contactsCode . "\n");
 
