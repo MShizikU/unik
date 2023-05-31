@@ -8,9 +8,11 @@ date_default_timezone_set('Europe/Moscow');
 
 $amo_domain = "okenglish.amocrm.ru";
 
-$access_token = file_get_contents('access_token.txt');
+$file_basement = "krymkibs.beget.tech/public_html/okenglish/";
 
-$log_file = fopen("log.txt", "a");
+$access_token = file_get_contents($file_basement . 'access_token.txt');
+
+$log_file = fopen($file_basement . "log.txt", "a");
 fwrite($log_file, "\nCONTACTS UPDATER\n");
 
 $headers = [

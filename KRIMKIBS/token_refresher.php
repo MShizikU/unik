@@ -3,10 +3,14 @@
     $domain = "okenglish.amocrm.ru";
     $client_id = '5fecdbfd-e09d-4296-9739-f095b6369d24';
 	$client_secret = "X4pcbLlQmxXFeICcBtrVSYi4imNx4IUhemeFLzs9Wd65jiFdNVZ1EB4oY1TfERGI";
-	$auth_code = "def50200fde488c2772d6c12a6444356fba732eeb5774cb30e50bb71f7c1da67ae8bf5c1cf95b3deed9750d5dcadc5227b3bb268a44168e4d4c50cd3e3142e5baf37efa43ae3c326acd204ebb9335d2f5ddaf0596795951c54f508b7fd32aa5a7a3bdb0761c3490a010b39a3dde9151df35af55849505aa5b37088f9deb9ce6e5e23271c573179b979333f3e8eacdb37ac512850b385ff841382471732fbaff42e790a8e9a3d2468353a5bcf6e57e668258348ec2a7334df60cc6f83a6b5f51dc86c8f38604994696101b09082bec5c28f73425d722038f36cb28eb6de5a3fa3490730c8ec6082827d74d3e55c0260b17e0d073166c3815a23f65f45881dbda3ec5a03ad3b233eb84842756b34246e10ad0e4ea99d4bc1f8fdf8d37f1b2ddd07cb80bd77d195b01bfb0163828e8e94ec25e259b0c879e33fe9498de93527227a93ad3af37dc344d5af945f3aa36b8c4db18e67b1c2cfe2c41f66784fbd2ed43354315fa8b932e38c8917c09f7c257df6bcda2b65c4738b5f24041685ae7ee1a201eae26b58ff599dcf589eda789329eca08ad30ee6a87488a4fcf72ef7efc658f0a51a4b8397b70b98092725e2eebfae3cd730573682230c0117ba03fd875feffc2045032e8653d3b097986d7517bf4c29e859159780b56bf39bfee63121ff3201c66559e9d7a8447172de15c211b9bd196d62f02fa04f907e3d7a22b9fd3c66eb063e86";
+	$auth_code = "def502001299986ec37ac5ce66d32e61427437a9cb6eac2851b0020914eb83fc2997ac57d76658a39b4a043ef45c7f8b3ba79450a7dbe6ef7e575ff5719b16fbb8388a5b2c2c0e0614e603efda267410a19091d1792b40eb0c8ebf4ff53e687c87bfae3639fe8ab5386c76f431294cad4f9191d08e412058971159062fe65ae546bf56d9e814d6002dd5004cd9f656f5f0452c10e86f7c1dd35ec518f505fc96cf941f224253939cd0dd00818f5aac68df8a33e65e8b26090a768f2fe80e7ec84e78c0615bb6ea6f327fea0cd561a949ff0d5fb4bfcc7b1b2950116ddf7c587d3a4dacf33f3649c826323604a30939f46b0f4dae0d82fcebcda738887fbbeed63b6af3b3c1c5245ebe768f8d2acd543dd185481ae20e47725972719476f48bf37aaab1ebc80a0e1c4b73d15019338bb7967ed3826341b88c0bcfe0610fc4dc32761a0e796af0f80b2f103cc5918020bad45136045c49d38732cfb239f77eb7a6ba532bca1a7a526e93dcf11f7d98214fb8aa21d42ff9bb13f31274a22ab40e8b7293e3e1b72ec468beea02a0132f29ecbfc1073c631c63bfbb651c0df286a34c75cf16d03c34c56fefd53036d713cb13b4a78a7504e4a35cfb990e287f837f1b54e1be7aefc83ef3ecf28c9cded82c17c24470a7ee9001dfc89c2cbca525faff24df7f7f38edfcc8922ee3b29a3da23b2d54c9bb23da19";
 
-    $refresh_code_file = 'refresh_token.txt';
-    $access_code_file = 'access_token.txt';
+    $file_basement = "krymkibs.beget.tech/public_html/okenglish/";
+    
+    $refresh_code_file = $file_basement . 'refresh_token.txt';
+    $access_code_file = $file_basement . 'access_token.txt';
+
+
 
     $headers = [
         'Content-Type: application/json'
@@ -38,7 +42,7 @@
         try
         {
             if ($code < 200 || $code > 204) {
-                throw new Exception(isset($errors[$code]) ? $errors[$code] : 'Undefined error', $code);
+                throw new Exception($resNewCodes, $code);
             }
             else{
 
@@ -70,7 +74,7 @@
     else
     {
         $refresh_code = fread($refresh_code_handle, filesize($refresh_code_file));
-        if ($refresh_code === false) {
+        if ($refresh_code === null) {
             $refresh_via_auth_code = [
                 "client_id" => $client_id,
                 "client_secret" => $client_secret,
@@ -104,7 +108,7 @@
             try
             {
                 if ($code < 200 || $code > 204) {
-                    throw new Exception(isset($errors[$code]) ? $errors[$code] : 'Undefined error', $code);
+                    throw new Exception($resNewCodes, $code);
                 }
                 else{
                     $arrayOfCodes = json_decode($resNewCodes);
@@ -169,7 +173,7 @@
             try
             {
                 if ($code < 200 || $code > 204) {
-                    throw new Exception(isset($errors[$code]) ? $errors[$code] : 'Undefined error', $code);
+                    throw new Exception($resNewCodes, $code);
                 }
                 else{
                     $arrayOfCodes = json_decode($resNewCodes);

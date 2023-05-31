@@ -6,9 +6,11 @@ require("db_operations.php");
 
 $amo_domain = "okenglish.amocrm.ru";
 
-$access_token = file_get_contents('access_token.txt');
+$file_basement = "krymkibs.beget.tech/public_html/okenglish/";
 
-$log_file = fopen("log.txt", "a");
+$access_token = file_get_contents($file_basement . 'access_token.txt');
+
+$log_file = fopen($file_basement . "log.txt", "a");
 fwrite($log_file, "\nPIPELINES AND STATUSES UPDATER\n");
 
 $hostDB = "krymkibs.beget.tech";
