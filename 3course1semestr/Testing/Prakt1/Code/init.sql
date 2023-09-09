@@ -1,0 +1,15 @@
+CREATE DATABASE IF NOT EXISTS db;
+USE db;
+
+-- Create the table
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  balance INT NOT NULL
+);
+
+-- Create the MySQL user
+CREATE USER IF NOT EXISTS 'test'@'localhost' IDENTIFIED BY '123321';
+GRANT ALL PRIVILEGES ON mydatabase.* TO 'test'@'localhost';
+FLUSH PRIVILEGES;
