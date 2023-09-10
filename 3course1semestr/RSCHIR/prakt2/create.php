@@ -2,16 +2,23 @@
 <html>
 <head>
     <title>Creation Page</title>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 <body>
 <?php
-session_start();
-// Process form submissions
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $surname = $_POST['surname'];
-    $mysqli = new mysqli("db", "user", "password", "appDB");
-    $result = $mysqli->query("INSERT INTO users('name', 'surname') VALUES ('$name', '$surname')");
+
+    $query = "INSERT INTO users (name, surname) VALUES ('$name', '$surname')";
+
+    $mysqli = mysqli_connect("db", "user", "password", "appDB");
+    if(mysqli_query($mysqli, $query)){
+        header("Location: index.php");
+    } else{
+        echo "Ошибка: " . mysqli_error($mysqli);
+    }
+    mysqli_close($mysqli);   
 }
 ?>
 <h1>Creation Page</h1>
@@ -19,9 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST">
         <h2>Creation</h2>
         <input type="text" name="name" placeholder="Name" required><br>
-        <input type="text" name="surnmae" placeholder="Surname" required><br>
+        <input type="text" name="surname" placeholder="Surname" required><br>
         <button type="submit" name="create">Create</button>
     </form>
+</div>
+
+<div class = "button-container">
+    <a href = "index.php">READ</a>
+    <a href = "delete.php">DELETE</a>
+    <a href = "update.php">UPDATE</a>
 </div>
 
 </body>

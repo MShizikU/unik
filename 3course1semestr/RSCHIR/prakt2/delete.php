@@ -2,15 +2,23 @@
 <html>
 <head>
     <title>Deletion Page</title>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 <body>
 <?php
-session_start();
-// Process form submissions
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
-    $mysqli = new mysqli("db", "user", "password", "appDB");
-    $result = $mysqli->query("DELETE FROM users WHERE `ID` = '$id'");
+
+    $query = "DELETE FROM users WHERE id = '$id'";
+
+    $mysqli = mysqli_connect("db", "user", "password", "appDB");
+
+    if(mysqli_query($mysqli, $query)){
+        header("Location: index.php");
+    } else{
+        echo "Ошибка: " . mysqli_error($mysqli);
+    }
+    mysqli_close($mysqli);   
 }
 ?>
 <h1>Deletion Page</h1>
@@ -20,6 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="number" name="id" placeholder="ID" required><br>
         <button type="submit" name="delete">Delete</button>
     </form>
+</div>
+
+<div class = "button-container">
+    <a href = "index.php">READ</a>
+    <a href = "update.php">UPDATE</a>
+    <a href = "create.php">CREATE</a>
 </div>
 
 </body>

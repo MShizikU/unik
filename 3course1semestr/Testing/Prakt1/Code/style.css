@@ -1,0 +1,52 @@
+.hidden{
+    display: none !important;
+}
+
+.home-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container{
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.data-container div{
+    display: flex;
+    text-align: start;
+    width: 100%;
+}
+
+#change_password_link{
+    cursor: pointer;
+    color: blue;
+}
+
+form input{
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+form button{
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-toggle-forms{
+    width:100%;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+    margin-top: 10px;
+}

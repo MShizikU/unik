@@ -1,19 +1,92 @@
-/* внешние границы таблицы серого цвета толщиной 1px */
+
 table {
     border: 1px solid grey;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
 }
-/* границы ячеек первого ряда таблицы */
+
 th {
     border: 1px solid grey;
     font-size: 250%;
 }
-/* границы ячеек тела таблицы */
+
 td {
     border: 1px solid grey;
     font-size: 250%;
 }
 h1 {
     text-align: center;	
+}
+
+body{
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-containerform-container{
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+form input{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+form button{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.button-container{
+    max-width: 260px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+    --c:  #229091;
+    color:  #229091;
+    box-shadow: 0 0 0 .1em inset var(--c); 
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background: 
+        var(--_g) calc(var(--_p,0%) - 100%) 0%,
+        var(--_g) calc(200% - var(--_p,0%)) 0%,
+        var(--_g) calc(var(--_p,0%) - 100%) 100%,
+        var(--_g) calc(200% - var(--_p,0%)) 100%;
+    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+}
+
+a:hover {
+    --_p: 100%;
+    color: #fff;
+    transition: background-position .4s, background-size 0s;
+}
+
+a:active {
+    box-shadow: 0 0 9e9q inset #0009; 
+    background-color: var(--c);
+    color: #fff;
+}
+
+a {
+    font-family: system-ui, sans-serif;
+    cursor: pointer;
+    padding: .1em .6em;
+    font-weight: bold;  
+    border: none;
 }

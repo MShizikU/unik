@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authorization Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a href="index.html" class="home-link">
+    <img src="home.png" alt="Home" width="30" height="30">
+</a>
+<h1 id = "title">AUTHORIZATION</h1>
+<div class="container form-container">
+    <form method="POST" name = "register">
+        <h2>REGISTRATION</h2>
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button type="submit" name="register">Register</button>
+    </form>
+    <button class = "btn-toggle-forms" onclick="toggleForms()">Switch to Login</button>
+</div>
+<div class="container form-container hidden">
+    <form method="POST" name = "login">
+        <h2>LOGIN</h2>
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button type="submit" name="login">Login</button>
+    </form>
+    <button class = "btn-toggle-forms" onclick="toggleForms()">Switch to Registration</button>
+</div>
+
+<div class = "container data-container hidden" id = "user_info">
+    <div class = "username">
+        User: 
+    </div>
+    <div class = "balance" id = "balance-field">
+        Balance: 
+    </div>
+    <div class = "password">
+        <div class = "password-value">
+            Password:
+        </div>
+        <div class = "change-password-link" id = "change_password_link">
+            Change password
+        </div>
+    </div>
+    <div class = "container change-password-contaienr hidden" id = "change_password_form">
+        <form method="POST" name = "change_password">
+            <h3>Change password</h3>
+            <input type="text" name="oldpassword" placeholder="Old password" required><br>
+            <input type="text" name="newpassword" placeholder="New password" required><br>
+            <button type="submit" name="addbalance">change password</button>
+        </form>
+    </Div>
+</div>
+
+<div class="container balance-container hidden" id = "add-balance">
+    <form method="POST" name = "balanceform">
+        <h3>ADD BALANCE</h3>
+        <input type="text" name="balance" placeholder="Balance" required><br>
+        <button type="submit" name="addbalance">Add balance</button>
+    </form>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
