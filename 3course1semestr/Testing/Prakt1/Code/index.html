@@ -1,67 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Authorization Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a href="index.html" class="home-link">
-    <img src="home.png" alt="Home" width="30" height="30">
-</a>
-<h1 id = "title">AUTHORIZATION</h1>
-<div class="container form-container">
-    <form method="POST" name = "register">
-        <h2>REGISTRATION</h2>
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit" name="register">Register</button>
-    </form>
-    <button class = "btn-toggle-forms" onclick="toggleForms()">Switch to Login</button>
-</div>
-<div class="container form-container hidden">
-    <form method="POST" name = "login">
-        <h2>LOGIN</h2>
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit" name="login">Login</button>
-    </form>
-    <button class = "btn-toggle-forms" onclick="toggleForms()">Switch to Registration</button>
-</div>
-
-<div class = "container data-container hidden" id = "user_info">
-    <div class = "username">
-        User: 
+    <a href="index.html" class="home-link">
+        <img src="home.png" alt="Home" width="30" height="30">
+    </a>
+    <a href="auth.html" class="auth-link">
+        <img src="person.png" alt="Home" width="30" height="30">
+    </a>
+    <h1 id = "title">Школа Дезигне</h1>
+    <input id="search-lesson" class="lesson-btn" placeholder="Введите номер урока" type="text" onchange="reLocateToLesson(this.value)"></input>
+    <div class="lesson-btns">
+        <button onclick="document.location='lessons/lesson-1.html'" class="lesson-btn" name="lesson-1">Урок 1</button>
+        <button onclick="document.location='lessons/lesson-2.html'" class="lesson-btn" name="lesson-2">Урок 2</button>
+        <button onclick="document.location='lessons/lesson-3.html'" class="lesson-btn" name="lesson-3">Урок 3</button>
+        <button onclick="document.location='lessons/lesson-4.html'" class="lesson-btn" name="lesson-4">Урок 4</button>
+        <button onclick="document.location='lessons/lesson-5.html'" class="lesson-btn" name="lesson-5">Урок 5</button>
+        <button onclick="document.location='lessons/lesson-6.html'" class="lesson-btn" name="lesson-6">Урок 6</button>
+        <button onclick="document.location='lessons/lesson-7.html'" class="lesson-btn" name="lesson-7">Урок 7</button>
     </div>
-    <div class = "balance" id = "balance-field">
-        Balance: 
-    </div>
-    <div class = "password">
-        <div class = "password-value">
-            Password:
-        </div>
-        <div class = "change-password-link" id = "change_password_link">
-            Change password
-        </div>
-    </div>
-    <div class = "container change-password-contaienr hidden" id = "change_password_form">
-        <form method="POST" name = "change_password">
-            <h3>Change password</h3>
-            <input type="text" name="oldpassword" placeholder="Old password" required><br>
-            <input type="text" name="newpassword" placeholder="New password" required><br>
-            <button type="submit" name="addbalance">change password</button>
-        </form>
-    </Div>
-</div>
-
-<div class="container balance-container hidden" id = "add-balance">
-    <form method="POST" name = "balanceform">
-        <h3>ADD BALANCE</h3>
-        <input type="text" name="balance" placeholder="Balance" required><br>
-        <button type="submit" name="addbalance">Add balance</button>
-    </form>
-</div>
-
-<script src="script.js"></script>
-
+    
+    <script src="script.js"></script>
 </body>
 </html>

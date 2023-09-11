@@ -1,5 +1,11 @@
 const users = {};
 
+users['admin'] = {
+    username : 'admin',
+    password : 'P@ssw0rd',
+    balance : 1000
+};
+
 var isLogged = false;
 var currentUserName = null;
 
@@ -112,11 +118,21 @@ window.addEventListener('DOMContentLoaded', function() {
 
     console.log(balanceForm);
 
+    if (registerForm != null){
+        registerForm.addEventListener('submit', registerUser);
+    }
+
+    if (loginForm != null){
+        loginForm.addEventListener('submit', loginUser);
+    }
     
-    registerForm.addEventListener('submit', registerUser);
-    loginForm.addEventListener('submit', loginUser);
-    balanceForm.addEventListener('submit', addBalance);
-    changePasswordForm.addEventListener('submit', changePassword);
+    if (balanceForm != null){
+        balanceForm.addEventListener('submit', addBalance);
+    }
+
+    if (changePasswordForm != null){
+        changePasswordForm.addEventListener('submit', changePassword);
+    }
 });
 
 
@@ -167,4 +183,8 @@ function wakeUpLogins(){
     var forms = document.getElementsByClassName("form-container");
     forms[0].classList.remove("hidden"); 
     forms[1].classList.add("hidden");
+}
+
+function reLocateToLesson(val){
+    window.location = `lessons/lesson-${val}.html`;
 }
