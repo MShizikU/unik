@@ -12,7 +12,7 @@ $result = array();
 if ($mysql){
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         parse_str($_SERVER['QUERY_STRING'], $data);
-        if (!in_array('id', $data)){
+        if (!array_key_exists('id', $data)){
             $resDB = mysqli_query($mysql, 'SELECT * FROM users');
             if ($resDB != false){
                 $result['result'] = 'Success';
@@ -28,7 +28,9 @@ if ($mysql){
             $resDB = mysqli_query($mysql, "SELECT * FROM users WHERE `id` = '" . $data['id'] . "'");
             if ($resDB != false){
                 $result['result'] = 'Success';
-                $result['items'] = $resDB;
+                foreach($resDB as $row){
+                    $result['items'][] = array("id" => $row['id'], "fullname" => $row['fullname']);
+                }
             }
             else{
                 $result['result'] = "Database error";
@@ -48,9 +50,9 @@ if ($mysql){
     }
     else if ($_SERVER['REQUEST_METHOD'] == 'PUT'){
         parse_str(file_get_contents("php://input"),$data);
-        if ($data['fullname'] != null && $data['id']){
+        if ($data['fullname'] != null && $data['id'] != null){
             $resDB = mysqli_query($mysql, "UPDATE users SET `fullname` = '" . $data['fullname'] . "' WHERE `id` = '" . $data['id'] . "'");
-            $ressult['result'] = $resDB;
+            $result['result'] = $resDB;
         }else{
             $result['result'] = "Request error";
             $result['message'] = "Wrong passed data";
@@ -58,9 +60,9 @@ if ($mysql){
     }
     else if ($_SERVER['REQUEST_METHOD'] == 'DELETE'){
         parse_str(file_get_contents("php://input"),$data);
-        if ($data['id']){
+        if ($data['id'] != null){
             $resDB = mysqli_query($mysql, "DELETE FROM users WHERE `id` = '" . $data['id'] . "'");
-            $ressult['result'] = $resDB;
+            $result['result'] = $resDB;
         }else{
             $result['result'] = "Request error";
             $result['message'] = "Wrong passed data";
