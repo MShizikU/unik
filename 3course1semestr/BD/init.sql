@@ -89,3 +89,4 @@ CREATE TABLE IF NOT EXISTS rents(
 
 ALTER TABLE rents ADD FOREIGN KEY (snpassport) REFERENCES users(snpassport);
 ALTER TABLE rents ADD FOREIGN KEY (vin) REFERENCES vehicles(vin);
+ALTER TABLE vahicles ADD FOREIGN KEY (id_vehicle_work_model) REFERENCES vehicle_work_model(id_vehicle_work_model);
