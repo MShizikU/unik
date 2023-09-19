@@ -99,3 +99,24 @@ INSERT INTO users (snpassport, full_name, date_of_birth, id_level) VALUES(171859
 INSERT INTO users (snpassport, full_name, date_of_birth, id_level) VALUES(1718598311, "Egor", "2002-03-03", 8);
 INSERT INTO users (snpassport, full_name, date_of_birth, id_level) VALUES(1718598312, "Nikita", "2003-05-03", 9);
 INSERT INTO users (snpassport, full_name, date_of_birth, id_level) VALUES(1718598313, "Lexa", "2003-06-03", 10);
+
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598304,"ABCDEFGHIJKLMNO01", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598305,"ABCDEFGHIJKLMNO02", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598306,"ABCDEFGHIJKLMNO03", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598307,"ABCDEFGHIJKLMNO04", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598308,"ABCDEFGHIJKLMNO05", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598309,"ABCDEFGHIJKLMNO06", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598310,"ABCDEFGHIJKLMNO07", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598311,"ABCDEFGHIJKLMNO08", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598312,"ABCDEFGHIJKLMNO09", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
+INSERT INTO rents (snpassport, vin, duration, starting_point, ending_point, start_time, end_time) 
+VALUES(1718598313,"ABCDEFGHIJKLMNO10", 0, "56,08,00;40,25,00", "56,08,00;40,25,00", "2023-09-19 09:00:00", "2023-09-19 09:00:00");
