@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_USERNAME: user
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: appDB
+    volumes:
+     - ./web-server/init.sql:/docker-entrypoint-initdb.d/init.sql
+    
+  web-server:
+    build:
+      context: ./web-server
+      dockerfile: Dockerfile
+    ports:
+     - "8080:80"
+    volumes:
+     - ./web-server:/var/www/html
+    depends_on:
+     - db
+  
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    ports:
+     - "80:80"
+    volumes:
+     - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+     - web-server
