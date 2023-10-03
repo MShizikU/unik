@@ -6,13 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 
 @Entity
 @Data
-@Table(name = "books")
 public class Book {
     @jakarta.persistence.Id
     @Id

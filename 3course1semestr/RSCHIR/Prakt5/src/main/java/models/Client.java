@@ -7,11 +7,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 @Entity
 @Data
-@Table(name = "clients")
 public class Client {
     @jakarta.persistence.Id
     @Id

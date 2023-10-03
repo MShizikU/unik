@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-@Table(name = "washing_machines")
 public class WashingMachine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

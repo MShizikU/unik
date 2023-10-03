@@ -1,23 +1,35 @@
-version: '3.8'
-
+version: '3'
 services:
-  app:
-    build: .
+  db:
+    image: mysql:latest
+    restart: always
     ports:
-      - "8080:8080"
+      - 3306:3306
+    environment:
+      MYSQL_USERNAME: user
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: appDB
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - application
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - 8081:8080
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/mydatabase?useSSL=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: myuser
-      SPRING_DATASOURCE_PASSWORD: mypassword
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/appDB?useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+    networks:
+      - application
+
+volumes:
   db:
-    image: mysql:8.0
-    command: --init-file /docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+networks:
+  application:
