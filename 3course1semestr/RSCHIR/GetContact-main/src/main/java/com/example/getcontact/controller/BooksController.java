@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/books")
+@RequestMapping("/api/v1/books")
 public class BooksController {
     @Autowired
     private BookRepository bookRepository;
 
-    @GetMapping("/")
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    @GetMapping("")
+    public ResponseEntity<List<Book>> getAllBooks() {
+        return ResponseEntity.ofNullable(bookRepository.findAll());
     }
 
     @GetMapping("/{id}")
@@ -32,8 +32,8 @@ public class BooksController {
     }
 
     @PostMapping("/")
-    public Book createBook(@RequestBody Book book) {
-        return bookRepository.save(book);
+    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+        return ResponseEntity.ofNullable(bookRepository.save(book));
     }
 
     @PutMapping("/{id}")

@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/washing-machines")
+@RequestMapping("/api/v1/washing-machines")
 public class WashingMachineController {
     @Autowired
     private WashingMachineRepository washingMachineRepository;
 
     @GetMapping("/")
-    public List<WashingMachine> getAllWashingMachines() {
-        return washingMachineRepository.findAll();
+    public ResponseEntity<List<WashingMachine>> getAllWashingMachines() {
+        return ResponseEntity.ofNullable(washingMachineRepository.findAll());
     }
 
     @GetMapping("/{id}")
@@ -32,8 +32,8 @@ public class WashingMachineController {
     }
 
     @PostMapping("/")
-    public WashingMachine createWashingMachine(@RequestBody WashingMachine washingMachine) {
-        return washingMachineRepository.save(washingMachine);
+    public ResponseEntity<WashingMachine> createWashingMachine(@RequestBody WashingMachine washingMachine) {
+        return ResponseEntity.ofNullable(washingMachineRepository.save(washingMachine));
     }
 
     @PutMapping("/{id}")

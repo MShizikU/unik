@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/telephones")
+@RequestMapping("/api/v1/telephones")
 public class TelephoneController {
     @Autowired
     private TelephoneRepository telephoneRepository;
 
     @GetMapping("/")
-    public List<Telephone> getAllTelephones() {
-        return telephoneRepository.findAll();
+    public ResponseEntity<List<Telephone>> getAllTelephones() {
+        return ResponseEntity.ofNullable(telephoneRepository.findAll());
     }
 
     @GetMapping("/{id}")
@@ -32,8 +32,8 @@ public class TelephoneController {
     }
 
     @PostMapping("/")
-    public Telephone createTelephone( @RequestBody Telephone telephone) {
-        return telephoneRepository.save(telephone);
+    public ResponseEntity<Telephone> createTelephone(@RequestBody Telephone telephone) {
+        return ResponseEntity.ofNullable(telephoneRepository.save(telephone));
     }
 
     @PutMapping("/{id}")

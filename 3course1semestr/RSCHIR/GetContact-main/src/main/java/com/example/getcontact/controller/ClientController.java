@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/clients")
+@RequestMapping("/api/v1/clients")
 public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
 
     @GetMapping("/")
-    public List<Client> getAllClients() {
-        return clientRepository.findAll();
+    public ResponseEntity<List<Client>> getAllClients() {
+        return ResponseEntity.ofNullable(clientRepository.findAll());
     }
 
     @GetMapping("/{id}")
@@ -32,8 +32,8 @@ public class ClientController {
     }
 
     @PostMapping("/")
-    public Client createClient( @RequestBody Client client) {
-        return clientRepository.save(client);
+    public ResponseEntity<Client> createClient(@RequestBody Client client) {
+        return ResponseEntity.ofNullable(clientRepository.save(client));
     }
 
     @PutMapping("/{id}")
