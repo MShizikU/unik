@@ -4,13 +4,14 @@ import models.Telephone;
 import models.WashingMachine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import repos.WashingMachineRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/washing-machines")
 public class WashingMachineController {
     @Autowired

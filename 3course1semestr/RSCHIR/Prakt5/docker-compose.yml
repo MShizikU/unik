@@ -1,35 +1,25 @@
 version: '3'
 services:
   db:
-    image: mysql:latest
+    image: postgres:13.4
     restart: always
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      MYSQL_USERNAME: root
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: appDB
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: appDB
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - application
   app:
     build:
       context: .
       dockerfile: dockerfile
     ports:
-      - 8081:8080
+      - 8080:8080
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/appDB?useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/appDB
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
-    networks:
-      - application
-
-volumes:
-  db:
-
-networks:
-  application:
