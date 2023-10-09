@@ -1,4 +1,4 @@
-package com.example.getcontact.entity;
+package mirea.ru.prakt6.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,16 +9,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Contact {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
-    private String name;
-    @Column(name="lastname")
-    private String lastname;
-    @Column(name="phone_number")
-    private String phoneNumber;
+    @Column(name = "author")
+    private String author;
 
+    @Column(name = "seller_id")
+    private Long sellerId;
+
+    @Column(name = "product_id")
+    private Long productId;
 }

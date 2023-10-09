@@ -10,7 +10,6 @@ public class Server extends SquareEquationSolverImpl {
     public static void main(String[] args) {
         try {
             SquareEquationSolverImpl im = new SquareEquationSolverImpl();
-            //SquareRootSolver solver = (SquareRootSolver) UnicastRemoteObject.exportObject(im, 0);
             LocateRegistry.createRegistry(2099);
             Registry registry = LocateRegistry.getRegistry(2099);
             registry.bind("Solver", im);

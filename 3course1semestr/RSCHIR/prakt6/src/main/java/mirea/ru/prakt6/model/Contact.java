@@ -1,4 +1,4 @@
-package com.example.getcontact.entity;
+package mirea.ru.prakt6.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,9 +16,12 @@ public class Contact {
 
     @Column(name="name")
     private String name;
+
     @Column(name="lastname")
     private String lastname;
+
     @Column(name="phone_number")
     private String phoneNumber;
 
 }
+
