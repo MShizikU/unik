@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BucketRepository extends JpaRepository {
+public interface BucketRepository extends JpaRepository<Bucket, Long> {
     public List<Bucket> findByContactId(Long contact_id);
     public Bucket findByContactIdAndProductId(Long contact_id, Long product_id);
 }

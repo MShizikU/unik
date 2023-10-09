@@ -28,11 +28,11 @@ public class BucketService {
     }
 
     public Bucket getBucketById(Long id){
-        return (Bucket) bucketRepository.findById(id).get();
+        return bucketRepository.findById(id).orElse(null);
     }
 
     public Bucket createBucketRow(Bucket bucket){
-        return (Bucket) bucketRepository.save(bucket);
+        return bucketRepository.save(bucket);
     }
 
     public Bucket updateBucketRow(Bucket bucket){
@@ -46,6 +46,11 @@ public class BucketService {
     public void deleteBucket(Long id){
         Bucket exBucket = getBucketById(id);
         bucketRepository.delete(exBucket);
+    }
+
+    public void deleteUserBucket(Long contact_id){
+        List<Bucket> exBuckets = getBucketByContactId(contact_id);
+        for (Bucket bucket : exBuckets) bucketRepository.delete(bucket);
     }
 
     public Bucket addAmount(Integer amount, Long contact_id, Long product_id){

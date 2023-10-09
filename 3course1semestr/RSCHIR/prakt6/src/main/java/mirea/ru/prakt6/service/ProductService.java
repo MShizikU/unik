@@ -18,11 +18,11 @@ public class ProductService {
     }
 
     public Product getProductById(Long id) {
-        return (Product) productRepository.findById(id).get();
+        return productRepository.findById(id).orElse(null);
     }
 
     public Product createProduct(Product product) {
-        return (Product) productRepository.save(product);
+        return productRepository.save(product);
     }
 
     public Product updateProduct(Long id, Product product) {

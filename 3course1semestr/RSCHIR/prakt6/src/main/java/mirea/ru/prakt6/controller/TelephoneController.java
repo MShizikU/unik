@@ -7,12 +7,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/telephones")
 public class TelephoneController {
 
     @Autowired
     private TelephoneService telephoneService;
+
+    @GetMapping
+    public ResponseEntity<List<Telephone>> getTelephoneById() {
+        return ResponseEntity.ofNullable(telephoneService.getTelephoneAll());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Telephone> getTelephoneById(@PathVariable Long id) {

@@ -1,5 +1,6 @@
 package mirea.ru.prakt6.controller;
 
+import mirea.ru.prakt6.model.Book;
 import mirea.ru.prakt6.model.Contact;
 import mirea.ru.prakt6.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +8,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/contacts")
 public class ContactController {
 
     @Autowired
     private ContactService contactService;
+
+    @GetMapping
+    public ResponseEntity<List<Contact>> getContactById() {
+        return ResponseEntity.ofNullable(contactService.getContactAll());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Contact> getContactById(@PathVariable Long id) {

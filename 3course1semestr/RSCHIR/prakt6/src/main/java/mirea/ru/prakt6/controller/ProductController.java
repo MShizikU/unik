@@ -1,11 +1,14 @@
 package mirea.ru.prakt6.controller;
 
 import mirea.ru.prakt6.model.Product;
+import mirea.ru.prakt6.model.Product;
 import mirea.ru.prakt6.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -13,6 +16,11 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @GetMapping
+    public ResponseEntity<List<Product>> getProductById() {
+        return ResponseEntity.ofNullable(productService.getProductAll());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {

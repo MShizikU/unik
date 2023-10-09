@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/books")
 public class BooksController {
@@ -14,10 +16,15 @@ public class BooksController {
     @Autowired
     private BookService bookService;
 
+    @GetMapping
+    public ResponseEntity<List<Book>> getBookAll() {
+        return ResponseEntity.ofNullable(bookService.getBookAll());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         Book book = bookService.getBookById(id);
-        return ResponseEntity.ok(book);
+        return ResponseEntity.ofNullable(book);
     }
 
     @PostMapping

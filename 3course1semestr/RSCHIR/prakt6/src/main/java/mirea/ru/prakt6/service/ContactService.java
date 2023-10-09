@@ -19,11 +19,11 @@ public class ContactService {
     }
 
     public Contact getContactById(Long id) {
-        return (Contact) contactRepository.findById(id).get();
+        return contactRepository.findById(id).orElse(null);
     }
 
     public Contact createContact(Contact contact) {
-        return (Contact) contactRepository.save(contact);
+        return  contactRepository.save(contact);
     }
 
     public Contact updateContact(Long id, Contact contact) {

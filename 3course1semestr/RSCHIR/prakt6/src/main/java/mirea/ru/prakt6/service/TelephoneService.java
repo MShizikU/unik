@@ -18,11 +18,11 @@ public class TelephoneService {
     }
 
     public Telephone getTelephoneById(Long id) {
-        return (Telephone) telephoneRepository.findById(id).get();
+        return telephoneRepository.findById(id).orElse(null);
     }
 
     public Telephone createTelephone(Telephone telephone) {
-        return (Telephone) telephoneRepository.save(telephone);
+        return telephoneRepository.save(telephone);
     }
 
     public Telephone updateTelephone(Long id, Telephone telephone) {

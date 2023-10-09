@@ -20,6 +20,6 @@ services:
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/GetContact
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/prakt6
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
