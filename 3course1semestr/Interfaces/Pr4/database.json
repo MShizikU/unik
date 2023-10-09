@@ -1,0 +1,215 @@
+{
+    "libs": [
+        {
+            "id": 1,
+            "name": "lib1",
+            "addres": "addr1",
+            "books": [
+                {
+                    "name": "book1",
+                    "amount": 30,
+                    "spare": 15 
+                },
+                {
+                    "name": "book2",
+                    "amount": 21,
+                    "spare": 13 
+                },
+                {
+                    "name": "book3",
+                    "amount": 32,
+                    "spare": 20 
+                },
+                {
+                    "name": "book5",
+                    "amount": 50,
+                    "spare": 11 
+                },
+                {
+                    "name": "book7",
+                    "amount": 10,
+                    "spare": 1 
+                },
+                {
+                    "name": "book8",
+                    "amount": 41,
+                    "spare": 22 
+                },
+                {
+                    "name": "book9",
+                    "amount": 19,
+                    "spare": 3 
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "lib2",
+            "addres": "addr2",
+            "books": [
+                {
+                    "name": "book3",
+                    "amount": 30,
+                    "spare": 15 
+                },
+                {
+                    "name": "book4",
+                    "amount": 21,
+                    "spare": 13 
+                },
+                {
+                    "name": "book6",
+                    "amount": 32,
+                    "spare": 20 
+                },
+                {
+                    "name": "book7",
+                    "amount": 50,
+                    "spare": 11 
+                },
+                {
+                    "name": "book9",
+                    "amount": 10,
+                    "spare": 1 
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "lib3",
+            "addres": "addr3",
+            "books": [
+                {
+                    "name": "book1",
+                    "amount": 30,
+                    "spare": 15 
+                },
+                {
+                    "name": "book2",
+                    "amount": 21,
+                    "spare": 13 
+                },
+                {
+                    "name": "book3",
+                    "amount": 32,
+                    "spare": 20 
+                },
+                {
+                    "name": "book4",
+                    "amount": 50,
+                    "spare": 11 
+                },
+                {
+                    "name": "book5",
+                    "amount": 10,
+                    "spare": 1 
+                },
+                {
+                    "name": "book6",
+                    "amount": 41,
+                    "spare": 22 
+                },
+                {
+                    "name": "book7",
+                    "amount": 19,
+                    "spare": 3 
+                },
+                {
+                    "name": "book8",
+                    "amount": 19,
+                    "spare": 3 
+                },
+                {
+                    "name": "book9",
+                    "amount": 19,
+                    "spare": 3 
+                }
+            ]
+        }
+    ],
+    "books": [
+        {
+            "id": 1,
+            "name": "book1",
+            "author": "author1"
+        },
+        {
+            "id": 2,
+            "name": "book2",
+            "author": "author3"
+        },
+        {
+            "id": 3,
+            "name": "book3",
+            "author": "author2"
+        },
+        {
+            "id": 4,
+            "name": "book4",
+            "author": "author5"
+        },
+        {
+            "id": 5,
+            "name": "book5",
+            "author": "author4"
+        },
+        {
+            "id": 6,
+            "name": "book6",
+            "author": "author4"
+        },
+        {
+            "id": 7,
+            "name": "book7",
+            "author": "author6"
+        },
+        {
+            "id": 8,
+            "name": "book8",
+            "author": "author2"
+        },
+        {
+            "id": 9,
+            "name": "book9",
+            "author": "author5"
+        }
+    ],
+    "authors": [
+        {
+            "id": 1,
+            "name": "author1",
+            "genre": "fiction",
+            "email": "qazws1@mail.ru"
+        },
+        {
+            "id": 2,
+            "name": "author",
+            "genre": "poetry",
+            "email": "qazws2@mail.ru"
+        },
+        {
+            "id": 3,
+            "name": "author3",
+            "genre": "fiction",
+            "email": "qazws3@mail.ru"
+        },
+        {
+            "id": 4,
+            "name": "author4",
+            "genre": "dramma",
+            "email": "qazws4@mail.ru"
+        },
+        {
+            "id": 5,
+            "name": "author5",
+            "genre": "comedy",
+            "email": "qazws5@mail.ru"
+        },
+        {
+            "id": 6,
+            "name": "author6",
+            "genre": "poetry",
+            "email": "qazws6@mail.ru"
+        }
+    ]
+}
