@@ -1,13 +1,17 @@
 package mirea.ru.prakt6.controller;
 
+import mirea.ru.prakt6.DTO.BookDTO;
 import mirea.ru.prakt6.model.Book;
 import mirea.ru.prakt6.service.BookService;
+import mirea.ru.prakt6.service.ContactService;
+import mirea.ru.prakt6.service.ProductService;
+import mirea.ru.prakt6.view.BookViewer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/books")
@@ -15,28 +19,32 @@ public class BooksController {
 
     @Autowired
     private BookService bookService;
+    @Autowired
+    private ContactService contactService;
+    @Autowired
+    private ProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<Book>> getBookAll() {
-        return ResponseEntity.ofNullable(bookService.getBookAll());
+    public ResponseEntity<ArrayList<BookDTO>> getBookAll() {
+        return ResponseEntity.ofNullable(BookViewer.createBooksView(bookService.getBookAll(), contactService.getContactAll(), productService.getProductAll()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
+    public ResponseEntity<BookDTO> getBookById(@PathVariable Long id) {
         Book book = bookService.getBookById(id);
-        return ResponseEntity.ofNullable(book);
+        return ResponseEntity.ofNullable(BookViewer.createBookView(book, contactService.getContactAll(), productService.getProductAll()));
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+    public ResponseEntity<BookDTO> createBook(@RequestBody Book book) {
         Book createdBook = bookService.createBook(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
+        return ResponseEntity.status(HttpStatus.CREATED).body(BookViewer.createBookView(createdBook, contactService.getContactAll(), productService.getProductAll()));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody Book book) {
         Book updatedBook = bookService.updateBook(id, book);
-        return ResponseEntity.ok(updatedBook);
+        return ResponseEntity.ofNullable(BookViewer.createBookView(updatedBook, contactService.getContactAll(), productService.getProductAll()));
     }
 
     @DeleteMapping("/{id}")

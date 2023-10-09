@@ -31,32 +31,32 @@ public class BucketController {
     }
 
     @GetMapping("/adm/{id}")
-    public ResponseEntity<Bucket> getBucketById(@PathVariable Long id) {
+    public ResponseEntity<AdminBucketDTO> getBucketById(@PathVariable Long id) {
         Bucket bucket = bucketService.getBucketById(id);
-        return ResponseEntity.ofNullable(bucket);
+        return ResponseEntity.ofNullable(BucketViewer.singleAdminBucketViewer( bucket, contactService.getContactAll(), productService.getProductAll()));
     }
 
     @GetMapping("/user/{contact_id}")
-    public ResponseEntity<ArrayList<UserBucketDTO>> getBucketByContactId(@PathVariable Long contact_id){
-        return ResponseEntity.ofNullable(BucketViewer.userBucketViewer(contactService.getContactAll(), bucketService.getBucketByContactId(contact_id), productService.getProductAll()));
+    public ResponseEntity<UserBucketDTO> getBucketByContactId(@PathVariable Long contact_id){
+        return ResponseEntity.ofNullable(BucketViewer.singleUserBucketViewer(contactService.getContactById(contact_id), bucketService.getBucketByContactId(contact_id), productService.getProductAll()));
     }
 
     @PostMapping
-    public ResponseEntity<Bucket> createBucket(@RequestBody Bucket bucket) {
+    public ResponseEntity<AdminBucketDTO> createBucket(@RequestBody Bucket bucket) {
         Bucket createdBucket = bucketService.createBucketRow(bucket);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdBucket);
+        return ResponseEntity.status(HttpStatus.CREATED).body(BucketViewer.singleAdminBucketViewer( createdBucket, contactService.getContactAll(), productService.getProductAll()));
     }
 
     @PutMapping
-    public ResponseEntity<Bucket> updateBucket(@RequestBody Bucket bucket) {
+    public ResponseEntity<AdminBucketDTO> updateBucket(@RequestBody Bucket bucket) {
         Bucket updateBucketRow = bucketService.updateBucketRow(bucket);
-        return ResponseEntity.ofNullable(updateBucketRow);
+        return ResponseEntity.ofNullable(BucketViewer.singleAdminBucketViewer( updateBucketRow, contactService.getContactAll(), productService.getProductAll()));
     }
 
     @PutMapping("/change_amount")
-    public ResponseEntity<Bucket> addProductAmount(@RequestBody Bucket bucket){
+    public ResponseEntity<AdminBucketDTO> addProductAmount(@RequestBody Bucket bucket){
         Bucket updatedBucketRow = bucketService.addAmount(bucket.getAmount(), bucket.getContactId(), bucket.getProductId());
-        return ResponseEntity.ofNullable(updatedBucketRow);
+        return ResponseEntity.ofNullable(BucketViewer.singleAdminBucketViewer( updatedBucketRow, contactService.getContactAll(), productService.getProductAll()));
     }
 
     @DeleteMapping("/adm/delete/{id}")

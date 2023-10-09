@@ -6,7 +6,9 @@ public class TelephoneDTO {
     public Long phoneId;
     public String sellerName;
     public String manufacturer;
+
     public Integer batteryCapacity;
+    public String type;
     public String name;
     public BigDecimal price;
     public Long sellerId;
