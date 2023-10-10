@@ -25,6 +25,17 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public Product reduceAmount(Long id, Integer amount){
+        Product exProduct = getProductById(id);
+        if (exProduct.getAmount() < amount){
+            return null;
+        }
+
+        exProduct.setAmount(exProduct.getAmount() - amount);
+        productRepository.save(exProduct);
+        return exProduct;
+    }
+
     public Product updateProduct(Long id, Product product) {
         Product existingProduct = getProductById(id);
         existingProduct.setName(product.getName());

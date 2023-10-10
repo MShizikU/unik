@@ -11,7 +11,8 @@ CREATE TABLE product (
     id BIGSERIAL PRIMARY KEY,
     price NUMERIC(10,2) NOT NULL,
     type VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    amount INT NOT NULL
 );
 
 CREATE TABLE books (

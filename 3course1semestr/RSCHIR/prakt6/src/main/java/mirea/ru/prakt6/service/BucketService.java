@@ -2,7 +2,9 @@ package mirea.ru.prakt6.service;
 
 import mirea.ru.prakt6.model.Book;
 import mirea.ru.prakt6.model.Bucket;
+import mirea.ru.prakt6.model.Product;
 import mirea.ru.prakt6.repos.BucketRepository;
+import mirea.ru.prakt6.repos.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class BucketService {
 
     @Autowired
     private BucketRepository bucketRepository;
+    @Autowired
+    private ProductService productService;
 
     public List<Bucket> getBucketAll(){
         return bucketRepository.findAll();
@@ -32,7 +36,26 @@ public class BucketService {
     }
 
     public Bucket createBucketRow(Bucket bucket){
-        return bucketRepository.save(bucket);
+        Product exProduct = productService.getProductById(bucket.getProductId());
+        if (exProduct != null){
+            if (exProduct.getAmount() >= bucket.getAmount()){
+                return bucketRepository.save(bucket);
+            }
+        }
+        return null;
+    }
+
+    public List<Bucket> createRequest(Long contact_id){
+        List<Bucket> userBucket = getBucketByContactId(contact_id);
+        for (Bucket bucket : userBucket){
+            if (productService.reduceAmount(bucket.getProductId(), bucket.getAmount()) == null){
+                userBucket.remove(bucket);
+            }
+            else{
+                bucketRepository.delete(bucket);
+            }
+        }
+        return userBucket;
     }
 
     public Bucket updateBucketRow(Bucket bucket){

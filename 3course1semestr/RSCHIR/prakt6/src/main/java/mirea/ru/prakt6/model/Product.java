@@ -24,4 +24,7 @@ public class Product {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "amount")
+    private Integer amount;
 }

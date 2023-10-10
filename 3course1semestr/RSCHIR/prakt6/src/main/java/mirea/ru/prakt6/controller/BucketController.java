@@ -7,12 +7,14 @@ import mirea.ru.prakt6.service.ProductService;
 import mirea.ru.prakt6.DTO.AdminBucketDTO;
 import mirea.ru.prakt6.view.BucketViewer;
 import mirea.ru.prakt6.DTO.UserBucketDTO;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/bucket")
@@ -45,6 +47,12 @@ public class BucketController {
     public ResponseEntity<AdminBucketDTO> createBucket(@RequestBody Bucket bucket) {
         Bucket createdBucket = bucketService.createBucketRow(bucket);
         return ResponseEntity.status(HttpStatus.CREATED).body(BucketViewer.singleAdminBucketViewer( createdBucket, contactService.getContactAll(), productService.getProductAll()));
+    }
+
+    @PostMapping("/create_request/{contact_id}")
+    public ResponseEntity<UserBucketDTO> createRequest(@PathVariable Long contact_id){
+        List<Bucket> userBucket = bucketService.createRequest(contact_id);
+        return ResponseEntity.ofNullable(BucketViewer.singleUserBucketViewer(contactService.getContactById(contact_id), bucketService.getBucketByContactId(contact_id), productService.getProductAll()));
     }
 
     @PutMapping
