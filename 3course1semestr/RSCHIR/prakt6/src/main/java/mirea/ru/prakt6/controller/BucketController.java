@@ -46,6 +46,9 @@ public class BucketController {
     @PostMapping
     public ResponseEntity<AdminBucketDTO> createBucket(@RequestBody Bucket bucket) {
         Bucket createdBucket = bucketService.createBucketRow(bucket);
+        if (createdBucket == null){
+            return ResponseEntity.ofNullable(null);
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(BucketViewer.singleAdminBucketViewer( createdBucket, contactService.getContactAll(), productService.getProductAll()));
     }
 
