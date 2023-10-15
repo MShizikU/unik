@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: marketplace-app
+          uri: lb://MARKETPLACE-APP
+          predicates:
+            - Path=/marketplace/**
+          filters:
+            - AuthenticationFilter
+
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+
+  application:
+    name: GATEWAY
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/
