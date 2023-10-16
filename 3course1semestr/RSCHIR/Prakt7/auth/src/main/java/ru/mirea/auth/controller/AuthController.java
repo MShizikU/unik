@@ -1,5 +1,6 @@
 package ru.mirea.auth.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import ru.mirea.auth.dto.LoginResult;
 import ru.mirea.auth.jwt.JwtHelper;
+import ru.mirea.auth.model.CustomUserDetailsService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,10 +23,10 @@ import java.util.stream.Collectors;
 public class AuthController {
 
     private final JwtHelper jwtHelper;
-    private final UserDetailsService userDetailsService;
+    private final CustomUserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthController(JwtHelper jwtHelper, UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+    public AuthController(JwtHelper jwtHelper, CustomUserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         this.jwtHelper = jwtHelper;
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
