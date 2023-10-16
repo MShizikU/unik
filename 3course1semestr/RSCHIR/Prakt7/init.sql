@@ -49,10 +49,10 @@ INSERT INTO contact (name, lastname, phone_number) VALUES
     ('Bob', 'Smith', '8 999 555 35 35');
 
 -- Заполнение таблицы product
-INSERT INTO product (price, type, name) VALUES
-    (19.99, 'Book', 'The Great Gatsby'),
-    (9.99, 'Phone', 'Samsung Galaxy S21'),
-    (499.99, 'Washing Machine', 'LG Front Load Washer');
+INSERT INTO product (price, type, name, amount) VALUES
+    (19.99, 'Book', 'The Great Gatsby', 100),
+    (9.99, 'Phone', 'Samsung Galaxy S21', 21),
+    (499.99, 'Washing Machine', 'LG Front Load Washer', 32);
 
 INSERT INTO books (author, seller_id, product_id) VALUES
     ('F. Scott Fitzgerald', 1, 1),
