@@ -45,7 +45,7 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
             logger.info("claims: " + tokenClaims.toString());
             String username = tokenClaims.get("username").toString();
             logger.info("Username: " + username);
-            return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(username, null));
+            return new UsernamePasswordAuthenticationToken(username, null);
         }
         return null;
     }
