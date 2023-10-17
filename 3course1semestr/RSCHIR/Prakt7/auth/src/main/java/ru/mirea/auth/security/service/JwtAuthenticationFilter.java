@@ -44,8 +44,9 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
             Map<String, Object> tokenClaims = tokenHelper.extractClaimsFromJwt(token);
             logger.info("claims: " + tokenClaims.toString());
             String username = tokenClaims.get("username").toString();
+            String password = tokenClaims.get("password").toString();
             logger.info("Username: " + username);
-            return new UsernamePasswordAuthenticationToken(username, null);
+            return new UsernamePasswordAuthenticationToken(username, password);
         }
         return null;
     }

@@ -52,6 +52,7 @@ public class AuthController {
             LOGGER.info("User authenticated successfully: " + username);
             Map<String, String> claims = new HashMap<>();
             claims.put("username", username);
+            claims.put("password", password);
             String authorities = userDetails.getAuthorities().stream()
                     .map(Object::toString)
                     .collect(Collectors.joining(","));
