@@ -4,9 +4,10 @@ import mirea.ru.prakt6.model.Book;
 import mirea.ru.prakt6.model.Contact;
 import mirea.ru.prakt6.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -16,6 +17,19 @@ public class ContactController {
 
     @Autowired
     private ContactService contactService;
+
+    @PostMapping("/verifyEmail")
+    public void verifyEmail(@RequestHeader("Authorization") String authHeader) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", authHeader);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(
+                "http://localhost:8087/internal/userDetails",
+                HttpMethod.GET,
+                new HttpEntity(headers),
+                new ParameterizedTypeReference<String>() {});
+    }
 
     @GetMapping
     public ResponseEntity<List<Contact>> getContactById() {

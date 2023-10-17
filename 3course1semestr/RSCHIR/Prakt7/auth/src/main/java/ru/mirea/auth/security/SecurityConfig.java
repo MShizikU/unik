@@ -1,38 +1,57 @@
 package ru.mirea.auth.security;
 
-import jakarta.servlet.Filter;
-import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import ru.mirea.auth.security.service.ServiceAuthenticationProvider;
-import ru.mirea.auth.security.service.ServiceTokenAuthenticationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import ru.mirea.auth.jwt.JwtHelper;
+import ru.mirea.auth.model.CustomUserDetailsService;
+import ru.mirea.auth.security.service.JwtAuthenticationFilter;
 
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig{
+public class SecurityConfig {
+
+    @Autowired
+    private CustomAuthenticationProvider authProvider;
+
+    private CustomUserDetailsService userDetailsService;
+    private JwtHelper tokenHelper;
+
+    public SecurityConfig(CustomUserDetailsService userDetailsService, JwtHelper tokenHelper) {
+        this.userDetailsService = userDetailsService;
+        this.tokenHelper = tokenHelper;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .addFilterAfter(
-                        new ServiceTokenAuthenticationFilter(new ServiceAuthenticationProvider()),
-                        BasicAuthenticationFilter.class)
-                .authorizeRequests(configurer -> configurer
-                        .anyRequest()
-                        .authenticated()
-                )
-                .oauth2ResourceServer(obj -> obj.jwt(Customizer.withDefaults()));
+        http.csrf().disable().cors().disable()
+                .addFilterBefore(new JwtAuthenticationFilter(tokenHelper ), UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
+                .requestMatchers("/error").permitAll()
+                .requestMatchers("/login").permitAll()
+                .anyRequest().authenticated();
+
 
         return http.build();
+    }
+
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider);
+    }
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.authenticationProvider(authProvider);
+        return authenticationManagerBuilder.build();
     }
 }
