@@ -12,6 +12,11 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
   authservice:
     build:
       context: ./auth
@@ -19,11 +24,13 @@ services:
     ports:
       - "8082:8087"
     depends_on:
-      - db
+      - redis
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/prakt6
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=password
+    links:
+      - "redis"
 
   app:
     build:

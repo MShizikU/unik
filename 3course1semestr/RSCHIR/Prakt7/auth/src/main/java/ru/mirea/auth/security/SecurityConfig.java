@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers("/error").permitAll()
                 .requestMatchers("/login").permitAll()
+                .requestMatchers("/createuser").permitAll()
                 .anyRequest().authenticated();
 
 

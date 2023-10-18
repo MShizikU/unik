@@ -14,6 +14,8 @@ import org.springframework.web.server.ResponseStatusException;
 import ru.mirea.auth.dto.LoginResult;
 import ru.mirea.auth.jwt.JwtHelper;
 import ru.mirea.auth.model.CustomUserDetailsService;
+import ru.mirea.auth.model.User;
+
 import java.util.logging.Logger;
 
 import java.util.HashMap;
@@ -63,6 +65,18 @@ public class AuthController {
         }
         LOGGER.warning("User authentication failed: " + username);
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not authenticated");
+    }
+
+    @PostMapping(path = "createuser")
+    public String createUser(@RequestBody User user) {
+        userDetailsService.createUser(user);
+        return "User created successfully";
+    }
+
+    @PutMapping(path = "api/update/{username}")
+    public String updateUser(@PathVariable String username, @RequestBody User user) {
+        userDetailsService.updateUser(username, user);
+        return "User updated successfully";
     }
 
     @GetMapping(path = "api/auth")

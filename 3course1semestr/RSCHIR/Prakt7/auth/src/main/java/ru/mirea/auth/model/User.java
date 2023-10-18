@@ -3,11 +3,12 @@ package ru.mirea.auth.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-public class User {
+public class User implements Serializable {
     String username;
     String password;
     String roles;
