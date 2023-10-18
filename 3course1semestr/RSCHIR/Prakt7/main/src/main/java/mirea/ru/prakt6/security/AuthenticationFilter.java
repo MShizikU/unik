@@ -44,16 +44,21 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            logger.info("Start auth");
-            URL url = new URL("http://localhost:8082/api/auth");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty("Authorization", request.getHeader("Authorization"));
-            connection.setRequestMethod("GET");
-            String responseBody = StreamUtils.copyToString(connection.getInputStream(), StandardCharsets.UTF_8);
+            String sourceUrl = "http://authservice:8087/api/auth";
+
+            logger.info("Authorization token: " + request.getHeader("Authorization"));
+
+            HttpMethod sourceMethod = HttpMethod.GET;
+            HttpHeaders sourceHeaders = new HttpHeaders();
+            sourceHeaders.set("Authorization", request.getHeader("Authorization"));
+            HttpEntity<?> sourceRequestEntity = new HttpEntity<>(sourceHeaders);
+            ResponseEntity<String> sourceResponseEntity = new RestTemplate().exchange(sourceUrl, sourceMethod, sourceRequestEntity, String.class);
 
             logger.info("Parse auth");
-            Authentication authentication = objectMapper.readValue(responseBody, Authentication.class);
+            logger.info("Response body: " + sourceResponseEntity.getBody());
+            Authentication authentication = AuthentificationConverter.convert(sourceResponseEntity.getBody());
 
+            logger.info("Auth: " + authentication);
             logger.info("Set auth");
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
