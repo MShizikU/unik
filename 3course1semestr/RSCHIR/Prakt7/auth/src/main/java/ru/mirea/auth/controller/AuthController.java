@@ -3,13 +3,13 @@ package ru.mirea.auth.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.mirea.auth.dto.LoginResult;
 import ru.mirea.auth.jwt.JwtHelper;
@@ -63,5 +63,12 @@ public class AuthController {
         }
         LOGGER.warning("User authentication failed: " + username);
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not authenticated");
+    }
+
+    @GetMapping(path = "api/auth")
+    public Authentication auth(@RequestHeader String authorization)
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth;
     }
 }

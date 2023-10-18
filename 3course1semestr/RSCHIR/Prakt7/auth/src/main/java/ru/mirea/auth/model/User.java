@@ -1,15 +1,18 @@
 package ru.mirea.auth.model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 public class User {
     String username;
     String password;
-    Collection<GrantedAuthority> roles;
+    String roles;
 
-    public User(String username, String password, Collection<GrantedAuthority> roles) {
+    public User(String username, String password, String roles) {
         this.username = username;
         this.password = password;
         this.roles = roles;
@@ -23,7 +26,13 @@ public class User {
         return password;
     }
 
-    public Collection<GrantedAuthority> getRoles() {
+    public String getRoles() {
         return roles;
+    }
+
+    public Collection<GrantedAuthority> getCredRoles(){
+        Collection<GrantedAuthority> creds = new ArrayList<>();
+        creds.add(new SimpleGrantedAuthority("ROLE_" + roles));
+        return creds;
     }
 }
