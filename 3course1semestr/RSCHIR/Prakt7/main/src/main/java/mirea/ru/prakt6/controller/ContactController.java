@@ -18,19 +18,6 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-    @PostMapping("/verifyEmail")
-    public void verifyEmail(@RequestHeader("Authorization") String authHeader) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", authHeader);
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(
-                "http://localhost:8087/internal/userDetails",
-                HttpMethod.GET,
-                new HttpEntity(headers),
-                new ParameterizedTypeReference<String>() {});
-    }
-
     @GetMapping
     public ResponseEntity<List<Contact>> getContactById() {
         return ResponseEntity.ofNullable(contactService.getContactAll());

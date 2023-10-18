@@ -21,7 +21,10 @@ public class SecurityConfig{
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .addFilterBefore(authenticationFilter(new ObjectMapper()), BasicAuthenticationFilter.class)
-                .authorizeHttpRequests().anyRequest().authenticated();
+                .authorizeHttpRequests()
+                .requestMatchers("/contacts").hasRole("USER")
+                .requestMatchers("/bucket").hasRole("ADMIN")
+                .anyRequest().authenticated();
 
         return http.build();
     }
