@@ -22,8 +22,6 @@ public class SecurityConfig{
         http.csrf().disable()
                 .addFilterBefore(authenticationFilter(new ObjectMapper()), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
-                .requestMatchers("/contacts").hasRole("USER")
-                .requestMatchers("/bucket").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         return http.build();

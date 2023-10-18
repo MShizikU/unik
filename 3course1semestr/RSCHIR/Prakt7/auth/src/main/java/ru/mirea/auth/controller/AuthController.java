@@ -3,6 +3,7 @@ package ru.mirea.auth.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -67,18 +68,35 @@ public class AuthController {
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not authenticated");
     }
 
+
     @PostMapping(path = "createuser")
     public String createUser(@RequestBody User user) {
         userDetailsService.createUser(user);
         return "User created successfully";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(path = "api/update/{username}")
     public String updateUser(@PathVariable String username, @RequestBody User user) {
         userDetailsService.updateUser(username, user);
         return "User updated successfully";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping(path = "api/roleup/{username}")
+    public String roleUp(@PathVariable String username, @RequestBody String role) {
+        UserDetails user = userDetailsService.loadUserByUsername(username);
+        if (username != null){
+            User forUpdate = new User(user.getUsername(), user.getPassword(), role);
+            userDetailsService.updateUser(username, forUpdate);
+            return "User updated successfully";
+        }
+        else{
+            return "User wasn't updated";
+        }
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(path = "api/auth")
     public Authentication auth(@RequestHeader String authorization)
     {

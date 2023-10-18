@@ -9,6 +9,18 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class User implements Serializable {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
     String username;
     String password;
     String roles;
