@@ -50,7 +50,6 @@ func main() {
 	}
 	defer logFile.Close()
 
-	// Create a logger for both file and standard output
 	logger := log.New(io.MultiWriter(os.Stdout, logFile), "", log.LstdFlags)
 	logger.Println(cookieName);
 
@@ -83,7 +82,6 @@ func linearHandler(w http.ResponseWriter, r *http.Request) {
 		Message: "Processed linearly",
 	}
 
-	// Шифруем данные и сохраняем в cookie
 	encoded, err := cookieHandler.Encode(cookieName, response)
 	if err != nil {
 		http.Error(w, "Failed to encode cookie", http.StatusInternalServerError)
@@ -112,25 +110,25 @@ func concurrentHandler(w http.ResponseWriter, r *http.Request) {
 	go func() {
 		time.Sleep(2 * time.Second)
 
-		response := UserResponse{
-			Message: "Processed concurrently",
-		}
-
-		encoded, err := cookieHandler.Encode(cookieName, response)
-		if err != nil {
-			log.Println("Failed to encode cookie:", err)
-			return
-		}
-		cookie := &http.Cookie{
-			Name:     cookieName,
-			Value:    encoded,
-			Path:     "/",
-			HttpOnly: true,
-		}
-		http.SetCookie(w, cookie)
-
 		log.Println("Concurrent processing completed")
 	}()
+
+	response := UserResponse{
+		Message: "Processed concurrently",
+	}
+
+	encoded, err := cookieHandler.Encode(cookieName, response)
+	if err != nil {
+		log.Println("Failed to encode cookie:", err)
+		return
+	}
+	cookie := &http.Cookie{
+		Name:     cookieName,
+		Value:    encoded,
+		Path:     "/",
+		HttpOnly: true,
+	}
+	http.SetCookie(w, cookie)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(UserResponse{
