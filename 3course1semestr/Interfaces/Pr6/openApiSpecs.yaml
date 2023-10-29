@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Computer Game Store API
+  description: API for managing computer game store inventory and orders
+  version: 1.0.0
+
+paths:
+  /games:
+    get:
+      summary: Retrieve all games
+      operationId: getAllGames
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+    post:
+      summary: Add a new game
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Game'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /games/{id}:
+    get:
+      summary: Retrieve a specific game by ID
+      operationId: getGameById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the game
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /games/{id}/purchase:
+    post:
+      summary: Purchase a game
+      operationId: purchaseGame
+      parameters:
+        - name: id
+          in: path
+          description: ID of the game
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+
+components:
+  schemas:
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        price:
+          type: number
+    PurchaseRequest:
+      type: object
+      properties:
+        customerName:
+          type: string
+        paymentMethod:
+          type: string
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+        game:
+          $ref: '#/components/schemas/Game'
+        customerName:
+          type: string
+        paymentMethod:
+          type: string
