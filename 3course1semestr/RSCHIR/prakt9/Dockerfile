@@ -4,9 +4,13 @@ WORKDIR /app
 
 
 COPY . .
+
+RUN mkdir logs
+
+RUN touch logs/application.log
+
 RUN go mod init test
 RUN go clean -modcache
-RUN go get go.mongodb.org/mongo-driver@latest
 RUN go mod tidy
 
 

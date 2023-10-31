@@ -8,7 +8,6 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-    "github.com/spf13/viper"
     "github.com/gorilla/mux"
     "go.mongodb.org/mongo-driver/mongo"
     "go.mongodb.org/mongo-driver/mongo/gridfs"
@@ -16,33 +15,47 @@ import (
 )
 
 var (
+    logger *log.Logger
 	mongoURI string
+    logFilePath  string
     dbClient   *mongo.Client
     fs         *gridfs.Bucket
     collection *mongo.Collection
 )
 
 func main() {
-	godotenv.Load()
-	mongoURI = os.Getenv("MONGODB_URI")
-	fmt.Println(mongoURI)
 
-    loadConfig()
+    err := godotenv.Load("local.env")
+	if err != nil {
+		log.Fatalf("Some error occured. Err: %s", err)
+	}
+
+	mongoURI = os.Getenv("MONGO_URI")
+    logFilePath = os.Getenv("LOG_FILE_PATH")
+
+    logFile, err := os.OpenFile(logFilePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatalf("Failed to open log file: %s", err)
+	}
+	defer logFile.Close()
+
+	logger = log.New(io.MultiWriter(os.Stdout, logFile), "", log.LstdFlags)
+
     connectDB()
     initGridFS()
 
     router := mux.NewRouter()
     router.HandleFunc("/api/upload", UploadFile)
-    err := http.ListenAndServe(":8080", router)
-    if err != nil {
-        fmt.Println(err)
-    }
-}
+    http.ListenAndServe(":8080", router)
 
-func loadConfig() {
-    viper.SetConfigFile(".env")
-    viper.ReadInConfig()
-    viper.AutomaticEnv()
+    port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+    
+    logger.Printf("Server listening on port %s", port)
+	logger.Fatal(http.ListenAndServe(":"+port, router))
+    
 }
 
 func connectDB() {
@@ -50,7 +63,7 @@ func connectDB() {
     clientOptions := options.Client().ApplyURI(mongoURI)
     client, err := mongo.Connect(nil, clientOptions)
     if err != nil {
-        log.Fatal(err)
+        logger.Fatal(err)
     }
 
     dbClient = client
@@ -61,7 +74,7 @@ func initGridFS() {
     db := dbClient.Database("files_db")
     fsTemp, err := gridfs.NewBucket(db)
     if err != nil {
-        log.Fatal(err)
+        logger.Fatal(err)
     }
 
 	fs = fsTemp
@@ -72,7 +85,7 @@ func UploadFile(response http.ResponseWriter, request *http.Request) {
 
     file, handler, err := request.FormFile("file")
     if err != nil {
-        fmt.Println(err)
+        logger.Println(err)
         return
     }
     defer file.Close()
@@ -81,14 +94,14 @@ func UploadFile(response http.ResponseWriter, request *http.Request) {
 
     uploadStream, err := fs.OpenUploadStream(name)
     if err != nil {
-        fmt.Println(err)
+        logger.Println(err)
         return
     }
     defer uploadStream.Close()
 
     _, err = io.Copy(uploadStream, file)
     if err != nil {
-        fmt.Println(err)
+        logger.Println(err)
         return
     }
 }
