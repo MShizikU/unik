@@ -1,7 +1,7 @@
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 
-const packageDefinition = protoLoader.loadSync('../auth.proto');
+const packageDefinition = protoLoader.loadSync('auth.proto');
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 const greetings = protoDescriptor.greetings;
 

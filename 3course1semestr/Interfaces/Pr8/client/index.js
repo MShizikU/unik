@@ -1,9 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const client = require('./client');
-
+const exphbs = require('express-handlebars');
+const path = require("path");
 const app = express();
+app.engine('handlebars', exphbs.engine());
 app.use(bodyParser.json());
+app.set('views', path.join(__dirname, '../views'));
+app.set('view engine', 'handlebars');
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
 // Register User
 app.post('/register', (req, res) => {

@@ -11,7 +11,7 @@ paths:
       operationId: getAllGames
       responses:
         '200':
-          description: Successful response
+          description: Successful responseD
           content:
             application/json:
               schema:
