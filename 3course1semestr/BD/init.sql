@@ -1,22 +1,18 @@
  CREATE DATABASE IF NOT EXISTS carsharing;
  USE carsharing;
- 
  CREATE TABLE IF NOT EXISTS users(
     snpassport BIGINT PRIMARY KEY,
     full_name VARCHAR(256),
     date_of_birth DATE NOT NULL,
     id_level INT NOT NULL
 );
-
 CREATE TABLE IF NOT EXISTS user_level(
     id_level INT AUTO_INCREMENT PRIMARY KEY, 
     level_name VARCHAR(50), 
     level_discription VARCHAR(256), 
     count_users INTEGER NOT NULL
 );
-
 ALTER TABLE users ADD FOREIGN KEY (id_level) REFERENCES user_level(id_level);
-
 CREATE TABLE IF NOT EXISTS vehicle_group(
     id_group INT AUTO_INCREMENT PRIMARY KEY, 
     group_name VARCHAR(50), 
@@ -86,7 +82,6 @@ CREATE TABLE IF NOT EXISTS rents(
     vin VARCHAR(17) NOT NULL, 
     ending_point VARCHAR(23)
 );
-
 ALTER TABLE rents ADD FOREIGN KEY (snpassport) REFERENCES users(snpassport);
 ALTER TABLE rents ADD FOREIGN KEY (vin) REFERENCES vehicles(vin);
 ALTER TABLE vahicles ADD FOREIGN KEY (id_vehicle_work_model) REFERENCES vehicle_work_model(id_vehicle_work_model);
