@@ -74,7 +74,7 @@ BEGIN
     DECLARE duration INT;
     SET duration = TIMESTAMPDIFF(SECOND, start_time, end_time);
     RETURN duration;
-END;
+END//
 
 
 
