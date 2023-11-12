@@ -9,13 +9,9 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Server {
-    // пул потоков
     private static final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(20);
-    //таски для отправки сообщений клиентам
     private static final Queue<Callable<Integer>> mailingTasks = new ConcurrentLinkedQueue<>();
-    // нужно тк методы clear и size у буфера не синхронизированы
     private static final AtomicInteger numberOfMessagesInBuffer = new AtomicInteger(0);
-    //буфер сообщений
     private static final StringBuffer globalMessageStringBuffer = new StringBuffer();
 
     public static void main(String[] args) throws IOException {
@@ -47,16 +43,13 @@ public class Server {
     }
 
     public static void makeMailing() {
-        // синхронизации по буферу
         synchronized (globalMessageStringBuffer) {
             scheduledExecutorService.schedule(() -> {
                 try {
-                    //вызов тасок для отправки сообщений клиентам
                     scheduledExecutorService.invokeAll(mailingTasks);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    //очистка буфера не зависимо от успешности отправки сообщений
                     globalMessageStringBuffer.setLength(0);
                     Server.numberOfMessagesInBuffer.getAndSet(0);
                 }

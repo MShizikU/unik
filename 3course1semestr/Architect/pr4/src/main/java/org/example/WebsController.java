@@ -13,10 +13,8 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class WebsController {
-
-    private final AtomicInteger userId = new AtomicInteger(0);
 
     @GetMapping("/")
     @ResponseBody
