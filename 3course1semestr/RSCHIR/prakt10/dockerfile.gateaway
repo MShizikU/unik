@@ -1,0 +1,33 @@
+FROM golang:latest
+
+WORKDIR /usr/local/go/src/grpcgateaway/server
+
+ADD ./conf/local.env .
+ADD ./api/user.proto .
+ADD ./api/message.proto .
+ADD ./app/main.go .
+
+RUN mkdir logs
+
+RUN touch logs/application.log
+
+RUN go mod init test
+
+RUN apt-get update && apt-get install -y protobuf-compiler
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+RUN protoc --go_out=. --go-grpc_out=. message.proto
+RUN protoc --go_out=. --go-grpc_out=. user.proto
+
+#RUN pwd && sleep 10
+#RUN ls -l pb && sleep 10
+#RUN ls -l pb/message && sleep 10
+#RUN cat pb/message/message_grpc.pb.go && sleep 20
+
+RUN go mod tidy
+
+RUN go build -o gateaway .
+
+CMD ["./gateaway"]
+
+EXPOSE 8081

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package message;
+
+option go_package = "pb/message";
+
+service MessageService {
+    rpc ReverseMessage(ReverseMessageRequest) returns (ReverseMessageResponse) {}
+}
+
+message ReverseMessageRequest {
+    string Message = 1;
+}
+
+message ReverseMessageResponse {
+    string ReversedMessage = 1;
+}
