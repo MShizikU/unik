@@ -7,6 +7,7 @@ import mirea.ru.carsharing.service.PermissionService;
 import mirea.ru.carsharing.utilities.ExecutionResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class PermissionController {
         this.permissionService = permissionService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ExecutionResult<Permission>> createPermission(@RequestBody Permission permission) {
         ExecutionResult<Permission> result = permissionService.createPermission(permission);

@@ -4,7 +4,10 @@ import mirea.ru.carsharing.model.Permission;
 import mirea.ru.carsharing.model.UserLevel;
 import mirea.ru.carsharing.model.VehicleGroup;
 import mirea.ru.carsharing.repos.PermissionRepo;
+import mirea.ru.carsharing.repos.UserLevelRepo;
+import mirea.ru.carsharing.repos.VehicleGroupRepo;
 import mirea.ru.carsharing.utilities.ExecutionResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,21 +15,30 @@ import java.util.Optional;
 
 @Service
 public class PermissionService {
-    private final PermissionRepo permissionRepository;
 
-    public PermissionService(PermissionRepo permissionRepository) {
-        this.permissionRepository = permissionRepository;
-    }
+    @Autowired
+    private  PermissionRepo permissionRepository;
 
-    public ExecutionResult<Permission> createPermission(Permission permission) {
-        boolean exists = permissionRepository.existsByIdUserLevelAndIdVehicleGroup(
-                permission.getUserLevel().getIdLevel(), permission.getVehicleGroup().getIdGroup());
+    @Autowired
+    private UserLevelRepo userLevelRepository;
 
-        if (exists) {
-            return ExecutionResult.error("Permission with the same parameters already exists.");
+    @Autowired
+    private VehicleGroupRepo vehicleGroupRepository;
+
+    public ExecutionResult<Permission> createPermission(Permission newPermission) {
+        UserLevel userLevel = userLevelRepository.findById(newPermission.getUserLevel().getIdLevel()).orElse(null);
+        if (userLevel == null) {
+            return ExecutionResult.error("User level not found");
+        }
+        VehicleGroup vehicleGroup = vehicleGroupRepository.findById(newPermission.getVehicleGroup().getIdGroup()).orElse(null);
+        if (vehicleGroup == null) {
+            return ExecutionResult.error("Vehicle group not found");
         }
 
-        Permission createdPermission = permissionRepository.save(permission);
+        newPermission.setUserLevel(userLevel);
+        newPermission.setVehicleGroup(vehicleGroup);
+
+        Permission createdPermission = permissionRepository.save(newPermission);
         return ExecutionResult.success(createdPermission);
     }
 
