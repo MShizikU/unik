@@ -32,7 +32,7 @@ public class RentController {
     public ResponseEntity<ExecutionResult<Rent>> updateRent(@PathVariable Integer rentId, @RequestBody Rent rent) {
         ExecutionResult<Rent> result = rentService.updateRent(rentId, rent);
         if (result.getErrorMessage() != null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().body(result);
         }
 
         return ResponseEntity.ok(result);

@@ -26,8 +26,6 @@ public class UserController {
     @PostMapping
     public ResponseEntity<ExecutionResult<User>> createUser(@RequestBody User user) {
         ExecutionResult<User> result = userService.createUser(user);
-        UserLevel userLevel = userLevelService.getUserLevelById(user.getUserLevel().getIdLevel()).getResult();
-        user.setUserLevel(userLevel);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 

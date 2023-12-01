@@ -27,6 +27,16 @@ public class VehicleModelController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ExecutionResult<VehicleModel>> updateVehicleModel(@PathVariable Integer id, @RequestBody VehicleModel vehicleModel){
+        ExecutionResult<VehicleModel> result = vehicleModelService.updateVehicleModel(id, vehicleModel);
+        if (result.getErrorMessage() != null) {
+            return ResponseEntity.badRequest().body(result);
+        } else {
+            return ResponseEntity.ok(result);
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ExecutionResult<VehicleModel>> getVehicleModelById(@PathVariable Integer id) {
         ExecutionResult<VehicleModel> result = vehicleModelService.getVehicleModelById(id);

@@ -21,8 +21,35 @@ public class VehicleModelService {
         if (existingModel.isPresent()) {
             return ExecutionResult.error("Vehicle model with the same params already exists");
         }
-        VehicleModel savedModel = vehicleModelRepository.save(vehicleModel);
-        return ExecutionResult.success(savedModel);
+        try{
+            VehicleModel savedModel = vehicleModelRepository.save(vehicleModel);
+            return ExecutionResult.success(savedModel);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to create Vehicle Model");
+        }
+    }
+
+    public ExecutionResult<VehicleModel> updateVehicleModel(Integer id, VehicleModel vehicleModel){
+        Optional<VehicleModel> existingModel = vehicleModelRepository.findById(id);
+        if (existingModel.isEmpty()){
+            return ExecutionResult.error("Vehicle model with this id doesn't exist");
+        }
+        try{
+            VehicleModel model = existingModel.get();
+            if (vehicleModel.getModelName() != null){
+                model.setModelName(vehicleModel.getModelName());
+            }
+
+            if (vehicleModel.getCYear() != null){
+                model.setCYear(vehicleModel.getCYear());
+            }
+            vehicleModelRepository.save(model);
+            return ExecutionResult.success(model);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to update vehicle model: " + ex.getMessage());
+        }
     }
 
     public ExecutionResult<VehicleModel> getVehicleModelById(Integer id) {

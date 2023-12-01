@@ -24,9 +24,13 @@ public class VehicleGroupService {
         if (existingGroup.isPresent()) {
             return ExecutionResult.error("A vehicle group with the same name already exists.");
         }
-
-        VehicleGroup createdGroup = vehicleGroupRepository.save(vehicleGroup);
-        return ExecutionResult.success(createdGroup);
+        try{
+            VehicleGroup createdGroup = vehicleGroupRepository.save(vehicleGroup);
+            return ExecutionResult.success(createdGroup);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to create vehicle group: " + ex.getMessage());
+        }
     }
 
     public ExecutionResult<VehicleGroup> updateVehicleGroup(Integer id, VehicleGroup updatedGroup) {
@@ -34,21 +38,25 @@ public class VehicleGroupService {
         if (existingGroup.isEmpty()) {
             return ExecutionResult.error("Vehicle group not found.");
         }
+        try {
+            VehicleGroup groupToUpdate = existingGroup.get();
 
-        VehicleGroup groupToUpdate = existingGroup.get();
+            if (updatedGroup.getGroupName() != null) {
+                groupToUpdate.setGroupName(updatedGroup.getGroupName());
+            }
+            if (updatedGroup.getGroupDescription() != null) {
+                groupToUpdate.setGroupDescription(updatedGroup.getGroupDescription());
+            }
+            if (updatedGroup.getCountVehicles() != null) {
+                groupToUpdate.setCountVehicles(updatedGroup.getCountVehicles());
+            }
 
-        if (updatedGroup.getGroupName() != null) {
-            groupToUpdate.setGroupName(updatedGroup.getGroupName());
+            VehicleGroup updatedGroupEntity = vehicleGroupRepository.save(groupToUpdate);
+            return ExecutionResult.success(updatedGroupEntity);
         }
-        if (updatedGroup.getGroupDescription() != null) {
-            groupToUpdate.setGroupDescription(updatedGroup.getGroupDescription());
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to update Vehicle Group: " + ex.getMessage());
         }
-        if (updatedGroup.getCountVehicles() != null) {
-            groupToUpdate.setCountVehicles(updatedGroup.getCountVehicles());
-        }
-
-        VehicleGroup updatedGroupEntity = vehicleGroupRepository.save(groupToUpdate);
-        return ExecutionResult.success(updatedGroupEntity);
     }
 
     public ExecutionResult<Void> deleteVehicleGroup(Integer id) {

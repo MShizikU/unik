@@ -27,9 +27,9 @@ public class VehicleGroupController {
     public ResponseEntity<ExecutionResult<VehicleGroup>> createVehicleGroup(@RequestBody VehicleGroup vehicleGroup) {
         ExecutionResult<VehicleGroup> result = vehicleGroupService.createVehicleGroup(vehicleGroup);
         if (result.getErrorMessage() != null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+            return ResponseEntity.badRequest().body(result);
         } else {
-            return ResponseEntity.status(HttpStatus.CREATED).body(result);
+            return ResponseEntity.ok(result);
         }
     }
 
@@ -38,7 +38,7 @@ public class VehicleGroupController {
             @PathVariable("id") Integer id, @RequestBody VehicleGroup vehicleGroup) {
         ExecutionResult<VehicleGroup> result = vehicleGroupService.updateVehicleGroup(id, vehicleGroup);
         if (result.getErrorMessage() != null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+            return ResponseEntity.badRequest().body(result);
         } else {
             return ResponseEntity.ok(result);
         }

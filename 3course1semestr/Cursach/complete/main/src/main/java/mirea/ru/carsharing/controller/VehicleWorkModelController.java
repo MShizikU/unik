@@ -28,6 +28,15 @@ public class VehicleWorkModelController {
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ExecutionResult<VehicleWorkModel>> updateVehicleWorkModel(@PathVariable Integer id, @RequestBody VehicleWorkModel updatedModel) {
+        ExecutionResult<VehicleWorkModel> result = vehicleWorkModelService.updateVehicleWorkModel(id, updatedModel);
+        if (result.getErrorMessage() != null) {
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ExecutionResult<VehicleWorkModel>> getVehicleWorkModelById(@PathVariable Integer id) {
         ExecutionResult<VehicleWorkModel> executionResult = vehicleWorkModelService.getVehicleWorkModelById(id);
@@ -42,18 +51,6 @@ public class VehicleWorkModelController {
     public ResponseEntity<ExecutionResult<List<VehicleWorkModel>>> getAllVehicleWorkModels() {
         ExecutionResult<List<VehicleWorkModel>> executionResult = vehicleWorkModelService.getAllVehicleWorkModels();
         return ResponseEntity.ok(executionResult);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<ExecutionResult<VehicleWorkModel>> updateVehicleWorkModel(
-            @PathVariable Integer id,
-            @RequestBody VehicleWorkModel updatedModel) {
-        ExecutionResult<VehicleWorkModel> executionResult = vehicleWorkModelService.updateVehicleWorkModel(id, updatedModel);
-        if (executionResult.getErrorMessage() != null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(executionResult);
-        } else {
-            return ResponseEntity.ok(executionResult);
-        }
     }
 
     @DeleteMapping("/{id}")

@@ -19,32 +19,40 @@ public class UserService {
     }
 
     public ExecutionResult<User> createUser(User user) {
-
-        User createdUser = userRepository.save(user);
-        return ExecutionResult.success(createdUser);
+        try{
+            User createdUser = userRepository.save(user);
+            return ExecutionResult.success(createdUser);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("User not created: " + ex.getMessage());
+        }
     }
 
     public ExecutionResult<User> updateUser(Long snpassport, User updatedUser) {
         User existingUser = userRepository.findById(snpassport).orElse(null);
+        try{
+            if (existingUser != null) {
+                if (updatedUser.getFullName() != null) {
+                    existingUser.setFullName(updatedUser.getFullName());
+                }
+                if (updatedUser.getUsername() != null) {
+                    existingUser.setUsername(updatedUser.getUsername());
+                }
+                if (updatedUser.getDateOfBirth() != null) {
+                    existingUser.setDateOfBirth(updatedUser.getDateOfBirth());
+                }
+                if (updatedUser.getUserLevel() != null) {
+                    existingUser.setUserLevel(updatedUser.getUserLevel());
+                }
 
-        if (existingUser != null) {
-            if (updatedUser.getFullName() != null) {
-                existingUser.setFullName(updatedUser.getFullName());
+                User updatedUserResult = userRepository.save(existingUser);
+                return ExecutionResult.success(updatedUserResult);
+            } else {
+                return ExecutionResult.error("User not found.");
             }
-            if (updatedUser.getUsername() != null) {
-                existingUser.setUsername(updatedUser.getUsername());
-            }
-            if (updatedUser.getDateOfBirth() != null) {
-                existingUser.setDateOfBirth(updatedUser.getDateOfBirth());
-            }
-            if (updatedUser.getUserLevel() != null) {
-                existingUser.setUserLevel(updatedUser.getUserLevel());
-            }
-
-            User updatedUserResult = userRepository.save(existingUser);
-            return ExecutionResult.success(updatedUserResult);
-        } else {
-            return ExecutionResult.error("User not found.");
+        }
+        catch(Exception exception){
+            return ExecutionResult.error("Failed to update user");
         }
     }
 
@@ -54,7 +62,6 @@ public class UserService {
 
     public ExecutionResult<User> getUserBySnpassport(Long snpassport) {
         User user = userRepository.findById(snpassport).orElse(null);
-
         if (user != null) {
             return ExecutionResult.success(user);
         } else {
@@ -68,7 +75,6 @@ public class UserService {
 
     public ExecutionResult<User> getUserByUsername(String username) {
         User user = userRepository.findByUsername(username).orElse(null);
-
         if (user != null) {
             return ExecutionResult.success(user);
         } else {

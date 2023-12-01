@@ -21,8 +21,13 @@ public class VehicleService {
         if (existingVehicle.isPresent()) {
             return ExecutionResult.error("Vehicle with the same VIN already exists");
         }
-        Vehicle savedVehicle = vehicleRepository.save(vehicle);
-        return ExecutionResult.success(savedVehicle);
+        try {
+            Vehicle savedVehicle = vehicleRepository.save(vehicle);
+            return ExecutionResult.success(savedVehicle);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to create Vehicle: " + ex.getMessage());
+        }
     }
 
     public ExecutionResult<Vehicle> updateVehicle(String vin, Vehicle updatedVehicle) {
@@ -30,18 +35,23 @@ public class VehicleService {
         if (existingVehicle.isEmpty()) {
             return ExecutionResult.error("Vehicle not found");
         }
-        Vehicle vehicleToUpdate = existingVehicle.get();
-        if (updatedVehicle.getColor() != null) {
-            vehicleToUpdate.setColor(updatedVehicle.getColor());
+        try {
+            Vehicle vehicleToUpdate = existingVehicle.get();
+            if (updatedVehicle.getColor() != null) {
+                vehicleToUpdate.setColor(updatedVehicle.getColor());
+            }
+            if (updatedVehicle.getState() != null) {
+                vehicleToUpdate.setState(updatedVehicle.getState());
+            }
+            if (updatedVehicle.getPlace() != null) {
+                vehicleToUpdate.setPlace(updatedVehicle.getPlace());
+            }
+            Vehicle updated = vehicleRepository.save(vehicleToUpdate);
+            return ExecutionResult.success(updated);
         }
-        if (updatedVehicle.getState() != null) {
-            vehicleToUpdate.setState(updatedVehicle.getState());
+        catch (Exception exception){
+            return ExecutionResult.error("Unable to update Vehicle: " + exception.getMessage());
         }
-        if (updatedVehicle.getPlace() != null) {
-            vehicleToUpdate.setPlace(updatedVehicle.getPlace());
-        }
-        Vehicle updated = vehicleRepository.save(vehicleToUpdate);
-        return ExecutionResult.success(updated);
     }
 
     public ExecutionResult<Void> deleteVehicle(String vin) {

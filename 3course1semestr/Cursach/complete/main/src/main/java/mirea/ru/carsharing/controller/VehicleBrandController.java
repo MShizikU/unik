@@ -31,7 +31,7 @@ public class VehicleBrandController {
     public ResponseEntity<Object> updateVehicleBrand(@PathVariable Integer id, @RequestBody VehicleBrand updatedBrand) {
         ExecutionResult<VehicleBrand> executionResult = vehicleBrandService.updateVehicleBrand(id, updatedBrand);
         if (executionResult.getErrorMessage() != null) {
-            return ResponseEntity.badRequest().body(executionResult.getErrorMessage());
+            return ResponseEntity.badRequest().body(executionResult);
         }
         return ResponseEntity.ok(executionResult.getResult());
     }

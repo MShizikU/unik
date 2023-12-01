@@ -29,18 +29,13 @@ public class VehicleNameService {
         if (existingVehicleName.isPresent()) {
             return ExecutionResult.error("VehicleName with the same params already exists");
         }
-        Integer vehicleModelId = vehicleName.getVehicleModel().getIdModel();
-        VehicleModel vehicleModel = vehicleModelRepository.findById(vehicleModelId).orElse(null);
-        if (vehicleModel == null)
-            return ExecutionResult.error("VehicleModel not found");
-
-        Integer vehicleBrandId = vehicleName.getVehicleBrand().getIdBrand();
-        VehicleBrand vehicleBrand = vehicleBrandRepository.findById(vehicleBrandId).orElse(null);
-        if (vehicleBrand == null)
-            return ExecutionResult.error("VehicleBrand not found");
-
-        VehicleName savedVehicleName = vehicleNameRepository.save(vehicleName);
-        return ExecutionResult.success(savedVehicleName);
+        try{
+            VehicleName savedVehicleName = vehicleNameRepository.save(vehicleName);
+            return ExecutionResult.success(savedVehicleName);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to create vehicle name: "  +ex.getMessage());
+        }
     }
 
     public ExecutionResult<VehicleName> updateVehicleName(Integer id, VehicleName updatedName) {
@@ -48,26 +43,19 @@ public class VehicleNameService {
         if (existingName == null) {
             return ExecutionResult.error("VehicleName not found");
         }
-        if (updatedName.getVehicleModel() != null) {
-            Integer vehicleModelId = updatedName.getVehicleModel().getIdModel();
-            VehicleModel vehicleModel = vehicleModelRepository.findById(vehicleModelId).orElse(null);
-            if (vehicleModel == null) {
-                return ExecutionResult.error("VehicleModel not found");
+        try{
+            if (updatedName.getVehicleModel() != null) {
+                existingName.setVehicleModel(updatedName.getVehicleModel());
             }
-            existingName.setVehicleModel(vehicleModel);
-        }
-
-        if (updatedName.getVehicleBrand() != null) {
-            Integer vehicleBrandId = updatedName.getVehicleBrand().getIdBrand();
-            VehicleBrand vehicleBrand = vehicleBrandRepository.findById(vehicleBrandId).orElse(null);
-            if (vehicleBrand == null) {
-                return ExecutionResult.error("VehicleBrand not found");
+            if (updatedName.getVehicleBrand() != null) {
+                existingName.setVehicleBrand(updatedName.getVehicleBrand());
             }
-            existingName.setVehicleBrand(vehicleBrand);
+            VehicleName updatedVehicleName = vehicleNameRepository.save(existingName);
+            return ExecutionResult.success(updatedVehicleName);
         }
-
-        VehicleName updatedVehicleName = vehicleNameRepository.save(existingName);
-        return ExecutionResult.success(updatedVehicleName);
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to update vehicle name:" + ex.getMessage());
+        }
     }
 
     public ExecutionResult<Void> delete(Integer id) {

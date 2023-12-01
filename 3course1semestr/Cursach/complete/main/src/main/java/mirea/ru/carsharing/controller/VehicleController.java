@@ -30,7 +30,7 @@ public class VehicleController {
     public ResponseEntity<ExecutionResult<Vehicle>> updateVehicle(@PathVariable String vin, @RequestBody Vehicle updatedVehicle) {
         ExecutionResult<Vehicle> result = vehicleService.updateVehicle(vin, updatedVehicle);
         if (result.getErrorMessage() != null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().body(result);
         }
         return ResponseEntity.ok(result);
     }

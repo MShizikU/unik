@@ -35,22 +35,26 @@ public class VehicleWorkModelService {
             return ExecutionResult.error("VehicleWorkModel not found");
         }
 
-        // Update only the provided parameters
-        if (updatedModel.getPricePerHour() != null) {
-            existingModel.setPricePerHour(updatedModel.getPricePerHour());
-        }
-        if (updatedModel.getVehicleName() != null) {
-            existingModel.setVehicleName(updatedModel.getVehicleName());
-        }
-        if (updatedModel.getModelPhotoName() != null) {
-            existingModel.setModelPhotoName(updatedModel.getModelPhotoName());
-        }
-        if (updatedModel.getVehicleGroup() != null) {
-            existingModel.setVehicleGroup(updatedModel.getVehicleGroup());
-        }
+        try{
+            if (updatedModel.getPricePerHour() != null) {
+                existingModel.setPricePerHour(updatedModel.getPricePerHour());
+            }
+            if (updatedModel.getVehicleName() != null) {
+                existingModel.setVehicleName(updatedModel.getVehicleName());
+            }
+            if (updatedModel.getModelPhotoName() != null) {
+                existingModel.setModelPhotoName(updatedModel.getModelPhotoName());
+            }
+            if (updatedModel.getVehicleGroup() != null) {
+                existingModel.setVehicleGroup(updatedModel.getVehicleGroup());
+            }
 
-        VehicleWorkModel updatedVehicleWorkModel = vehicleWorkModelRepository.save(existingModel);
-        return ExecutionResult.success(updatedVehicleWorkModel);
+            VehicleWorkModel updatedVehicleWorkModel = vehicleWorkModelRepository.save(existingModel);
+            return ExecutionResult.success(updatedVehicleWorkModel);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to update vehicle work model: " + ex.getMessage());
+        }
     }
 
     public ExecutionResult<VehicleWorkModel> getVehicleWorkModelById(Integer id) {

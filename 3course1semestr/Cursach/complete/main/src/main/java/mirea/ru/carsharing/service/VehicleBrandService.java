@@ -21,8 +21,13 @@ public class VehicleBrandService {
         if (existingBrand.isPresent()) {
             return ExecutionResult.error("Vehicle brand with the same name and division already exists.");
         }
-        VehicleBrand savedBrand = vehicleBrandRepository.save(vehicleBrand);
-        return ExecutionResult.success(savedBrand);
+        try{
+            VehicleBrand savedBrand = vehicleBrandRepository.save(vehicleBrand);
+            return ExecutionResult.success(savedBrand);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to create vehicle brand");
+        }
     }
 
     public ExecutionResult<VehicleBrand> updateVehicleBrand(Integer id, VehicleBrand updatedBrand) {
@@ -30,16 +35,20 @@ public class VehicleBrandService {
         if (existingBrand == null) {
             return ExecutionResult.error("VehicleBrand not found");
         }
+        try{
+            if (updatedBrand.getBrandName() != null) {
+                existingBrand.setBrandName(updatedBrand.getBrandName());
+            }
+            if (updatedBrand.getDivision() != null) {
+                existingBrand.setDivision(updatedBrand.getDivision());
+            }
 
-        if (updatedBrand.getBrandName() != null) {
-            existingBrand.setBrandName(updatedBrand.getBrandName());
+            VehicleBrand updatedVehicleBrand = vehicleBrandRepository.save(existingBrand);
+            return ExecutionResult.success(updatedVehicleBrand);
         }
-        if (updatedBrand.getDivision() != null) {
-            existingBrand.setDivision(updatedBrand.getDivision());
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to update VehicleBrand: " + ex.getMessage());
         }
-
-        VehicleBrand updatedVehicleBrand = vehicleBrandRepository.save(existingBrand);
-        return ExecutionResult.success(updatedVehicleBrand);
     }
 
     public ExecutionResult<VehicleBrand> getVehicleBrandById(Integer id) {
