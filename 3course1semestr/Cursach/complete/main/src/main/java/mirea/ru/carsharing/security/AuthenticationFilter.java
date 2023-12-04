@@ -5,6 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,9 @@ import java.util.logging.Logger;
 
 public class AuthenticationFilter extends OncePerRequestFilter {
 
+    @Value("${AUTH_SERVICE_PORT}")
+    private String authServicePort;
+
     private static final Logger logger = Logger.getLogger(AuthenticationFilter.class.getName());
 
     private final ObjectMapper objectMapper;
@@ -32,7 +36,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            String sourceUrl = "http://authservice:8081/api/auth";
+            String sourceUrl = "http://authservice:" + authServicePort + "/api/auth";
 
             logger.info("Authorization token: " + request.getHeader("Authorization"));
 

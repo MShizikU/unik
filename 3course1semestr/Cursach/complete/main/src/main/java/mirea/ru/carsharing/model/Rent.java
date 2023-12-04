@@ -17,9 +17,8 @@ public class Rent {
     @Column(name = "id_rent")
     private Integer idRent;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "snpassport")
-    private User user;
+    private Long snpassport;
 
     @Column(name = "duration")
     private Integer duration;
@@ -33,9 +32,8 @@ public class Rent {
     @Column(name = "end_time")
     private LocalDateTime endTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vin")
-    private Vehicle vehicle;
+    private String vin;
 
     @Column(name = "ending_point")
     private String endingPoint;

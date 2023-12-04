@@ -17,12 +17,10 @@ public class VehicleName {
     @Column(name = "id_vehicle_name")
     private Integer idVehicleName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_model")
-    private VehicleModel vehicleModel;
+    private Integer idModel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_brand")
-    private VehicleBrand vehicleBrand;
+    private Integer idBrand;
 
 }

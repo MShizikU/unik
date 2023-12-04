@@ -10,6 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
-    List<User> findByUserLevel(UserLevel userLevel);
+    List<User> findByIdLevel(Integer idLevel);
+
     Optional<User> findByUsername(String username);
+
+    Optional<User> findBySnpassport(Long snpassport);
 }

@@ -8,6 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface VehicleNameRepo extends JpaRepository<VehicleName, Integer> {
-    Optional<VehicleName> findByVehicleModelAndVehicleBrand(VehicleModel vehicleModel, VehicleBrand vehicleBrand);
-    Optional<VehicleName> findByIdVehicleModelAndIdVehicleBrand(Integer idVehicleModel, Integer idVehicleBrand);
+    Optional<VehicleName> findByIdModelAndIdBrand(Integer idModel, Integer idBrand);
 }

@@ -25,8 +25,6 @@ public class User {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_level", referencedColumnName = "id_level")
-    private UserLevel userLevel;
-
+    private Integer idLevel;
 }

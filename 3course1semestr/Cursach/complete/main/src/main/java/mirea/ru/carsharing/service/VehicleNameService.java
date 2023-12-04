@@ -25,7 +25,7 @@ public class VehicleNameService {
     private VehicleBrandRepo vehicleBrandRepository;
 
     public ExecutionResult<VehicleName> create(VehicleName vehicleName) {
-        Optional<VehicleName> existingVehicleName = vehicleNameRepository.findByVehicleModelAndVehicleBrand(vehicleName.getVehicleModel(), vehicleName.getVehicleBrand());
+        Optional<VehicleName> existingVehicleName = vehicleNameRepository.findByIdModelAndIdBrand(vehicleName.getIdModel(), vehicleName.getIdBrand());
         if (existingVehicleName.isPresent()) {
             return ExecutionResult.error("VehicleName with the same params already exists");
         }
@@ -44,11 +44,11 @@ public class VehicleNameService {
             return ExecutionResult.error("VehicleName not found");
         }
         try{
-            if (updatedName.getVehicleModel() != null) {
-                existingName.setVehicleModel(updatedName.getVehicleModel());
+            if (updatedName.getIdModel() != null) {
+                existingName.setIdModel(updatedName.getIdModel());
             }
-            if (updatedName.getVehicleBrand() != null) {
-                existingName.setVehicleBrand(updatedName.getVehicleBrand());
+            if (updatedName.getIdBrand() != null) {
+                existingName.setIdBrand(updatedName.getIdBrand());
             }
             VehicleName updatedVehicleName = vehicleNameRepository.save(existingName);
             return ExecutionResult.success(updatedVehicleName);

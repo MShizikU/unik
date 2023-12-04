@@ -26,25 +26,25 @@ public class PermissionService {
     private VehicleGroupRepo vehicleGroupRepository;
 
     public ExecutionResult<Permission> createPermission(Permission newPermission) {
-        UserLevel userLevel = userLevelRepository.findById(newPermission.getUserLevel().getIdLevel()).orElse(null);
+        UserLevel userLevel = userLevelRepository.findById(newPermission.getIdLevel()).orElse(null);
         if (userLevel == null) {
             return ExecutionResult.error("User level not found");
         }
-        VehicleGroup vehicleGroup = vehicleGroupRepository.findById(newPermission.getVehicleGroup().getIdGroup()).orElse(null);
+        VehicleGroup vehicleGroup = vehicleGroupRepository.findById(newPermission.getIdGroup()).orElse(null);
         if (vehicleGroup == null) {
             return ExecutionResult.error("Vehicle group not found");
         }
 
-        newPermission.setUserLevel(userLevel);
-        newPermission.setVehicleGroup(vehicleGroup);
+        newPermission.setIdLevel(userLevel.getIdLevel());
+        newPermission.setIdGroup(vehicleGroup.getIdGroup());
 
         Permission createdPermission = permissionRepository.save(newPermission);
         return ExecutionResult.success(createdPermission);
     }
 
-    public ExecutionResult<Permission> deletePermission(UserLevel userLevel, VehicleGroup vehicleGroup) {
-        Optional<Permission> optionalPermission = permissionRepository.findByIdUserLevelAndIdVehicleGroup(
-                userLevel.getIdLevel(), vehicleGroup.getIdGroup());
+    public ExecutionResult<Permission> deletePermission(Integer idUserLevel, Integer idVehicleGroup) {
+        Optional<Permission> optionalPermission = permissionRepository.findByIdLevelAndIdGroup(
+                idUserLevel, idVehicleGroup);
 
         if (optionalPermission.isEmpty()) {
             return ExecutionResult.error("Permission not found.");
@@ -56,7 +56,7 @@ public class PermissionService {
     }
 
     public ExecutionResult<Permission> getPermission(UserLevel userLevel, VehicleGroup vehicleGroup) {
-        Optional<Permission> optionalPermission = permissionRepository.findByIdUserLevelAndIdVehicleGroup(
+        Optional<Permission> optionalPermission = permissionRepository.findByIdLevelAndIdGroup(
                 userLevel.getIdLevel(), vehicleGroup.getIdGroup());
 
         if (optionalPermission.isEmpty()) {
@@ -68,7 +68,7 @@ public class PermissionService {
     }
 
     public ExecutionResult<Permission> getPermission(Integer userLevel, Integer vehicleGroup) {
-        Optional<Permission> optionalPermission = permissionRepository.findByIdUserLevelAndIdVehicleGroup(
+        Optional<Permission> optionalPermission = permissionRepository.findByIdLevelAndIdGroup(
                 userLevel, vehicleGroup);
 
         if (optionalPermission.isEmpty()) {

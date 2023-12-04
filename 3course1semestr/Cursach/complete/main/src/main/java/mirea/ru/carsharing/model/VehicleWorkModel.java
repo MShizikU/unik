@@ -20,9 +20,8 @@ public class VehicleWorkModel {
     @Column(name = "price_per_hour")
     private Float pricePerHour;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_vehicle_name")
-    private VehicleName vehicleName;
+    private Integer idVehicleName;
 
     @Column(name = "model_photo_name")
     private String modelPhotoName;

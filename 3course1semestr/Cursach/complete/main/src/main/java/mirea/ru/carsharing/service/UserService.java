@@ -1,21 +1,118 @@
 package mirea.ru.carsharing.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import mirea.ru.carsharing.DTO.LoginDTO;
+import mirea.ru.carsharing.DTO.LoginResultDTO;
+import mirea.ru.carsharing.DTO.RegistrationDTO;
+import mirea.ru.carsharing.DTO.RegistrationRedirectDTO;
 import mirea.ru.carsharing.model.User;
 import mirea.ru.carsharing.model.UserLevel;
 import mirea.ru.carsharing.repos.UserRepo;
 import mirea.ru.carsharing.utilities.ExecutionResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
-    private final UserRepo userRepository;
+
+    @Value("${AUTH_SERVICE_PORT}")
+    private String authServicePort;
 
     @Autowired
-    public UserService(UserRepo userRepository) {
-        this.userRepository = userRepository;
+    private UserRepo userRepository;
+
+
+    public ExecutionResult<LoginResultDTO> performLogin(LoginDTO loginDTO){
+
+        String sourceUrl = "http://authservice:" + authServicePort + "/api/auth";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<?> requestEntity = new HttpEntity<>(loginDTO, headers);
+
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+                sourceUrl,
+                HttpMethod.POST,
+                requestEntity,
+                String.class
+        );
+
+        String response = responseEntity.getBody();
+        if (responseEntity.getStatusCode() != HttpStatus.OK)
+            return ExecutionResult.error(response);
+
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            LoginResultDTO result = objectMapper.readValue(response, LoginResultDTO.class);
+            return ExecutionResult.success(result);
+        } catch (JsonProcessingException e) {
+            return ExecutionResult.error("Unable to read data from login: " + e.getMessage());
+        }
+    }
+
+    public ExecutionResult<String> performRegistration(RegistrationDTO registrationDTO){
+        Optional<User> existedUser = userRepository.findById(registrationDTO.getSnpassport());
+        if (existedUser.isEmpty())
+            existedUser = userRepository.findByUsername(registrationDTO.getUsername());
+
+        if (existedUser.isPresent())
+            return ExecutionResult.error("User already exist");
+
+        User userForCreation = new User(
+                registrationDTO.getSnpassport(),
+                registrationDTO.getFullName(),
+                registrationDTO.getUsername(),
+                registrationDTO.getDateOfBirth(),
+                registrationDTO.getIdLevel()
+        );
+
+        try {
+            userRepository.save(userForCreation);
+        }
+        catch (Exception ex){
+            return ExecutionResult.error("Unable to create user: " + ex.getMessage());
+        }
+
+        RegistrationRedirectDTO redirectDTO = new RegistrationRedirectDTO(
+                registrationDTO.getUsername(),
+                registrationDTO.getPassword(),
+                registrationDTO.getRole()
+        );
+
+        String sourceUrl = "http://authservice:" + authServicePort + "/api/createuser";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<?> requestEntity = new HttpEntity<>(redirectDTO, headers);
+
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+                sourceUrl,
+                HttpMethod.POST,
+                requestEntity,
+                String.class
+        );
+
+        String response = responseEntity.getBody();
+        if (responseEntity.getStatusCode() != HttpStatus.OK){
+            userRepository.delete(userForCreation);
+            return ExecutionResult.error(response);
+        }
+
+        return ExecutionResult.success(response);
     }
 
     public ExecutionResult<User> createUser(User user) {
@@ -41,8 +138,8 @@ public class UserService {
                 if (updatedUser.getDateOfBirth() != null) {
                     existingUser.setDateOfBirth(updatedUser.getDateOfBirth());
                 }
-                if (updatedUser.getUserLevel() != null) {
-                    existingUser.setUserLevel(updatedUser.getUserLevel());
+                if (updatedUser.getIdLevel() != null) {
+                    existingUser.setIdLevel(updatedUser.getIdLevel());
                 }
 
                 User updatedUserResult = userRepository.save(existingUser);
@@ -69,8 +166,8 @@ public class UserService {
         }
     }
 
-    public List<User> getUsersByUserLevel(UserLevel userLevel) {
-        return userRepository.findByUserLevel(userLevel);
+    public List<User> getUsersByUserLevel(Integer idLevel) {
+        return userRepository.findByIdLevel(idLevel);
     }
 
     public ExecutionResult<User> getUserByUsername(String username) {

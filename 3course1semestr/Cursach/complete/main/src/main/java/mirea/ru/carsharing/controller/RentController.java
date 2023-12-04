@@ -18,6 +18,26 @@ public class RentController {
         this.rentService = rentService;
     }
 
+    @PostMapping("/start")
+    public ResponseEntity<ExecutionResult<Rent>> startRent(@RequestBody Rent rent){
+        ExecutionResult<Rent> result = rentService.startRent(rent);
+        if (result.getErrorMessage() != null) {
+            return ResponseEntity.badRequest().body(result);
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/close/{id}")
+    public ResponseEntity<ExecutionResult<Rent>> startRent(@PathVariable Integer id, @RequestBody Rent rent){
+        ExecutionResult<Rent> result = rentService.closeRent(id, rent);
+        if (result.getErrorMessage() != null) {
+            return ResponseEntity.badRequest().body(result);
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
     @PostMapping
     public ResponseEntity<ExecutionResult<Rent>> createRent(@RequestBody Rent rent) {
         ExecutionResult<Rent> result = rentService.createRent(rent);
@@ -64,7 +84,7 @@ public class RentController {
     }
 
     @GetMapping(params = "snpassport")
-    public ResponseEntity<ExecutionResult<Rent>> getRentBySnpassport(@RequestParam String snpassport) {
+    public ResponseEntity<ExecutionResult<Rent>> getRentBySnpassport(@RequestParam Long snpassport) {
         ExecutionResult<Rent> result = rentService.getRentBySnpassport(snpassport);
         if (result.getErrorMessage() != null) {
             return ResponseEntity.notFound().build();

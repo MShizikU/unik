@@ -19,9 +19,8 @@ public class VehicleWorkModelService {
 
     public ExecutionResult<VehicleWorkModel> createVehicleWorkModel(VehicleWorkModel vehicleWorkModel) {
         Float pricePerHour = vehicleWorkModel.getPricePerHour();
-        VehicleName vehicleName = vehicleWorkModel.getVehicleName();
 
-        if (vehicleWorkModelRepository.existsByPricePerHourAndVehicleName(pricePerHour, vehicleName)) {
+        if (vehicleWorkModelRepository.existsByPricePerHourAndIdVehicleName(pricePerHour, vehicleWorkModel.getIdVehicleName())) {
             return ExecutionResult.error("Vehicle work model with the same price per hour and vehicle name already exists.");
         }
 
@@ -39,8 +38,8 @@ public class VehicleWorkModelService {
             if (updatedModel.getPricePerHour() != null) {
                 existingModel.setPricePerHour(updatedModel.getPricePerHour());
             }
-            if (updatedModel.getVehicleName() != null) {
-                existingModel.setVehicleName(updatedModel.getVehicleName());
+            if (updatedModel.getIdVehicleName() != null) {
+                existingModel.setIdVehicleName(updatedModel.getIdVehicleName());
             }
             if (updatedModel.getModelPhotoName() != null) {
                 existingModel.setModelPhotoName(updatedModel.getModelPhotoName());

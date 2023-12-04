@@ -25,6 +25,7 @@ CREATE TABLE vehicle_group(
 );
 
 CREATE TABLE permissions(
+    id_permission INT AUTO_INCREMENT,
     id_group INT,
     id_level INT,
     PRIMARY KEY (id_group, id_level)

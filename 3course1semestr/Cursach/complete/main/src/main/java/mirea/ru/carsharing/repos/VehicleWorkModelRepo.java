@@ -5,5 +5,5 @@ import mirea.ru.carsharing.model.VehicleWorkModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VehicleWorkModelRepo extends JpaRepository<VehicleWorkModel, Integer> {
-    boolean existsByPricePerHourAndVehicleName(Float pricePerHour, VehicleName vehicleName);
+    boolean existsByPricePerHourAndIdVehicleName(Float pricePerHour, Integer idVehicleName);
 }

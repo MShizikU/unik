@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,5 +20,5 @@ public class VehicleModel {
     private String modelName;
 
     @Column(name = "c_year")
-    private String cYear;
+    private String cyear;
 }

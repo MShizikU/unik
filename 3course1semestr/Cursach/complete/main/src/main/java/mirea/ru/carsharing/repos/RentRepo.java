@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RentRepo extends JpaRepository<Rent, Integer> {
 
-    Rent findByUserSnpassport(String snpassport);
+    Rent findBySnpassport(Long snpassport);
 
-    Rent findByVehicleVin(String vin);
+    Rent findByVin(String vin);
 }

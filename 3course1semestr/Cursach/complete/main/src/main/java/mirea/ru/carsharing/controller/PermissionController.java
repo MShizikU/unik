@@ -21,7 +21,7 @@ public class PermissionController {
         this.permissionService = permissionService;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+
     @PostMapping
     public ResponseEntity<ExecutionResult<Permission>> createPermission(@RequestBody Permission permission) {
         ExecutionResult<Permission> result = permissionService.createPermission(permission);
@@ -32,7 +32,7 @@ public class PermissionController {
     @DeleteMapping
     public ResponseEntity<ExecutionResult<Permission>> deletePermission(@RequestBody Permission permission) {
         ExecutionResult<Permission> result = permissionService.deletePermission(
-                permission.getUserLevel(), permission.getVehicleGroup());
+                permission.getIdLevel(), permission.getIdGroup());
 
         HttpStatus status = result.getErrorMessage() == null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(result, status);

@@ -17,7 +17,7 @@ public class VehicleModelService {
     }
 
     public ExecutionResult<VehicleModel> createVehicleModel(VehicleModel vehicleModel) {
-        Optional<VehicleModel> existingModel = vehicleModelRepository.findByModelNameAndCYear(vehicleModel.getModelName(), vehicleModel.getCYear());
+        Optional<VehicleModel> existingModel = vehicleModelRepository.findVehicleModelByCyearAndModelName(vehicleModel.getModelName(), vehicleModel.getCyear());
         if (existingModel.isPresent()) {
             return ExecutionResult.error("Vehicle model with the same params already exists");
         }
@@ -41,8 +41,8 @@ public class VehicleModelService {
                 model.setModelName(vehicleModel.getModelName());
             }
 
-            if (vehicleModel.getCYear() != null){
-                model.setCYear(vehicleModel.getCYear());
+            if (vehicleModel.getCyear() != null){
+                model.setCyear(vehicleModel.getCyear());
             }
             vehicleModelRepository.save(model);
             return ExecutionResult.success(model);

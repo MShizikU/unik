@@ -13,11 +13,14 @@ import java.time.LocalDate;
 @Table(name = "permissions")
 public class Permission {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_group", referencedColumnName = "id_group")
-    private UserLevel userLevel;
+    @Id
+    private Long id_permission;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_level", referencedColumnName = "id_level")
-    private VehicleGroup vehicleGroup;
+    private Integer idLevel;
+
+    @JoinColumn(name = "id_group", referencedColumnName = "id_group")
+    private Integer idGroup;
+
+
 }

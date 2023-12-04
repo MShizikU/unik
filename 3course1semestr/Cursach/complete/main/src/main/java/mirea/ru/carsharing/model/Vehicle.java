@@ -25,7 +25,6 @@ public class Vehicle {
     @Column(name = "place")
     private String place;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_vehicle_work_model")
-    private VehicleWorkModel vehicleWorkModel;
+    private Integer idVehicleWorkModel;
 }

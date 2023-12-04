@@ -1,4 +1,5 @@
 package mirea.ru.carsharing.controller;
+import mirea.ru.carsharing.DTO.LoginDTO;
 import mirea.ru.carsharing.model.User;
 import mirea.ru.carsharing.model.UserLevel;
 import mirea.ru.carsharing.service.UserLevelService;
@@ -29,6 +30,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<ExecutionResult<String>> performLogin(@RequestBody LoginDTO loginDTO){
+
+    }
+
     @PutMapping("/{snpassport}")
     public ResponseEntity<ExecutionResult<User>> updateUser(@PathVariable Long snpassport, @RequestBody User updatedUser) {
         ExecutionResult<User> result = userService.updateUser(snpassport, updatedUser);
@@ -53,9 +59,9 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/userLevel/{userLevel}")
-    public ResponseEntity<List<User>> getUsersByUserLevel(@PathVariable UserLevel userLevel) {
-        List<User> users = userService.getUsersByUserLevel(userLevel);
+    @GetMapping("/userLevel/{idLevel}")
+    public ResponseEntity<List<User>> getUsersByUserLevel(@PathVariable Integer idLevel) {
+        List<User> users = userService.getUsersByUserLevel(idLevel);
         return ResponseEntity.ok(users);
     }
 

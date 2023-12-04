@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import ru.mirea.auth.dto.LoginRequest;
 import ru.mirea.auth.dto.LoginResult;
 import ru.mirea.auth.jwt.JwtHelper;
 import ru.mirea.auth.model.CustomUserDetailsService;
@@ -39,32 +40,31 @@ public class AuthController {
     }
 
     @PostMapping(path = "login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public LoginResult login(@RequestParam String username, @RequestParam String password) {
-        LOGGER.info("Received login request for username: " + username + ", password: " + password);
+    public LoginResult login(@RequestBody LoginRequest loginRequest) {
+        LOGGER.info("Received login request for username: " + loginRequest.getUsername() + ", password: " + loginRequest.getPassword());
         UserDetails userDetails;
 
         try {
-            userDetails = userDetailsService.loadUserByUsername(username);
+            userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
         } catch (UsernameNotFoundException e) {
-            LOGGER.warning("User not found: " + username);
+            LOGGER.warning("User not found: " + loginRequest.getUsername());
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
         }
         LOGGER.info("Expected password: " + passwordEncoder.encode(userDetails.getPassword()));
-        //if (passwordEncoder.matches(password, userDetails.getPassword()))
-        if (password.equals(userDetails.getPassword())){
-            LOGGER.info("User authenticated successfully: " + username);
+        if (loginRequest.getPassword().equals(userDetails.getPassword())){
+            LOGGER.info("User authenticated successfully: " + loginRequest.getUsername());
             Map<String, String> claims = new HashMap<>();
-            claims.put("username", username);
-            claims.put("password", password);
+            claims.put("username", loginRequest.getUsername());
+            claims.put("password", loginRequest.getPassword());
             String authorities = userDetails.getAuthorities().stream()
                     .map(Object::toString)
                     .collect(Collectors.joining(","));
             claims.put("authorities", authorities);
             claims.put("userId", "1");
-            String jwt = jwtHelper.createJwtForClaims(username, claims);
+            String jwt = jwtHelper.createJwtForClaims(loginRequest.getUsername(), claims);
             return new LoginResult(jwt);
         }
-        LOGGER.warning("User authentication failed: " + username);
+        LOGGER.warning("User authentication failed: " + loginRequest.getUsername());
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not authenticated");
     }
 

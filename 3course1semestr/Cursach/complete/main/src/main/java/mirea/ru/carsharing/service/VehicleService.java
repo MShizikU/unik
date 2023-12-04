@@ -22,6 +22,7 @@ public class VehicleService {
             return ExecutionResult.error("Vehicle with the same VIN already exists");
         }
         try {
+            vehicle.setState("available");
             Vehicle savedVehicle = vehicleRepository.save(vehicle);
             return ExecutionResult.success(savedVehicle);
         }
