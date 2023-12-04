@@ -1,7 +1,8 @@
 package mirea.ru.carsharing.controller;
 import mirea.ru.carsharing.DTO.LoginDTO;
+import mirea.ru.carsharing.DTO.LoginResultDTO;
+import mirea.ru.carsharing.DTO.RegistrationDTO;
 import mirea.ru.carsharing.model.User;
-import mirea.ru.carsharing.model.UserLevel;
 import mirea.ru.carsharing.service.UserLevelService;
 import mirea.ru.carsharing.service.UserService;
 import mirea.ru.carsharing.utilities.ExecutionResult;
@@ -31,8 +32,21 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ExecutionResult<String>> performLogin(@RequestBody LoginDTO loginDTO){
+    public ResponseEntity<ExecutionResult<LoginResultDTO>> performLogin(@RequestBody LoginDTO loginDTO){
+        ExecutionResult<LoginResultDTO> result = userService.performLogin(loginDTO);
+        if (result.getErrorMessage() != null) {
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
+    }
 
+    @PostMapping("/registration")
+    public ResponseEntity<ExecutionResult<String>> performregistration(@RequestBody RegistrationDTO regDTO){
+        ExecutionResult<String> result = userService.performRegistration(regDTO);
+        if (result.getErrorMessage() != null) {
+            return ResponseEntity.badRequest().body(result);
+        }
+        return ResponseEntity.ok(result);
     }
 
     @PutMapping("/{snpassport}")

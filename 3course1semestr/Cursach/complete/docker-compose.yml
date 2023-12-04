@@ -1,4 +1,10 @@
 version: '3'
+x-variables:
+  auth_inner_port: 8081
+  auth_outer_port: 8082
+  app_inner_port: 8080
+  app_outer_port: 8081
+
 services:
   db:
     image: postgres
@@ -22,22 +28,28 @@ services:
       context: ./auth
       dockerfile: AuthDockerfile
     ports:
-      - "8082:8081"
+      - "${x-variables.auth_outer_port}:${x-variables.auth_inner_port}"
     depends_on:
       - redis
     links:
       - "redis"
+    environment:
+      - SERVER_PORT=auth_inner_port
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+      - APP_SECURITY_SERVICE_TOKEN=${SERVICE_TOKEN:-defaulttokenvalue}
+      - APP_JWT_SECRET=${APP_JWT_SECRET:-dZhxh0--Kq3XZD3UmV5LbXuZP3sUoJQMX03tFYJ1mws}
 
   app:
     build:
       context: ./main
       dockerfile: Dockerfile
     ports:
-      - "8081:8080"
+      - "${x-variables.app_outer_port}:${x-variables.app_inner_port}"
     depends_on:
       - db
     environment:
-      - SERVER_PORT=8080
+      - SERVER_PORT=app_inner_port
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/carsharing
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
