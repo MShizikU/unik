@@ -26,12 +26,7 @@ public class SecurityConfig{
                 .authorizeRequests()
                 .requestMatchers("/registration").permitAll()
                 .requestMatchers("/login").permitAll()
-                .requestMatchers("/api/**").authenticated()
-                .and()
-                .formLogin(form -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/api/start")
-                .permitAll());
+                .requestMatchers("/api/**").authenticated();
 
         return http.build();
     }
