@@ -6,12 +6,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,45 +24,55 @@ import java.util.logging.Logger;
 
 // ...
 
-public class AuthenticationFilter extends OncePerRequestFilter {
-
-    @Value("${AUTH_SERVICE_PORT}")
-    private String authServicePort;
+@Order(Ordered.HIGHEST_PRECEDENCE)
+public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private static final Logger logger = Logger.getLogger(AuthenticationFilter.class.getName());
 
     private final ObjectMapper objectMapper;
 
     public AuthenticationFilter(ObjectMapper objectMapper) {
+        super(new AntPathRequestMatcher("/api/**"));
         this.objectMapper = objectMapper;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        try {
-            String sourceUrl = "http://authservice:" + authServicePort + "/api/auth";
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("Attempting authentication...");
+        String token = request.getHeader("Authorization");
+        if (token != null) {
+            logger.info("Extracting token from request header...");
+            if (token.startsWith("Bearer ")) {
+                token = token.substring(7);
+            }
 
-            logger.info("Authorization token: " + request.getHeader("Authorization"));
+            logger.info("Validating token...");
+            try {
+                String sourceUrl = "http://authservice:8081/api/auth";
+                HttpHeaders sourceHeaders = new HttpHeaders();
+                sourceHeaders.set("Authorization", token);
+                HttpEntity<?> requestEntity = new HttpEntity<>(sourceHeaders);
+                ResponseEntity<String> sourceResponseEntity = new RestTemplate().exchange(sourceUrl, HttpMethod.GET, requestEntity, String.class);
+                Authentication authentication = AuthentificationConverter.convert(sourceResponseEntity.getBody());
 
-            HttpMethod sourceMethod = HttpMethod.GET;
-            HttpHeaders sourceHeaders = new HttpHeaders();
-            sourceHeaders.set("Authorization", request.getHeader("Authorization"));
-            HttpEntity<?> sourceRequestEntity = new HttpEntity<>(sourceHeaders);
-            ResponseEntity<String> sourceResponseEntity = new RestTemplate().exchange(sourceUrl, sourceMethod, sourceRequestEntity, String.class);
+                logger.info("Auth: " + authentication);
+                logger.info("Set auth");
+                SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            logger.info("Parse auth");
-            logger.info("Response body: " + sourceResponseEntity.getBody());
-            Authentication authentication = AuthentificationConverter.convert(sourceResponseEntity.getBody());
-
-            logger.info("Auth: " + authentication);
-            logger.info("Set auth");
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            logger.info("Do filter");
-            filterChain.doFilter(request, response);
-        } catch (Exception e) {
-            logger.info("Error processing authentication request");
-            throw e;
+                logger.info("Authentication successful");
+                return authentication;
+            } catch (Exception e) {
+                logger.info(request.toString());
+                logger.info("Error processing authentication request: " + e.getMessage());
+            }
         }
+
+        return null;
+    }
+
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        SecurityContextHolder.getContext().setAuthentication(authResult);
+        chain.doFilter(request, response);
     }
 }

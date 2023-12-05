@@ -8,6 +8,7 @@ import mirea.ru.carsharing.DTO.RegistrationDTO;
 import mirea.ru.carsharing.DTO.RegistrationRedirectDTO;
 import mirea.ru.carsharing.model.User;
 import mirea.ru.carsharing.model.UserLevel;
+import mirea.ru.carsharing.repos.UserLevelRepo;
 import mirea.ru.carsharing.repos.UserRepo;
 import mirea.ru.carsharing.utilities.ExecutionResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,13 @@ public class UserService {
     @Autowired
     private UserRepo userRepository;
 
+    @Autowired
+    private UserLevelRepo userLevelRepo;
+
 
     public ExecutionResult<LoginResultDTO> performLogin(LoginDTO loginDTO){
 
-        String sourceUrl = "http://authservice:" + authServicePort + "/api/auth";
+        String sourceUrl = "http://authservice:" + authServicePort + "/login";
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -77,6 +81,10 @@ public class UserService {
                 registrationDTO.getIdLevel()
         );
 
+        Optional<UserLevel> userLevel = userLevelRepo.findById(userForCreation.getIdLevel());
+        if (userLevel.isEmpty())
+            return ExecutionResult.error("Unable to find user level");
+
         try {
             userRepository.save(userForCreation);
         }
@@ -90,7 +98,7 @@ public class UserService {
                 registrationDTO.getRole()
         );
 
-        String sourceUrl = "http://authservice:" + authServicePort + "/api/createuser";
+        String sourceUrl = "http://authservice:" + authServicePort + "/createuser";
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -116,6 +124,17 @@ public class UserService {
     }
 
     public ExecutionResult<User> createUser(User user) {
+        Optional<User> existedUser = userRepository.findById(user.getSnpassport());
+        if (existedUser.isEmpty())
+            existedUser = userRepository.findByUsername(user.getUsername());
+
+        if (existedUser.isPresent())
+            return ExecutionResult.error("User already exist");
+
+        Optional<UserLevel> userLevel = userLevelRepo.findById(user.getIdLevel());
+        if (userLevel.isEmpty())
+            return ExecutionResult.error("Unable to find user level");
+
         try{
             User createdUser = userRepository.save(user);
             return ExecutionResult.success(createdUser);
@@ -139,6 +158,11 @@ public class UserService {
                     existingUser.setDateOfBirth(updatedUser.getDateOfBirth());
                 }
                 if (updatedUser.getIdLevel() != null) {
+
+                    Optional<UserLevel> userLevel = userLevelRepo.findById(updatedUser.getIdLevel());
+                    if (userLevel.isEmpty())
+                        return ExecutionResult.error("Unable to find user level");
+
                     existingUser.setIdLevel(updatedUser.getIdLevel());
                 }
 
@@ -166,8 +190,11 @@ public class UserService {
         }
     }
 
-    public List<User> getUsersByUserLevel(Integer idLevel) {
-        return userRepository.findByIdLevel(idLevel);
+    public ExecutionResult<List<User>> getUsersByUserLevel(Integer idLevel) {
+        return ExecutionResult.success(userRepository.findByIdLevel(idLevel));
+    }
+    public ExecutionResult<List<User>> getAllUsers(){
+        return ExecutionResult.success(userRepository.findAll());
     }
 
     public ExecutionResult<User> getUserByUsername(String username) {
@@ -178,4 +205,5 @@ public class UserService {
             return ExecutionResult.error("User not found.");
         }
     }
+
 }

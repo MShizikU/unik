@@ -31,24 +31,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<ExecutionResult<LoginResultDTO>> performLogin(@RequestBody LoginDTO loginDTO){
-        ExecutionResult<LoginResultDTO> result = userService.performLogin(loginDTO);
-        if (result.getErrorMessage() != null) {
-            return ResponseEntity.badRequest().body(result);
-        }
-        return ResponseEntity.ok(result);
-    }
-
-    @PostMapping("/registration")
-    public ResponseEntity<ExecutionResult<String>> performregistration(@RequestBody RegistrationDTO regDTO){
-        ExecutionResult<String> result = userService.performRegistration(regDTO);
-        if (result.getErrorMessage() != null) {
-            return ResponseEntity.badRequest().body(result);
-        }
-        return ResponseEntity.ok(result);
-    }
-
     @PutMapping("/{snpassport}")
     public ResponseEntity<ExecutionResult<User>> updateUser(@PathVariable Long snpassport, @RequestBody User updatedUser) {
         ExecutionResult<User> result = userService.updateUser(snpassport, updatedUser);
@@ -74,8 +56,8 @@ public class UserController {
     }
 
     @GetMapping("/userLevel/{idLevel}")
-    public ResponseEntity<List<User>> getUsersByUserLevel(@PathVariable Integer idLevel) {
-        List<User> users = userService.getUsersByUserLevel(idLevel);
+    public ResponseEntity<ExecutionResult<List<User>>> getUsersByUserLevel(@PathVariable Integer idLevel) {
+        ExecutionResult<List<User>> users = userService.getUsersByUserLevel(idLevel);
         return ResponseEntity.ok(users);
     }
 

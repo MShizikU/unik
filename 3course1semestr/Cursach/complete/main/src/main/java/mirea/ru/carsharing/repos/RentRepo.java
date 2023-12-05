@@ -2,10 +2,17 @@ package mirea.ru.carsharing.repos;
 
 import mirea.ru.carsharing.model.Rent;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface RentRepo extends JpaRepository<Rent, Integer> {
 
-    Rent findBySnpassport(Long snpassport);
+    Optional<List<Rent>> findBySnpassport(Long snpassport);
 
-    Rent findByVin(String vin);
+    @Query(value = "SELECT * FROM rent WHERE snpassport = ?1 AND end_time = 'none'", nativeQuery = true)
+    Optional<Rent> findActiveRent(Long snpassport);
+
+    Optional<List<Rent>> findByVin(String vin);
 }

@@ -1,0 +1,68 @@
+.basic_card_container{
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.card {
+    margin:20px 20px 20px 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+
+}
+
+.card div{
+    text-align: center;
+    width:100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card .card_info .card_info_title{
+  margin-bottom: 10px;
+}
+
+.card .card_info .card_info_price{
+  font-size: 14px;
+}
+
+.button {
+  color: #000000;
+  cursor: pointer;
+  font-size:16px;
+  font-weight: 400;
+  line-height: 30px;
+  height:100%;
+  max-width: 160px; 
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.button:after,
+.button:before {
+  backface-visibility: hidden;
+  border: 1px solid var(--line_color);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 20%;
+}
+
+.button:hover:after,
+.button:hover:before {
+  backface-visibility: hidden;
+  border-color: var(--line_color);
+  transition: width 350ms ease-in-out;
+  width: 30%;
+}

@@ -1,0 +1,31 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+@font-face {
+    font-family: "EuclidFont";
+    src: url("fonts/EuclidFont.ttf");
+  }
+
+@font-face {
+  font-family: "DisketMonoReg";
+  src: url("fonts/DisketMonoReg.ttf");
+}
+
+.header{
+  
+	flex: 0 0 auto;
+}
+
+.content {
+	flex: 1 0 auto;
+}
+.footer {
+	flex: 0 0 auto;
+}
+a {
+    text-decoration: none;
+}

@@ -35,6 +35,11 @@ public class PermissionService {
             return ExecutionResult.error("Vehicle group not found");
         }
 
+        Optional<Permission> existPermission = permissionRepository.findByIdLevelAndIdGroup(newPermission.getIdLevel(), newPermission.getIdGroup());
+
+        if (existPermission.isPresent())
+            return ExecutionResult.error("Permission with the same ids combination already exist");
+
         newPermission.setIdLevel(userLevel.getIdLevel());
         newPermission.setIdGroup(vehicleGroup.getIdGroup());
 
@@ -77,6 +82,14 @@ public class PermissionService {
 
         Permission permission = optionalPermission.get();
         return ExecutionResult.success(permission);
+    }
+
+    public ExecutionResult<List<Permission>> getPermissionByUserLevel(Integer idLevel) {
+        return ExecutionResult.success(permissionRepository.findPermissionsByIdLevel(idLevel));
+    }
+
+    public ExecutionResult<List<Permission>> getPermissionByVehicleGroup(Integer idGroup){
+        return ExecutionResult.success(permissionRepository.findPermissionsByIdGroup(idGroup));
     }
 
     public ExecutionResult<List<Permission>> getAllPermissions() {

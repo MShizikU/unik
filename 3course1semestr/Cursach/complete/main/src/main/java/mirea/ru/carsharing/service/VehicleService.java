@@ -1,8 +1,11 @@
 package mirea.ru.carsharing.service;
 
 import mirea.ru.carsharing.model.Vehicle;
+import mirea.ru.carsharing.model.VehicleWorkModel;
 import mirea.ru.carsharing.repos.VehicleRepo;
+import mirea.ru.carsharing.repos.VehicleWorkModelRepo;
 import mirea.ru.carsharing.utilities.ExecutionResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,17 +13,24 @@ import java.util.Optional;
 
 @Service
 public class VehicleService {
-    private final VehicleRepo vehicleRepository;
 
-    public VehicleService(VehicleRepo vehicleRepository) {
-        this.vehicleRepository = vehicleRepository;
-    }
+    @Autowired
+    private VehicleRepo vehicleRepository;
+
+    @Autowired
+    private VehicleWorkModelRepo vehicleWorkModelRepo;
+
 
     public ExecutionResult<Vehicle> createVehicle(Vehicle vehicle) {
         Optional<Vehicle> existingVehicle = vehicleRepository.findByVin(vehicle.getVin());
         if (existingVehicle.isPresent()) {
             return ExecutionResult.error("Vehicle with the same VIN already exists");
         }
+
+        Optional<VehicleWorkModel> vehicleWorkModel = vehicleWorkModelRepo.findById(vehicle.getIdVehicleWorkModel());
+        if (vehicleWorkModel.isEmpty())
+            return ExecutionResult.error("Unable to find vehicle work model with such id");
+
         try {
             vehicle.setState("available");
             Vehicle savedVehicle = vehicleRepository.save(vehicle);
@@ -46,6 +56,13 @@ public class VehicleService {
             }
             if (updatedVehicle.getPlace() != null) {
                 vehicleToUpdate.setPlace(updatedVehicle.getPlace());
+            }
+
+            if (updatedVehicle.getIdVehicleWorkModel() != null){
+                Optional<VehicleWorkModel> vehicleWorkModel = vehicleWorkModelRepo.findById(updatedVehicle.getIdVehicleWorkModel());
+                if (vehicleWorkModel.isEmpty())
+                    return ExecutionResult.error("Unable to find vehicle work model with such id");
+                vehicleToUpdate.setIdVehicleWorkModel(updatedVehicle.getIdVehicleWorkModel());
             }
             Vehicle updated = vehicleRepository.save(vehicleToUpdate);
             return ExecutionResult.success(updated);
@@ -75,5 +92,9 @@ public class VehicleService {
     public ExecutionResult<List<Vehicle>> getAllVehicles() {
         List<Vehicle> vehicles = vehicleRepository.findAll();
         return ExecutionResult.success(vehicles);
+    }
+
+    public ExecutionResult<List<Vehicle>> getVehicleByWorkModel(Integer idWorkModel){
+        return ExecutionResult.success(vehicleRepository.findVehiclesByIdVehicleWorkModel(idWorkModel));
     }
 }

@@ -1,0 +1,127 @@
+.content{
+    margin-top:0px;
+}
+
+#user_info_block{
+    width:100%;
+    padding:20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom:50px;
+}
+
+#basic_info_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#basic_info_block img{
+    width:200px;
+    height: 200px;
+}
+
+#current_info_block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.user_info_portion{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.user_info_portion .info_title{
+    align-self: flex-start;
+    color:#b8b7b7;
+}
+
+.user_info_portion .info_value{
+    width: 100%;
+    align-self: center;
+    text-align: center;
+    border: 2px #b8b7b7 solid;
+    border-radius: 3px;
+    padding:10px;
+}
+
+#last_purchases_block{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#last_purchases_block h3{
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    align-self: center;
+    text-align: center;
+    color:black;
+    margin-bottom:25px;
+}
+
+.rent_table {
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .responsive-table li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+
+  .responsive-table .table-header {
+    border: 2px solid #b8b7b7;
+    border-radius: 3px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .responsive-table .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  
+  .col{
+    flex-basis: 20%;
+  }
+
+  @media all and (max-width: 767px) {
+    .table-header {
+      display: none;
+    }
+    li {
+      display: block;
+    }
+    .col {
+      
+      flex-basis: 100%;
+      
+    }
+    .col {
+      display: flex;
+      padding: 10px 0;
+      
+    }
+    .col::before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+      }
+  }

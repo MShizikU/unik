@@ -18,17 +18,17 @@ public class User implements Serializable {
     }
 
     public void setRoles(String roles) {
-        this.roles = roles;
+        this.role = roles;
     }
 
     String username;
     String password;
-    String roles;
+    String role;
 
-    public User(String username, String password, String roles) {
+    public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -40,12 +40,12 @@ public class User implements Serializable {
     }
 
     public String getRoles() {
-        return roles;
+        return role;
     }
 
     public Collection<GrantedAuthority> getCredRoles(){
         Collection<GrantedAuthority> creds = new ArrayList<>();
-        creds.add(new SimpleGrantedAuthority("ROLE_" + roles));
+        creds.add(new SimpleGrantedAuthority("ROLE_" + role));
         return creds;
     }
 }

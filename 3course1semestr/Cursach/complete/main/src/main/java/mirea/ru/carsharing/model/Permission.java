@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class Permission {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_permission;
 
     @JoinColumn(name = "id_level", referencedColumnName = "id_level")

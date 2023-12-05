@@ -39,7 +39,7 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping(path = "login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(path = "login")
     public LoginResult login(@RequestBody LoginRequest loginRequest) {
         LOGGER.info("Received login request for username: " + loginRequest.getUsername() + ", password: " + loginRequest.getPassword());
         UserDetails userDetails;

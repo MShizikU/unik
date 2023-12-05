@@ -8,5 +8,5 @@ import lombok.Data;
 public class RegistrationRedirectDTO {
     String username;
     String password;
-    String roles;
+    String role;
 }

@@ -1,12 +1,15 @@
 package mirea.ru.carsharing.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
@@ -16,16 +19,13 @@ public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .addFilterBefore(authenticationFilter(new ObjectMapper()), BasicAuthenticationFilter.class)
-                .authorizeHttpRequests()
+        http.csrf().disable().cors().disable()
+                .addFilterBefore(new AuthenticationFilter(new ObjectMapper()), BasicAuthenticationFilter.class)
+                .authorizeRequests()
+                .requestMatchers("/registration").permitAll()
+                .requestMatchers("/login").permitAll()
                 .anyRequest().authenticated();
 
         return http.build();
-    }
-
-    @Bean
-    public AuthenticationFilter authenticationFilter(ObjectMapper objectMapper) {
-        return new AuthenticationFilter(objectMapper);
     }
 }

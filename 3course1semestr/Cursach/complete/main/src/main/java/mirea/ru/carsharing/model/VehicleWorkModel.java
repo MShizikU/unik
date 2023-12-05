@@ -26,7 +26,6 @@ public class VehicleWorkModel {
     @Column(name = "model_photo_name")
     private String modelPhotoName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_group")
-    private VehicleGroup vehicleGroup;
+    private Integer idVehicleGroup;
 }

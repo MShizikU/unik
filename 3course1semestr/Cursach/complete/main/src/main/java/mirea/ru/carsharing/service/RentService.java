@@ -73,6 +73,9 @@ public class RentService {
         if (relatedUser.isEmpty())
             return ExecutionResult.error("User not found");
 
+        Optional<Rent> activeRent = rentRepository.findActiveRent(rent.getSnpassport());
+        if (activeRent.isPresent())
+            return ExecutionResult.error("One rent is already active");
 
         User user = relatedUser.get();
         Vehicle vehicle = relatedVehicle.get();
@@ -101,6 +104,15 @@ public class RentService {
     }
 
     public ExecutionResult<Rent> createRent(Rent rent) {
+
+        Optional<Vehicle> relatedVehicle = vehicleRepo.findByVin(rent.getVin());
+        if (relatedVehicle.isEmpty())
+            return ExecutionResult.error("Vehicle not found");
+
+        Optional<User> relatedUser = userRepo.findBySnpassport(rent.getSnpassport());
+        if (relatedUser.isEmpty())
+            return ExecutionResult.error("User not found");
+
         try {
             Rent createdRent = rentRepository.save(rent);
             return ExecutionResult.success(createdRent);
@@ -128,6 +140,19 @@ public class RentService {
                 }
                 if (rent.getEndingPoint() != null) {
                     existingRent.setEndingPoint(rent.getEndingPoint());
+                }
+                if (rent.getSnpassport() != null){
+                    Optional<User> relatedUser = userRepo.findBySnpassport(rent.getSnpassport());
+                    if (relatedUser.isEmpty())
+                        return ExecutionResult.error("User not found");
+                    existingRent.setSnpassport(rent.getSnpassport());
+                }
+
+                if (rent.getVin() != null){
+                    Optional<Vehicle> relatedVehicle = vehicleRepo.findByVin(rent.getVin());
+                    if (relatedVehicle.isEmpty())
+                        return ExecutionResult.error("Vehicle not found");
+                    existingRent.setVin(rent.getVin());
                 }
 
                 Rent updatedRent = rentRepository.save(existingRent);
@@ -161,25 +186,28 @@ public class RentService {
         return ExecutionResult.success(rent);
     }
 
-    public ExecutionResult<Rent> getRentBySnpassport(Long snpassport) {
-        Rent rent = rentRepository.findBySnpassport(snpassport);
-        if (rent == null) {
-            return ExecutionResult.error("Rent not found");
-        }
+    public ExecutionResult<List<Rent>> getRentBySnpassport(Long snpassport) {
+        Optional<List<Rent>> rent = rentRepository.findBySnpassport(snpassport);
+        return rent.map(ExecutionResult::success).orElseGet(() -> ExecutionResult.error("Rent not found"));
 
-        return ExecutionResult.success(rent);
     }
 
-    public ExecutionResult<Rent> getRentByVin(String vin) {
-        Rent rent = rentRepository.findByVin(vin);
-        if (rent == null) {
+    public ExecutionResult<List<Rent>> getRentByVin(String vin) {
+        Optional<List<Rent>> rent = rentRepository.findByVin(vin);
+        if (rent.isEmpty()) {
             return ExecutionResult.error("Rent not found");
         }
 
-        return ExecutionResult.success(rent);
+        return rent.map(ExecutionResult::success).orElseGet(() -> ExecutionResult.error("Rent not found"));
     }
 
     public ExecutionResult<List<Rent>> getAllRents(){
         return ExecutionResult.success(rentRepository.findAll());
     }
+
+    public ExecutionResult<Rent> getActiveRent(Long snpassport){
+        Optional<Rent> activeRent = rentRepository.findActiveRent(snpassport);
+        if (activeRent.isEmpty())
+            return ExecutionResult.error("Rent not found");
+        return ExecutionResult.success(rentRepository.findActiveRent(snpassport).get());}
 }

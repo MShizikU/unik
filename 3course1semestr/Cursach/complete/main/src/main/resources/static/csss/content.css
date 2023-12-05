@@ -1,0 +1,26 @@
+.content{
+    margin:100px;
+}
+:root{
+    /* color type A */
+    --line_color : #555555 ;
+    --back_color : #FFECF6  ;
+
+    /* color type B */
+    /* --line_color : #1b1919 ;
+    --back_color : #E9ECFF  ; */
+
+    /* color type C */
+    /* --line_color : #00135C ;
+    --back_color : #DEFFFA  ; */
+}
+
+
+
+
+
+
+
+
+
+

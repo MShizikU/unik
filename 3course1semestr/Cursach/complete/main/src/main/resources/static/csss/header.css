@@ -1,0 +1,233 @@
+header{
+    background-color: transparent;
+    width: 100%;
+    height : 180px;
+    position: relative;
+    display: grid;
+    grid-template-areas:
+     "company_logo company_logo main_header_bar main_header_bar user_info user_info"
+     "fast_filters fast_filters fast_filters fast_filters fast_filters fast_filters"
+    ;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+    font-family: 'Fira Sans';
+    padding:10px;
+}
+
+#company_info_div{
+    grid-area: company_logo;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;}
+
+#company_info_div h3{
+    font-size: 20px;
+}
+
+#company_info_div img{
+    margin: 0px 10px 0px 40px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+#search_bar_div{
+    grid-area: main_header_bar;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+}
+
+#search_bar_div input{
+    width:100%;
+    height:100%;
+    border: 1px solid #ccc;
+    caret-color:#777777 ;
+    border-radius: 20px;
+    padding: 0px 20px 0px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    margin:0px;
+}
+
+
+#search_bar_div input:hover{
+    border: 1px solid #777777;
+}
+
+#search_bar_div input:focus{
+    border: 1px solid #777777;
+}
+
+#user_info_div{
+    grid-area: user_info;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#user_info_div img{
+    margin: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+
+#user_info_div #login_button{
+    text-decoration:none;
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+    transition:  0.3s ease;
+}
+
+#user_info_div #login_button:hover{
+    cursor: pointer;
+    margin-right: 20px;
+    background-position: right;
+}
+
+#user_info_div #login_button:before,
+#user_info_div #login_button:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: #000;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-out;
+}
+
+#user_info_div #login_button:hover:before,
+#user_info_div #login_button:hover:after {
+  transform: scaleX(1);
+}
+
+.header_user_info_disabled{
+    display: none;
+}
+
+.header_user_info_enabled{
+    display:unset;
+}
+
+#fast_filters_bar{
+    grid-area: fast_filters;
+    overflow: hidden;
+    height:fit-content;
+    width: 100%;
+}
+
+#fast_filters_bar ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin:20px;
+}
+
+#fast_filters_bar ul li{
+    display: inline-block;
+    padding: 10px;
+}
+
+#fast_filters_bar ul li a{
+    position: relative;
+    cursor:pointer;
+    color: black;
+    font-size: 18px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+#fast_filters_bar ul li a:hover{
+    cursor: pointer;
+    background-position: right;
+}
+
+#fast_filters_bar ul li a:before,
+#fast_filters_bar ul li a:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: #e91e63;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-out;
+}
+
+#fast_filters_bar ul li a:hover:before,
+#fast_filters_bar ul li a:hover:after {
+  transform: scaleX(1);
+}
+
+.disabled_header_block{
+    display: none;
+}
+
+.enabled_header_block{
+    display: unset;
+}
+
+#current_rent_info{
+    grid-area: main_header_bar;
+    border: 1px solid #777777;
+    border-radius: 20px;
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    margin-bottom:10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#current_rent_info #total_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#current_rent_info #timer_view{
+    font-family: 'Fira Sans';
+    font-size: 24px;
+}
+
+#current_rent_info #total_block #total_price_view{
+    font-family: 'Fira Sans';
+    font-size: 14px;
+    color:#555555;
+}
+
+#current_rent_info  #btn_block{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#current_rent_info #btn_block i{
+    margin-left:20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+
+

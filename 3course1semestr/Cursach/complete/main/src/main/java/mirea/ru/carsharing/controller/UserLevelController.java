@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/user_levels")
+@RequestMapping("api/user/levels")
 public class UserLevelController {
     private final UserLevelService userLevelService;
 

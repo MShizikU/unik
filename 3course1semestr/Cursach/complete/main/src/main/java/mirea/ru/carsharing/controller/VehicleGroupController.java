@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("api/vehicle_groups")
+@RequestMapping("api/vehicle/groups")
 public class VehicleGroupController {
 
     private final VehicleGroupService vehicleGroupService;

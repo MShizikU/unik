@@ -84,8 +84,8 @@ public class RentController {
     }
 
     @GetMapping(params = "snpassport")
-    public ResponseEntity<ExecutionResult<Rent>> getRentBySnpassport(@RequestParam Long snpassport) {
-        ExecutionResult<Rent> result = rentService.getRentBySnpassport(snpassport);
+    public ResponseEntity<ExecutionResult<List<Rent>>> getRentBySnpassport(@RequestParam Long snpassport) {
+        ExecutionResult<List<Rent>> result = rentService.getRentBySnpassport(snpassport);
         if (result.getErrorMessage() != null) {
             return ResponseEntity.notFound().build();
         }
@@ -94,8 +94,8 @@ public class RentController {
     }
 
     @GetMapping(params = "vin")
-    public ResponseEntity<ExecutionResult<Rent>> getRentByVin(@RequestParam String vin) {
-        ExecutionResult<Rent> result = rentService.getRentByVin(vin);
+    public ResponseEntity<ExecutionResult<List<Rent>>> getRentByVin(@RequestParam String vin) {
+        ExecutionResult<List<Rent>> result = rentService.getRentByVin(vin);
         if (result.getErrorMessage() != null) {
             return ResponseEntity.notFound().build();
         }

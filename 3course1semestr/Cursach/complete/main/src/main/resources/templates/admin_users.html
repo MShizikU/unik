@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <title>Admin Panel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" href="admin_panel.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/ad833e7fc4.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light p-3">
+        <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+            <a class="navbar-brand" href="#">
+                Admin Panel
+            </a>
+            <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+            <div class="mr-3 mt-1">
+                <a class="github-button" href="https://github.com/themesberg/simple-bootstrap-5-dashboard" data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star /themesberg/simple-bootstrap-5-dashboard">Star</a>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                    Hello, there
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+                </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-md-5">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin_rent">
+                                <i class="fa-solid fa-gauge"></i>
+                                <span class="ml-2">Rents</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin_users">
+                                <i class="fa-sharp fa-solid fa-user"></i>
+                                <span class="ml-2">Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin_vehicles">
+                                <i class="fa-solid fa-car"></i>
+                                <span class="ml-2">Vehicles</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin_work_models">
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span class="ml-2">Work models</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin_names">
+                                <i class="fa-solid fa-copyright"></i>
+                                <span class="ml-2">Names</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin_permissions">
+                                <i class="fa-brands fa-expeditedssl"></i>
+                                <span class="ml-2">Permission</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+                <div class = "row mb-5">
+                    <div class = "col-sm m-4">
+                        <h1>Table of users</h1>
+                        <div class="table-responsive">
+                            <table class="table" >
+                                <thead>
+                                    <tr>
+                                        <th>SNPassport</th>
+                                        <th>Full name</th>
+                                        <th>Date of birth</th>
+                                        <th>Password</th>
+                                        <th>Username</th>
+                                        <th>Role</th>
+                                        <th>ID level</th>
+                                    </tr>
+                                </thead>
+                                <tbody th:each="user: ${users}">
+                                    <tr>
+                                        <td th:text="${user.snpassport}"></td>
+                                        <td th:text="${user.fullname}"></td>
+                                        <td th:text="${user.date_of_birth}"></td>
+                                        <td th:text="${user.password}"></td>
+                                        <td th:text="${user.username}"></td>
+                                        <td th:text="${user.role}"></td>
+                                        <td th:text="${user.idLevel}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class = "row mb-5">
+                    <div class = "col-sm m-4">
+                        <h1>Change user</h1>
+                        <form>
+                            <div class="form-group">
+                                <label for="changed_user_passport">SNPassport:</label>
+                                <input class="form-control" id="changed_user_passport"  placeholder="Enter SNPassport"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="changed_full_name">Full name:</label>
+                                <input class="form-control" id="changed_full_name"  placeholder="Enter changed full name"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="changed_date_of_birth">Date of birth:</label>
+                                <input class="form-control" id="changed_date_of_birth"  placeholder="Enter changed date of birth"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="changed_password">Password:</label>
+                                <input class="form-control" id="changed_password"  placeholder="Enter changed password"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="changed_username">Username:</label>
+                                <input class="form-control" id="changed_username"  placeholder="Enter changed username"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="changed_role">Role:</label>
+                                <input class="form-control" id="changed_role"  placeholder="Enter changed role"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="changed_level_id">ID level:</label>
+                                <input class="form-control" id="changed_level_id"  placeholder="Enter changed level id"></input>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id = "change_user">CHANGE</button>
+                        </form>
+                    </div>
+                    <div class = "col-sm m-4">
+                        <h1>Delete user</h1>
+                        <form>
+                            <div class="form-group">
+                                <label for="del_user_passport">SNPassport:</label>
+                                <input class="form-control" id="del_user_passport"  placeholder="Enter SNPassport"></input>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id = "delete_user">DELETE</button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="../../scripts/admin_users_forms_handler.js"></script>
+</body>
+</html>
