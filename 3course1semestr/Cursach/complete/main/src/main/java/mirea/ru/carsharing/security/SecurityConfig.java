@@ -12,6 +12,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -24,7 +26,12 @@ public class SecurityConfig{
                 .authorizeRequests()
                 .requestMatchers("/registration").permitAll()
                 .requestMatchers("/login").permitAll()
-                .anyRequest().authenticated();
+                .requestMatchers("/api/**").authenticated()
+                .and()
+                .formLogin(form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/api/start")
+                .permitAll());
 
         return http.build();
     }

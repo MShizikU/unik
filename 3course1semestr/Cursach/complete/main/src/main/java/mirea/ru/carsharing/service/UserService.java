@@ -81,10 +81,11 @@ public class UserService {
                 registrationDTO.getIdLevel()
         );
 
+        /*
         Optional<UserLevel> userLevel = userLevelRepo.findById(userForCreation.getIdLevel());
         if (userLevel.isEmpty())
             return ExecutionResult.error("Unable to find user level");
-
+        */
         try {
             userRepository.save(userForCreation);
         }

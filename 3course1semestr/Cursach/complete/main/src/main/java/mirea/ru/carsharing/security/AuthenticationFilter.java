@@ -5,6 +5,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
+import mirea.ru.carsharing.exceptions.CustomUnathorizedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -16,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -36,8 +39,9 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
         this.objectMapper = objectMapper;
     }
 
+    @SneakyThrows
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.info("Attempting authentication...");
         String token = request.getHeader("Authorization");
         if (token != null) {
@@ -64,10 +68,11 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
             } catch (Exception e) {
                 logger.info(request.toString());
                 logger.info("Error processing authentication request: " + e.getMessage());
+                throw new CustomUnathorizedException("User unauthorized");
             }
         }
-
-        return null;
+        logger.info("Something went wrong");
+        throw new CustomUnathorizedException("User unauthorized");
     }
 
     @Override

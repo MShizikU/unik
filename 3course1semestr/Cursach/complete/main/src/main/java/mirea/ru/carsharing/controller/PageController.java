@@ -20,6 +20,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
+@RequestMapping("/api")
 public class PageController {
 
     private final UserLevelService levelService;
