@@ -25,13 +25,13 @@ public class AuthController {
 
     @GetMapping("/login")
     public ModelAndView showLoginPage() {
-        ModelAndView modelAndView = new ModelAndView("login");
+        ModelAndView modelAndView = new ModelAndView("login_page");
         return modelAndView;
     }
 
     @GetMapping("/register")
     public ModelAndView showRegistrationPage() {
-        ModelAndView modelAndView = new ModelAndView("register");
+        ModelAndView modelAndView = new ModelAndView("register_page");
         return modelAndView;
     }
 
