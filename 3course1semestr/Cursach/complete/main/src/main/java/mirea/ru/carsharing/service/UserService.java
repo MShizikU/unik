@@ -78,7 +78,7 @@ public class UserService {
                 registrationDTO.getFullName(),
                 registrationDTO.getUsername(),
                 registrationDTO.getDateOfBirth(),
-                registrationDTO.getIdLevel()
+                1
         );
 
         /*
@@ -96,7 +96,7 @@ public class UserService {
         RegistrationRedirectDTO redirectDTO = new RegistrationRedirectDTO(
                 registrationDTO.getUsername(),
                 registrationDTO.getPassword(),
-                registrationDTO.getRole()
+                "USER"
         );
 
         String sourceUrl = "http://authservice:" + authServicePort + "/createuser";

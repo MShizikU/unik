@@ -44,7 +44,7 @@ public class AuthController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/registration")
+    @PostMapping("/register")
     public ResponseEntity<ExecutionResult<String>> performRegistration(@RequestBody RegistrationDTO regDTO){
         ExecutionResult<String> result = userService.performRegistration(regDTO);
         if (result.getErrorMessage() != null) {

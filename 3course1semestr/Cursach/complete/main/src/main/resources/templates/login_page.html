@@ -13,42 +13,96 @@
           rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-        <div class="content">
-          <div class = "form_wrapper" id='reg_form_wrapper' >
-            <form th:action="@{/login}" class="user-form" id = 'user_form' method="post">
-                <div id="choser_container">
-                    <h2 class = 'form_title active'>Вход</h2>
-                    <a class = 'form_title inactive' href="register">Регистрация</a>
-                </div>
+<div class="content">
+    <div class="form_wrapper" id='reg_form_wrapper'>
+        <form th:action="@{/login}" class="user-form" id='user_form' method="post" onsubmit="return submitLoginForm()">
 
-                <!-- Скрытое поле для csrf токена -->
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <!-- Название формы -->
+            <div id="choser_container">
+                <h2 class='form_title active'>Вход</h2>
+                <a class='form_title inactive' href="register">Регистрация</a>
+            </div>
 
+            <!-- Скрытое поле для csrf токена -->
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
-                <!-- Поле для ввода имени пользователя -->
-                <label for="snpassport" class="form_label enabled_form_field">Серия номер паспорта:</label>
-                <input type="text" id="snpassport" name="snpassport" class = "enabled_form_field">
+            <!-- Поле для ввода имени пользователя -->
+            <label for="username" class="form_label enabled_form_field">Username:</label>
+            <input type="text" id="username" name="username" class="enabled_form_field">
 
-                <!-- Поле ввода пароля-->
-                <label for="user_form_password" class="form_label constant">Пароль:</label>
-                <input type="password" id="user_form_password" name="password" class="constant">
+            <!-- Поле ввода пароля-->
+            <label for="user_form_password" class="form_label constant">Пароль:</label>
+            <input type="password" id="user_form_password" name="password" class="constant">
 
-                <!-- Кнопка submit -->
-                <button class = "form_submit_button" type="submit" onclick="submitLoginForm()">Login</button>
+            <!-- Кнопка submit -->
+            <button class="form_submit_button" type="submit">Login</button>
 
-            </form>
-          </div>
-        </div>
-</body>
+        </form>
+    </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
 <script>
-  function submitLoginForm() {
-    var passwordField = document.getElementById("password");
-    var plainPassword = passwordField.value;
-    var hashedPassword = bcrypt.hashSync(plainPassword, 10);
-    passwordField.value = hashedPassword;
-    document.getElementById("loginForm").submit();
-  }
+    function submitLoginForm() {
+
+        var form = document.getElementById("user_form");
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Login failed');
+                    return null;
+                }
+            })
+            .then(data => {
+                if (data && data.result && data.result.jwt) {
+                    var authorizationHeader = 'Bearer ' + data.result.jwt;
+
+                    fetch("/api/start", {
+                        method: "GET",
+                        headers: {
+                            'Authorization': authorizationHeader,
+                            'Accept': 'text/html'
+                        }
+                    })
+                        .then(startPageResponse => {
+                            if (startPageResponse.ok) {
+                                return startPageResponse.text();
+                            } else {
+                                console.error('Failed to fetch start page');
+                                return null;
+                            }
+                        })
+                        .then(startPageHtml => {
+                            if (startPageHtml) {
+                                document.open();
+                                document.write(startPageHtml);
+                                document.close();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+                else{
+                    console.log("Something went wrong with token: " + data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        return false; // Prevent the form from submitting in the traditional way
+    }
 </script>
+</body>
 </html>

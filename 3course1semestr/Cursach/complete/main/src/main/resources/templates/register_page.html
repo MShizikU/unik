@@ -26,53 +26,64 @@
 </head>
 <body>
 <div class="content">
-  <div class = "form_wrapper" id='reg_form_wrapper' >
-    <form th:action="@{/register}" class="user-form" id = 'user_form' method="post">
+  <div class="form_wrapper" id='reg_form_wrapper'>
+    <form th:action="@{/register}" class="user-form" id='user_form' method="post" onsubmit="return submitLoginForm()">
 
-      <!-- Название формы -->
       <div id="choser_container">
-        <h2 class = 'form_title active'>Регистрация</h2>
-        <a class = 'form_title inactive' href="login">Вход</a>
+        <h2 class='form_title active'>Регистрация</h2>
+        <a class='form_title inactive' href="login">Вход</a>
       </div>
 
-      <!-- Скрытое поле для csrf токена -->
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-
-      <!-- Поле для ввода паспортных данных -->
       <label for="snpassport" class="form_label enabled_form_field">Серия номер пасспорта:</label>
-      <input type="text" id="snpassport" name="snpassport" class = "enabled_form_field">
+      <input type="text" id="snpassport" name="snpassport" class="enabled_form_field">
 
-      <!-- Поле для ввода имени пользователя -->
       <label for="full_name" class="form_label enabled_form_field">ФИО пользователя:</label>
-      <input type="text" id="full_name" name="fullname" class = "enabled_form_field">
+      <input type="text" id="full_name" name="fullName" class="enabled_form_field">
 
-      <!-- Поле для ввода имени пользователя -->
       <label for="date_of_birth" class="form_label enabled_form_field">Дата рождения:</label>
-      <input type="text" id="date_of_birth" name="date_of_birth" class = "enabled_form_field">
+      <input type="text" id="date_of_birth" name="dateOfBirth" class="enabled_form_field">
 
       <!-- Поле для ввода имени пользователя -->
       <label for="username" class="form_label enabled_form_field">Имя пользователя:</label>
-      <input type="text" id="username" name="username" class = "enabled_form_field">
+      <input type="text" id="username" name="username" class="enabled_form_field">
 
       <!-- Поле ввода пароля-->
       <label for="password" class="form_label constant">Пароль:</label>
       <input type="password" id="password" name="password" class="constant">
-      
+
       <!-- Кнопка submit -->
-      <button type="submit" onclick="submitLoginForm()">Login</button>
+      <button type="submit">Register</button>
 
     </form>
   </div>
 </div>
-</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
 <script>
-  function submitLoginForm() {
-    var passwordField = document.getElementById("password");
-    var plainPassword = passwordField.value;
-    var hashedPassword = bcrypt.hashSync(plainPassword, 10);
-    passwordField.value = hashedPassword;
-    document.getElementById("loginForm").submit();
-  }
+    function submitLoginForm() {
+        var form = document.getElementById("user_form");
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/login";
+                } else {
+                    console.error('Registration failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        return false;
+    }
 </script>
+</body>
 </html>

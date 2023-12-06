@@ -20,9 +20,5 @@ public class RegistrationDTO {
 
     private LocalDate dateOfBirth;
 
-    private Integer idLevel;
-
     private String password;
-
-    private String role;
 }

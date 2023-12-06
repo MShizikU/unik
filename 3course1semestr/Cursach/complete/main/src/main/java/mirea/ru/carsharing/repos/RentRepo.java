@@ -11,7 +11,7 @@ public interface RentRepo extends JpaRepository<Rent, Integer> {
 
     Optional<List<Rent>> findBySnpassport(Long snpassport);
 
-    @Query(value = "SELECT * FROM rent WHERE snpassport = ?1 AND end_time = 'none'", nativeQuery = true)
+    @Query(value = "SELECT * FROM rents WHERE snpassport = ?1 AND end_time IS NULL", nativeQuery = true)
     Optional<Rent> findActiveRent(Long snpassport);
 
     Optional<List<Rent>> findByVin(String vin);

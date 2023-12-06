@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @Slf4j
@@ -34,6 +35,7 @@ public class PageController {
     private final VehicleNameService vehicleNameService;
     private final VehicleWorkModelService vehicleWorkModelService;
 
+    private static final Logger logger = Logger.getLogger(PageController.class.getName());
 
     public PageController(UserLevelService levelService, VehicleGroupService groupService, PermissionService permissionService, RentService rentService, UserService userService, VehicleBrandService vehicleBrandService, VehicleService vehicleService, VehicleModelService vehicleModelService, VehicleNameService vehicleNameService, VehicleWorkModelService vehicleWorkModelService) {
         this.levelService = levelService;
@@ -52,9 +54,8 @@ public class PageController {
     public ModelAndView getMainPage(){
         ModelAndView modelAndView = new ModelAndView("index");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = authentication.getPrincipal();
-        UserDetails userDetails = (UserDetails) principal;
-        ExecutionResult<User> muser = userService.getUserByUsername(userDetails.getUsername());
+        String principal = authentication.getPrincipal().toString();
+        ExecutionResult<User> muser = userService.getUserByUsername(principal);
 
         User curUser = muser.getResult();
 
@@ -74,15 +75,17 @@ public class PageController {
         }
         ExecutionResult<Rent> currentRent = rentService.getActiveRent(curUser.getSnpassport());
         if (currentRent.getErrorMessage() != null){
-            VehicleWorkModel curVehicleModel =  vehicleWorkModelService.getVehicleWorkModelById(vehicleService.getVehicleById(currentRent.getResult().getVin()).getResult().getIdVehicleWorkModel()).getResult();
-            String vehicleName = vehicleNameService.getVehicleName(curVehicleModel.getIdVehicleName()).getResult();
-            modelAndView.addObject("vehicle_model", curVehicleModel);
-            modelAndView.addObject("vehicle_name", vehicleName);
+            if (currentRent.getResult() != null){
+                VehicleWorkModel curVehicleModel =  vehicleWorkModelService.getVehicleWorkModelById(vehicleService.getVehicleById(currentRent.getResult().getVin()).getResult().getIdVehicleWorkModel()).getResult();
+                String vehicleName = vehicleNameService.getVehicleName(curVehicleModel.getIdVehicleName()).getResult();
+                modelAndView.addObject("vehicle_model", curVehicleModel);
+                modelAndView.addObject("vehicle_name", vehicleName);
+            }
         }
         modelAndView.addObject("vehicles", allowedVehicles);
         modelAndView.addObject("pairs", pairs);
-        modelAndView.addObject("muser", muser);
-        modelAndView.addObject("rent",currentRent);
+        modelAndView.addObject("muser", curUser);
+        modelAndView.addObject("rent",currentRent.getResult());
         return modelAndView;
     }
 
