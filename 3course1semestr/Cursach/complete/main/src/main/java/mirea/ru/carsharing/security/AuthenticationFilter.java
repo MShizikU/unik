@@ -21,6 +21,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerMapping;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -44,6 +45,9 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         logger.info("Attempting authentication...");
         String token = request.getHeader("Authorization");
+        if (token == null) {
+            token = request.getParameter("token");
+        }
         if (token != null) {
             logger.info("Extracting token from request header...");
             if (token.startsWith("Bearer ")) {

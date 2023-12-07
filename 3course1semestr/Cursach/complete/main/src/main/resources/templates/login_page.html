@@ -66,32 +66,8 @@
             .then(data => {
                 if (data && data.result && data.result.jwt) {
                     var authorizationHeader = 'Bearer ' + data.result.jwt;
-
-                    fetch("/api/start", {
-                        method: "GET",
-                        headers: {
-                            'Authorization': authorizationHeader,
-                            'Accept': 'text/html'
-                        }
-                    })
-                        .then(startPageResponse => {
-                            if (startPageResponse.ok) {
-                                return startPageResponse.text();
-                            } else {
-                                console.error('Failed to fetch start page');
-                                return null;
-                            }
-                        })
-                        .then(startPageHtml => {
-                            if (startPageHtml) {
-                                document.open();
-                                document.write(startPageHtml);
-                                document.close();
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
+                    localStorage.setItem('userToken', data.result.jwt);
+                    window.location.href = "/api/start?token" + data.result.jwt;
                 }
                 else{
                     console.log("Something went wrong with token: " + data);
