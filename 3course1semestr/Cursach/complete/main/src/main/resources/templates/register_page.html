@@ -9,12 +9,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
   <title>Login : Demo</title>
-  <link rel="stylesheet" type="text/css" th:href = "@{csss/basic.css}">
-  <link rel="stylesheet" type="text/css" th:href = "@{csss/header.css}">
-  <link rel="stylesheet" type="text/css" th:href = "@{csss/footer.css}">
-  <link rel="stylesheet" type="text/css" th:href = "@{csss/form.css}">
-  <link rel="stylesheet" type="text/css" th:href = "@{csss/card.css}">
-  <link rel="stylesheet" type="text/css" th:href = "@{csss/content.css}">
+  <link rel="stylesheet" type="text/css" th:href = "@{css/basic.css}">
+  <link rel="stylesheet" type="text/css" th:href = "@{css/header.css}">
+  <link rel="stylesheet" type="text/css" th:href = "@{css/footer.css}">
+  <link rel="stylesheet" type="text/css" th:href = "@{css/form.css}">
+  <link rel="stylesheet" type="text/css" th:href = "@{css/card.css}">
+  <link rel="stylesheet" type="text/css" th:href = "@{css/content.css}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -43,15 +43,12 @@
       <label for="date_of_birth" class="form_label enabled_form_field">Дата рождения:</label>
       <input type="text" id="date_of_birth" name="dateOfBirth" class="enabled_form_field">
 
-      <!-- Поле для ввода имени пользователя -->
       <label for="username" class="form_label enabled_form_field">Имя пользователя:</label>
       <input type="text" id="username" name="username" class="enabled_form_field">
 
-      <!-- Поле ввода пароля-->
       <label for="password" class="form_label constant">Пароль:</label>
       <input type="password" id="password" name="password" class="constant">
 
-      <!-- Кнопка submit -->
       <button type="submit">Register</button>
 
     </form>

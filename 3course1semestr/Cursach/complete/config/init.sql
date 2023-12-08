@@ -1,18 +1,15 @@
-CREATE DATABASE carsharing;
-
 CREATE TABLE users(
     snpassport BIGINT PRIMARY KEY,
     username VARCHAR(256),
     full_name VARCHAR(256),
-    date_of_birth DATE NOT NULL,
+    date_of_birth DATE,
     id_level INT NOT NULL
 );
 
 CREATE TABLE user_level(
     id_level SERIAL PRIMARY KEY,
     level_name VARCHAR(50),
-    level_discription VARCHAR(256),
-    count_users INTEGER NOT NULL
+    level_description VARCHAR(256)
 );
 
 ALTER TABLE users ADD FOREIGN KEY (id_level) REFERENCES user_level(id_level);
@@ -20,12 +17,11 @@ ALTER TABLE users ADD FOREIGN KEY (id_level) REFERENCES user_level(id_level);
 CREATE TABLE vehicle_group(
     id_group SERIAL PRIMARY KEY,
     group_name VARCHAR(50),
-    group_description VARCHAR(256),
-    count_vehicles INT NOT NULL
+    group_description VARCHAR(256)
 );
 
 CREATE TABLE permissions(
-    id_permission INT AUTO_INCREMENT,
+    id_permission SERIAL,
     id_group INT,
     id_level INT,
     PRIMARY KEY (id_group, id_level)
@@ -47,10 +43,9 @@ CREATE TABLE vehicle_brand(
 );
 
 CREATE TABLE vehicle_name(
-    id_vehicle_name SERIAL,
+    id_vehicle_name SERIAL PRIMARY KEY,
     id_model INT,
-    id_brand INT,
-    PRIMARY KEY (id_vehicle_name, id_model, id_brand)
+    id_brand INT
 );
 
 ALTER TABLE vehicle_name ADD FOREIGN KEY (id_model) REFERENCES vehicle_model(id_model);

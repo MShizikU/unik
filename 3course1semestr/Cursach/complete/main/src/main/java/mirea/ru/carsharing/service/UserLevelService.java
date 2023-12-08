@@ -43,9 +43,6 @@ public class UserLevelService {
             if (userLevel.getLevelDescription() != null) {
                 updatedUserLevel.setLevelDescription(userLevel.getLevelDescription());
             }
-            if (userLevel.getCountUsers() != null) {
-                updatedUserLevel.setCountUsers(userLevel.getCountUsers());
-            }
             UserLevel savedUserLevel = userLevelRepository.save(updatedUserLevel);
             return ExecutionResult.success(savedUserLevel);
         }catch (Exception ex){

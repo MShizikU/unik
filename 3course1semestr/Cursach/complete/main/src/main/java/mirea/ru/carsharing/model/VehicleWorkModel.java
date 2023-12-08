@@ -26,6 +26,7 @@ public class VehicleWorkModel {
     @Column(name = "model_photo_name")
     private String modelPhotoName;
 
+    @Column(name = "id_group")
     @JoinColumn(name = "id_group")
     private Integer idVehicleGroup;
 }

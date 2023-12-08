@@ -26,6 +26,7 @@ public class SecurityConfig{
                 .authorizeRequests()
                 .requestMatchers("/registration").permitAll()
                 .requestMatchers("/login").permitAll()
+                .requestMatchers("/api/css/**").permitAll()
                 .requestMatchers("/api/**").authenticated();
 
         return http.build();

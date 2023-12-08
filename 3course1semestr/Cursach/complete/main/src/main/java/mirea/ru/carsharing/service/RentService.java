@@ -42,7 +42,7 @@ public class RentService {
         if (rent.getEndingPoint().equals(resRent.getStartingPoint()))
             return ExecutionResult.error("Rent can't be stopped in the same place");
 
-        if (rent.getStartTime().equals(resRent.getEndTime()))
+        if (resRent.getStartTime().equals(rent.getEndTime()))
             return ExecutionResult.error("Rent can't be last less then a second");
 
         resRent.setEndTime(rent.getEndTime());
@@ -93,6 +93,7 @@ public class RentService {
 
         vehicle.setState("available");
 
+
         try{
             rentRepository.save(startedRent);
             vehicleRepo.save(vehicle);
@@ -112,6 +113,8 @@ public class RentService {
         Optional<User> relatedUser = userRepo.findBySnpassport(rent.getSnpassport());
         if (relatedUser.isEmpty())
             return ExecutionResult.error("User not found");
+
+        rent.setDuration((int)Duration.between(rent.getStartTime(), rent.getEndTime()).getSeconds());
 
         try {
             Rent createdRent = rentRepository.save(rent);
@@ -147,6 +150,8 @@ public class RentService {
                         return ExecutionResult.error("User not found");
                     existingRent.setSnpassport(rent.getSnpassport());
                 }
+
+                existingRent.setDuration((int)Duration.between(existingRent.getStartTime(), existingRent.getEndTime()).getSeconds());
 
                 if (rent.getVin() != null){
                     Optional<Vehicle> relatedVehicle = vehicleRepo.findByVin(rent.getVin());

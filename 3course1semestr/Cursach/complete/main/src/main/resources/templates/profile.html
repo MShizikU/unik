@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Basic Carshering</title>
-        <link rel="stylesheet" type="text/css" th:href = "@{csss/basic.css}">
-        <link rel="stylesheet" type="text/css" th:href = "@{csss/header.css}">
-        <link rel="stylesheet" type="text/css" th:href = "@{csss/footer.css}">
-        <link rel="stylesheet" type="text/css" th:href = "@{csss/content.css}">
-        <link rel="stylesheet" type="text/css" th:href = "@{csss/user_info_view.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{../css/basic.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{../css/header.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{../css/footer.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{../css/content.css}">
+        <link rel="stylesheet" type="text/css" th:href = "@{../css/user_info_view.css}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
     <body>
         <header class="header">
             <div id="company_info_div">
-                <img src="icons/logo.png" alt = "User Icon" id = "company-icon">
+                <img src="../../icons/logo.png" alt = "User Icon" id = "company-icon">
                 <a href = "start">Basic carsharing</a>
             </div>
             <div id = "search_bar_div" class = "enabled_header_block" th:if = "${rent == null}">
@@ -39,14 +39,14 @@
             </div>
             <div id = "user_info_div">
                 <a class="header_user_info_enabled" th:text = "${muser.username}" href="logout"></a>
-                <img class="header_user_info_enabled" src="icons/user.svg" alt = "User Icon" id = "user-icon">
+                <img class="header_user_info_enabled" src="../../icons/user.svg" alt = "User Icon" id = "user-icon">
             </div>
         </header>
         
         <div class="content">
           <div id = "user_info_block">
             <div id = "basic_info_block">
-              <img src = "icons/user.svg" alt = "USer icon" id = "profile_user_icon">
+              <img src = "../../icons/user.svg" alt = "USer icon" id = "profile_user_icon">
               <h3 id="user_pasport_serial_number" th:text = "${muser.snpassport}"></h3>
             </div>
             <div id = "current_info_block">
@@ -54,7 +54,7 @@
                 <h3 class = "info_title">
                   Фамилия Имя Отчество
                 </h3>
-                <h3 class = "info_value" th:text = "${muser.fullname}"></h3>
+                <h3 class = "info_value" th:text = "${muser.fullName}"></h3>
               </div>
               <div class = "user_info_portion">
                 <h3 class = "info_title">
@@ -80,13 +80,13 @@
                 </li>
               <div th:each="rent:${rents}">
                   <li class="table-row">
-                      <div class="col col-1" data-label="Rent ID" th:text = "${rent.iRentID}"></div>
+                      <div class="col col-1" data-label="Rent ID" th:text = "${rent.idRent}"></div>
                       <div class="col col-2" data-label="VIN" th:text = "${rent.vin}"></div>
                       <div class="col col-2" data-label="DURATION" th:text = "${rent.duration}"></div>
                       <div class="col col-2" data-label="Start Point" th:text = "${rent.startingPoint}"></div>
-                      <div class="col col-2" data-label="End Point" th:text = "${rent.endPoint}"></div>
-                      <div class="col col-2" data-label="Start time" th:text = "${rent.startTime}"></div>
-                      <div class="col col-2" data-label="End time" th:text = "${rent.endTime}"></div>
+                      <div class="col col-2" data-label="End Point" th:text = "${rent.endingPoint}"></div>
+                      <div class="col col-2" data-label="Start time" th:text = "${#temporals.format(rent.startTime, 'dd/MM/yyyy HH:mm:ss')}"></div>
+                      <div class="col col-2" data-label="End time" th:text = "${#temporals.format(rent.startTime, 'dd/MM/yyyy HH:mm:ss')}"></div>
                   </li>
               </div>
               </ul>
@@ -139,6 +139,7 @@
                 </div>
                </div>
         </footer>
-        <script src="scripts/rent_ender.js"></script>
+        <script src="../../scripts/rent_ender.js"></script>
+        <script src="../../scripts/token_script.js"></script>
     </body>
 </html>

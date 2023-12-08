@@ -59,18 +59,18 @@ public class AdminPageController {
     @RequestMapping("/users")
     public ModelAndView getAdminUsers(){
         return new ModelAndView("admin_users")
-                .addObject("users", userService.getAllUsers());
+                .addObject("users", userService.getAllUsers().getResult());
     }
 
     @RequestMapping("/vehicle")
     public ModelAndView getAdminVehicles(){
         return new ModelAndView("admin_vehicles")
-                .addObject("vehicles", vehicleService.getAllVehicles());
+                .addObject("vehicles", vehicleService.getAllVehicles().getResult());
     }
 
-    @RequestMapping("/vehicle/work_model")
+    @RequestMapping("/vehicle/work_models")
     public ModelAndView getAdminWorkModels(){
         return new ModelAndView("admin_work_models")
-                .addObject("work_models", vehicleWorkModelService.getAllVehicleWorkModels());
+                .addObject("work_models", vehicleWorkModelService.getAllVehicleWorkModels().getResult());
     }
 }

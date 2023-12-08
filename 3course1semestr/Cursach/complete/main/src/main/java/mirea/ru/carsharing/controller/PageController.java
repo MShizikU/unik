@@ -65,8 +65,8 @@ public class PageController {
                 .getPermissionByUserLevel(curUser.getIdLevel())
                 .getResult()
                 .stream()
-                .map(permission -> vehicleWorkModelService.getVehicleWorkModelByVehicleGroup(permission.getIdGroup()))
-                .forEach(workModel ->  allowedWorkModels.addAll(workModel.getResult()));
+                .map(permission -> vehicleWorkModelService.getVehicleWorkModelByVehicleGroup(permission.getIdGroup()).getResult())
+                .forEach(workModel ->  allowedWorkModels.addAll(workModel));
         List<String> allowedCarsNames = allowedWorkModels.stream().map(it -> vehicleNameService.getVehicleName(it.getIdVehicleName()).getResult()).toList();
         List<Pair<VehicleWorkModel, String>> pairs = new LinkedList<>();
         for (int i = 0; i < allowedCarsNames.size() && i < allowedWorkModels.size(); i++){
@@ -74,13 +74,11 @@ public class PageController {
             allowedVehicles.addAll(vehicleService.getVehicleByWorkModel(allowedWorkModels.get(i).getIdVehicleWorkModel()).getResult());
         }
         ExecutionResult<Rent> currentRent = rentService.getActiveRent(curUser.getSnpassport());
-        if (currentRent.getErrorMessage() != null){
-            if (currentRent.getResult() != null){
-                VehicleWorkModel curVehicleModel =  vehicleWorkModelService.getVehicleWorkModelById(vehicleService.getVehicleById(currentRent.getResult().getVin()).getResult().getIdVehicleWorkModel()).getResult();
-                String vehicleName = vehicleNameService.getVehicleName(curVehicleModel.getIdVehicleName()).getResult();
-                modelAndView.addObject("vehicle_model", curVehicleModel);
-                modelAndView.addObject("vehicle_name", vehicleName);
-            }
+        if (currentRent.getErrorMessage() == null && currentRent.getResult() != null){
+            VehicleWorkModel curVehicleModel =  vehicleWorkModelService.getVehicleWorkModelById(vehicleService.getVehicleById(currentRent.getResult().getVin()).getResult().getIdVehicleWorkModel()).getResult();
+            String vehicleName = vehicleNameService.getVehicleName(curVehicleModel.getIdVehicleName()).getResult();
+            modelAndView.addObject("vehicle_model", curVehicleModel);
+            modelAndView.addObject("vehicle_name", vehicleName);
         }
         modelAndView.addObject("vehicles", allowedVehicles);
         modelAndView.addObject("pairs", pairs);
@@ -94,16 +92,15 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView("profile");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = authentication.getPrincipal();
-        UserDetails userDetails = (UserDetails) principal;
-        ExecutionResult<User> muser = userService.getUserByUsername(userDetails.getUsername());
+        String principal = authentication.getPrincipal().toString();
+        ExecutionResult<User> muser = userService.getUserByUsername(principal);
 
         User curUser = muser.getResult();
 
         User user = userService.getUserByUsername(curUser.getUsername()).getResult();
         ExecutionResult<Rent> currentRent = rentService.getActiveRent(user.getSnpassport());
         List<Rent> rents = rentService.getRentBySnpassport(user.getSnpassport()).getResult();
-        if (currentRent.getErrorMessage() != null){
+        if (currentRent.getErrorMessage() == null && currentRent.getResult() != null){
             VehicleWorkModel curVehicleModel = vehicleWorkModelService.getVehicleWorkModelById(vehicleService.getVehicleById(currentRent.getResult().getVin()).getResult().getIdVehicleWorkModel()).getResult();
             String vehicleName = vehicleNameService.getVehicleName(curVehicleModel.getIdVehicleName()).getResult();
             modelAndView.addObject("vehicle_model", curVehicleModel);
@@ -111,8 +108,8 @@ public class PageController {
         }
         modelAndView.addObject("rents", rents);
         modelAndView.addObject("muser", user);
-        modelAndView.addObject("level", levelService.getUserLevelById(user.getIdLevel()));
-        modelAndView.addObject("rent", currentRent);
+        modelAndView.addObject("level", levelService.getUserLevelById(user.getIdLevel()).getResult());
+        modelAndView.addObject("rent", currentRent.getResult());
         return modelAndView;
     }
 

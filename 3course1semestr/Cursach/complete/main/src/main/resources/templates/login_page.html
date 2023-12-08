@@ -3,9 +3,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login : Demo</title>
-    <link rel="stylesheet" type="text/css" href = "csss/basic.css">
-    <link rel="stylesheet" type="text/css" href = "csss/form.css">
-    <link rel="stylesheet" type="text/css" href = "csss/content.css">
+    <link rel="stylesheet" type="text/css" href = "css/basic.css">
+    <link rel="stylesheet" type="text/css" href = "css/form.css">
+    <link rel="stylesheet" type="text/css" href = "css/content.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -17,24 +17,19 @@
     <div class="form_wrapper" id='reg_form_wrapper'>
         <form th:action="@{/login}" class="user-form" id='user_form' method="post" onsubmit="return submitLoginForm()">
 
-            <!-- Название формы -->
             <div id="choser_container">
                 <h2 class='form_title active'>Вход</h2>
                 <a class='form_title inactive' href="register">Регистрация</a>
             </div>
 
-            <!-- Скрытое поле для csrf токена -->
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
-            <!-- Поле для ввода имени пользователя -->
             <label for="username" class="form_label enabled_form_field">Username:</label>
             <input type="text" id="username" name="username" class="enabled_form_field">
 
-            <!-- Поле ввода пароля-->
             <label for="user_form_password" class="form_label constant">Пароль:</label>
             <input type="password" id="user_form_password" name="password" class="constant">
 
-            <!-- Кнопка submit -->
             <button class="form_submit_button" type="submit">Login</button>
 
         </form>
@@ -67,7 +62,7 @@
                 if (data && data.result && data.result.jwt) {
                     var authorizationHeader = 'Bearer ' + data.result.jwt;
                     localStorage.setItem('userToken', data.result.jwt);
-                    window.location.href = "/api/start?token" + data.result.jwt;
+                    window.location.href = "/api/start?token=" + data.result.jwt;
                 }
                 else{
                     console.log("Something went wrong with token: " + data);
@@ -80,5 +75,6 @@
         return false; // Prevent the form from submitting in the traditional way
     }
 </script>
+<script src="../../scripts/token_script.js"></script>
 </body>
 </html>
