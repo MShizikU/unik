@@ -53,7 +53,7 @@ public class Server {
                     globalMessageStringBuffer.setLength(0);
                     Server.numberOfMessagesInBuffer.getAndSet(0);
                 }
-            }, 5, TimeUnit.SECONDS);
+            }, 15, TimeUnit.SECONDS);
         }
     }
 
