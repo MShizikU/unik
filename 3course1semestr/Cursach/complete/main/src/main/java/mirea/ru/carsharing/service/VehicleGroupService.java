@@ -47,9 +47,6 @@ public class VehicleGroupService {
             if (updatedGroup.getGroupDescription() != null) {
                 groupToUpdate.setGroupDescription(updatedGroup.getGroupDescription());
             }
-            if (updatedGroup.getCountVehicles() != null) {
-                groupToUpdate.setCountVehicles(updatedGroup.getCountVehicles());
-            }
 
             VehicleGroup updatedGroupEntity = vehicleGroupRepository.save(groupToUpdate);
             return ExecutionResult.success(updatedGroupEntity);

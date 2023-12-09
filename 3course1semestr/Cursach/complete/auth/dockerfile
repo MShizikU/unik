@@ -16,6 +16,6 @@ FROM openjdk:17
 
 ARG SERVER_PORT
 WORKDIR /usr/src/java-app
-COPY --from=builder /usr/src/java-code/build/libs/carsharing-1.0.0.jar /app/main.jar
+COPY --from=builder /usr/src/java-code/build/libs/auth-1.0.0.jar /app/auth.jar
 EXPOSE $SERVER_PORT
-ENTRYPOINT ["java", "-jar", "/app/main.jar"]
+ENTRYPOINT ["java", "-jar", "/app/auth.jar"]

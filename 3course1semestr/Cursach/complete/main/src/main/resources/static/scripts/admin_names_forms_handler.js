@@ -7,7 +7,7 @@ addNewBrandButton.addEventListener('click', event => {
   const newBrandNameInput = document.getElementById('new_brand_name');
   const newBrandName = newBrandNameInput.value;
 
-  fetch('/api/vehicle_brand/add?brandName=' + newBrandName, {
+  fetch('/api/vehicle_brand/add', {
     method: 'POST'
   })
   .then(response => {
