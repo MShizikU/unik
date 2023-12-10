@@ -1,0 +1,13 @@
+{
+    "widget":{
+        "name":"Данные оплаты",
+        "short_description":"Данные оплаты Stripe - Alfa",
+        "description":"Виджет подгрузки данных оплаты Stripe - Alfa",
+        "tour_description":"Виджет подгрузки данных оплаты Stripe - Alfa"
+    },
+    "settings":{
+        "login":"Логин",
+        "api_key":"ключ API",
+        "account":"Аккаунт"
+    }
+}
