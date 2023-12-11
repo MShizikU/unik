@@ -16,40 +16,33 @@ define(['jquery', 'underscore'], function($, _) {
             });
         }
 
-		function updateLeadView(data) {
-            if (data && data.db && data.payment_calendar) {
-                var tableHtml = '<table border="1">' +
+		function updateLeadView(data, widget_tab) {
+            if (data != null) {
+                var tableHtml = '<table class="alfa_stripe_widget-table">' +
                     '<thead>' +
                     '<tr>' +
-                    '<th>ID</th>' +
-                    '<th>User ID</th>' +
-                    '<th>Stripe Subscription ID</th>' +
+                    '<th>Payment No</th>' +
+                    '<th>Payment Date</th>' +
                     '<th>Status (Stripe)</th>' +
                     '<th>Status (Alfa)</th>' +
-                    '<th>Payment Date</th>' +
-                    '<th>Payment No</th>' +
                     '<th>Amount</th>' +
                     '</tr>' +
                     '</thead>' +
                     '<tbody>';
-
-                $.each(data.payment_calendar, function (index, payment) {
+				console.log(tableHtml);
+                $.each(data, function (index, payment) {
                     tableHtml += '<tr>' +
-                        '<td>' + payment.id + '</td>' +
-                        '<td>' + payment.user_id + '</td>' +
-                        '<td>' + payment.stripe_subscription_id + '</td>' +
+						'<td>' + payment.payment_no + '</td>' +
+                        '<td>' + payment.payment_date + '</td>' +
                         '<td>' + payment.status_stripe + '</td>' +
                         '<td>' + payment.status_alfa + '</td>' +
-                        '<td>' + payment.payment_date + '</td>' +
-                        '<td>' + payment.payment_no + '</td>' +
                         '<td>' + payment.amount + '</td>' +
                         '</tr>';
                 });
 
                 tableHtml += '</tbody></table>';
 
-                // Append the new table to the lead view
-                $('.card-top').append(tableHtml);
+                widget_tab.html(tableHtml);
             }
         }
 
@@ -83,21 +76,29 @@ define(['jquery', 'underscore'], function($, _) {
 			 */
 			loadPreloadedData: function () {
         		console.log("test1");
-				var amoDomain = AMOCRM.widgets.system.amo_domain;
+				var amoDomain = AMOCRM.widgets.system.domain;
 				var amoId = AMOCRM.data.current_card.id;
 
-				return new Promise(_.bind(function (resolve, reject) {
-					self.crm_post(
-						'https://alfa-amo.ru/stripe_widget/customer_payment_calendar.php?amo_domain' + amoDomain + '&amo_id=' + amoId,
-						{},
-						function (msg) {
-							console.log(AMOCRM.current_card);
-							console.log(msg);
-							resolve(msg);
-						},
-						'json'
-					);
-				}), this);
+				let widget_code = self.get_settings().widget_code;
+				console.log($(`.card-tabs__item[data-id="${widget_code}"] span`));
+				console.log('Widget Code:', widget_code);
+				$(`.card-tabs__item[data-id="${widget_code}"] span`).text('Платежи');
+
+				var widget_tab = $('#' + widget_code);
+				widget_tab.css({
+					'position': 'absolute',
+					'top': '0',
+					'left': '0',
+					'right': '0',
+					'bottom': '0',
+					'overflow-y': 'auto'
+				});
+
+				fetchDataFromDatabase(amoDomain, amoId).then(function (data) {
+					updateLeadView(data, widget_tab);
+					console.log('Fetched Data:', data);
+				});
+				return Promise.resolve({});
 			},
 
 			/**
