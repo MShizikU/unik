@@ -1,6 +1,8 @@
 define(['jquery', 'underscore'], function($, _) {
     var CustomWidget = function () {
     	var self = this;
+		var langs = self.langs;
+		
 
 		function fetchDataFromDatabase(amoDomain, amoId) {
             var apiUrl = 'https://alfa-amo.ru/stripe_widget/customer_payment_calendar.php';
@@ -17,33 +19,75 @@ define(['jquery', 'underscore'], function($, _) {
         }
 
 		function updateLeadView(data, widget_tab) {
+			var langs = self.langs;
             if (data != null) {
-                var tableHtml = '<table class="alfa_stripe_widget-table">' +
-                    '<thead>' +
-                    '<tr>' +
-                    '<th>Payment No</th>' +
-                    '<th>Payment Date</th>' +
-                    '<th>Status (Stripe)</th>' +
-                    '<th>Status (Alfa)</th>' +
-                    '<th>Amount</th>' +
-                    '</tr>' +
-                    '</thead>' +
-                    '<tbody>';
-				console.log(tableHtml);
-                $.each(data, function (index, payment) {
-                    tableHtml += '<tr>' +
-						'<td>' + payment.payment_no + '</td>' +
-                        '<td>' + payment.payment_date + '</td>' +
-                        '<td>' + payment.status_stripe + '</td>' +
-                        '<td>' + payment.status_alfa + '</td>' +
-                        '<td>' + payment.amount + '</td>' +
-                        '</tr>';
-                });
+                var styleHtml = `
+					<style>
+						.alfa_stripe_widget-table {
+							border-collapse: collapse;
+							width: 100%;
+						}
 
-                tableHtml += '</tbody></table>';
+						.alfa_stripe_widget-table th, .alfa_stripe_widget-table td {
+							border: 1px solid #ddd;
+							padding: 8px;
+							text-align: left;
+						}
 
-                widget_tab.html(tableHtml);
+						.alfa_stripe_widget-table th {
+							background-color: #3498db;
+							color: #fff;
+						}
+					</style>`;
+
+				var tableHtml = '<table class="alfa_stripe_widget-table">' +
+					'<thead>' +
+					'<tr>' +
+					`<th>${langs.lcard.paymentNo}</th>` +
+					`<th>${langs.lcard.paymentDate}</th>` +
+					`<th>${langs.lcard.statusStripe}</th>` +
+					`<th>${langs.lcard.statusAlfa}</th>` +
+					`<th>${langs.lcard.amount}</th>` +
+					'</tr>' +
+					'</thead>' +
+					'<tbody>';
+
+					$.each(data, function (index, payment) {
+						var formattedDate = (payment.payment_date === "0000-00-00") ? langs.lcard.nondata : payment.payment_date;
+			
+						if (payment.status_stripe == 'succeed'){
+							translatedStatusStripe = langs.lcard.succeed;
+						}
+						else{
+							translatedStatusStripe = langs.lcard.waiting;
+						}
+
+						if (payment.status_alfa == 'succeed'){
+							translatedStatusAlfa = langs.lcard.succeed;
+						}
+						else{
+							translatedStatusAlfa = langs.lcard.waiting;
+						}
+			
+						var formattedAmount = (payment.amount === null) ? langs.lcard.nondata : payment.amount;
+			
+						tableHtml += '<tr>' +
+							'<td>' + payment.payment_no + '</td>' +
+							'<td>' + formattedDate + '</td>' +
+							'<td>' + translatedStatusStripe + '</td>' +
+							'<td>' + translatedStatusAlfa + '</td>' +
+							'<td>' + formattedAmount + '</td>' +
+							'</tr>';
+					});
+
+				tableHtml += '</tbody></table>';
+
+				widget_tab.html(styleHtml + tableHtml);
             }
+			else{
+				var messageHtml = '<div style="text-align: center; font-size: 18px;">Нет данных по оплате</div>';
+        		widget_tab.html(messageHtml);
+			}
         }
 
 		this.callbacks = {
@@ -70,12 +114,42 @@ define(['jquery', 'underscore'], function($, _) {
 				return true;
 			},
 
+			initMenuPage: function (params) {
+				console.log("test");
+				switch (params.location) {
+				  case 'stats':
+					switch (params.subitem_code) {
+					  case 'custom_submenu_stripe_data':
+						self.getTemplate(
+						  'stats__sub_item_1',
+						  {},
+						  function (template) {
+							$('#work-area-' + self.get_settings().widget_code).html('Пункт Аналитика, подпункт нужный');
+						  });
+						break;
+			  
+					  case 'sub_item_2':
+						self.getTemplate(
+						  'stats__sub_item_2',
+						  {},
+						  function (template) {
+							$('#work-area-' + self.get_settings().widget_code).html('Пункт Аналитика, подпункт 2');
+						  });
+						break;
+					}
+					break;
+				}
+			},
+
 			/**
 			 * @description метод, вызов которого происходит при инициализации, должен вернуть массив объектов элементов, которые покажутся при фокусе на поле поиска
 			 * @returns {Promise}
 			 */
 			loadPreloadedData: function () {
         		console.log("test1");
+				//console.log(self);
+				//console.log(langs);
+				//console.log(self.i18n('userLang'));
 				var amoDomain = AMOCRM.widgets.system.domain;
 				var amoId = AMOCRM.data.current_card.id;
 
@@ -108,7 +182,7 @@ define(['jquery', 'underscore'], function($, _) {
 			 * @returns {Promise}
 			 */
 			loadElements: function (type, id) {
-        console.log("test2");
+       			console.log("test2");
 				return Promise.resolve({});
 			},
 
@@ -118,7 +192,7 @@ define(['jquery', 'underscore'], function($, _) {
 			 * @returns {Promise}
 			 */
 			linkCard: function (links) {
-        console.log("test3");
+        		console.log("test3");
 				return Promise.resolve({});
 			},
 
@@ -130,7 +204,7 @@ define(['jquery', 'underscore'], function($, _) {
 			 * @returns {Promise}
 			 */
 			searchDataInCard: function (query, type, id) {
-        console.log("test4");
+        		console.log("test4");
 				return Promise.resolve({});
 			}
 		};

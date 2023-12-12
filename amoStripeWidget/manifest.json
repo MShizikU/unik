@@ -3,7 +3,7 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "interface_version": 2,
     "init_once": true,
     "locale": [
@@ -18,36 +18,23 @@
   },
   "locations": [
     "lcard-0",
-    "settings",
     "card_sdk",
-    "everywhere"
+    "widget_page"
   ],
-  "tour": {
-    "is_tour": true,
-    "tour_images": {
-      "ru": [
-        "/images/logo_main.png",
-        "/images/logo_main.png",
-        "/images/logo_main.png"
-      ]
-    },
-    "tour_description": "widget.tour_description"
+  "left_menu": {
+    "stats": {
+      "submenu": {
+        "custom_sub_item_1": {
+          "title": "Custom title"
+        }
+      }
+    }
   },
   "settings": {
     "login": {
       "name": "settings.login",
       "type": "text",
-      "required": true
-    },
-    "api_key": {
-      "name": "settings.api_key",
-      "type": "text",
-      "required": true
-    },
-    "account": {
-      "name": "settings.account",
-      "type": "text",
-      "required": true
+      "required": false
     }
   }
 }

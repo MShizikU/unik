@@ -9,5 +9,19 @@
         "login":"User login",
         "api_key":"API key",
         "account":"Account"
+    },
+    "lcard": {
+        "nondata": "N/A",
+        "succeed": "Success",
+        "waiting": "Waiting",
+        "paymentNo": "Payment No",
+        "paymentDate": "Payment Date",
+        "statusStripe": "Status (Stripe)",
+        "statusAlfa": "Status (Alfa)",
+        "amount": "Amount",
+        "listNull" : "No payments"
+    },
+    "stats": {
+        "title" : "Stripe payments"
     }
 }

@@ -9,5 +9,19 @@
         "login":"Логин",
         "api_key":"ключ API",
         "account":"Аккаунт"
+    },
+    "lcard": {
+        "nondata": "Нет данных",
+        "succeed": "Успех",
+        "waiting": "Ожидание",
+        "paymentNo": "Номер платежа",
+        "paymentDate": "Дата оплаты",
+        "statusStripe": "Статус (Stripe)",
+        "statusAlfa": "Статус (Alfa)",
+        "amount": "Сумма",
+        "listNull" : "Платежи отсутсвуют"
+    },
+    "stats": {
+        "title" : "Платежи Stripe"
     }
 }
