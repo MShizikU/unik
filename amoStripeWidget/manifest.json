@@ -19,16 +19,10 @@
   "locations": [
     "lcard-0",
     "card_sdk",
-    "widget_page"
+    "advanced_settings"
   ],
-  "left_menu": {
-    "stats": {
-      "submenu": {
-        "custom_sub_item_1": {
-          "title": "Custom title"
-        }
-      }
-    }
+  "advanced": {
+    "title": "advanced.title"
   },
   "settings": {
     "login": {

@@ -21,7 +21,7 @@
         "amount": "Сумма",
         "listNull" : "Платежи отсутсвуют"
     },
-    "stats": {
+    "advanced": {
         "title" : "Платежи Stripe"
     }
 }
