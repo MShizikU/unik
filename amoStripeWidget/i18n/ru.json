@@ -23,5 +23,11 @@
     },
     "advanced": {
         "title" : "Платежи Stripe"
+    },
+    "utils":{
+        "calendar": {
+            "CAL_FROM" : "от ",
+            "CAL_TO" : "до "
+        }
     }
 }

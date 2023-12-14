@@ -23,5 +23,11 @@
     },
     "advanced": {
         "title" : "Stripe payments"
+    },
+    "utils":{
+        "calendar": {
+            "CAL_FROM" : "from ",
+            "CAL_TO" : "to "
+        }
     }
 }

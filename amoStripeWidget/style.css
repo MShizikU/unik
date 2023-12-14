@@ -180,3 +180,232 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' fill='none'%3E%3Cpath d='M6.8141 1.08814C6.89222 1.00752 7.02138 1.00697 7.10018 1.08693L7.86256 1.86053C7.93894 1.93802 7.93935 2.06235 7.86349 2.14035L3.27966 6.85369C3.20156 6.93401 3.07272 6.93451 2.99399 6.8548L0.13866 3.9639C0.0617797 3.88606 0.0617102 3.7609 0.138504 3.68297L0.901265 2.909C0.979508 2.8296 1.10756 2.8295 1.18593 2.90876L3.13739 4.88234L6.8141 1.08814Z' fill='%233168CA'/%3E%3C/svg%3E");
     border-color: #233DB9;
 }
+
+.alfaamo_stripe_widget .calendar-wrapper {
+    height: fit-content;
+    background: var(--dark-body-bg);
+    box-sizing: content-box;
+}
+
+.alfaamo_stripe_widget .date_picker {
+    width: 260px;
+    margin: 0 auto;
+    position: relative;
+    top: 15%;
+}
+
+.alfaamo_stripe_widget .date_picker_input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.alfaamo_stripe_widget .date_picker_input label {
+    color: var(--text-black);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.alfaamo_stripe_widget .cal_input_block {
+    width: 260px;
+    display: flex;
+    flex-direction: row;
+    background: var(--basement);
+    box-shadow: inset 0px 0px 0px 1px var(--disabled-block);
+    justify-content: space-around;
+}
+
+.alfaamo_stripe_widget .cal_input_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.alfaamo_stripe_widget .cal_input_clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.alfaamo_stripe_widget .cal_date_input {
+    color: var(--text-gray);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    outline: none;
+    border: 0px;
+    width: 95px;
+    background-color: transparent;
+}
+
+.alfaamo_stripe_widget .cal_input_block:hover .cal_input_icon svg path {
+    fill: var(--second-blue);
+}
+
+.alfaamo_stripe_widget .cal_input_block:hover .cal_date_input {
+    font-weight: 600;
+}
+
+.alfaamo_stripe_widget .cal_input_block:has(.cal_date_input:focus) {
+    font-weight: 600;
+    background-color: var(--white);
+}
+
+.alfaamo_stripe_widget .cal_input_block:has(.cal_date_input:focus) .cal_date_input {
+    font-weight: 600;
+}
+
+.alfaamo_stripe_widget .date_picker_calendar {
+    min-height: fit-content;
+    box-shadow: 0px 1px 10px 0px rgba(60, 161, 235, 0.25);
+    overflow: hidden;
+    background: var(--basement);
+    padding: 16px 13px;
+    position: absolute;
+    z-index: 2500;
+}
+
+.alfaamo_stripe_widget .date_picker_input.showCal .cal_input_block .cal_input_icon svg path {
+    fill: var(--second-blue);
+}
+
+.alfaamo_stripe_widget .cal_input_clear:hover svg path {
+    fill: var(--second-blue);
+}
+
+.alfaamo_stripe_widget .date_picker_calendar.hidden {
+    visibility: hidden;
+}
+
+.alfaamo_stripe_widget .calendar_header {
+    width: 100%;
+    min-height: 30px;
+    margin-bottom: 8px;
+    color: var(--text-selector);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.alfaamo_stripe_widget .cal-btn {
+    width: 20px;
+    height: 20px;
+    background: var(--dark-arrows-bg);
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 6px;
+}
+
+.alfaamo_stripe_widget .cal-btn img {
+    width: 10px;
+    height: 10px;
+}
+
+.alfaamo_stripe_widget .cal-btn:hover svg path {
+    fill: var(--second-blue);
+}
+
+.alfaamo_stripe_widget .cal_days,
+.alfaamo_stripe_widget .calendar_main {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 4px;
+    column-gap: 4px;
+    color: var(--text-selector);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.alfaamo_stripe_widget .cal_days {
+    margin-top: 13px;
+    margin-bottom: 4px;
+}
+
+.alfaamo_stripe_widget .calendar_main {
+    grid-template-rows: repeat(6, min(30px));
+}
+
+.alfaamo_stripe_widget .cell_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 30px;
+}
+
+.alfaamo_stripe_widget .cal_days .cell_item {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    height: 24px;
+    width: 30px;
+}
+
+.alfaamo_stripe_widget .cal_date {
+    color: var(--inactive-gray);
+    background-color: var(--white);
+}
+
+.alfaamo_stripe_widget .current {
+    background-color: var(--white);
+    color: var(--text-selector);
+}
+
+.alfaamo_stripe_widget .current:not(.active):hover {
+    background: #e1f5fe;
+}
+
+.alfaamo_stripe_widget .cal-btn:hover,
+.alfaamo_stripe_widget .current:hover {
+    cursor: pointer;
+}
+
+.alfaamo_stripe_widget .active {
+    background: var(--second-blue);
+    color: var(--white);
+}
+
+.alfaamo_stripe_widget .isSelected {
+    background: var(--second-blue);
+    color: var(--white);
+}
+
+.alfaamo_stripe_widget .additional-active {
+    color: var(--text-selector);
+    background-color: var(--disabled-block);
+}
+
+.alfaamo_stripe_widget .inactive_indicator:after {
+    content: '';
+    width: 3px;
+    height: 3px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+}
