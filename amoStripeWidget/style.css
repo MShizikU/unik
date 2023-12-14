@@ -1,0 +1,182 @@
+.alfaamo_stripe_widget{
+    background: white;
+    padding: 20px;
+}
+
+.alfaamo_stripe_widget-filter-container{
+    display: flex;
+    flex-direction: row;
+}
+.alfaamo_stripe_widget-table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: auto;
+    z-index: 2100;
+    margin: 0px 0px;
+}
+
+.alfaamo_stripe_widget-table th,
+.alfaamo_stripe_widget-table td{
+    position: relative;
+    z-index: 2300;
+}
+.alfaamo_stripe_widget-table tbody{
+    z-index: 2200;
+}
+
+.alfaamo_stripe_widget-table thead tr::before{
+    z-index: 2300 !important;
+}
+
+.alfaamo_stripe_widget-table tr::before{
+    top: 0;
+    bottom: 0;
+    border-color: var(--disabled-block);
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    background-color: transparent;
+    z-index: 2300;
+    transition: .3s all;
+}
+
+.tbody_wrapper{
+    display: table;
+    width: 100%;
+}
+
+.alfaamo_stripe_widget-table thead tr th{
+    position: sticky;
+    top: 0;
+    vertical-align: top;
+}
+
+.alfaamo_stripe_widget-table thead tr,
+.alfaamo_stripe_widget-table tbody tr {
+    width: 100%;
+    table-layout: fixed;
+    text-align: left;
+}
+
+
+.alfaamo_stripe_widget-table th {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 85%, rgba(255, 255, 255, 0) 100%);
+    text-align: left;
+    color: var(--text-selector);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1;
+    padding-right: 16px;
+    padding-right: 16px;
+    padding-top:8px;
+    padding-bottom:7px;
+    z-index: 2350;
+}
+
+.alfaamo_stripe_widget-table th:last-child{
+    padding-right: 0px;
+}
+
+.alfaamo_stripe_widget-table th:first-child{
+    padding-left: 0px;
+}
+
+.alfaamo_stripe_widget-table tr td{    
+    background-color: transparent;
+    vertical-align:top;
+    color: var(--table-text);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    padding-right: 16px;
+    padding-top:8px;
+    padding-bottom:7px;
+    height: 10px;
+    text-wrap: balance;
+}
+.alfaamo_stripe_widget-table td:last-child {
+    padding-right:16px;
+}
+
+.alfaamo_stripe_widget-table td:first-child{
+    padding-left: 0px;
+    padding-right: 6px;
+}
+
+.alfaamo_stripe_widget .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.alfaamo_stripe_widget .pagination li {
+    margin-right: 5px;
+    cursor: pointer;
+    color: #1579d2;
+}
+
+.alfaamo_stripe_widget .checkbox-filter {
+    margin-right: 15px; 
+}
+
+.alfaamo_stripe_widget label {
+    color: black;
+    margin-right: 20px;
+    position: relative;
+}
+
+.alfaamo_stripe_widget .checkbox-filter{
+    margin-left:10px;
+}
+
+.alfaamo_stripe_widget a {
+    color: #1579d2; 
+}
+
+.alfaamo_stripe_widget .custom-checkbox + label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    color: var(--01, #101F23);
+    font-feature-settings: "clig" 0, "liga" 0;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.alfaamo_stripe_widget .custom-checkbox {
+    cursor: pointer;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.alfaamo_stripe_widget .custom-checkbox + label::before {
+    cursor: pointer;
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    background-size: 50% 50%;
+    border: 1px solid #9AA8AB;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.alfaamo_stripe_widget .custom-checkbox:checked + label::before {
+    background-color: rgba(94, 207, 255, 0.5);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' fill='none'%3E%3Cpath d='M6.8141 1.08814C6.89222 1.00752 7.02138 1.00697 7.10018 1.08693L7.86256 1.86053C7.93894 1.93802 7.93935 2.06235 7.86349 2.14035L3.27966 6.85369C3.20156 6.93401 3.07272 6.93451 2.99399 6.8548L0.13866 3.9639C0.0617797 3.88606 0.0617102 3.7609 0.138504 3.68297L0.901265 2.909C0.979508 2.8296 1.10756 2.8295 1.18593 2.90876L3.13739 4.88234L6.8141 1.08814Z' fill='%233168CA'/%3E%3C/svg%3E");
+    border-color: #233DB9;
+}
