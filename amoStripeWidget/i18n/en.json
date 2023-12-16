@@ -12,8 +12,6 @@
     },
     "lcard": {
         "nondata": "N/A",
-        "succeed": "Success",
-        "waiting": "Waiting",
         "paymentNo": "Payment No",
         "paymentDate": "Payment Date",
         "statusStripe": "Status (Stripe)",
@@ -22,7 +20,14 @@
         "listNull" : "No payments"
     },
     "advanced": {
-        "title" : "Stripe payments"
+        "title" : "Stripe payments",
+        "leadName": "Lead Name",
+        "nondata": "N/A",
+        "paymentNo": "Payment No",
+        "paymentDate": "Payment Date",
+        "statusStripe": "Status (Stripe)",
+        "statusAlfa": "Status (Alfa)",
+        "amount": "Amount"
     },
     "utils":{
         "calendar": {

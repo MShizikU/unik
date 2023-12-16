@@ -12,8 +12,6 @@
     },
     "lcard": {
         "nondata": "Нет данных",
-        "succeed": "Успех",
-        "waiting": "Ожидание",
         "paymentNo": "Номер платежа",
         "paymentDate": "Дата оплаты",
         "statusStripe": "Статус (Stripe)",
@@ -22,7 +20,14 @@
         "listNull" : "Платежи отсутсвуют"
     },
     "advanced": {
-        "title" : "Платежи Stripe"
+        "title" : "Платежи Stripe",
+        "nondata": "Нет данных",
+        "leadName": "Название лида",
+        "paymentNo": "Номер платежа",
+        "paymentDate": "Дата оплаты",
+        "statusStripe": "Статус (Stripe)",
+        "statusAlfa": "Статус (Alfa)",
+        "amount": "Сумма"
     },
     "utils":{
         "calendar": {

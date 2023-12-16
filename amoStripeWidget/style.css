@@ -5,7 +5,8 @@
 
 .alfaamo_stripe_widget-filter-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 10px;
 }
 .alfaamo_stripe_widget-table {
     border-collapse: collapse;
@@ -187,9 +188,13 @@
     box-sizing: content-box;
 }
 
+.alfaamo_stripe_widget div {
+    box-sizing: unset !important;
+}
+
 .alfaamo_stripe_widget .date_picker {
     width: 260px;
-    margin: 0 auto;
+    margin: 0;
     position: relative;
     top: 15%;
 }
