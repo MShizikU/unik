@@ -45,6 +45,7 @@ define(['jquery', 'underscore'], function($, _) {
 			 * @returns {Promise}
 			 */
 			loadPreloadedData: function () {
+				console.log("view lead");
 				$(`head`).append(getStyles())
 				var amoDomain = AMOCRM.widgets.system.domain;
 				var amoId = AMOCRM.data.current_card.id;
@@ -172,7 +173,7 @@ define(['jquery', 'underscore'], function($, _) {
 				widget_tab.html(tableHtml);
 			}
 			else{
-				var messageHtml = '<div style="text-align: center; font-size: 18px;">Нет данных по оплате</div>';
+				var messageHtml = `<div style="text-align: center; font-size: 18px; color : black;">${langs.lcard.nonpayment}</div>`;
 				widget_tab.html(messageHtml);
 			}
 		}

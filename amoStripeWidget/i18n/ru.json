@@ -11,6 +11,7 @@
         "account":"Аккаунт"
     },
     "lcard": {
+        "nonpayment" : "Нет данных по оплате",
         "nondata": "Нет данных",
         "paymentNo": "Номер платежа",
         "paymentDate": "Дата оплаты",

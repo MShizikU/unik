@@ -1,9 +1,9 @@
 {
     "widget":{
-        "name":"MyWidget",
-        "short_description":"Short description",
-        "description":"Full description",
-        "tour_description":"Tour description"
+        "name":"Alfamo stripe connection",
+        "short_description":"Alfamo stripe connection",
+        "description":"Alfamo stripe connection",
+        "tour_description":"Alfamo stripe connection"
     },
     "settings":{
         "login":"User login",
@@ -11,6 +11,7 @@
         "account":"Account"
     },
     "lcard": {
+        "nonpayment" : "Payment data wasn't founded",
         "nondata": "N/A",
         "paymentNo": "Payment No",
         "paymentDate": "Payment Date",
