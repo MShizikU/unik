@@ -15,7 +15,7 @@ def upload_data(request):
     try:
         with open(chart_path, 'rb') as f:
             return HttpResponse(f.read(), content_type="image/png")
-    except FileNotFoundError:  # Handle FileNotFoundError specifically
+    except FileNotFoundError:
         pass
     except IOError:
         pass
@@ -31,16 +31,6 @@ def books(request):
     data = response.json()
     converted_data = []
     for item in data:
-        '''
-        converted_item = {
-            "sellerName": item["sellerName"],
-            "author": item["author"],
-            "name": item["name"],
-            "type": item["type"],
-            "price": item["price"],
-            "amount": item["amount"]
-        }
-        '''
         converted_data.append(item)
     
     return upload_data(converted_data)
