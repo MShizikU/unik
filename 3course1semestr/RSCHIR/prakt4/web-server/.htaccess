@@ -1,5 +1,0 @@
-Options +FollowSymLinks
-IndexIgnore */*
-
-RewriteEngine on
-RewriteRule / /index.php [L]
