@@ -1,3 +1,7 @@
+CREATE DATABASE prakt1
+
+SET schema 'prakt1';
+
 CREATE TABLE LOCATION (
     location_id SERIAL PRIMARY KEY,
     regional_group VARCHAR(20)
@@ -61,7 +65,7 @@ CREATE TABLE PRODUCT (
 );
 
 CREATE TABLE ITEM (
-    item_id INTEGER,
+    item_id SERIAL,
     order_id INTEGER,
     product_id INTEGER,
     actual_price NUMERIC(8,2),
