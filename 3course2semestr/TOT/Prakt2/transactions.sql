@@ -128,7 +128,7 @@ SELECT COUNT(*) FROM sales_order WHERE total = 30000;
 --Сессия 1--
 COMMIT;
 
---Сесстя 2--
+--Сессия 2--
 COMMIT;
 
 --Задание 2 / Конец --
