@@ -1,3 +1,6 @@
+psql -U shiz -d sidorov_tot_prakt -h localhost -p 5432
+
+
 --Блок 1--
 
 
@@ -8,15 +11,15 @@ SELECT * FROM sales_order;
 SELECT * FROM item;
 
 BEGIN;
+INSERT INTO sales_order (order_date, customer_id, total) VALUES (CURRENT_DATE, 1, 0);
 
-INSERT INTO sales_order (order_date, customer_id, total)
-VALUES (CURRENT_DATE, 1, 0) RETURNING order_id INTO @order_id;
+INSERT INTO item (order_id, product_id, actual_price, quantity, total) VALUES (6, 1, 10.00, 2, 20.00);
 
-INSERT INTO item (order_id, product_id, actual_price, quantity, total)
-VALUES (@order_id, 1, 10.00, 2, 20.00);
+INSERT INTO item (order_id, product_id, actual_price, quantity, total) VALUES (6, 2, 15.00, 3, 45.00);
 
-INSERT INTO item (order_id, product_id, actual_price, quantity, total)
-VALUES (@order_id, 2, 15.00, 3, 45.00);
+SELECT * FROM sales_order;
+
+SELECT * FROM item;
 
 ROLLBACK;
 
