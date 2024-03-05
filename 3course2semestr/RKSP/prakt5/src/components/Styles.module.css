@@ -51,6 +51,7 @@
     height: fit-content;
     background: linear-gradient(90deg, #3168CA 0%, #3C6 25%, #3168CA 25%, #3168CA 100% );
     background-position:100% 0 ;
+    width: 175px;
 }
 
 .basic_btn:not(:disabled):hover{
@@ -63,7 +64,6 @@
     background-position:100% 0 ;
     background-size: 400% 100% ;
     transition: background .5s ease;
-    width: 175px;
 }
 
 .basic_btn:disabled{
@@ -130,4 +130,17 @@
 
 .custom_checkbox input:checked + .checkbox_icon .checkmark {
     display: block;
+}
+
+.form_field{
+    outline: none;
+    width: 175px;
+    border-radius: 5px;
+    padding:10px;
+    border: 1px solid var(--gr10);
+    font-size: 14px;
+}
+
+.form_field:focus{
+    border: 1px solid var(--b3);
 }
