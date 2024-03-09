@@ -15,7 +15,7 @@ exports.allAccess = (req, res) => {
 };
 
 exports.userBoard = (req, res) => {
-  Agr.findAll()
+  Agr.findAll({order: [['id', 'ASC']]})
     .then((agrs) => {
       res.status(200).send({
         message: "User Content.",
@@ -28,7 +28,7 @@ exports.userBoard = (req, res) => {
 };
 
 exports.adminBoard = (req, res) => {
-  Agr.findAll()
+  Agr.findAll({order: [['id', 'ASC']]})
     .then((agrs) => {
       res.status(200).send({
         message: "Admin Content.",
@@ -41,7 +41,7 @@ exports.adminBoard = (req, res) => {
 };
 
 exports.moderatorBoard = (req, res) => {
-  Agr.findAll()
+  Agr.findAll({order: [['id', 'ASC']]})
     .then((agrs) => {
       res.status(200).send({
         message: "Moderatior Content.",

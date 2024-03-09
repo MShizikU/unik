@@ -1,4 +1,4 @@
-psql -U shiz -d sidorov_tot_prakt -h localhost -p 5435
+psql -U postgres -d prakt78 -h localhost -p 5435
 
 
 --Задание 1--
