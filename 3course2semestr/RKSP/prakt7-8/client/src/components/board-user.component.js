@@ -16,7 +16,8 @@ export default class BoardUser extends Component {
     UserService.getUserBoard().then(
       response => {
         this.setState({
-          content: response.data
+          content: response.data.message,
+          agrs: response.data.agrs
         });
       },
       error => {
@@ -42,6 +43,23 @@ export default class BoardUser extends Component {
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
         </header>
+        {Array.isArray(this.state.agrs) &&  this.state.agrs.length > 0 ? (
+          <div>
+            <h4>Agrs:</h4>
+            <ul className="list-group">
+              {this.state.agrs.map((agr, index) => (
+                <li key={index} className="list-group-item">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span>{`Name: ${agr.name}`}</span>
+                    <span>{`Status: ${agr.status}`}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>No agrs available.</p>
+        )}
       </div>
     );
   }

@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 
+var bcrypt = require("bcryptjs");
+
 const app = express();
 
 var corsOptions = {
@@ -9,18 +11,13 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
 app.use(express.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// database
 const db = require("./app/models");
 const Role = db.role;
+const Agr = db.agr;
 
-// db.sequelize.sync();
-// force: true will drop the table if it already exists
 db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync Database with { force: true }');
   initial();
@@ -42,6 +39,27 @@ app.listen(PORT, () => {
 });
 
 function initial() {
+  Agr.create({
+    name: "Agr1",
+    status: "Active"
+  }).then(() => {
+    console.log("Agr1 created successfully.");
+  });
+
+  Agr.create({
+    name: "Agr2",
+    status: "Inactive"
+  }).then(() => {
+    console.log("Agr2 created successfully.");
+  });
+
+  Agr.create({
+    name: "Agr3",
+    status: "Pending"
+  }).then(() => {
+    console.log("Agr3 created successfully.");
+  });
+
   Role.create({
     id: 1,
     name: "user"
@@ -54,10 +72,7 @@ function initial() {
         id: 3,
         name: "admin"
       }).then(() => {
-        // Create three different users with different roles
         const User = db.user;
-
-        // User 1 - Role: user
         User.create({
           username: "user",
           email: "user@example.com",
