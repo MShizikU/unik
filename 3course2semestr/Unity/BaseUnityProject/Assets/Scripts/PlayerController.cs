@@ -2,9 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class PlayerController : MonoBehaviour {
+
+    public GameObject spherePrefab; 
+    public int numberOfSpheres = 4;
+    public float sphereSizeMin = 0.1f;
+    public float sphereSizeMax = 0.3f;
+    public float deletionTime = 3f;
+
     public float walkSpeed = 8f;
     public float jumpSpeed = 7f;
     public float rotationSpeed = 100f;
+
+    private Collider playerCollider;
+    private Transform playerTransform;
 
     Rigidbody rb;
 
@@ -18,11 +28,13 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
         currentCamera = GetComponentInChildren<Camera>();
+        playerTransform = transform;
     }
   
     void Update () {
         WalkHandler();
         JumpHandler();
+        Sithandler();
     }
 
 
@@ -50,7 +62,7 @@ public class PlayerController : MonoBehaviour {
         rb.MovePosition(newPosition);
     }
 
-     void JumpHandler()
+    void JumpHandler()
     {
         float jAxis = Input.GetAxis("Jump");
         bool isGrounded = CheckGrounded();
@@ -61,11 +73,37 @@ public class PlayerController : MonoBehaviour {
                 pressedJump = true;
                 Vector3 jumpVector = new Vector3(0f, jumpSpeed, 0f);
                 rb.velocity = rb.velocity + jumpVector;
+                GenerateSpheres();
             }            
         }
         else
         {
             pressedJump = false;
+        }
+    }
+
+    void Sithandler(){
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        {
+            Vector3 currentPosition = playerTransform.position;
+
+            playerTransform.localScale = new Vector3(playerTransform.localScale.x, 0.5f, playerTransform.localScale.z);
+
+            playerTransform.position = currentPosition;
+
+            if (playerCollider != null)
+            {
+                playerCollider.transform.localScale = new Vector3(1f, 0.5f, 1f);
+            }
+        }
+        else
+        {
+            playerTransform.localScale = new Vector3(playerTransform.localScale.x, 1f, playerTransform.localScale.z);
+
+            if (playerCollider != null)
+            {
+                playerCollider.transform.localScale = Vector3.one;
+            }
         }
     }
 
@@ -86,5 +124,25 @@ public class PlayerController : MonoBehaviour {
         bool grounded4 = Physics.Raycast(corner4, new Vector3(0, -1, 0), 0.5f);
 
         return (grounded1 || grounded2 || grounded3 || grounded4);
+    }
+
+    public void GenerateSpheres()
+    {
+        Vector3 playerPosition = playerTransform.position;
+
+        for (int i = 0; i < numberOfSpheres; i++)
+        {
+            Vector3 position = playerPosition + Random.insideUnitSphere * 5f;
+            float size = Random.Range(sphereSizeMin, sphereSizeMax);
+            GameObject sphere = Instantiate(spherePrefab, position, Quaternion.identity);
+            sphere.transform.localScale = new Vector3(size, size, size);
+            StartCoroutine(DeleteAfterTime(sphere, deletionTime));
+        }
+    }
+
+    IEnumerator DeleteAfterTime(GameObject obj, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(obj);
     }
 }

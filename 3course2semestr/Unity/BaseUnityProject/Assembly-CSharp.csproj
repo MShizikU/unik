@@ -59,8 +59,8 @@
     <Analyzer Include="D:\Unity\Editor\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\WallGenerator.cs" />
     <Compile Include="Assets\Scripts\CameraChanger.cs" />
-    <Compile Include="Assets\Scripts\BaseGeneration.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\FPCameraController.cs" />
   </ItemGroup>

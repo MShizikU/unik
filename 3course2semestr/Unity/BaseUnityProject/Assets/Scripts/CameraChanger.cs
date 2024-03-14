@@ -19,11 +19,33 @@ public class CameraChanger : MonoBehaviour
         {
             ToggleCameras();
         }
+
+        SyncHorizontalRotation();
     }
 
     void ToggleCameras()
     {
         firstCamera.enabled = !firstCamera.enabled;
         secondCamera.enabled = !secondCamera.enabled;
+    }
+
+    void SyncHorizontalRotation()
+    {
+        if (firstCamera.enabled && secondCamera.enabled)
+        {
+            secondCamera.transform.rotation = Quaternion.Euler(
+                secondCamera.transform.rotation.eulerAngles.x,
+                firstCamera.transform.rotation.eulerAngles.y,
+                secondCamera.transform.rotation.eulerAngles.z
+            );
+        }
+        else if (secondCamera.enabled && firstCamera.enabled)
+        {
+            firstCamera.transform.rotation = Quaternion.Euler(
+                firstCamera.transform.rotation.eulerAngles.x,
+                secondCamera.transform.rotation.eulerAngles.y,
+                firstCamera.transform.rotation.eulerAngles.z 
+            );
+        }
     }
 }
