@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "sidorov_tot_prakt"
+      POSTGRES_USER: "shiz"
+      POSTGRES_PASSWORD: "1"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5435:5432"
