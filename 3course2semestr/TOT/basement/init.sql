@@ -1,6 +1,3 @@
-CREATE EXTENSION plpython3u;
-CREATE EXTENSION jsonb_plpython3u;
-
 CREATE TABLE LOCATION (
     location_id SERIAL PRIMARY KEY,
     regional_group VARCHAR(20)
@@ -46,7 +43,6 @@ CREATE TABLE CUSTOMER (
     salesperson_id INTEGER,
     credit_limit NUMERIC(9,2),
     comments TEXT,
-    email VARCHAR(45),
     FOREIGN KEY (salesperson_id) REFERENCES EMPLOYEE (employee_id)
 );
 
@@ -114,12 +110,12 @@ INSERT INTO EMPLOYEE (last_name, first_name, middle_initial, manager_id, job_id,
 ('Brown', 'Emily', 'D', 2, 4, '2023-04-01', 65000.00, 3500.00, 4),
 ('Davis', 'Michael', 'E', 2, 5, '2023-05-01', 70000.00, 4000.00, 5);
 
-INSERT INTO CUSTOMER (name, address, city, state, zip_code, area_code, phone_number, salesperson_id, credit_limit, email) VALUES
-('Customer 1', '123 Main St', 'City A', 'CA', '12345', 123, 132, 1, 10000.00, 'test@gmail.com'),
-('Customer 2', '456 Elm St', 'City B', 'NY', '54321', 456, 465, 2, 15000.00, 'test@gmail.com'),
-('Customer 3', '789 Oak St', 'City C', 'TX', '67890', 789, 423, 3, 20000.00, 'test@gmail.com'),
-('Customer 4', '101 Pine St', 'City D', 'FL', '09876', 234, 123, 4, 25000.00, 'test@gmail.com'),
-('Customer 5', '202 Maple St', 'City E', 'WA', '56789', 345, 3641, 5, 30000.00, 'test@gmail.com');
+INSERT INTO CUSTOMER (name, address, city, state, zip_code, area_code, phone_number, salesperson_id, credit_limit) VALUES
+('Customer 1', '123 Main St', 'City A', 'CA', '12345', 123, 132, 1, 10000.00),
+('Customer 2', '456 Elm St', 'City B', 'NY', '54321', 456, 465, 2, 15000.00),
+('Customer 3', '789 Oak St', 'City C', 'TX', '67890', 789, 423, 3, 20000.00),
+('Customer 4', '101 Pine St', 'City D', 'FL', '09876', 234, 123, 4, 25000.00),
+('Customer 5', '202 Maple St', 'City E', 'WA', '56789', 345, 3641, 5, 30000.00);
 
 INSERT INTO SALES_ORDER (order_date, customer_id, ship_date, total) VALUES
 ('2023-01-01', 1, '2023-01-05', 200.00),
@@ -160,4 +156,3 @@ INSERT INTO PRICE (product_id, start_date, list_price, min_price, end_date) VALU
 (3, '2024-01-01', 30.00, 24.00, '2024-12-31'),
 (4, '2024-01-01', 40.00, 32.00, '2024-12-31'),
 (5, '2024-01-01', 50.00, 40.00, '2024-12-31');
-

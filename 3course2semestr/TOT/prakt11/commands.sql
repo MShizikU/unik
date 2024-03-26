@@ -70,6 +70,8 @@ CREATE OR REPLACE FUNCTION public.register_program(name text, func text)
    	   RETURNING program_id;
     	$function$;
 
+SELECT register_program('???????? ??????', 'sendmail_task');
+
 CREATE FUNCTION public.sendmail_task(params jsonb)
 RETURNS text
 AS $$
@@ -83,7 +85,7 @@ AS $$
 $$ LANGUAGE sql VOLATILE;
 
 CREATE TABLE public.tasks (
-	task_id bigint NOT NULL,
+	task_id SERIAL PRIMARY KEY ,
 	program_id bigint NOT NULL,
 	status text DEFAULT 'scheduled'::text NOT NULL,
 	params jsonb,
@@ -105,32 +107,46 @@ CREATE FUNCTION public.run_program(program_id bigint, params jsonb DEFAULT NULL:
 	RETURNING task_id;
 $$;
 
+CREATE FUNCTION public.checkout(user_id bigint) returns void
+AS $$
+BEGIN
+    PERFORM before_checkout(user_id);    
+END;
+$$ LANGUAGE plpgsql VOLATILE SECURITY DEFINER;
+
 CREATE OR REPLACE FUNCTION public.before_checkout(user_id bigint)
 RETURNS void
 AS $$
-<<local>>
 DECLARE
-	params jsonb;
+    params jsonb;
 BEGIN
-	SELECT jsonb_build_object(
-    	'from_addr', 'bookstore@localhost',
-    	'to_addr',	u.email,
-    	'subj',   	'??????????? ? ????????',
-    	'msg',    	format(
-                      	E'????????? %s!\n?? ????????? ??????? ?? ????? ????? %s ?.',
-                      	u.username,
-                      	'1000'
-                  	)
-	)
-	INTO params
-	FROM users u
-    	JOIN cart_items ci ON ci.user_id = u.user_id
-	WHERE u.user_id = before_checkout.user_id
-	GROUP BY u.user_id;
- 
-	PERFORM public.run_program(
-    	program_id => 2,
-    	params => params
-	);
+    SELECT jsonb_build_object(
+        'from_addr', 'bookstore@localhost',
+        'to_addr', c.email,
+        'subj', 'Order Confirmation for User ' || c.name,
+        'msg', format(
+                  E'Hello %s!\nThank you for your order.\nYour order total is $%s.',
+                  c.name,
+                  total
+              )
+    )
+    INTO params
+    FROM customer c
+    JOIN (
+        SELECT
+            so.customer_id,
+            SUM(i.total) AS total
+        FROM sales_order so
+        JOIN item i ON so.order_id = i.order_id
+        WHERE so.customer_id = user_id
+        GROUP BY so.customer_id
+    ) AS order_totals ON order_totals.customer_id = c.customer_id;
+
+    PERFORM public.run_program(
+		2,
+        params,
+		NULL,
+		NULL
+    );
 END;
 $$ LANGUAGE plpgsql VOLATILE;
