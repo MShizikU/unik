@@ -124,6 +124,18 @@ INSERT INTO SALES_ORDER (order_date, customer_id, ship_date, total) VALUES
 ('2023-04-01', 4, '2023-04-05', 400.00),
 ('2023-05-01', 5, '2023-05-05', 500.00);
 
+WITH RandomDates AS (
+    SELECT 
+        DATE '2023-01-01' + INTERVAL '1 day' * ROUND(RANDOM() * (DATE '2023-12-31' - DATE '2023-01-01')) AS order_date,
+        FLOOR(RANDOM() * 5) + 1 AS customer_id,
+        DATE '2023-01-01' + INTERVAL '1 day' * ROUND(RANDOM() * 30) AS ship_date,
+        ROUND(RANDOM() * 10000) AS total
+    FROM generate_series(1, 100)
+)
+INSERT INTO SALES_ORDER (order_date, customer_id, ship_date, total)
+SELECT order_date, customer_id, ship_date, total
+FROM RandomDates;
+
 INSERT INTO PRODUCT (description) VALUES
 ('Product 1'),
 ('Product 2'),
