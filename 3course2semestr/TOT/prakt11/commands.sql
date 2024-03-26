@@ -1,0 +1,136 @@
+psql -U shiz -d sidorov_tot_prakt -h localhost -p 5435
+
+
+--Task 1
+
+CREATE OR REPLACE FUNCTION tmprun(func text, params jsonb)
+RETURNS text
+TRANSFORM FOR TYPE jsonb
+AS $python$
+	p = plpy.prepare("SELECT * FROM " + plpy.quote_ident(func) + "($1)", ["jsonb"])
+	r = p.execute([params])
+	cols = r.colnames()
+	collen = {col: len(col) for col in cols}
+	for i in range(len(r)):
+    	for col in cols:
+        	if len( str(r[i][col]) ) > collen[col]:
+            	collen[col] = len( str(r[i][col]) )
+	res = ""
+	res += " ".join( [col.center(collen[col]," ") for col in cols]) + "\n"
+	res += " ".join( ["-"*collen[col] for col in cols]) + "\n"
+	for i in range(len(r)):
+    	res += " ".join( [str(r[i][col]).ljust(collen[col]," ") for col in cols]) + "\n"
+	return res
+$python$ LANGUAGE plpython3u VOLATILE;
+
+CREATE OR REPLACE FUNCTION test_function(params jsonb)
+RETURNS TABLE(id INT, value TEXT)
+AS $$
+DECLARE
+    table_name text;
+    query_text text;
+BEGIN
+    table_name := params ->> 'table_name';
+    query_text := 'SELECT id, value::text FROM ' || quote_ident(table_name);
+    RETURN QUERY EXECUTE query_text;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM tmprun('test_function', '{"table_name" : "example"}');
+
+--Task2
+
+CREATE OR REPLACE FUNCTION public.sendmail(from_addr text, to_addr text, subj text, msg text)
+ RETURNS void
+ LANGUAGE plpython3u
+AS $function$
+	import smtplib
+	server = smtplib.SMTP('localhost')
+	server.sendmail(
+    	from_addr,
+    	to_addr,
+        "\r\n".join([
+        	"From: %s" % from_addr,
+        	"To: %s" % to_addr,
+            "Content-Type: text/plain; charset=\"UTF-8\"",
+        	"Subject: %s" % subj,
+            "\r\n%s" % msg
+    	]).encode('utf-8')
+	)
+	server.quit()
+$function$;
+
+create table programs (program_id bigint, name text, func text);
+
+CREATE OR REPLACE FUNCTION public.register_program(name text, func text)
+    	RETURNS bigint
+    	LANGUAGE sql
+   	   AS $function$
+       	INSERT INTO programs(name, func) VALUES (name, func)
+   	   RETURNING program_id;
+    	$function$;
+
+CREATE FUNCTION public.sendmail_task(params jsonb)
+RETURNS text
+AS $$
+	SELECT sendmail(
+    	from_addr => params->>'from_addr',
+    	to_addr   => params->>'to_addr',
+    	subj  	=> params->>'subj',
+    	msg   	=> params->>'msg'
+	);
+	SELECT 'OK';
+$$ LANGUAGE sql VOLATILE;
+
+CREATE TABLE public.tasks (
+	task_id bigint NOT NULL,
+	program_id bigint NOT NULL,
+	status text DEFAULT 'scheduled'::text NOT NULL,
+	params jsonb,
+	pid integer,
+	started timestamp with time zone,
+	finished timestamp with time zone,
+	result text,
+	host text,
+	port text,
+	CONSTRAINT tasks_check CHECK ((((host IS NOT NULL) AND (port IS NOT NULL)) OR ((host IS NULL) AND (port IS NULL)))),
+	CONSTRAINT tasks_status_check CHECK ((status = ANY (ARRAY['scheduled'::text, 'running'::text, 'finished'::text, 'error'::text])))
+);
+
+CREATE FUNCTION public.run_program(program_id bigint, params jsonb DEFAULT NULL::jsonb, host text DEFAULT NULL::text, port text DEFAULT NULL::text) RETURNS bigint
+	LANGUAGE sql SECURITY DEFINER
+	AS $$
+	INSERT INTO tasks(program_id, status, params, host, port)
+	VALUES (program_id, 'scheduled', params, host, port)
+	RETURNING task_id;
+$$;
+
+CREATE OR REPLACE FUNCTION public.before_checkout(user_id bigint)
+RETURNS void
+AS $$
+<<local>>
+DECLARE
+	params jsonb;
+BEGIN
+	SELECT jsonb_build_object(
+    	'from_addr', 'bookstore@localhost',
+    	'to_addr',	u.email,
+    	'subj',   	'??????????? ? ????????',
+    	'msg',    	format(
+                      	E'????????? %s!\n?? ????????? ??????? ?? ????? ????? %s ?.',
+                      	u.username,
+                      	'1000'
+                  	)
+	)
+	INTO params
+	FROM users u
+    	JOIN cart_items ci ON ci.user_id = u.user_id
+	WHERE u.user_id = before_checkout.user_id
+	GROUP BY u.user_id;
+ 
+	PERFORM public.run_program(
+    	program_id => 2,
+    	params => params
+	);
+END;
+$$ LANGUAGE plpgsql VOLATILE;
