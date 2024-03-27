@@ -193,5 +193,3 @@ END;
 $$ LANGUAGE plpgsql;
 
 select execute_tasks();
-
-select tmprun('sendmail_task', '{"msg": "Hello Customer 1!\nThank you for your order.\nYour order total is $10.00.", "subj": "Order Confirmation for User Customer 1", "to_addr": "test@gmail.com", "from_addr": "mrshizsidorov@yandex.com"}');
