@@ -115,11 +115,11 @@ INSERT INTO EMPLOYEE (last_name, first_name, middle_initial, manager_id, job_id,
 ('Davis', 'Michael', 'E', 2, 5, '2023-05-01', 70000.00, 4000.00, 5);
 
 INSERT INTO CUSTOMER (name, address, city, state, zip_code, area_code, phone_number, salesperson_id, credit_limit, email) VALUES
-('Customer 1', '123 Main St', 'City A', 'CA', '12345', 123, 132, 1, 10000.00, 'test@gmail.com'),
-('Customer 2', '456 Elm St', 'City B', 'NY', '54321', 456, 465, 2, 15000.00, 'test@gmail.com'),
-('Customer 3', '789 Oak St', 'City C', 'TX', '67890', 789, 423, 3, 20000.00, 'test@gmail.com'),
-('Customer 4', '101 Pine St', 'City D', 'FL', '09876', 234, 123, 4, 25000.00, 'test@gmail.com'),
-('Customer 5', '202 Maple St', 'City E', 'WA', '56789', 345, 3641, 5, 30000.00, 'test@gmail.com');
+('Customer 1', '123 Main St', 'City A', 'CA', '12345', 123, 132, 1, 10000.00, 'sidorovstasdw@gmail.com'),
+('Customer 2', '456 Elm St', 'City B', 'NY', '54321', 456, 465, 2, 15000.00, 'sidorovstasdw@gmail.com'),
+('Customer 3', '789 Oak St', 'City C', 'TX', '67890', 789, 423, 3, 20000.00, 'sidorovstasdw@gmail.com'),
+('Customer 4', '101 Pine St', 'City D', 'FL', '09876', 234, 123, 4, 25000.00, 'sidorovstasdw@gmail.com'),
+('Customer 5', '202 Maple St', 'City E', 'WA', '56789', 345, 3641, 5, 30000.00, 'sidorovstasdw@gmail.com');
 
 INSERT INTO SALES_ORDER (order_date, customer_id, ship_date, total) VALUES
 ('2023-01-01', 1, '2023-01-05', 200.00),

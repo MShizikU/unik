@@ -45,7 +45,9 @@ CREATE OR REPLACE FUNCTION public.sendmail(from_addr text, to_addr text, subj te
  LANGUAGE plpython3u
 AS $function$
 	import smtplib
-	server = smtplib.SMTP('localhost')
+	server = smtplib.SMTP('smtp.gmail.com', 587)
+	server.starttls()
+	server.login('sidorovstasd7@gmail.com', 'uxnyugwremstfqfy')
 	server.sendmail(
     	from_addr,
     	to_addr,
@@ -60,7 +62,7 @@ AS $function$
 	server.quit()
 $function$;
 
-create table programs (program_id bigint, name text, func text);
+create table programs (program_id SERIAL PRIMARY KEY, name text, func text);
 
 CREATE OR REPLACE FUNCTION public.register_program(name text, func text)
     	RETURNS bigint
@@ -70,7 +72,7 @@ CREATE OR REPLACE FUNCTION public.register_program(name text, func text)
    	   RETURNING program_id;
     	$function$;
 
-SELECT register_program('???????? ??????', 'sendmail_task');
+SELECT register_program('Send a mail', 'sendmail_task');
 
 CREATE FUNCTION public.sendmail_task(params jsonb)
 RETURNS text
@@ -121,7 +123,7 @@ DECLARE
     params jsonb;
 BEGIN
     SELECT jsonb_build_object(
-        'from_addr', 'bookstore@localhost',
+        'from_addr', 'sidorovstasd7@gmail.com',
         'to_addr', c.email,
         'subj', 'Order Confirmation for User ' || c.name,
         'msg', format(
@@ -143,10 +145,53 @@ BEGIN
     ) AS order_totals ON order_totals.customer_id = c.customer_id;
 
     PERFORM public.run_program(
-		2,
+		1,
         params,
 		NULL,
 		NULL
     );
 END;
 $$ LANGUAGE plpgsql VOLATILE;
+
+select checkout(1);
+
+CREATE OR REPLACE FUNCTION tmprun(func text, params jsonb)
+RETURNS text
+TRANSFORM FOR TYPE jsonb
+AS $python$
+	p = plpy.prepare("SELECT * FROM " + plpy.quote_ident(func) + "($1)", ["jsonb"])
+	r = p.execute([params])
+	cols = r.colnames()
+	collen = {col: len(col) for col in cols}
+	for i in range(len(r)):
+    	for col in cols:
+        	if len( str(r[i][col]) ) > collen[col]:
+            	collen[col] = len( str(r[i][col]) )
+	res = ""
+	res += " ".join( [col.center(collen[col]," ") for col in cols]) + "\n"
+	res += " ".join( ["-"*collen[col] for col in cols]) + "\n"
+	for i in range(len(r)):
+    	res += " ".join( [str(r[i][col]).ljust(collen[col]," ") for col in cols]) + "\n"
+	return res
+$python$ LANGUAGE plpython3u VOLATILE;
+
+CREATE OR REPLACE FUNCTION public.execute_tasks()
+RETURNS VOID
+AS $$
+DECLARE
+    task_record RECORD;
+    program_name TEXT;
+    task_params JSONB;
+BEGIN
+    FOR task_record IN SELECT * FROM tasks WHERE status = 'scheduled' LOOP
+        SELECT func INTO program_name FROM programs WHERE program_id = task_record.program_id;
+        task_params := task_record.params;
+        PERFORM tmprun(program_name, task_params);
+        UPDATE tasks SET status = 'finished', finished = current_timestamp WHERE task_id = task_record.task_id;
+    END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+
+select execute_tasks();
+
+select tmprun('sendmail_task', '{"msg": "Hello Customer 1!\nThank you for your order.\nYour order total is $10.00.", "subj": "Order Confirmation for User Customer 1", "to_addr": "test@gmail.com", "from_addr": "mrshizsidorov@yandex.com"}');
