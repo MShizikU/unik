@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
+    private Animator _characterAnimator;
+
+    public int sitTriggered = 0;
     public GameObject spherePrefab; 
     public int numberOfSpheres = 4;
     public float sphereSizeMin = 0.1f;
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<Collider>();
+        _characterAnimator = GetComponent<Animator>();
         currentCamera = GetComponentInChildren<Camera>();
         playerTransform = transform;
     }
@@ -58,6 +62,12 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 currPosition = transform.position;
         Vector3 newPosition = currPosition + movement;
+        /*if (hAxis != 0F || vAxis != 0F){
+            _characterAnimator.SetTrigger("PlayerRunStart");
+        }
+        else{
+            _characterAnimator.SetTrigger("PlayerRunStop");
+        }*/
 
         rb.MovePosition(newPosition);
     }
@@ -74,6 +84,7 @@ public class PlayerController : MonoBehaviour {
                 Vector3 jumpVector = new Vector3(0f, jumpSpeed, 0f);
                 rb.velocity = rb.velocity + jumpVector;
                 GenerateSpheres();
+                //_characterAnimator.SetTrigger("PlayerJump");
             }            
         }
         else
@@ -83,26 +94,39 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Sithandler(){
+        Debug.Log(sitTriggered);
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            Vector3 currentPosition = playerTransform.position;
+            if (sitTriggered == 0){
+                Vector3 currentPosition = playerTransform.position;
 
-            playerTransform.localScale = new Vector3(playerTransform.localScale.x, 0.5f, playerTransform.localScale.z);
+                playerTransform.localScale = new Vector3(playerTransform.localScale.x, 0.5f, playerTransform.localScale.z);
 
-            playerTransform.position = currentPosition;
-
-            if (playerCollider != null)
-            {
-                playerCollider.transform.localScale = new Vector3(1f, 0.5f, 1f);
+                playerTransform.position = currentPosition;
+                //_characterAnimator.SetTrigger("PlayerSmoozeStart");
+                sitTriggered = 1;
+                if (playerCollider != null)
+                {
+                    playerCollider.transform.localScale = new Vector3(1f, 0.5f, 1f);
+                }
             }
         }
         else
         {
-            playerTransform.localScale = new Vector3(playerTransform.localScale.x, 1f, playerTransform.localScale.z);
+            if (sitTriggered == 1){
+                playerTransform.localScale = new Vector3(playerTransform.localScale.x, 1f, playerTransform.localScale.z);
 
-            if (playerCollider != null)
-            {
-                playerCollider.transform.localScale = Vector3.one;
+                if (playerCollider != null)
+                {
+                    playerCollider.transform.localScale = Vector3.one;
+                }
+
+                //_characterAnimator.SetTrigger("PlayerSmoozeStop");
+                sitTriggered = 0;
+                if (playerCollider != null)
+                {
+                    playerCollider.transform.localScale = new Vector3(1f, 0.5f, 1f);
+                }
             }
         }
     }
