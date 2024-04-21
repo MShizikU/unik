@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    [SerializeField] private AudioClip[] _footstepClips;
     private AudioSource _playerAudioSource;
     private PlayerController _playerMovement;
 
@@ -19,12 +18,11 @@ public class PlayerAudio : MonoBehaviour
     private void OnPlayerMoving(bool moving)
     {
         if (moving){
-            AudioClip randomClip = _footstepClips[Random.Range(0, _footstepClips.Length)];
-            _playerAudioSource.clip = randomClip;
+            if (_playerAudioSource.isPlaying) return;
             _playerAudioSource.Play();
-        }else if (!moving){
-            AudioClip randomClip = _footstepClips[Random.Range(0, _footstepClips.Length)];
-            _playerAudioSource.clip = randomClip;
+        }
+        else if (!moving){
+            if (!_playerAudioSource.isPlaying) return;
             _playerAudioSource.Stop();
         }
     }
