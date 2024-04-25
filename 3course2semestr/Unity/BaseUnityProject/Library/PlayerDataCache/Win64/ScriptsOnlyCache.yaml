@@ -10,8 +10,43 @@ ScriptsOnlyBuild:
     - UIMainMenu
     - UIPause
     - WallGenerator
+    NavMeshComponentsExamples.dll:
+    - NavMeshSourceTag
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TerrainTools.Editor.dll:
+    - UnityEditor.TerrainTools.BillowNoise
+    - UnityEditor.TerrainTools.BridgeTool
+    - UnityEditor.TerrainTools.CloneBrushTool
+    - UnityEditor.TerrainTools.ContrastTool
+    - UnityEditor.TerrainTools.DetailScatterTool
+    - UnityEditor.TerrainTools.FbmFractalType
+    - UnityEditor.TerrainTools.HydroErosionTool
+    - UnityEditor.TerrainTools.NoiseBlitShaderGenerator
+    - UnityEditor.TerrainTools.NoiseFillShaderGenerator
+    - UnityEditor.TerrainTools.NoiseHeightTool
+    - UnityEditor.TerrainTools.NoneFractalType
+    - UnityEditor.TerrainTools.PaintHeightTool
+    - UnityEditor.TerrainTools.PaintHolesTool
+    - UnityEditor.TerrainTools.PaintTextureTool
+    - UnityEditor.TerrainTools.PerlinNoise
+    - UnityEditor.TerrainTools.PinchHeightTool
+    - UnityEditor.TerrainTools.RidgeNoise
+    - UnityEditor.TerrainTools.SetHeightTool
+    - UnityEditor.TerrainTools.SharpenPeaksTool
+    - UnityEditor.TerrainTools.SlopeFlattenTool
+    - UnityEditor.TerrainTools.SmoothHeightTool
+    - UnityEditor.TerrainTools.SmudgeHeightTool
+    - UnityEditor.TerrainTools.StampTool
+    - UnityEditor.TerrainTools.StrataFractalType
+    - UnityEditor.TerrainTools.TerraceErosion
+    - UnityEditor.TerrainTools.ThermalErosionTool
+    - UnityEditor.TerrainTools.TwistHeightTool
+    - UnityEditor.TerrainTools.ValueNoise
+    - UnityEditor.TerrainTools.VoronoiNoise
+    - UnityEditor.TerrainTools.WindErosionTool
+    Unity.TerrainTools.dll:
+    - TerrainGroup
     Unity.TextMeshPro:
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
@@ -26,8 +61,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -124,6 +161,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -149,28 +188,36 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6090}
     - Class: 114
-      Script: {instanceID: 8096}
+      Script: {instanceID: 8188}
     - Class: 114
-      Script: {instanceID: 8100}
+      Script: {instanceID: 8192}
     - Class: 114
-      Script: {instanceID: 8120}
+      Script: {instanceID: 8212}
     - Class: 114
-      Script: {instanceID: 8134}
+      Script: {instanceID: 8226}
     - Class: 114
-      Script: {instanceID: 8138}
+      Script: {instanceID: 8230}
     - Class: 114
-      Script: {instanceID: 8182}
+      Script: {instanceID: 8274}
     - Class: 114
-      Script: {instanceID: 8210}
+      Script: {instanceID: 8302}
     - Class: 114
-      Script: {instanceID: 8244}
+      Script: {instanceID: 8336}
     - Class: 114
-      Script: {instanceID: 25484}
+      Script: {instanceID: 8344}
+    - Class: 114
+      Script: {instanceID: 25788}
+    - Class: 114
+      Script: {instanceID: 28020}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 135
+      Script: {instanceID: 0}
+    - Class: 154
+      Script: {instanceID: 0}
+    - Class: 156
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -182,6 +229,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
+    - Class: 218
+      Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
     - Class: 223
@@ -189,6 +238,10 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
+      Script: {instanceID: 0}
+    - Class: 1953259897
       Script: {instanceID: 0}
     Assets/Scenes/Menu.unity:
     - Class: 1
@@ -1266,8 +1319,14 @@ ScriptsOnlyBuild:
     assemblyName: NavMeshComponentsExamples
     namespaceName: 
     className: NavMeshSourceTag
+  - hash:
+      serializedVersion: 2
+      Hash: ed8666a0a5c57e2e1bca79e1c02c25f1
+    assemblyName: Unity.TerrainTools
+    namespaceName: 
+    className: TerrainGroup
   platform: 19
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Game.unity
-  playerPath: C:/tmpWithoudD/unik/3course2semestr/Unity/Build/BaseUnityProject.exe
+  playerPath: D:/unik/3course2semestr/Unity/Build/BaseUnityProject.exe
